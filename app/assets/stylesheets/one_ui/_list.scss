@@ -1,0 +1,91 @@
+@mixin list-style {
+  @include clearfix;
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+
+  & > li {
+    text-overflow: ellipsis;    
+    white-space: nowrap;  
+  }
+
+  & > li a {
+    display: block;
+  }
+}
+
+ul.text-list {
+  @include list-style;
+
+  li {
+    white-space: normal;
+    border-bottom: 1px dotted #DDD;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+  }
+}
+
+ol.text-list {
+  @include clearfix;
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+
+  li {
+    white-space: normal;
+    border-bottom: 1px dotted #DDD;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    list-style-position: inside;
+    list-style-type: decimal;    
+  }  
+}
+
+ul.tag-list {
+  @include list-style;
+  
+  li {
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 10px;
+
+    a {
+      white-space: nowrap;
+      word-wrap:break-word;      
+      display: inline-block;
+      padding: 5px 5px;      
+      text-decoration: none;
+      border: 1px solid #DDD;
+      border-radius: 4px;
+      color: #999;
+    }
+
+    a:hover {
+      background-color: $brand-red;
+      border: 1px solid $brand-red;
+      color: #FFF;
+      text-decoration: none;
+    }
+  }
+}
+
+ul.image-list {
+  @include list-style;
+
+  li {
+    float: left;
+    margin-bottom: 10px;
+    text-align: center;
+    margin-right: 8px;
+  }
+
+  li img {
+    width: 120px;
+    height: 80px;
+  }
+
+  .text {
+    margin-top: 5px;
+    height: 18px;    
+  }
+}

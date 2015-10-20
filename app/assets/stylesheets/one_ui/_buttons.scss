@@ -1,0 +1,81 @@
+.btn {
+  display: inline-block;
+  padding: 10px 12px;
+  font-size: 13px;
+  font-weight: bold;
+  color: $brand-gray;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  background-color: #eee;
+  border-radius: 3px;
+  text-align: center;
+  user-select: none;
+  -webkit-appearance: none;
+
+  &:hover {
+    color: $brand-gray;
+    text-decoration: none;
+    background-color: #ddd;
+    border-color: #ccc;
+  }
+
+  &.btn-block {
+    display: block;
+  }
+
+  &.btn-lg {
+    padding: 12px 24px;
+    font-size: 20px;
+  }
+
+  i.kx {
+    vertical-align: text-bottom;
+    margin-right: 10px;
+  }
+}
+
+.btn-success {
+  color: #FFF;
+  background-color: $brand-green;
+
+  &:hover {
+    color: #FFF;
+    background-color: darken($brand-green, 10%);
+  }
+}
+
+.btn-warning {
+  color: #FFF;
+  background-color: $brand-orange;
+
+  &:hover {
+    color: #FFF;
+    background-color: darken($brand-orange, 10%);
+  }
+}
+
+.btn-danger {
+  color: #FFF;
+  background-color: $brand-red;
+
+  &:hover {
+    color: #FFF;
+    background-color: darken($brand-red, 10%);
+  }
+}
+
+.btn-primary {
+  color: #FFF;
+  background-color: $brand-blue;
+
+  &:hover {
+    color: #FFF;
+    background-color: darken($brand-blue, 10%);
+  }
+}
+
+input.btn {
+  border: none;
+  display: inline-block;
+}
