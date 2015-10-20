@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151020074200) do
+ActiveRecord::Schema.define(version: 20151020130236) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,30 +26,75 @@ ActiveRecord::Schema.define(version: 20151020074200) do
   add_index "article_bodies", ["article_id"], name: "index_article_bodies_on_article_id", using: :btree
 
   create_table "articles", force: :cascade do |t|
-    t.integer  "node_id",                                 null: false
-    t.string   "title",           limit: 200,             null: false
-    t.string   "short_title",     limit: 36
+    t.integer  "node_id",                                     null: false
+    t.string   "title",           limit: 200,                 null: false
+    t.string   "short_title",     limit: 80
     t.integer  "comments_count",              default: 0
     t.integer  "sort_rank",                   default: 0
     t.string   "color",           limit: 10
     t.string   "writer",          limit: 20
+    t.string   "thumb"
     t.string   "source",          limit: 30
-    t.string   "seo_keywords",    limit: 60
-    t.string   "seo_description", limit: 150
-    t.datetime "created_at",                              null: false
-    t.datetime "updated_at",                              null: false
+    t.string   "seo_title"
+    t.string   "seo_keywords"
+    t.string   "seo_description"
+    t.boolean  "hot",                         default: false
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
   end
 
+  add_index "articles", ["hot"], name: "index_articles_on_hot", using: :btree
   add_index "articles", ["node_id"], name: "index_articles_on_node_id", using: :btree
 
+  create_table "keywords", force: :cascade do |t|
+    t.string   "name",       limit: 30,                 null: false
+    t.string   "url",        limit: 100,                null: false
+    t.integer  "sortrank",               default: 1000
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+  end
+
+  create_table "links", force: :cascade do |t|
+    t.string   "name",       limit: 30,                 null: false
+    t.string   "title",      limit: 150
+    t.string   "url",        limit: 150,                null: false
+    t.string   "qq",         limit: 20
+    t.integer  "sortrank",               default: 1000
+    t.integer  "status",                 default: 0
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+  end
+
   create_table "nodes", force: :cascade do |t|
-    t.string   "name",            limit: 30,              null: false
-    t.integer  "parent_id",                   default: 0, null: false
-    t.string   "seo_title",       limit: 80
-    t.string   "seo_keywords",    limit: 60
-    t.string   "seo_description", limit: 150
-    t.datetime "created_at",                              null: false
-    t.datetime "updated_at",                              null: false
+    t.string   "name",            limit: 30,             null: false
+    t.string   "slug",            limit: 30,             null: false
+    t.integer  "parent_id",                  default: 0, null: false
+    t.string   "seo_title"
+    t.string   "seo_keywords"
+    t.string   "seo_description"
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+  end
+
+  create_table "taggings", force: :cascade do |t|
+    t.integer  "article_id"
+    t.integer  "tag_id"
+    t.datetime "created_at"
+  end
+
+  add_index "taggings", ["article_id", "tag_id"], name: "index_taggings_on_article_id_and_tag_id", using: :btree
+  add_index "taggings", ["article_id"], name: "index_taggings_on_article_id", using: :btree
+  add_index "taggings", ["tag_id"], name: "index_taggings_on_tag_id", using: :btree
+
+  create_table "tags", force: :cascade do |t|
+    t.string   "name",            limit: 30,             null: false
+    t.string   "slug",            limit: 80,             null: false
+    t.string   "seo_title"
+    t.string   "seo_keywords"
+    t.string   "seo_description"
+    t.integer  "taggings_count",             default: 0
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
   end
 
   create_table "users", force: :cascade do |t|
