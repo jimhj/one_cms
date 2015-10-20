@@ -8,9 +8,11 @@ class CreateArticles < ActiveRecord::Migration
       t.integer :sort_rank, default: 0
       t.string :color, limit: 10, default: nil
       t.string :writer, limit: 20, default: nil
+      t.string :thumb, default: nil
       t.string :source, limit: 30, default: nil
       t.string :seo_keywords, limit: 60, default: nil
       t.string :seo_description, limit: 150, default: nil
+      t.boolean :hot, default: false, index: true
       t.timestamps null: false
     end
   end

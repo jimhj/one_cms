@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20151020074200) do
   create_table "article_bodies", force: :cascade do |t|
     t.integer "article_id",               null: false
     t.text    "body"
+    t.text    "body_html"
     t.string  "redirect_url", limit: 100
   end
 
