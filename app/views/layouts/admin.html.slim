@@ -1,0 +1,43 @@
+doctype html
+html
+  head
+    title 开心100
+    = stylesheet_link_tag    "admin/app"
+    = javascript_include_tag "admin/app"
+    = csrf_meta_tags
+
+  body
+    #wrapper
+      nav.navbar.navbar-default.navbar-static-top style="margin-bottom: 0" role="navigation"
+        .navbar-header
+          a.navbar-brand OneCMS
+        ul.nav.navbar-top-links.navbar-right
+          li.dropdown
+            a.dropdown-toggle data-toggle="dropdown" href="#" aria-expanded=false
+              i.fa.fa-user.fa-fw
+              i.fa.fa-caret-down
+          li.dropdown
+            a.dropdown-toggle data-toggle="dropdown" href="#" aria-expanded=false
+              i.fa.fa-user.fa-fw
+              i.fa.fa-caret-down
+
+        .navbar-default.sidebar role="navigation"
+          .sidebar-nav.navbar-collapse
+            ul.nav.in#side-menu
+              li.sidebar-search
+                .input-group.custom-search-form
+                  input.form-control type="text" placeholder="搜索"
+                  span.input-group-btn
+                    button.btn.btn-default
+                      i.fa.fa-search
+              li
+                a href="#"
+                  i.fa.fa-dashboard.fa-fw
+                  | 首页
+              li
+                a href="#"
+                  i.fa.fa-dashboard.fa-fw
+                  | 文章
+                  span.fa.arrow 
+      #page-wrapper style="min-height: 391px;"
+        = yield

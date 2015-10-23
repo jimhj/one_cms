@@ -8,8 +8,10 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 
-gem 'bootstrap-sass', '~> 3.3.5'
 gem 'font-awesome-sass', '~> 4.4.0'
+
+# Slim for Template
+gem 'slim', '~> 3.0.3'
 
 group :development, :test do
   gem 'byebug'

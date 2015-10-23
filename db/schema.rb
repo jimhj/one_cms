@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151020130236) do
+ActiveRecord::Schema.define(version: 20151021030103) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,16 @@ ActiveRecord::Schema.define(version: 20151020130236) do
 
   add_index "articles", ["hot"], name: "index_articles_on_hot", using: :btree
   add_index "articles", ["node_id"], name: "index_articles_on_node_id", using: :btree
+
+  create_table "channel_articles", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "channels", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "keywords", force: :cascade do |t|
     t.string   "name",       limit: 30,                 null: false

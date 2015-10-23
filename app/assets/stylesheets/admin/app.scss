@@ -1,1 +1,7 @@
-@import "bootstrap";
+//= require twbs-admin/bootstrap.min
+//= require twbs-admin/sb-admin-2
+//= require twbs-admin/timeline
+//= require twbs-admin/menu
+
+@import "font-awesome-sprockets";
+@import "font-awesome";

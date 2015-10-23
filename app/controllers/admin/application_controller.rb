@@ -1,7 +1,7 @@
 class Admin::ApplicationController < ApplicationController
   layout 'admin'
-  before_action :login_required
-  before_action :require_admin
+  # before_action :login_required
+  # before_action :require_admin
 
   private
 
@@ -15,7 +15,7 @@ class Admin::ApplicationController < ApplicationController
   end
 
   def current_user
-    @current_user ||= login_from_session || login_from_cookies unless defined?(@current_user)
+    @current_user ||= login_from_session unless defined?(@current_user)
     @current_user
   end
 
