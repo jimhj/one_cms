@@ -31,17 +31,20 @@ html
                     button.btn.btn-default
                       i.fa.fa-search
               li
-                a href="#"
-                  i.fa.fa-dashboard.fa-fw
+                a.active href="#"
+                  i.fa.fa-tasks.fa-fw
                   | 统计概况
               li
                 a href="#"
                   i.fa.fa-file-text-o.fa-fw
                   | 文章管理
                   span.fa.arrow 
+                ul.nav.nav-second-level.collapse
+                  li
+                    a href="#" 添加文章
               li
                 a href="#"
-                  i.fa.fa-files-o.fa-fw
+                  i.fa.fa-folder-o.fa-fw
                   | 专题管理
                   span.fa.arrow
               li
@@ -51,17 +54,17 @@ html
                   span.fa.arrow 
               li
                 a href="#"
-                  i.fa.fa-files-o.fa-fw
+                  i.fa.fa-link.fa-fw
                   | 友情链接
                   span.fa.arrow
               li
                 a href="#"
-                  i.fa.fa-comments.fa-fw
+                  i.fa.fa-commenting-o.fa-fw
                   | 评论管理
                   span.fa.arrow
               li
                 a href="#"
-                  i.fa.fa-cogs.fa-fw
+                  i.fa.fa-cog.fa-fw
                   | 网站设置
       #page-wrapper style="min-height: 391px;"
         = yield
