@@ -7,13 +7,20 @@
           .form-group
             label 文章标题 *
             input.form-control type="text" placeholder="输入文章标题"
+
           .form-group
             label 文章来源
-            input.form-control type="text" placeholder="输入文章标题"
+            input.form-control.input-sm type="text" placeholder="文章来源"
           .form-group
-            label 文章内容
-            input.form-control type="text" placeholder="输入文章标题"
-          hr
+            label 文章题图
+            input type="file" value=""
+          .form-group
+            label 内容
+            = text_area_tag :editor, "", :class => "redactor", :style => 'height: 300px;'
+          
+          ul class="nav nav-tabs"
+            li.active: a SEO 信息
+          p
           .form-group
             label SEO Title
             input.form-control type="text" placeholder="输入文章标题"
@@ -22,4 +29,4 @@
             input.form-control type="text" placeholder="输入文章标题"
           .form-group
             label SEO Description
-            input.form-control type="text" placeholder="输入文章标题"
+            = text_area_tag 'seo_description', '', class: 'form-control'

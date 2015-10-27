@@ -13,6 +13,13 @@ gem 'font-awesome-sass', '~> 4.4.0'
 # Slim for Template
 gem 'slim', '~> 3.0.3'
 
+# WYSIWYG Editor
+gem 'redactor-rails', '~> 0.5.0'
+
+# File Upload
+gem 'carrierwave', '~> 0.10.0'
+gem 'mini_magick', '~> 4.3.6'
+
 group :development, :test do
   gem 'byebug'
   gem 'web-console', '~> 2.0'
