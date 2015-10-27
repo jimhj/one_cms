@@ -14,6 +14,7 @@ class CreateArticles < ActiveRecord::Migration
       t.string :seo_keywords, default: nil
       t.string :seo_description, default: nil
       t.boolean :hot, default: false, index: true
+      t.integer :status, default: 0
       t.timestamps null: false
     end
   end
