@@ -1,56 +1,54 @@
 .row.pt-30.node-list
   .col-lg-12
-    .panel.panel-default
-      .panel-heading 栏目管理
-      .panel-body
-        .node-list-group
-          - 4.times do
+
+    .node-list-group
+      - 4.times do
+        .node-item
+          .inner.clearfix
+            .pull-left.expander
+              a href="#"
+                = image_tag 'admin/contract.gif'
+            .pull-left.node-name 减肥专题 [id: 189]
+            .pull-right.ops
+              a href="#" 编辑栏目
+              span |
+              a href="#" 添加加子栏目
+              span |
+              a href="#" 删除
+          .node-item
+            .inner.clearfix
+              .pull-left.expander
+                a href="#"
+                  = image_tag 'admin/contract.gif'
+              .pull-left.node-name 减肥专题
+              .pull-right.ops
+                a href="#" 编辑栏目
+                span |
+                a href="#" 添加加子栏目
+                span |
+                a href="#" 删除
+
             .node-item
               .inner.clearfix
                 .pull-left.expander
                   a href="#"
-                    = image_tag 'admin/contract.gif'
-                .pull-left.node-name 减肥专题 [id: 189]
+                    = image_tag 'admin/explode.gif'
+                .pull-left.node-name 减肥专题
                 .pull-right.ops
                   a href="#" 编辑栏目
                   span |
                   a href="#" 添加加子栏目
                   span |
                   a href="#" 删除
-              .node-item
-                .inner.clearfix
-                  .pull-left.expander
-                    a href="#"
-                      = image_tag 'admin/contract.gif'
-                  .pull-left.node-name 减肥专题
-                  .pull-right.ops
-                    a href="#" 编辑栏目
-                    span |
-                    a href="#" 添加加子栏目
-                    span |
-                    a href="#" 删除
-
-                .node-item
-                  .inner.clearfix
-                    .pull-left.expander
-                      a href="#"
-                        = image_tag 'admin/explode.gif'
-                    .pull-left.node-name 减肥专题
-                    .pull-right.ops
-                      a href="#" 编辑栏目
-                      span |
-                      a href="#" 添加加子栏目
-                      span |
-                      a href="#" 删除
-                .node-item
-                  .inner.clearfix
-                    .pull-left.expander
-                      a href="#"
-                        = image_tag 'admin/explode.gif'
-                    .pull-left.node-name 减肥专题
-                    .pull-right.ops
-                      a href="#" 编辑栏目
-                      span |
-                      a href="#" 添加加子栏目
-                      span |
-                      a href="#" 删除
+            .node-item
+              .inner.clearfix
+                .pull-left.expander
+                  a href="#"
+                    = image_tag 'admin/explode.gif'
+                .pull-left.node-name 减肥专题
+                .pull-right.ops
+                  a href="#" 编辑栏目
+                  span |
+                  a href="#" 添加加子栏目
+                  span |
+                  a href="#" 删除
