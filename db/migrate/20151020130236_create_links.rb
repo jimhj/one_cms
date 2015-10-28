@@ -1,6 +1,7 @@
 class CreateLinks < ActiveRecord::Migration
   def change
     create_table :links do |t|
+      t.belongs_to :linkable, polymorphic: true, index: true
       t.string :name, limit: 30, null: false
       t.string :title, limit: 150, default: nil
       t.string :url, limit: 150, null: false

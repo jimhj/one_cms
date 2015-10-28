@@ -66,15 +66,19 @@ ActiveRecord::Schema.define(version: 20151027143928) do
   end
 
   create_table "links", force: :cascade do |t|
-    t.string   "name",       limit: 30,                 null: false
-    t.string   "title",      limit: 150
-    t.string   "url",        limit: 150,                null: false
-    t.string   "qq",         limit: 20
-    t.integer  "sortrank",               default: 1000
-    t.integer  "status",                 default: 0
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
+    t.integer  "linkable_id"
+    t.string   "linkable_type"
+    t.string   "name",          limit: 30,                 null: false
+    t.string   "title",         limit: 150
+    t.string   "url",           limit: 150,                null: false
+    t.string   "qq",            limit: 20
+    t.integer  "sortrank",                  default: 1000
+    t.integer  "status",                    default: 0
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
   end
+
+  add_index "links", ["linkable_type", "linkable_id"], name: "index_links_on_linkable_type_and_linkable_id", using: :btree
 
   create_table "nodes", force: :cascade do |t|
     t.string   "name",            limit: 30,             null: false
