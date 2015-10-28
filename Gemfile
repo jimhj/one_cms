@@ -20,6 +20,9 @@ gem 'redactor-rails', '~> 0.5.0'
 gem 'carrierwave', '~> 0.10.0'
 gem 'mini_magick', '~> 4.3.6'
 
+# Captcha
+gem 'rucaptcha', '~> 0.1.4'
+
 group :development, :test do
   gem 'byebug'
   gem 'web-console', '~> 2.0'

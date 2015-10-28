@@ -11,10 +11,10 @@
               a SEO
           p
 
-          .form-group
+          .form-group.form-group-bordered
             label 文章标题 *
             input.form-control type="text" placeholder="输入文章标题"
-          .form-group
+          .form-group.form-group-bordered
             label 所属栏目 *
             .clearfix
               .pull-left
@@ -23,16 +23,16 @@
               .pull-left
                 select.form-control
                   option 减肥
-          .form-group
+          .form-group.form-group-bordered
             label 文章来源
             input.form-control type="text" placeholder="文章来源"
-          .form-group
+          .form-group.form-group-bordered
             label 文章题图
             input type="file" value=""
-          .form-group
+          .form-group.form-group-bordered
             label 内容 *
             = text_area_tag :editor, "", :class => "redactor"
-          .checkbox
+          .checkbox.form-group-bordered
             label
               input.checkbox type="checkbox" 焦点轮播
             | &nbsp;&nbsp;

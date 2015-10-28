@@ -4,10 +4,10 @@
       .panel-heading 添加栏目
       .panel-body
         form.form
-          .form-group
+          .form-group.form-group-bordered
             label 栏目名称 *
             input.form-control type="text" placeholder="输入栏目名称"
-          .form-group
+          .form-group.form-group-bordered
             label 所属栏目 *
             .clearfix
               .pull-left
@@ -16,20 +16,20 @@
               .pull-left
                 select.form-control
                   option 减肥
-          .form-group
+          .form-group.form-group-bordered
             label 栏目路径 *
             input.form-control type="text" placeholder="输入栏目路径"
 
-          .form-group
+          .form-group.form-group-bordered
             label 排序值
             input.form-control. type="text" placeholder="1000"         
-          .form-group
+          .form-group.form-group-bordered
             label SEO Title
             input.form-control type="text" placeholder="输入文章标题"
-          .form-group
+          .form-group.form-group-bordered
             label SEO Keywords
             input.form-control type="text" placeholder="输入文章标题"
-          .form-group
+          .form-group.form-group-bordered
             label SEO Description
             = text_area_tag 'seo_description', '', class: 'form-control'
           .form-group

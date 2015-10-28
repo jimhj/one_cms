@@ -11,16 +11,17 @@
   padding-top: 30px;
 }
 
-.form .form-group, .form .checkbox {
+// Login Page
+.login-panel .captcha {
+  margin-left: 5px;
+}
+
+.form-group-bordered {
   border-bottom: 1px solid #eee;
   padding-bottom: 20px;
 
   input.form-control, textarea {
     max-width: 400px;
-  }
-
-  &:last-child {
-    border-bottom: none;
   }
 }
 
