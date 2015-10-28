@@ -1,7 +1,7 @@
 doctype html
 html
   head
-    title 开心100
+    title OneCMS
     = stylesheet_link_tag    "admin/app"
     = javascript_include_tag "admin/app"
     = csrf_meta_tags
@@ -34,6 +34,11 @@ html
                 a.active href="#"
                   i.fa.fa-tasks.fa-fw
                   | 统计概况
+              li
+                a href="#"
+                  i.fa.fa-folder-o.fa-fw
+                  | 栏目管理
+                  span.fa.arrow
               li
                 a href="#"
                   i.fa.fa-file-text-o.fa-fw
