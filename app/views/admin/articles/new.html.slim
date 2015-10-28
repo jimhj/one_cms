@@ -1,9 +1,16 @@
-.row.article-form
+.row.article-form.pt-30
   .col-lg-12
     .panel.panel-default
       .panel-heading 添加文章
       .panel-body
         form.form
+          ul.nav.nav-tabs
+            li.active
+              a href="#" 文章
+            li
+              a SEO
+          p
+
           .form-group
             label 文章标题 *
             input.form-control type="text" placeholder="输入文章标题"
@@ -25,27 +32,22 @@
           .form-group
             label 内容 *
             = text_area_tag :editor, "", :class => "redactor"
-          hr
           .checkbox
             label
               input.checkbox type="checkbox" 焦点轮播
             | &nbsp;&nbsp;
             label
               input.checkbox type="checkbox" 头条          
-          hr
-          .form-group
-            label SEO Title
-            input.form-control type="text" placeholder="输入文章标题"
-          .form-group
-            label SEO Keywords
-            input.form-control type="text" placeholder="输入文章标题"
-          .form-group
-            label SEO Description
-            = text_area_tag 'seo_description', '', class: 'form-control'
-          .checkbox
-            label
-              input.checkbox type="checkbox" 发布
-          hr
+          / hr
+          / .form-group
+          /   label SEO Title
+          /   input.form-control type="text" placeholder="输入文章标题"
+          / .form-group
+          /   label SEO Keywords
+          /   input.form-control type="text" placeholder="输入文章标题"
+          / .form-group
+          /   label SEO Description
+          /   = text_area_tag 'seo_description', '', class: 'form-control'
           .form-group
             button.btn.btn-primary.btn-lg 提交文章
 

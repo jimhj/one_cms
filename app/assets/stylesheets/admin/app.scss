@@ -7,10 +7,68 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
-#page-wrapper .article-form {
+.pt-30 {
   padding-top: 30px;
 }
 
-.redactor-editor {
-  min-height: 200px;
+.form .form-group, .form .checkbox {
+  border-bottom: 1px solid #eee;
+  padding-bottom: 20px;
+
+  input.form-control {
+    max-width: 400px;
+  }
+
+  &:last-child {
+    border-bottom: none;
+  }
 }
+
+#page-wrapper .article-form {
+  .redactor-box {
+    width: 700px;
+  }
+
+  .redactor-editor {
+    min-height: 200px;
+  }  
+}
+
+#page-wrapper .node-list {
+  .node-list-group {}
+
+  .node-item {
+    & > .node-item {
+      padding-left: 14px;
+    }
+
+    & > .node-item .inner {
+      background-color: #FFF;
+      border-left: 1px dashed #DDD;   
+      border-bottom: 1px dashed #DDD; 
+    }
+  }
+
+  .node-item .inner {
+    background-color: #f5f5f5;
+    padding: 10px 10px;
+    border-bottom: 1px solid #DDD;
+
+    &:hover {
+      background-color: #f5f5f5;
+    }
+  }
+
+  .node-name {
+    margin-left: 5px;
+  }
+
+  .ops {
+    span {
+      margin-right: 10px;
+      margin-left: 10px;
+      color: #ddd;
+    }
+  }
+}
+
