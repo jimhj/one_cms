@@ -4,5 +4,5 @@ RuCaptcha.configure do
   # 图片宽度
   # self.width = 180
   # 图片高度，另外字体大小是这个数的 80%
-  self.height = 48
+  self.height = 34
 end
