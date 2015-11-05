@@ -161,6 +161,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bcrypt (~> 3.1.10)
   byebug
   carrierwave (~> 0.10.0)
   coffee-rails (~> 4.1.0)

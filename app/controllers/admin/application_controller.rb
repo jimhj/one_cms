@@ -1,7 +1,6 @@
 class Admin::ApplicationController < ApplicationController
   layout 'admin'
-  # before_action :login_required
-  # before_action :require_admin
+  before_action :login_required
 
   private
 
@@ -14,39 +13,32 @@ class Admin::ApplicationController < ApplicationController
     end
   end
 
-  def current_user
-    @current_user ||= login_from_session unless defined?(@current_user)
-    @current_user
-  end
-
-  def require_admin
-    unless current_user.admin?
-      raise AccessDenied
-    end
+  def current_admin
+    @current_admin ||= login_from_session unless defined?(@current_admin)
+    @current_admin
   end
 
   def login?
-    !!current_user
+    !!current_admin
   end
 
-  def login_as(user)
-    session[:user_id] = user.id
-    @current_user = user
+  def login_as(admin)
+    session[:admin_id] = admin.id
+    @current_admin = admin
   end
 
   def logout
-    session.delete(:user_id)
-    @current_user = nil
-    forget_me
-  end  
+    session.delete(:admin_id)
+    @current_admin = nil
+  end
 
   def login_from_session
-    if session[:user_id].present?
+    if session[:admin_id].present?
       begin
-        User.find session[:user_id]
+        AdminUser.find session[:admin_id]
       rescue
-        session[:user_id] = nil
+        session[:admin_id] = nil
       end
     end
-  end  
+  end
 end
