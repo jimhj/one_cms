@@ -21,11 +21,10 @@ gem 'carrierwave', '~> 0.10.0'
 gem 'mini_magick', '~> 4.3.6'
 
 # Captcha
-gem 'rucaptcha', '~> 0.1.4'
+gem 'rucaptcha', '~> 0.3.1'
 
 group :development, :test do
   gem 'byebug'
   gem 'web-console', '~> 2.0'
   gem 'spring'
 end
-
