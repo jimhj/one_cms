@@ -6,7 +6,8 @@ class CreateNodes < ActiveRecord::Migration
       t.integer :parent_id, null: false, default: 0
       t.string :seo_title, default: nil
       t.string :seo_keywords, default: nil
-      t.string :seo_description, default: nil      
+      t.string :seo_description, default: nil
+      t.integer :sortrank, default: 1000    
       t.timestamps null: false
     end
   end

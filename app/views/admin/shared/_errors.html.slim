@@ -1,0 +1,8 @@
+- if target.errors.any?
+  .alert.alert-block.alert-danger
+    a.close data-dismiss='alert' href="#" ×
+    p
+      strong 有 #{target.errors.count} 处问题导致无法提交:
+    ul
+      - target.errors.full_messages.each do |msg|
+        li= msg

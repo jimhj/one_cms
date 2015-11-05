@@ -92,14 +92,15 @@ ActiveRecord::Schema.define(version: 20151027143928) do
   add_index "links", ["linkable_type", "linkable_id"], name: "index_links_on_linkable_type_and_linkable_id", using: :btree
 
   create_table "nodes", force: :cascade do |t|
-    t.string   "name",            limit: 30,             null: false
-    t.string   "slug",            limit: 30,             null: false
-    t.integer  "parent_id",                  default: 0, null: false
+    t.string   "name",            limit: 30,                null: false
+    t.string   "slug",            limit: 30,                null: false
+    t.integer  "parent_id",                  default: 0,    null: false
     t.string   "seo_title"
     t.string   "seo_keywords"
     t.string   "seo_description"
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
+    t.integer  "sortrank",                   default: 1000
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
   end
 
   create_table "redactor_assets", force: :cascade do |t|
