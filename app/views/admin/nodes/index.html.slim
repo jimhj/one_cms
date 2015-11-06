@@ -2,13 +2,13 @@
   .col-lg-12
 
     .node-list-group
-      - 4.times do
+      - @nodes.each do |node|
         .node-item
           .inner.clearfix
             .pull-left.expander
               a href="#"
                 = image_tag 'admin/contract.gif'
-            .pull-left.node-name 减肥专题 [id: 189]
+            .pull-left.node-name #{node.name} [id: #{node.id}]
             .pull-right.ops
               a href="#" 编辑栏目
               span |

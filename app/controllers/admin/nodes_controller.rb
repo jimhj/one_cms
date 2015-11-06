@@ -1,6 +1,6 @@
 class Admin::NodesController < Admin::ApplicationController
   def index
-    @nodes = Node.order('sortrank DESC, created_at DESC')
+    @nodes = Node.where(parent_id: 0).order('sortrank DESC, created_at DESC')
   end
 
   def new

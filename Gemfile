@@ -27,7 +27,7 @@ gem 'mini_magick', '~> 4.3.6'
 gem 'rucaptcha', '~> 0.3.1'
 
 # Nested Set
-gem 'awesome_nested_set', '~> 3.0.2'
+# gem 'awesome_nested_set', '~> 3.0.2'
 
 group :development, :test do
   gem 'byebug'
