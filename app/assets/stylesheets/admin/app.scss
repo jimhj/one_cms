@@ -32,32 +32,31 @@
 
   .redactor-editor {
     min-height: 200px;
-  }  
+  }
 }
 
 #page-wrapper .node-list {
   .node-list-group {}
 
   .node-item {
+    border-left: 1px dashed #DDD;
+    padding-left: 5px;
+
     & > .node-item {
-      padding-left: 14px;
+      margin-left: 14px;
     }
 
     & > .node-item .inner {
-      background-color: #FFF;
-      border-left: 1px dashed #DDD;   
-      border-bottom: 1px dashed #DDD; 
+      background-color: #f5f5f5;
+      // margin: 4px 0px 4px 4px;
     }
   }
 
   .node-item .inner {
     background-color: #f5f5f5;
-    padding: 10px 10px;
-    border-bottom: 1px solid #DDD;
-
-    &:hover {
-      background-color: #f5f5f5;
-    }
+    padding: 6px 6px;
+    border-radius: 4px;
+    margin: 4px 0px 8px 4px;
   }
 
   .node-name {
@@ -72,4 +71,3 @@
     }
   }
 }
-
