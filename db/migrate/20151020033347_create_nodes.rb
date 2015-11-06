@@ -4,6 +4,7 @@ class CreateNodes < ActiveRecord::Migration
       t.string :name, limit: 30, null: false
       t.string :slug, limit: 30, null: false
       t.integer :parent_id, null: false
+      t.integer :lft
       t.integer :rgt
       t.integer :depth
       t.integer :children_count
