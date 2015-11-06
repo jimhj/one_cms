@@ -3,10 +3,10 @@ class CreateNodes < ActiveRecord::Migration
     create_table :nodes do |t|
       t.string :name, limit: 30, null: false
       t.string :slug, limit: 30, null: false
-      t.integer :parent_id, default: 0
-      t.integer :lft, default: 0
-      t.integer :rgt, default: 0
-      t.integer :depth, default: 0
+      t.integer :parent_id, null: true, index: true
+      t.integer :lft, default: 0, index: true
+      t.integer :rgt, default: 0, index: true
+      t.integer :depth, default: 0, index: true
       t.integer :children_count, default: 0
       t.string :seo_title, default: nil
       t.string :seo_keywords, default: nil

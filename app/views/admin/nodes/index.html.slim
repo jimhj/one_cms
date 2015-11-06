@@ -10,11 +10,11 @@
                 = image_tag 'admin/contract.gif'
             .pull-left.node-name #{node.name} [id: #{node.id}]
             .pull-right.ops
-              a href="#" 编辑栏目
+              a href="#{edit_admin_node_path(node)}" 编辑栏目
               span |
-              a href="#" 添加加子栏目
+              a href="#{new_admin_node_path(parent_id: node.id)}" 添加加子栏目
               span |
-              a href="#" 删除
+              a href="#{admin_node_path(node)}" data-method="DELETE" data-confirm="确定删除吗" 删除
           .node-item
             .inner.clearfix
               .pull-left.expander

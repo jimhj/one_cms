@@ -1,11 +1,10 @@
 class Admin::NodesController < Admin::ApplicationController
   def index
-    @nodes = Node.where(parent_id: 0).order('sortrank DESC, created_at DESC')
+    @nodes = Node.roots
   end
 
   def new
-    @node = Node.new
-    @parent_node = Node.find_by(id: params[:parent_id])
+    @node = Node.new(parent_id: params[:parent_id])
   end
 
   def create
@@ -15,6 +14,10 @@ class Admin::NodesController < Admin::ApplicationController
     else
       render action: :new
     end
+  end
+
+  def edit
+    @node = Node.find params[:id]
   end
 
   private

@@ -94,7 +94,7 @@ ActiveRecord::Schema.define(version: 20151027143928) do
   create_table "nodes", force: :cascade do |t|
     t.string   "name",            limit: 30,                null: false
     t.string   "slug",            limit: 30,                null: false
-    t.integer  "parent_id",                  default: 0
+    t.integer  "parent_id"
     t.integer  "lft",                        default: 0
     t.integer  "rgt",                        default: 0
     t.integer  "depth",                      default: 0
@@ -106,6 +106,11 @@ ActiveRecord::Schema.define(version: 20151027143928) do
     t.datetime "created_at",                                null: false
     t.datetime "updated_at",                                null: false
   end
+
+  add_index "nodes", ["depth"], name: "index_nodes_on_depth", using: :btree
+  add_index "nodes", ["lft"], name: "index_nodes_on_lft", using: :btree
+  add_index "nodes", ["parent_id"], name: "index_nodes_on_parent_id", using: :btree
+  add_index "nodes", ["rgt"], name: "index_nodes_on_rgt", using: :btree
 
   create_table "redactor_assets", force: :cascade do |t|
     t.string   "data_file_name",               null: false
