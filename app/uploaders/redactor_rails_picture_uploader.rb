@@ -47,7 +47,10 @@ class RedactorRailsPictureUploader < CarrierWave::Uploader::Base
 
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
-  # def filename
-  #   "something.jpg" if original_filename
-  # end
+  def filename
+    if super.present?
+      @name ||= Digest::MD5.hexdigest(current_path)
+      "#{Time.now.year}/#{@name}.#{file.extension.downcase}"
+    end
+  end
 end
