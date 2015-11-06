@@ -6,11 +6,6 @@ class Admin::NodesController < Admin::ApplicationController
   def new
     @node = Node.new
     @parent_node = Node.find_by(id: params[:parent_id])
-    if @parent_node.present?
-      @node = @parent_node.child_nodes.build
-    else
-      @node = Node.new
-    end
   end
 
   def create

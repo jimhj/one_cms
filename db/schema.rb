@@ -94,7 +94,10 @@ ActiveRecord::Schema.define(version: 20151027143928) do
   create_table "nodes", force: :cascade do |t|
     t.string   "name",            limit: 30,                null: false
     t.string   "slug",            limit: 30,                null: false
-    t.integer  "parent_id",                  default: 0,    null: false
+    t.integer  "parent_id",                                 null: false
+    t.integer  "rgt"
+    t.integer  "depth"
+    t.integer  "children_count"
     t.string   "seo_title"
     t.string   "seo_keywords"
     t.string   "seo_description"

@@ -1,7 +1,8 @@
 class Node < ActiveRecord::Base
+  acts_as_nested_set
+  acts_as_nested_set :order_column => :sortrank
+
   has_many :articles
-  has_many :child_nodes, ->(node) { where(parent_id: node.id) }
-  belongs_to :father_node, ->(node) { where(parent_id: node.parent_id) }
 
   validates_presence_of :name, :slug
   validates_uniqueness_of :name, :slug
