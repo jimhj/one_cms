@@ -1,7 +1,7 @@
 .row.article-form.pt-30
   .col-lg-12
-
-    form.form
+    = render "admin/shared/errors", target: @article
+    = form_for @article, url: admin_articles_path, class: 'form' do |f|
       ul.nav.nav-tabs
         li.active
           a href="#" 栏目设置
@@ -11,16 +11,11 @@
 
       .form-group.form-group-bordered
         label 文章标题 *
-        input.form-control type="text" placeholder="输入文章标题"
+        = f.text_field :title, class: 'form-control', placeholder: '输入文章标题'
       .form-group.form-group-bordered
         label 所属栏目 *
         .clearfix
-          .pull-left
-            select.form-control
-              option 健康咨询
-          .pull-left
-            select.form-control
-              option 减肥
+          = f.select :node_id, [['--选择栏目--', nil]] + nested_set_options(Node) { |i| '-' * i.level + ' ' + i.name } 
       .form-group.form-group-bordered
         label 文章来源
         input.form-control type="text" placeholder="文章来源"
@@ -29,6 +24,9 @@
         input type="file" value=""
       .form-group.form-group-bordered
         label 内容 *
+        = f.fields_for :article_body do |body_field|
+          = body_field.text_field :body, class: 'form-control'
+        
         = text_area_tag :editor, "", :class => "redactor"
       .checkbox.form-group-bordered
         label
@@ -48,4 +46,3 @@
       /   = text_area_tag 'seo_description', '', class: 'form-control'
       .form-group
         button.btn.btn-primary.btn-lg 提交文章
-

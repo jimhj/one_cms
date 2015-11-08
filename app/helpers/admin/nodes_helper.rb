@@ -8,15 +8,14 @@ module Admin
             <div class="pull-left node-name">#{child.name} [id: #{child.id}]</div>
             <div class="pull-right ops">
               <a href="#">编辑</a><span>|</span>
-              <a href="#">添加子栏目</a><span>|</span>
+              <a href="#{new_admin_node_path(parent_id: child.id)}">添加子栏目</a><span>|</span>
               <a href="#">删除</a>
             </div>
           </div>
         )
+        reserve+="</div>" * child.level
         if child.children.count > 0
           node_list(child.children, reserve)
-        else
-          reserve+="</div>" * child.level
         end
       end
       reserve
