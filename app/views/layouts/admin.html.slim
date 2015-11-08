@@ -45,13 +45,15 @@ html
                   | 栏目管理
                   span.fa.arrow
               li
-                a href="#"
+                a href="javascript:;"
                   i.fa.fa-file-text-o.fa-fw
                   | 文章管理
                   span.fa.arrow 
                 ul.nav.nav-second-level.collapse
                   li
-                    a href="#" 添加文章
+                    a href="#{admin_articles_path}" 文章列表
+                  li
+                    a href="#{new_admin_article_path}" 添加文章
               li
                 a href="#"
                   i.fa.fa-folder-o.fa-fw

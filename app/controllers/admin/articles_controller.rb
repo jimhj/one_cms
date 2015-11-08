@@ -1,5 +1,6 @@
 class Admin::ArticlesController < Admin::ApplicationController
   def index
+    @articles = Article.joins(:article_body, :node).order('created_at DESC')
   end
 
   def new

@@ -1,0 +1,35 @@
+.row.pt-30
+  .col-lg-12.article-list
+    table.table.table-striped.table-hover.table-bordered.table-condensed
+      tbody
+        tr
+          td.text-center #
+          td.text-center 选择
+          td.text-center 标题
+          td.text-center 发布时间
+          td.text-center 栏目
+          td.text-center 属性
+          td.text-center 操作
+        - @articles.each do |article|
+          tr
+            td.w5.text-center= article.id
+            td.w5.text-center
+              input type="checkbox" name="choose"
+            td.w40
+              a href="#"= article.title
+            td.w15.text-center= article.created_at.strftime('%Y-%m-%d')
+            td.w15.text-center= article.node.name
+            td.w10.text-center
+              i.fa.fa-photo
+              | &nbsp;
+              i.fa.fa-flag
+            td.w10.text-center
+              a href="#"
+                i.fa.fa-pencil-square
+              | &nbsp;
+              a href="#"
+                i.fa.fa-trash
+              | &nbsp;
+              a href="#"
+                i.fa.fa-globe
+    
