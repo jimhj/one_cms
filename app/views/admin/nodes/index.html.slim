@@ -1,18 +1,44 @@
 .row.pt-30.node-list
   .col-lg-12
-
-    .node-list-group
-      - @nodes.each do |node|
-        .node-item
-          .inner.clearfix
-            .pull-left.expander
-              a href="#"
-                = image_tag 'admin/contract.gif'
-            .pull-left.node-name #{node.name} [id: #{node.id}]
-            .pull-right.ops
-              a href="#{edit_admin_node_path(node)}" 编辑
-              span |
-              a href="#{new_admin_node_path(parent_id: node.id)}" 添加子栏目
-              span |
-              a href="#{admin_node_path(node)}" data-method="DELETE" data-confirm="确定删除吗" 删除
-          = node_list(node.descendants).html_safe
+    table.table.table-hover.table-bordered.table-condensed
+      tbody
+        tr
+          td.text-center ID
+          td.text-center 名称
+          td.text-center 路径
+          td.text-center 排序值
+          td.text-center 创建时间
+          td.text-center 操作
+        - @nodes.each do |node|
+          tr
+            td.w5.text-center= node.id
+            td.w35= node.name
+            td.text-center.w30= node.slug
+            td.w10.text-center= node.sortrank
+            td.w10.text-center= node.created_at.strftime('%Y-%m-%d')
+            td.w10.text-center
+              a href="#{new_admin_node_path(parent_id: node.id)}" title="添加子栏目"
+                i.fa.fa-plus
+              | &nbsp;              
+              a href="#{edit_admin_node_path(node)}"
+                i.fa.fa-pencil-square
+              | &nbsp;
+              a href="#{admin_node_path(node)}" data-method="DELETE" data-confirm="确认删除吗，将无法恢复？"
+                i.fa.fa-trash
+          - node.descendants.each do |child|
+            tr.warning
+              td.w5.text-center= child.id
+              td.w35= raw('&nbsp;&nbsp;' * child.level + '└' + child.name)
+              td.text-center.w30= child.slug
+              td.w10.text-center= child.sortrank
+              td.w10.text-center= child.created_at.strftime('%Y-%m-%d')
+              td.w10.text-center
+                a href="#{new_admin_node_path(parent_id: child.id)}" title="添加子栏目"
+                  i.fa.fa-plus
+                | &nbsp;              
+                a href="#{edit_admin_node_path(child)}"
+                  i.fa.fa-pencil-square
+                | &nbsp;
+                a href="#{admin_node_path(child)}" data-method="DELETE" data-confirm="确认删除吗，将无法恢复？"
+                  i.fa.fa-trash            
+  
