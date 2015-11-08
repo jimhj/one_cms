@@ -7,5 +7,6 @@ Rails.application.routes.draw do
     post :login, to: 'sessions#create'
     resources :articles
     resources :nodes
+    resources :keywords
   end
 end

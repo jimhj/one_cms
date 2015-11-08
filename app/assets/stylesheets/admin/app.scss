@@ -72,19 +72,14 @@
   }
 }
 
-// Aticles Style Begin
-.article-list .table > tbody > tr > td {
+// Table Style Begin
+.table > tbody > tr > td {
   font-size: 12px;
-  &.w5 {
-    width: 5%;
-  }
-
-  &.w10 {
-    width: 10%;
-  }
-
-  &.w40 {
-    width: 40%;
-  }
+  &.w5  { width: 5%;  }
+  &.w15 { width: 15%; }
+  &.w20 { width: 20%; }
+  &.w10 { width: 10%; }
+  &.w30 { width: 30%; }
+  &.w40 { width: 40%; }
 }
 // Aticles Style End

@@ -1,0 +1,30 @@
+.row.pt-30
+  .col-lg-12.article-list
+    table.table.table-striped.table-hover.table-bordered.table-condensed
+      tbody
+        tr
+          td.text-center ID
+          td.text-center
+            input type="checkbox" name="choose"
+          td.text-center 词条
+          td.text-center url
+          td.text-center 排序值
+          td.text-center 创建时间
+          td.text-center 操作
+        - @keywords.each do |keyword|
+          tr
+            td.w5.text-center= keyword.id
+            td.w5.text-center
+              input type="checkbox" name="choose"
+            td.w20= keyword.name
+            td.w40
+              a herf="#{keyword.url}"= keyword.url
+            td.w10.text-center= keyword.sortrank
+            td.w10.text-center= keyword.created_at.strftime('%Y-%m-%d')
+            td.w10.text-center
+              a href="#{edit_admin_keyword_path(keyword)}"
+                i.fa.fa-pencil-square
+              | &nbsp;
+              a href="#{admin_keyword_path(keyword)}" data-method="DELETE" data-confirm="确认删除吗，将无法恢复？"
+                i.fa.fa-trash
+    

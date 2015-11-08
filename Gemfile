@@ -29,6 +29,9 @@ gem 'rucaptcha', '~> 0.3.1'
 # Nested Set
 gem 'awesome_nested_set', '~> 3.0.2'
 
+# HTML parse
+gem 'nokogiri', '~> 1.6.7.rc3'
+
 group :development, :test do
   gem 'byebug'
   gem 'web-console', '~> 2.0'

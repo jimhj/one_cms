@@ -5,7 +5,7 @@
       .form-group.form-group-bordered
         label 所属栏目 *
         .clearfix
-          = f.select :parent_id, [['--选择栏目--', nil]] + nested_set_options(Node) { |i| '-' * i.level + ' ' + i.name } 
+          = f.select :parent_id, [['--选择栏目--', nil]] + nested_set_options(Node) { |i| '─' * i.level + i.name } 
       .form-group.form-group-bordered
         label 栏目名称 *
         = f.text_field :name, class: 'form-control', placeholder: '输入栏目名称'

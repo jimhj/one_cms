@@ -171,6 +171,7 @@ DEPENDENCIES
   font-awesome-sass (~> 4.4.0)
   jquery-rails
   mini_magick (~> 4.3.6)
+  nokogiri
   pg
   rails (= 4.2.2)
   redactor-rails (~> 0.5.0)
