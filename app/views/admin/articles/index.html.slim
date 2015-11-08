@@ -6,8 +6,9 @@
           td.text-center ID
           td.text-center 选择
           td.text-center 标题
-          td.text-center 发布时间
+          td.text-center 来源
           td.text-center 栏目
+          td.text-center 发布时间          
           td.text-center 属性
           td.text-center 操作
         - @articles.each do |article|
@@ -15,10 +16,11 @@
             td.w5.text-center= article.id
             td.w5.text-center
               input type="checkbox" name="choose"
-            td.w40
+            td.w35
               a href="#"= article.title
-            td.w15.text-center= article.created_at.strftime('%Y-%m-%d')
+            td.w10.text-center= article.source || 'admin'
             td.w15.text-center= article.node.name
+            td.w10.text-center= article.created_at.strftime('%Y-%m-%d')            
             td.w10.text-center
               i.fa.fa-photo
               | &nbsp;
