@@ -25,9 +25,8 @@
       .form-group.form-group-bordered
         label 内容 *
         = f.fields_for :article_body do |body_field|
-          = body_field.text_field :body, class: 'form-control'
-        
-        = text_area_tag :editor, "", :class => "redactor"
+          = body_field.text_area :body, class: 'redactor-editor'
+                  
       .checkbox.form-group-bordered
         label
           input.checkbox type="checkbox" 焦点轮播

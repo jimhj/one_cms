@@ -1,5 +1,6 @@
 class ArticleBody < ActiveRecord::Base
   belongs_to :article
+  validates_presence_of :body
 
   before_save do
     # 1.提取关键词，加上内链
