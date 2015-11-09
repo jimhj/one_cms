@@ -1,16 +1,54 @@
+require 'nokogiri'
+
 class ArticleBody < ActiveRecord::Base
   belongs_to :article
   validates_presence_of :body
 
-  before_save do
+  after_create do
     # 1.提取关键词，加上内链
+    generate_keyword_links
+
     # 2.把远程图片下载到本地
-    self.body_html ||= self.body
+    restore_remote_images
+
+    save
+    # TODO: use background job
+  end
+
+  def generate_keyword_links
+    doc = Nokogiri::HTML(self.body)
     keywords = Keyword.select(:name, :url).each do |keyword|
-      self.body_html = self.body_html.sub(
-        /#{keyword.name}/,
-        %Q(<a href="#{keyword.url}" target="_blank" title="#{keyword.name}">#{keyword.name}</a>)
-      )
+      ele = doc.xpath("//*[contains(text(), '#{keyword.name}')]").first
+      next if ele.nil?
+      if ele.name == 'a'
+        ele.set_attribute(:href, keyword.url)
+        ele.set_attribute(:target, '_blank')
+        ele.set_attribute(:title, keyword.name)
+      else
+        link = Nokogiri::XML::Node.new "a", doc
+        link.set_attribute(:href, keyword.url)
+        link.set_attribute(:target, '_blank')
+        link.set_attribute(:title, keyword.name)
+        link.content = keyword.name
+        ele.inner_html = ele.content.sub(/#{keyword.name}/, link.to_html)
+      end
     end
+
+
+    self.body_html = doc.to_s
+  end
+
+  def restore_remote_images
+    doc = Nokogiri::HTML(body_html)
+    doc.css('img').each do |img|
+      unless img[:src].include?(CONFIG['carrierwave']['asset_host'])
+        picture = RedactorRails.picture_model.new
+        picture.data = MiniMagick::Image.open(img[:src])
+        picture.save
+        img.set_attribute(:src, picture.url)
+      end
+    end
+
+    self.body_html = doc.to_s
   end
 end
