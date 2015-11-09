@@ -43,9 +43,12 @@ class ArticleBody < ActiveRecord::Base
     doc.css('img').each do |img|
       unless img[:src].include?(CONFIG['carrierwave']['asset_host'])
         picture = RedactorRails.picture_model.new
-        picture.data = MiniMagick::Image.open(img[:src])
+        img = MiniMagick::Image.open(img[:src])
+        picture.data = img
         picture.save
         img.set_attribute(:src, picture.url)
+        img = nil
+        # release memory
       end
     end
 
