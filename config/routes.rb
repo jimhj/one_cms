@@ -9,4 +9,9 @@ Rails.application.routes.draw do
     resources :nodes
     resources :keywords
   end
+
+  scope module: :site do
+    root 'application#index'
+    resources :articles, only: [:index, :show]
+  end
 end
