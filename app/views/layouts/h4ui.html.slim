@@ -3,7 +3,23 @@ html
   head
     title H4 健康网
     = javascript_include_tag 'h4ui/app'
-    = stylesheet_link_tag 'h4ui/app'
-  
+    = stylesheet_link_tag 'h4ui/app', 'site'
+    = csrf_meta_tags
   body
+    .header.clearfix
+      .brand-logo.pull-left
+        a href="#"
+      ul.nav.pull-left
+        li
+          a 首页
+        li 
+          a 健康
+        li
+          a 首页
+        li 
+          a 健康
+        li
+          a 首页
+        li 
+          a 健康
     = yield

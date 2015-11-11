@@ -13,4 +13,5 @@ Rails.application.config.assets.precompile += %w(
   admin/app.css
   h4ui/app.js
   h4ui/app.css
+  site.css
 )
