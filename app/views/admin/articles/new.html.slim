@@ -2,13 +2,6 @@
   .col-lg-12
     = render "admin/shared/errors", target: @article
     = form_for @article, url: admin_articles_path, class: 'form' do |f|
-      ul.nav.nav-tabs
-        li.active
-          a href="#" 栏目设置
-        li
-          a SEO
-      p
-
       .form-group.form-group-bordered
         label 文章标题 *
         = f.text_field :title, class: 'form-control', placeholder: '输入文章标题'
@@ -26,22 +19,22 @@
         label 内容 *
         = f.fields_for :article_body do |body_field|
           = body_field.text_area :body, class: 'redactor-editor'
-                  
-      .checkbox.form-group-bordered
+                            
+      .form-group.form-group-bordered
+        label SEO Title
+        = f.text_field :seo_title, placeholder: 'SEO Title', class: 'form-control'
+      .form-group.form-group-bordered
+        label SEO Keywords
+        = f.text_field :seo_keywords, placeholder: 'SEO Keywords', class: 'form-control'
+      .form-group.form-group-bordered
+        label SEO Description
+        = f.text_area :seo_description, placeholder: 'SEO Description', class: 'form-control'
+      .checkbox
         label
           input.checkbox type="checkbox" 焦点轮播
         | &nbsp;&nbsp;
         label
-          input.checkbox type="checkbox" 头条          
-      / hr
-      / .form-group
-      /   label SEO Title
-      /   input.form-control type="text" placeholder="输入文章标题"
-      / .form-group
-      /   label SEO Keywords
-      /   input.form-control type="text" placeholder="输入文章标题"
-      / .form-group
-      /   label SEO Description
-      /   = text_area_tag 'seo_description', '', class: 'form-control'
+          input.checkbox type="checkbox" 头条
+   
       .form-group
         button.btn.btn-primary.btn-lg 提交文章
