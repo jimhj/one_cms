@@ -1,4 +1,29 @@
+$brand-blue: #00bb99;
+
+// font
+$font-size: 14px;
+$font-color: #333333;
+
+// Site Customize
+// logo: 196x56
+$logo-path: 'h4ui/logo.png';
+
 @import "normalize";
 @import "mixins";
 @import "utilities";
+@import "icons";
 @import "navbar";
+
+body {
+  font-family: Arial,"Hiragino Sans GB";
+  font-size: $font-size;
+  color: $font-color;
+  background: #f2f2f2;
+}
+
+.main {
+  width: 1160px;
+  margin: 80px auto;
+  padding: 20px 20px;
+  background-color: #FFF;
+}

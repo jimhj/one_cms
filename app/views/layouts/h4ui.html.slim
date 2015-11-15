@@ -6,20 +6,26 @@ html
     = stylesheet_link_tag 'h4ui/app', 'site'
     = csrf_meta_tags
   body
-    .header.clearfix
-      .brand-logo.pull-left
-        a href="#"
-      ul.nav.pull-left
-        li
-          a 首页
-        li 
-          a 健康
-        li
-          a 首页
-        li 
-          a 健康
-        li
-          a 首页
-        li 
-          a 健康
-    = yield
+    .header
+      .header-innder.clearfix
+        a.brand-logo href="#"
+        ul.nav
+          li
+            a 首页
+          li 
+            a 健康
+          li
+            a 首页
+          li 
+            a 健康
+          li
+            a 首页
+          li 
+            a 健康
+        ul.right-nav.nav
+          li
+            a 
+              i.oneico.oneico-rss
+              | RSS
+    .main
+      = yield
