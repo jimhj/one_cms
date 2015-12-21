@@ -1,4 +1,6 @@
 $brand-blue: #00bb99;
+$hight-color: darken($brand-blue, 5%);
+$border-start-color: darken($brand-blue, 10%);
 
 // font
 $font-size: 14px;
@@ -14,6 +16,16 @@ $logo-path: 'h4ui/logo.png';
 @import "icons";
 @import "navbar";
 
+a {
+  color: #454545;
+  text-decoration: none;
+
+  &:hover {
+    color: darken($brand-blue, 5%);
+    text-decoration: underline;
+  }
+}
+
 body {
   font-family: Arial,"Hiragino Sans GB";
   font-size: $font-size;
@@ -24,6 +36,4 @@ body {
 .main {
   width: 1160px;
   margin: 80px auto;
-  padding: 20px 20px;
-  background-color: #FFF;
 }

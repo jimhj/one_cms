@@ -2,16 +2,15 @@ doctype html
 html
   head
     title H4 健康网
-    = javascript_include_tag 'h4ui/app'
-    = stylesheet_link_tag 'h4ui/app', 'site'
+    = javascript_include_tag 'h4ui/site'
+    = stylesheet_link_tag 'site'
     = csrf_meta_tags
   body
     .header
-      .header-innder.clearfix
-        a.brand-logo href="#"
+      .header-inner.clearfix
         ul.nav
           li
-            a 首页
+            a.active 首页
           li 
             a 健康
           li
@@ -22,10 +21,6 @@ html
             a 首页
           li 
             a 健康
-        ul.right-nav.nav
-          li
-            a 
-              i.oneico.oneico-rss
-              | RSS
+
     .main
       = yield
