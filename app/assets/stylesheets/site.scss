@@ -1,1 +1,36 @@
 @import "h4ui/h4ui";
+@import "index";
+
+.container {
+  border: 1px solid $container-border-color;
+  border-radius: 3px;
+  background-color: #fff; 
+  box-shadow: 0 1px 2px #f1f1f1;
+
+  .container-inner {
+    padding: 8px 12px;
+  } 
+
+  .container-inner .container-inner-nav {
+    font-size: 18px;
+    border-bottom: 1px solid darken($container-border-color, 5%);
+    @include clearfix;
+  }
+
+  .container-inner-nav a {
+    display: block;
+    float: left;
+    padding-bottom: 8px;
+    border-bottom: 2px solid $brand-blue;
+    text-decoration: none;
+  }
+}
+
+.section .container.pull-left {
+  width: 650px;
+}
+
+.section .container.pull-right {
+  width: 320px;
+}
+

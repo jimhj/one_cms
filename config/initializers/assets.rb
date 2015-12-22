@@ -12,5 +12,8 @@ Rails.application.config.assets.precompile += %w(
   admin/app.js
   admin/app.css
   h4ui/site.js
+  h4ui/owl/owl.carousel.css
+  h4ui/owl/owl.carousel.js
+  index.scss
   site.css
 )

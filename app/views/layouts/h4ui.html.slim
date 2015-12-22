@@ -3,12 +3,17 @@ html
   head
     title H4 健康网
     = javascript_include_tag 'h4ui/site'
+    = yield :header_js
     = stylesheet_link_tag 'site'
+    = yield :header_css
     = csrf_meta_tags
-  body
+  body class="#{controller_name}_#{action_name}"
     .header
       .header-inner.clearfix
         ul.nav
+          li
+            a
+              = image_tag 'logo.png'
           li
             a.active 首页
           li 
@@ -24,3 +29,4 @@ html
 
     .main
       = yield
+

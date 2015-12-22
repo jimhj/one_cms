@@ -32,7 +32,7 @@
   margin: 0;
   list-style: none;
   float: left;
-  border-left: 1px solid #ececec; 
+  border-left: 1px solid $container-border-color; 
 }
 
 .header ul.nav.right-nav {
@@ -59,7 +59,7 @@
     line-height: 47px;
     color: #333;
     text-align: center;
-    border-right: 1px solid #ececec; 
+    border-right: 1px solid $container-border-color; 
     text-decoration: none;
   }
 

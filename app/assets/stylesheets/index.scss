@@ -1,0 +1,95 @@
+.welcome {
+  // slide
+  .slide-container {
+    padding: 4px 4px;
+  }
+
+  .slide-box { 
+    position: relative; 
+    width: 650px; 
+    height: 340px; 
+  }
+
+  .slide-box .item { 
+    position: relative; 
+    display: block;
+  }
+
+  .slide-box img { 
+    display: block; 
+    width: 650px; 
+    height: 340px;
+  }
+
+  .slide-box b { 
+    position: absolute; 
+    left: 0; 
+    bottom: 0; 
+    width: 100%; 
+    height: 78px; 
+    background-color: #000; 
+    opacity: .5; 
+    filter: alpha(opacity=50);
+  }
+
+  .slide-box span { 
+    position: absolute; 
+    left: 0; 
+    bottom: 37px; 
+    width: 100%; 
+    font-size: 18px; 
+    color: #fff; 
+    text-align: center;
+  }
+
+  .owl-pagination { position: absolute; left: 0; bottom: 10px; width: 100%; height: 22px; text-align: center;}
+  .owl-page { display: inline-block; width: 10px; height: 10px; margin: 0 5px; background-image: image-url("h4ui/owl/bg15.png"); *display: inline; *zoom: 1;}
+  .owl-pagination .active { width: 25px; background-image: image-url("h4ui/owl/bg16.png"); }
+  .owl-buttons { display: none;}
+  .owl-buttons div { position: absolute; top: 50%; width: 40px; height: 80px; margin-top: -40px; text-indent: -9999px;}
+  .owl-prev { left: 0; background-image: image-url("h4ui/owl/bg17.png");}
+  .owl-next { right: 0; background-image: image-url("h4ui/owl/bg18.png");}
+  .owl-prev:hover { background-image: image-url("h4ui/owl/bg19.png");}
+  .owl-next:hover { background-image: image-url("h4ui/owl/bg20.png");} 
+   
+  // top news
+  .top-news {
+    .top-item {
+      border-bottom: 1px solid $container-border-color;
+      padding-bottom: 12px;
+
+      &.item-6 {
+        border-bottom: none;
+        padding-bottom: 4px;
+      }
+    }
+
+    .top-item a {
+      display: block;
+      padding-top: 12px;
+      font-size: 14px;
+      background-image: image-url('h4ui/icons/rank.png');
+      background-repeat: no-repeat;
+      padding-left: 28px;
+    }
+
+    .item-1 a { background-position: 0px 10px; }
+    .item-2 a { background-position: 0px -25px; }
+    .item-3 a { background-position: 0px -61px; }
+    .item-4 a { background-position: 0px -98px; }
+    .item-5 a { background-position: 0px -134px; }
+    .item-6 a { background-position: 0px -172px; }    
+
+    .top-item .intro {
+      font-size: 12px;
+      color: #8e8e8e;
+      margin-top: 4px;
+      line-height: 18px;
+      height: 38px;
+      overflow: hidden;
+      display: none;
+    }
+
+    .top-item.active .intro { display: block; }
+  }
+}

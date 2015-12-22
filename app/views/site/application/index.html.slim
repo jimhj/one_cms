@@ -1,0 +1,63 @@
+.welcome
+  .section.clearfix
+    .pull-left.container.slide-container
+      .slide-box.owl-carousel
+        a.item href="#"
+          img src="http://www.dowebok.com/demo/2014/100/img/1.jpg"
+          b
+          span 巴西训练内马尔受伤 吓坏队友
+
+        a.item href="#"
+          img src="http://www.dowebok.com/demo/2014/100/img/2.jpg"
+          b
+          span 搜狐直击德国训练 众星拼抢激烈
+
+        a.item href="#"
+          img src="http://www.dowebok.com/demo/2014/100/img/3.jpg"
+          b
+          span 西班牙备战演功夫足球 哈维蝎子摆尾
+    .pull-right.container
+      .container-inner
+        .container-inner-nav
+          a 今日头条
+        .top-news
+          .top-item.item-1.active
+            a href="#" 秋老虎必吃的三道菜，现在吃起来
+            .intro 你最近是否出现口腔溃疡？排便次数越来越少？皮肤上不停地长起小疙瘩？这是身体在提示你：该排毒了！今天小编推荐几个有效的排毒食物
+          .top-item.item-2
+            a href="#" 秋老虎必吃的三道菜，现在吃起来
+            .intro
+          .top-item.item-3
+            a href="#" 秋老虎必吃的三道菜，现在吃起来
+            .intro
+          .top-item.item-4
+            a href="#" 秋老虎必吃的三道菜，现在吃起来
+            .intro
+          .top-item.item-5
+            a href="#" 秋老虎必吃的三道菜，现在吃起来
+            .intro
+          .top-item.item-6
+            a href="#" 秋老虎必吃的三道菜，现在吃起来
+            .intro
+
+
+- content_for :header_css do
+  = stylesheet_link_tag 'h4ui/owl/owl.carousel'
+
+- content_for :header_js do
+  = javascript_include_tag 'h4ui/owl/owl.carousel'
+
+javascript:
+  $(function () {
+    $('.slide-box').owlCarousel({
+      items: 1,
+      navigation: true,
+      navigationText: ["上一个","下一个"],
+      autoPlay: true,
+      stopOnHover: true
+    }).hover(function(){
+      $('.owl-buttons').show();
+    }, function(){
+      $('.owl-buttons').hide();
+    });    
+  });

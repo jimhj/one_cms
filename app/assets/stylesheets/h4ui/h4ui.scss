@@ -1,6 +1,7 @@
 $brand-blue: #00bb99;
 $hight-color: darken($brand-blue, 5%);
 $border-start-color: darken($brand-blue, 10%);
+$container-border-color: #ececec;
 
 // font
 $font-size: 14px;
@@ -27,13 +28,13 @@ a {
 }
 
 body {
-  font-family: Arial,"Hiragino Sans GB";
+  font-family: "Microsoft YaHei","Arial Narrow", HELVETICA;
   font-size: $font-size;
   color: $font-color;
   background: #f2f2f2;
 }
 
 .main {
-  width: 1160px;
-  margin: 80px auto;
+  width: 1000px;
+  margin: 65px auto;
 }
