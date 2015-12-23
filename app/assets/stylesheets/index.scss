@@ -1,13 +1,11 @@
 .welcome {
   // slide
-  .slide-container {
-    padding: 4px 4px;
-  }
+  .slide-container {}
 
   .slide-box { 
     position: relative; 
     width: 650px; 
-    height: 340px; 
+    height: 348px; 
   }
 
   .slide-box .item { 
@@ -18,7 +16,7 @@
   .slide-box img { 
     display: block; 
     width: 650px; 
-    height: 340px;
+    height: 348px;
   }
 
   .slide-box b { 
@@ -91,5 +89,108 @@
     }
 
     .top-item.active .intro { display: block; }
+  }
+
+    // article-container
+  .article-container {
+    width: 610px !important;
+    margin-top: 30px;
+    padding: 10px 20px;
+  } 
+
+  .article-container .pic-news {
+    h3 { margin: 10px 0 20px 0; font-size: 20px; }
+    h3 a { color: $brand-blue; }
+
+    .pic {
+      position: relative;
+      width: 290px;
+      height: 290px;
+    }
+
+    .pic img {
+      width: 290px;
+      height: 290px;
+    }
+
+    .pic .pic-title, .pic .pic-overlay {
+      position: absolute;
+      bottom: 10px;
+      width: 270px;
+      left: 10px;
+      height: 40px;
+    }
+
+    .pic-overlay {
+      background-color: #fff;
+      opacity: 0.8;
+      filter: progid:DXImageTransform.Microsoft.alpha(opacity=80);
+    }
+
+    .pic-title {
+      text-align: center;
+      line-height: 40px;
+    }
+  }
+
+  .article-container .article-list {
+    width: 300px;
+    overflow: hidden;
+  }
+
+  .article-container ul.article-sub-nav {
+    @include clearfix;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    list-style: none;
+    border-bottom: 1px solid $container-border-color;
+
+    li { float: right; }
+
+    li a { 
+      display: block; 
+      padding: 10px 20px;
+      text-decoration: none;
+    }
+
+    li.active a, li a:hover {
+      color: $brand-blue;
+      border-bottom: 2px solid $brand-blue;
+    }
+  }
+
+  .article-list-group {
+    h4 { 
+      font-size: 20px; 
+      text-align: center;
+      margin: 16px 0px 8px 0px;
+    }
+
+    .summary {
+      color: #8e8e8e;
+      font-size: 12px;
+      line-height: 20px;
+    }
+
+    ul.articles {
+      @include clearfix;
+      margin: 16px 0 0 0;
+      padding: 0;
+      list-style: none;
+
+      li { 
+        float: left;
+        white-space: normal;
+        margin-left: 16px;
+      }
+
+      li.first { margin-left: 0px; }
+    }
+
+    &.has-bottom-border {
+      padding-bottom: 20px;
+      border-bottom: 1px dashed $container-border-color;
+    }
   }
 }

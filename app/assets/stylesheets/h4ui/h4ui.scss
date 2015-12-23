@@ -28,8 +28,9 @@ a {
 }
 
 body {
-  font-family: "Microsoft YaHei","Arial Narrow", HELVETICA;
-  font-size: $font-size;
+  // font-family: "Microsoft YaHei","Arial Narrow", HELVETICA;
+  // font-size: $font-size;
+  font: 13px/1.4 "微软雅黑", "microsoft yahei", verdana, lucida, Arial, sans-serif, "黑体";
   color: $font-color;
   background: #f2f2f2;
 }
