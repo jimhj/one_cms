@@ -4,7 +4,7 @@ $border-start-color: darken($brand-blue, 10%);
 $container-border-color: #ececec;
 
 // font
-$font-size: 14px;
+$font-size: 13px;
 $font-color: #333333;
 
 // Site Customize
@@ -28,8 +28,6 @@ a {
 }
 
 body {
-  // font-family: "Microsoft YaHei","Arial Narrow", HELVETICA;
-  // font-size: $font-size;
   font: 13px/1.4 "微软雅黑", "microsoft yahei", verdana, lucida, Arial, sans-serif, "黑体";
   color: $font-color;
   background: #f2f2f2;
@@ -38,4 +36,51 @@ body {
 .main {
   width: 1000px;
   margin: 65px auto;
+}
+
+.footer {
+  width: 100%;
+  margin-top: 40px;
+  background-color: #4F4F4F;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  margin-bottom: 0px;
+  &, a { color: #999;  font-size: 12px; }
+}
+
+.footer .footer-inner {
+  width: 1000px;
+  margin: 0 auto;
+  font-size: 12px !important;
+}
+
+.footer-inner .website {
+  @include clearfix;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #555;
+
+  h4 {
+    margin-top: 0px;
+    color: #FAFAFA;
+  }
+
+  .links { 
+    margin-right: 10px; 
+    width: 900px;
+  }
+
+  .links a {
+    display: inline-block;
+    margin-right: 10px; 
+    margin-bottom: 10px;
+  }
+}
+
+.footer-inner .copy-right {
+  margin-top: 10px;
+  padding-top: 10px;
+}
+
+.footer .announce {
+  border-bottom: 1px solid #555;  
 }
