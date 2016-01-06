@@ -1,4 +1,5 @@
 @import "h4ui/h4ui";
+@import "articles";
 @import "index";
 
 .container {
@@ -24,4 +25,30 @@
     border-bottom: 2px solid $brand-blue;
     text-decoration: none;
   }
+}
+
+.body-section-right {
+  margin-top: 30px;
+
+  .container { 
+    width: 330px; 
+    margin-bottom: 30px;
+  }
+}
+
+// top news
+.top-news-container {
+  border: none;
+  box-shadow: none;
+  width: 330px;
+}
+
+.articles_index .main .body-section {
+  .body-section-left > .container {
+    margin-top: 10px;
+  }
+
+  .body-section-right  {
+    margin-top: 10px;
+  }  
 }
