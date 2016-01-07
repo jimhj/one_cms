@@ -1,31 +1,60 @@
 .carousel-focus.clearfix
-  .pull-left
+  .pull-left.carousel-focus-left
     .carousel-focus-container.carousel.slide data-ride="carousel"
       ol.carousel-indicators
         li.active data-target=".carousel-focus-container" data-slide-to="0"
-        / li data-target=".carousel-focus-container" data-slide-to="1"
-        / li data-target=".carousel-focus-container" data-slide-to="2"
+        li data-target=".carousel-focus-container" data-slide-to="1"
+        li data-target=".carousel-focus-container" data-slide-to="2"
       .carousel-inner role="listbox"
-        .item.active
-          = image_tag 'site/1.jpg'
+        a.item.active href="#"
+          = image_tag 'site/1.jpg', size: '660x340'
           .carousel-caption
             .carousel-caption-layer
-            .carousel-caption
-              h3 多食维B 新妈妈的美丽胸部攻略
-              p 在乳房发育和维持其丰满与弹性中起重要作用的是雌激素，而维生素E和维生素B族有利于激素分泌
-        / .item
-        /   = image_tag 'site/2.jpg'
-        /   .carousel-caption
-        /     h3 多食维B 新妈妈的美丽胸部攻略
-        /     p 在乳房发育和维持其丰满与弹性中起重要作用的是雌激素，而维生素E和维生素B族有利于激素分泌
-        / .item
-        /   = image_tag 'site/3.jpg'
-        /   .carousel-caption
-        /     h3 多食维B 新妈妈的美丽胸部攻略
-        /     p 在乳房发育和维持其丰满与弹性中起重要作用的是雌激素，而维生素E和维生素B族有利于激素分泌
-      a.left.carousel-control href=".carousel-focus-container" role="button" data-slide="prev"
-        span.glyphicon.glyphicon-chevron-left aria-hidden="true"
+            .carousel-caption-inner
+              h4 多食维B 新妈妈的美丽胸部攻略
+        a.item href="#"
+          = image_tag 'site/2.jpg', size: '660x340'
+          .carousel-caption
+            .carousel-caption-layer
+            .carousel-caption-inner
+              h4 多食维B 新妈妈的美丽胸部攻略
+        a.item href="#"
+          = image_tag 'site/3.jpg', size: '660x340'
+          .carousel-caption
+            .carousel-caption-layer
+            .carousel-caption-inner
+              h4 多食维B 新妈妈的美丽胸部攻略
 
-      a.right.carousel-control href=".carousel-focus-container" role="button" data-slide="next"
-        span.glyphicon.glyphicon-chevron-right aria-hidden="true"
-  .pull-right
+  .pull-right.carousel-focus-right
+    .headline
+      h4 
+        a href="#" 宝宝巧吃水果 健康加分
+        p.text-muted 宝宝吃饭是妈妈最为关注的事情，但妈妈们往往忽略了给宝宝喂食水果时的注意事项。下面我们就来说一说吃水果普遍存在的误区，看看你有没有...
+    ul.focus-list.list-unstyled
+      - 6.times do
+        li
+          a href="#" 外婆的爱 纯手工温暖牌毛衣裳
+
+
+.main-split-container
+  .left-side
+    .mixed-section.clearfix
+      .mixed-section-nav.clearfix
+        .pull-left
+          h4
+            a 健康咨询
+        ul.nav.nav-tabs.pull-right
+          li.active
+            a href="#" 健康
+          li
+            a href="#" 减肥              
+          li
+            a href="#" 美容        
+      .mixed-section-image.pull-left
+        = image_tag 'site/sample.jpg'
+        .image-layer        
+        .image-title
+          a href="#" 幸福妈妈冯颖的二孩时代
+      .mixed-section-text.pull-right
+
+  .right-side

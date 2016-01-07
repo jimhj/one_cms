@@ -1,6 +1,9 @@
-$body-bg: #f8f8f8;
 $font-family-sans-serif: "微软雅黑", "microsoft yahei", verdana, lucida, Arial, sans-serif, "黑体";
-$brand-success: #00bb99;
+$body-bg: #f8f8f8;
+// $brand-success: #00bb99;
+$brand-success: #5cb85c !default;
+$link-color: #454545;
+$link-hover-color: $brand-success;
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
@@ -12,4 +15,18 @@ $brand-success: #00bb99;
 .main-container {
   margin-top: 73px;
   width: 1000px !important;
+  padding: 0;
+}
+
+.main-split-container {
+  @include clearfix;
+
+  .left-side {
+    float: left;
+    width: 670px;
+  }
+
+  .right-side {
+    float: right;
+  }
 }
