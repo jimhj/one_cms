@@ -2,10 +2,8 @@ doctype html
 html
   head
     title H4 健康网
-    = javascript_include_tag 'h4ui/site'
-    = yield :header_js
-    = stylesheet_link_tag 'site'
-    = yield :header_css
+    = javascript_include_tag 'app/site'
+    = stylesheet_link_tag 'app/site'
     = csrf_meta_tags
   body class="#{controller_name}_#{action_name}"
     .header

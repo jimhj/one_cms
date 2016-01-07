@@ -1,5 +1,5 @@
 class Site::ApplicationController < ApplicationController
-  layout 'h4ui'
+  layout 'site'
 
   def index
 
