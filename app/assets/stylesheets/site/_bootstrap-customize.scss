@@ -32,3 +32,26 @@ nav > .container {
     i.fa { margin-right: 5px; }
   }
 }
+
+// Carousel
+.carousel {
+  .carousel-indicators {
+    bottom: 0;
+
+    li {
+      margin-right: 5px;
+    }
+
+    li.active { 
+      border-color: $brand-success;
+      background-color: $brand-success; 
+    }
+  }
+
+  .carousel-caption {
+    width: 100%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+}

@@ -1,0 +1,31 @@
+.carousel-focus.clearfix
+  .pull-left
+    .carousel-focus-container.carousel.slide data-ride="carousel"
+      ol.carousel-indicators
+        li.active data-target=".carousel-focus-container" data-slide-to="0"
+        / li data-target=".carousel-focus-container" data-slide-to="1"
+        / li data-target=".carousel-focus-container" data-slide-to="2"
+      .carousel-inner role="listbox"
+        .item.active
+          = image_tag 'site/1.jpg'
+          .carousel-caption
+            .carousel-caption-layer
+            .carousel-caption
+              h3 多食维B 新妈妈的美丽胸部攻略
+              p 在乳房发育和维持其丰满与弹性中起重要作用的是雌激素，而维生素E和维生素B族有利于激素分泌
+        / .item
+        /   = image_tag 'site/2.jpg'
+        /   .carousel-caption
+        /     h3 多食维B 新妈妈的美丽胸部攻略
+        /     p 在乳房发育和维持其丰满与弹性中起重要作用的是雌激素，而维生素E和维生素B族有利于激素分泌
+        / .item
+        /   = image_tag 'site/3.jpg'
+        /   .carousel-caption
+        /     h3 多食维B 新妈妈的美丽胸部攻略
+        /     p 在乳房发育和维持其丰满与弹性中起重要作用的是雌激素，而维生素E和维生素B族有利于激素分泌
+      a.left.carousel-control href=".carousel-focus-container" role="button" data-slide="prev"
+        span.glyphicon.glyphicon-chevron-left aria-hidden="true"
+
+      a.right.carousel-control href=".carousel-focus-container" role="button" data-slide="next"
+        span.glyphicon.glyphicon-chevron-right aria-hidden="true"
+  .pull-right
