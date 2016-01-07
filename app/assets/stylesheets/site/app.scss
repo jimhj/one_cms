@@ -1,0 +1,12 @@
+$font-family-sans-serif: "微软雅黑", "microsoft yahei", verdana, lucida, Arial, sans-serif, "黑体";
+$brand-success: #00bb99;
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "font-awesome-sprockets";
+@import "font-awesome";
+@import "bootstrap-customize";
+
+.main-container {
+  width: 1000px !important;
+}

@@ -1,0 +1,34 @@
+// Navbar
+nav.navbar {
+  border-top: 2px solid $brand-success;
+  background-color: #ffffff;
+  @include box-shadow(0 1px 2px #f1f1f1);
+}
+
+nav > .container {
+  width: 1000px !important;
+
+  .navbar-brand {
+    padding: 2px 0px 0px 0px;
+    padding-right: 20px;
+  }
+
+  .main-nav > li > a {
+    border-right: 1px solid #ececec;
+    padding: 10px 38px;
+    line-height: 30px;
+    color: #000;
+    font-size: 18px;
+
+    &:hover { color: $brand-success; }
+  }
+  
+  .main-nav > li.left-border > a {
+    border-left: 1px solid #ececec;
+  }
+
+  .sub-nav {
+    font-size: 12px;
+    i.fa { margin-right: 5px; }
+  }
+}

@@ -11,6 +11,6 @@ Rails.application.config.assets.version = '1.0'
 Rails.application.config.assets.precompile += %w(
   admin/app.js
   admin/app.css
-  h4ui/app.js
-  h4ui/app.js
+  site/app.css
+  site/app.js
 )

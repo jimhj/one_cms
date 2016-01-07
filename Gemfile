@@ -8,6 +8,10 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 
+# Bootstrap for frontend
+gem 'bootstrap-sass', '~> 3.3.6'
+
+# Font icons
 gem 'font-awesome-sass', '~> 4.4.0'
 
 # Use ActiveModel has_secure_password
