@@ -18,6 +18,9 @@
   .headline {
     width: 300px;
     background-color: #ffffff;
+    border-bottom: 1px dotted #ececec;
+
+    h4 { text-align: center; }
   }
 
   .headline p {
@@ -44,10 +47,6 @@
 
 .application .main-split-container {
   margin-top: 20px;
-
-  .mixed-section {
-    margin-bottom: 20px;
-  }
 
   .left-side .mixed-section {
     .mixed-section-text {

@@ -1,6 +1,7 @@
 .mixed-section {
   background-color: #ffffff;
   border: 1px solid #ececec;
+  margin-bottom: 20px;
 
   .mixed-section-inner {
     @include clearfix;
@@ -62,7 +63,8 @@
     ul.section-list li {
       list-style-type: square;
       list-style-position: inside;
-      border-bottom: 1px dotted #ececec;    
+      border-bottom: 1px dotted #ececec; 
+
       &:first-child {
         a { padding-top: 0px; }
       }
@@ -94,7 +96,6 @@
       height: 42px;
       line-height: 42px;
       padding-left: 10px;
-
       .fa { margin-right: 5px; }
       a { text-decoration: none; }
     }
@@ -115,6 +116,42 @@
         color: $brand-success;
         border-bottom: 2px solid $brand-success;
       }
+    }
+  }
+}
+
+.list-section {
+  background-color: #ffffff;
+  border: 1px solid #ececec;
+
+  .list-section-nav {
+    background-color: #fafafa;
+    border-bottom: 1px solid #ececec;
+
+    h4 { 
+      margin: 0;
+      height: 42px;
+      line-height: 42px;
+      padding-left: 10px;
+    }    
+  }
+
+  .list-section-inner {
+    padding: 10px 10px;
+  }
+
+  .list-section-item {
+    border-bottom: 1px dotted #ececec;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+  }
+
+  .item-text {
+    width: 430px;
+
+    p {
+      font-size: 12px;
+      line-height: 20px;
     }
   }
 }
