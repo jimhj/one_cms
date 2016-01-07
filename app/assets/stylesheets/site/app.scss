@@ -10,6 +10,7 @@ $link-hover-color: $brand-success;
 @import "bootstrap-customize";
 @import "font-awesome-sprockets";
 @import "font-awesome";
+@import "component";
 @import "welcome";
 
 .main-container {
@@ -20,6 +21,7 @@ $link-hover-color: $brand-success;
 
 .main-split-container {
   @include clearfix;
+  min-height: 700px;
 
   .left-side {
     float: left;
@@ -28,5 +30,50 @@ $link-hover-color: $brand-success;
 
   .right-side {
     float: right;
+    width: 310px;
   }
+}
+
+footer {
+  margin-top: 40px;
+  background-color: #4F4F4F;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  margin-bottom: 0px;
+  font-size: 12px;
+
+  &, a { color: #999; }
+
+  .container {
+    width: 1000px !important;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+  .website {
+    @include clearfix;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #555;
+
+    h4 {
+      margin-top: 0px;
+      color: #FAFAFA;
+    }
+
+    .links a {
+      display: inline-block;
+      margin-right: 10px; 
+      margin-bottom: 10px;
+    }
+  }
+
+  .copy-right {
+    margin-top: 10px;
+    padding-top: 10px;
+  }
+
+  .announce {
+    padding-top: 10px;
+    border-bottom: 1px solid #555;  
+  } 
 }

@@ -38,23 +38,90 @@
 
 .main-split-container
   .left-side
-    .mixed-section.clearfix
-      .mixed-section-nav.clearfix
+    .mixed-section
+      .mixed-section-nav
         .pull-left
           h4
             a 健康咨询
-        ul.nav.nav-tabs.pull-right
-          li.active
-            a href="#" 健康
-          li
-            a href="#" 减肥              
-          li
-            a href="#" 美容        
-      .mixed-section-image.pull-left
-        = image_tag 'site/sample.jpg'
-        .image-layer        
-        .image-title
-          a href="#" 幸福妈妈冯颖的二孩时代
-      .mixed-section-text.pull-right
-
+        ul.nav.nav-tabs.pull-right role="tablist"
+          li.active role="presentation"
+            a role="tab" data-toggle="tab" href=".tab1" 健康
+          li role="presentation"
+            a role="tab" data-toggle="tab" href=".tab2" 减肥              
+          li role="presentation"
+            a role="tab" data-toggle="tab" href=".tab3" 美容 
+      .mixed-section-inner       
+        .mixed-section-image.pull-left
+          = image_tag 'site/sample.jpg'
+          .image-layer        
+          .image-title
+            a href="#" 幸福妈妈冯颖的二孩时代
+        .mixed-section-text.pull-right
+          .section-headline
+            h4
+              a 冬季怀孕 孕早期最佳养胎攻略
+            p.text-muted 曾经有一份详细的孕期作息时间表放在我的面前，我不知道珍惜，当怀孕后...
+          .tab-content
+            ul.section-list.list-unstyled.tab-pane.active.tab1
+              - 4.times do
+                li
+                  a href="#" 孕妈冷空气过敏肿么破
+            ul.section-list.list-unstyled.tab-pane.fade.tab2
+              - 4.times do
+                li
+                  a href="#" 孕妈冷空气过敏肿么破222
+            ul.section-list.list-unstyled.tab-pane.fade.tab3
+              - 4.times do
+                li
+                  a href="#" 孕妈冷空气过敏肿么破333               
+    - 2.times do
+      .mixed-section
+        .mixed-section-nav
+          .pull-left
+            h4
+              a 健康咨询
+          ul.nav.nav-tabs.pull-right role="tablist"
+            li.active role="presentation"
+              a role="tab" data-toggle="tab" href=".tab1" 健康
+            li role="presentation"
+              a role="tab" data-toggle="tab" href=".tab2" 减肥              
+            li role="presentation"
+              a role="tab" data-toggle="tab" href=".tab3" 美容 
+        .mixed-section-inner       
+          .mixed-section-image.pull-left
+            = image_tag 'site/sample.jpg'
+            .image-layer        
+            .image-title
+              a href="#" 幸福妈妈冯颖的二孩时代
+          .mixed-section-text.pull-right
+            .section-headline
+              h4
+                a 冬季怀孕 孕早期最佳养胎攻略
+              p.text-muted 曾经有一份详细的孕期作息时间表放在我的面前，我不知道珍惜，当怀孕后...
+            .tab-content
+              ul.section-list.list-unstyled.tab-pane.active.tab1
+                - 4.times do
+                  li
+                    a href="#" 孕妈冷空气过敏肿么破
+              ul.section-list.list-unstyled.tab-pane.fade.tab2
+                - 4.times do
+                  li
+                    a href="#" 孕妈冷空气过敏肿么破222
+              ul.section-list.list-unstyled.tab-pane.fade.tab3
+                - 4.times do
+                  li
+                    a href="#" 孕妈冷空气过敏肿么破333                                 
   .right-side
+    - 3.times do
+      .mixed-section
+        .mixed-section-nav
+          h4
+            a
+              = icon('fire') 
+              span 热门推荐
+        .mixed-section-inner
+          .mixed-section-text
+            ul.section-list.list-unstyled
+              - 8.times do
+                li
+                  a href="#" 孕妈冷空气过敏肿么破333                         

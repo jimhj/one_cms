@@ -8,9 +8,7 @@
     width: 660px;
     height: 340px;
 
-    .item {
-      height: 340px;
-    }
+    .item { height: 340px; }
   }
 
   .carousel-focus-right {
@@ -46,58 +44,14 @@
 
 .application .main-split-container {
   margin-top: 20px;
-}
 
-.mixed-section {
-  background-color: #ffffff;
-  padding: 10px 10px;
-
-  .mixed-section-image {
-    position: relative;
-
-    img {
-      width: 280px;
-      height: 260px;
-    }
-
-    .image-layer {
-      position: absolute;
-      width: 240px;
-      height: 20px;
-      left: 20px;
-      bottom: 10px;
-      height: 30px;
-      background-color: #ffffff;
-      opacity: 0.8;
-    }
-
-    .image-title {
-      position: absolute;
-      width: 240px;
-      left: 20px;
-      bottom: 10px;
-      text-align: center;
-      padding: 5px 0px;      
-    }
-
-    .image-title a {
-      color: #000;
-    }
+  .mixed-section {
+    margin-bottom: 20px;
   }
 
-  .mixed-section-text {
-    width: 320px;
-  }
-
-  .mixed-section-nav > li.active a {
-    border: none;
-    border-bottom: 2px solid $brand-success;
-    background-color: transparent;
-  }
-
-  .mixed-section-nav > li:hover a {
-    border: none;
-    border-bottom: 2px solid $brand-success;
-    background-color: transparent;    
+  .left-side .mixed-section {
+    .mixed-section-text {
+      width: 350px;
+    }
   }
 }

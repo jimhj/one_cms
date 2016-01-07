@@ -1,0 +1,120 @@
+.mixed-section {
+  background-color: #ffffff;
+  border: 1px solid #ececec;
+
+  .mixed-section-inner {
+    @include clearfix;
+    padding: 10px 10px;
+  }
+
+  .mixed-section-image {
+    position: relative;
+
+    img {
+      width: 280px;
+      height: 260px;
+    }
+
+    .image-layer {
+      position: absolute;
+      width: 240px;
+      height: 20px;
+      left: 20px;
+      bottom: 10px;
+      height: 30px;
+      background-color: #ffffff;
+      opacity: 0.8;
+    }
+
+    .image-title {
+      position: absolute;
+      width: 240px;
+      left: 20px;
+      bottom: 10px;
+      text-align: center;
+      padding: 5px 0px;      
+    }
+
+    .image-title a {
+      color: #000;
+    }
+  }
+
+  .mixed-section-text {
+    .section-headline {
+      border-bottom: 1px dotted #ececec;
+    }
+
+    .section-headline h4 {
+      text-align: center;
+    }
+
+    .section-headline p {
+      margin-top: 0px;
+      line-height: 20px;
+      font-size: 12px;
+    }
+
+    ul.section-list {
+      margin-bottom: 0px;
+    }
+
+    ul.section-list li {
+      list-style-type: square;
+      list-style-position: inside;
+      border-bottom: 1px dotted #ececec;    
+      &:first-child {
+        a { padding-top: 0px; }
+      }
+      &:last-child { 
+        border-bottom: none; 
+        a { padding-bottom: 0px; }
+      }
+    }
+
+    ul.section-list li a {
+      display: inline-block;
+      padding: 10px 0px;
+    }
+
+    .tab-content ul.section-list li {
+      &:first-child {
+        a { padding-top: 10px; }
+      }      
+    }
+  }
+
+  .mixed-section-nav {
+    @include clearfix;
+    background-color: #fafafa;
+    border-bottom: 1px solid #ececec;
+
+    h4 { 
+      margin: 0;
+      height: 42px;
+      line-height: 42px;
+      padding-left: 10px;
+
+      .fa { margin-right: 5px; }
+      a { text-decoration: none; }
+    }
+
+    ul.nav-tabs {
+      border-bottom: none;
+
+      & > li {
+        margin-bottom: 0;
+      }
+
+      li > a, li.active > a { 
+        border: none;
+        background-color: transparent;
+      }
+
+      li.active > a {
+        color: $brand-success;
+        border-bottom: 2px solid $brand-success;
+      }
+    }
+  }
+}

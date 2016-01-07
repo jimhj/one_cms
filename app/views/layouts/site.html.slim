@@ -37,16 +37,16 @@ html
     .main-container.container
       = yield
 
-    / .footer
-    /   .footer-inner
-    /     .website
-    /       h4 友情链接
-    /       .links
-    /         - Array.new(20) { 'www.baidu.com'}.each do |link|
-    /           a href="http://#{link}" target="_blank"= link
+    footer
+      .container
+        .website
+          h4 友情链接
+          .links
+            - Array.new(20) { 'www.baidu.com'}.each do |link|
+              a href="http://#{link}" target="_blank"= link
             
-    /     .text-center.announce 
-    /       p 本站内容均来自互联网,本站不以营利为目的,这是一个注重分享交流的网站,为了建设健康向上的网络环境,请未满18周岁的少年在家长的陪同下观看。
-    /       p 如果喜欢，请支持正版！若侵犯到您的权益，联系我们处理。    
-    /     .copy-right.text-center.text-muted Copyright 2008-2018 开心100 www.kaixin100.com 版权所有 京ICP备11031391号-8
+        .text-center.announce 
+          p 本站内容均来自互联网,本站不以营利为目的,这是一个注重分享交流的网站,为了建设健康向上的网络环境,请未满18周岁的少年在家长的陪同下观看。
+          p 如果喜欢，请支持正版！若侵犯到您的权益，联系我们处理。    
+        .copy-right.text-center.text-muted Copyright 2008-2018 开心100 www.kaixin100.com 版权所有 京ICP备11031391号-8
 
