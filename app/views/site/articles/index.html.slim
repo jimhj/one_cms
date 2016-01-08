@@ -14,7 +14,19 @@
             p.text-muted 近日，湖南湘潭一女子宝宝怀在肝脏上，上演“心肝宝贝”真人版，到医院检查发现宝宝怀在肝上。宫外孕可导致生命危险，这绝对不是危言耸听。由于宫外孕抢救不及时致...
 
   .right-side
-    - 3.times do
+    .list-section-narrow
+      .list-section-nav
+        h4 健康资讯 
+      .list-section-inner  
+        - 3.times do 
+          .list-section-item
+            h4
+              a 亲吻女人3个敏感部位让她更销魂
+            .content.clearfix
+              a.image href="#"
+                = image_tag 'site/sample.jpg', size: '90x60'
+              .summary.text-muted 亲吻表示对爱人的亲昵，能够给对方一种爱情的确切质感。在性爱中，...
+    - 2.times do
       .mixed-section
         .mixed-section-nav
           h4
