@@ -1,0 +1,90 @@
+.breadcrumb-container {
+  @include clearfix;
+  height: 22px;
+  line-height: 22px;
+}
+
+.breadcrumb-container .breadcrumb {
+  background-color: transparent;
+  font-size: 12px;
+  margin: 0;
+  padding: 0;
+
+  .fa-caret-right { margin-right: 5px; }
+}
+
+.article-detail-container {
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  margin-top: 10px;
+  min-height: 300px;
+
+  .article-header {
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;    
+    border-bottom: 1px dotted #dddddd;
+  }
+
+  .article-header h1 { 
+    font-size: 24px;
+  }
+
+  .article-header p span { 
+    display: inline-block;
+    margin-right: 10px;
+    font-size: 12px;
+  }
+
+  .article-content {
+    margin-top: 20px;
+    padding: 0px 30px;
+    font-size: 14px;
+    line-height: 28px;
+
+    p {
+      margin-bottom: 20px;
+      text-align: justify;
+    }
+  }
+
+  .article-footer {
+    @include clearfix;
+    padding-bottom: 20px;
+
+    .tags {
+      padding-left: 30px;
+      font-size: 14px;
+      color: $brand-success;
+
+      a {
+        display: inline-block;
+        color: $brand-success;
+        text-decoration: underline;
+        margin-left: 10px;
+      }
+    }
+  }
+}
+
+.more-like-this {
+  margin-top: 20px;
+
+  .mixed-section-inner {
+    padding-bottom: 5px;
+  }
+
+  ul.section-list {}
+  ul.section-list.hor li {
+    float: left;
+    width: 260px;
+    overflow: hidden;
+    border-bottom: none;
+    margin-right: 40px;
+
+    a {
+      padding: 0;
+      margin-bottom: 10px;
+    }
+  }
+}

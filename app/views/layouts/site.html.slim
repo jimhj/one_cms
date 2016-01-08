@@ -9,8 +9,8 @@ html
   body class="#{controller_name}"
     nav.navbar.navbar-default.navbar-fixed-top
       .container
-        a.navbar-brand
-          = image_tag 'site/logo.png'
+        a.navbar-brand href="#{url_for}"
+          = image_tag 'site/logo_1.png'
         ul.nav.navbar-nav.main-nav
           li.left-border
             a 首页
