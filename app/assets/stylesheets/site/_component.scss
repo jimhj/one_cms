@@ -5,7 +5,7 @@
 
   .mixed-section-inner {
     @include clearfix;
-    padding: 10px 10px;
+    padding: 15px 15px;
   }
 
   .mixed-section-image {
@@ -95,7 +95,7 @@
       margin: 0;
       height: 42px;
       line-height: 42px;
-      padding-left: 10px;
+      padding-left: 15px;
       .fa { margin-right: 5px; }
       a { text-decoration: none; }
     }
@@ -132,7 +132,7 @@
       margin: 0;
       height: 42px;
       line-height: 42px;
-      padding-left: 10px;
+      padding-left: 15px;
     }    
   }
 

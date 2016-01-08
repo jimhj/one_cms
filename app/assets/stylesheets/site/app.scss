@@ -13,6 +13,10 @@ $link-hover-color: $brand-success;
 @import "component";
 @import "welcome";
 
+body {
+  background: #F1F1F1 image-url('site/bg.png') repeat;
+}
+
 .main-container {
   margin-top: 73px;
   width: 1000px !important;
