@@ -13,44 +13,41 @@
 
 ActiveRecord::Schema.define(version: 20151027143928) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "admin_users", force: :cascade do |t|
-    t.string   "login",           limit: 30, null: false
-    t.string   "name"
-    t.string   "password_digest",            null: false
+    t.string   "login",           limit: 30,  null: false
+    t.string   "name",            limit: 255
+    t.string   "password_digest", limit: 255, null: false
     t.datetime "last_login_time"
-    t.string   "last_login_ip"
-    t.string   "login_ip"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.string   "last_login_ip",   limit: 255
+    t.string   "login_ip",        limit: 255
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   create_table "article_bodies", force: :cascade do |t|
-    t.integer "article_id",               null: false
-    t.text    "body"
-    t.text    "body_html"
+    t.integer "article_id",   limit: 4,     null: false
+    t.text    "body",         limit: 65535
+    t.text    "body_html",    limit: 65535
     t.string  "redirect_url", limit: 100
   end
 
   add_index "article_bodies", ["article_id"], name: "index_article_bodies_on_article_id", using: :btree
 
   create_table "articles", force: :cascade do |t|
-    t.integer  "node_id",                                     null: false
+    t.integer  "node_id",         limit: 4,                   null: false
     t.string   "title",           limit: 200,                 null: false
     t.string   "short_title",     limit: 80
-    t.integer  "comments_count",              default: 0
-    t.integer  "sort_rank",                   default: 0
+    t.integer  "comments_count",  limit: 4,   default: 0
+    t.integer  "sort_rank",       limit: 4,   default: 0
     t.string   "color",           limit: 10
     t.string   "writer",          limit: 20
-    t.string   "thumb"
+    t.string   "thumb",           limit: 255
     t.string   "source",          limit: 30
-    t.string   "seo_title"
-    t.string   "seo_keywords"
-    t.string   "seo_description"
-    t.boolean  "hot",                         default: false
-    t.integer  "status",                      default: 0
+    t.string   "seo_title",       limit: 255
+    t.string   "seo_keywords",    limit: 255
+    t.string   "seo_description", limit: 255
+    t.boolean  "hot",             limit: 1,   default: false
+    t.integer  "status",          limit: 4,   default: 0
     t.datetime "created_at",                                  null: false
     t.datetime "updated_at",                                  null: false
   end
@@ -71,20 +68,20 @@ ActiveRecord::Schema.define(version: 20151027143928) do
   create_table "keywords", force: :cascade do |t|
     t.string   "name",       limit: 30,                 null: false
     t.string   "url",        limit: 100,                null: false
-    t.integer  "sortrank",               default: 1000
+    t.integer  "sortrank",   limit: 4,   default: 1000
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
   end
 
   create_table "links", force: :cascade do |t|
-    t.integer  "linkable_id"
-    t.string   "linkable_type"
+    t.integer  "linkable_id",   limit: 4
+    t.string   "linkable_type", limit: 255
     t.string   "name",          limit: 30,                 null: false
     t.string   "title",         limit: 150
     t.string   "url",           limit: 150,                null: false
     t.string   "qq",            limit: 20
-    t.integer  "sortrank",                  default: 1000
-    t.integer  "status",                    default: 0
+    t.integer  "sortrank",      limit: 4,   default: 1000
+    t.integer  "status",        limit: 4,   default: 0
     t.datetime "created_at",                               null: false
     t.datetime "updated_at",                               null: false
   end
@@ -92,19 +89,19 @@ ActiveRecord::Schema.define(version: 20151027143928) do
   add_index "links", ["linkable_type", "linkable_id"], name: "index_links_on_linkable_type_and_linkable_id", using: :btree
 
   create_table "nodes", force: :cascade do |t|
-    t.string   "name",            limit: 30,                null: false
-    t.string   "slug",            limit: 30,                null: false
-    t.integer  "parent_id"
-    t.integer  "lft",                        default: 0
-    t.integer  "rgt",                        default: 0
-    t.integer  "depth",                      default: 0
-    t.integer  "children_count",             default: 0
-    t.string   "seo_title"
-    t.string   "seo_keywords"
-    t.string   "seo_description"
-    t.integer  "sortrank",                   default: 1000
-    t.datetime "created_at",                                null: false
-    t.datetime "updated_at",                                null: false
+    t.string   "name",            limit: 30,                 null: false
+    t.string   "slug",            limit: 30,                 null: false
+    t.integer  "parent_id",       limit: 4
+    t.integer  "lft",             limit: 4,   default: 0
+    t.integer  "rgt",             limit: 4,   default: 0
+    t.integer  "depth",           limit: 4,   default: 0
+    t.integer  "children_count",  limit: 4,   default: 0
+    t.string   "seo_title",       limit: 255
+    t.string   "seo_keywords",    limit: 255
+    t.string   "seo_description", limit: 255
+    t.integer  "sortrank",        limit: 4,   default: 1000
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
   end
 
   add_index "nodes", ["depth"], name: "index_nodes_on_depth", using: :btree
@@ -113,14 +110,14 @@ ActiveRecord::Schema.define(version: 20151027143928) do
   add_index "nodes", ["rgt"], name: "index_nodes_on_rgt", using: :btree
 
   create_table "redactor_assets", force: :cascade do |t|
-    t.string   "data_file_name",               null: false
-    t.string   "data_content_type"
-    t.integer  "data_file_size"
-    t.integer  "assetable_id"
+    t.string   "data_file_name",    limit: 255, null: false
+    t.string   "data_content_type", limit: 255
+    t.integer  "data_file_size",    limit: 4
+    t.integer  "assetable_id",      limit: 4
     t.string   "assetable_type",    limit: 30
     t.string   "type",              limit: 30
-    t.integer  "width"
-    t.integer  "height"
+    t.integer  "width",             limit: 4
+    t.integer  "height",            limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -129,8 +126,8 @@ ActiveRecord::Schema.define(version: 20151027143928) do
   add_index "redactor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_redactor_assetable_type", using: :btree
 
   create_table "taggings", force: :cascade do |t|
-    t.integer  "article_id"
-    t.integer  "tag_id"
+    t.integer  "article_id", limit: 4
+    t.integer  "tag_id",     limit: 4
     t.datetime "created_at"
   end
 
@@ -139,14 +136,14 @@ ActiveRecord::Schema.define(version: 20151027143928) do
   add_index "taggings", ["tag_id"], name: "index_taggings_on_tag_id", using: :btree
 
   create_table "tags", force: :cascade do |t|
-    t.string   "name",            limit: 30,             null: false
-    t.string   "slug",            limit: 80,             null: false
-    t.string   "seo_title"
-    t.string   "seo_keywords"
-    t.string   "seo_description"
-    t.integer  "taggings_count",             default: 0
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
+    t.string   "name",            limit: 30,              null: false
+    t.string   "slug",            limit: 80,              null: false
+    t.string   "seo_title",       limit: 255
+    t.string   "seo_keywords",    limit: 255
+    t.string   "seo_description", limit: 255
+    t.integer  "taggings_count",  limit: 4,   default: 0
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
   end
 
 end
