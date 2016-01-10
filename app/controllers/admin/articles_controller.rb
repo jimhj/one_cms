@@ -1,6 +1,6 @@
 class Admin::ArticlesController < Admin::ApplicationController
   def index
-    @articles = Article.joins(:article_body, :node).order('created_at DESC')
+    @articles = Article.joins(:article_body, :node).paginate(paginate_params).order('created_at DESC')
   end
 
   def new
@@ -24,7 +24,7 @@ class Admin::ArticlesController < Admin::ApplicationController
   def update
     @article = Article.find params[:id]
     if @article.update_attributes(article_params)
-      redirect_to admin_articles_path
+      redirect_to admin_articles_path(page: params[:page])
     else
       render action: :edit
     end
@@ -46,4 +46,8 @@ class Admin::ArticlesController < Admin::ApplicationController
   def article_params
     params.require(:article).permit(:node_id, :title, :short_title, :thumb, :source, :seo_title, :seo_keywords, :seo_description, :hot, :focus, :article_body_attributes => [:id, :body])
   end
+
+  def paginate_params
+    { page: params[:page], per_page: 40 }
+  end  
 end

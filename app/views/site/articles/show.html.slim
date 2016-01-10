@@ -3,11 +3,13 @@
     .breadcrumb-container
       ol.breadcrumb.pull-left
         li
-          a
+          a href="#{root_path}"
             i.fa.fa-caret-right 
             span 首页
-        li
-          a 频道页
+        - @article.node.self_and_ancestors.each do |node|
+          li
+            a= node.name
+
         li.active 正文页
       .favorite.pull-right
         button.btn.btn-xs.btn-default

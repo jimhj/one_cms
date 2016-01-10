@@ -10,4 +10,13 @@ class Article < ActiveRecord::Base
   validates_presence_of :node_id, :title
 
   scope :focus, -> { where(focus: true).order('id DESC').limit(3) }
+  scope :hot, -> { where(hot: true).order('id DESC').limit(6) }
+
+  def self.headline
+    hot.first
+  end
+
+  def self.topnews
+    hot[1..-1]
+  end
 end

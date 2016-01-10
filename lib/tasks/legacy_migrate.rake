@@ -58,44 +58,52 @@ namespace :legacy do
     puts "\n\n\n"
 
     puts "======== 迁移文章 ========="
-    Legacy::Article.order('id DESC').limit(50).each_with_index do |article, i|
-      puts "开始导入第 #{i + 1} 篇文章 id: #{article.id} ============"
-      puts "文章标签: #{article.keywords}"
+    Legacy::Article.order('id DESC').limit(200).each_with_index do |article, i|
+      begin
+        Article.transaction do
+          puts "开始导入第 #{i + 1} 篇文章 id: #{article.id} ============"
+          puts "文章标签: #{article.keywords}"
 
-      node_name          = article.node.typename
-      node               = ::Node.find_by(name: node_name)
-      a                  = node.articles.build
-      a.title            = article.title
-      a.sort_rank        = article.sortrank
-      a.writer           = article.writer
-      a.source           = article.source
-      a.remote_thumb_url = article.pictures.first.try(:fullurl)
-      a.seo_keywords     = article.keywords
-      a.seo_description  = article.description
-      if not a.valid?
-        p a.errors.full_messages
-      end      
-      a.save!
-      
-      b                  = a.build_article_body
-      b.body             = article.article_body.body
-      b.restore_remote_images      
-      b.generate_keyword_links
-      if not b.valid?
-        p b.errors.full_messages
-      end 
-      b.save!
+          node_name          = article.node.typename
+          node               = ::Node.find_by(name: node_name)
+          a                  = node.articles.build
+          a.title            = article.title
+          a.sort_rank        = article.sortrank
+          a.writer           = article.writer
+          a.source           = article.source
+          a.remote_thumb_url = article.pictures.first.try(:fullurl)
+          a.seo_keywords     = article.keywords
+          a.seo_description  = article.description
+          if not a.valid?
+            p a.errors.full_messages
+          end      
+          a.save!
+          
+          b                  = a.build_article_body
+          b.body             = article.article_body.body
+          b.restore_remote_images      
+          b.generate_keyword_links
+          if not b.valid?
+            p b.errors.full_messages
+          end 
+          b.save!
 
-      tags = article.tags.collect do |tag|        
-        t = ::Tag.find_or_initialize_by(name: tag)
-        t.name = tag
-        if not t.valid?
-          p t.errors.full_messages
-        end  
-        t.save!
-        t
+          tags = article.tags.collect do |tag|        
+            t = ::Tag.find_or_initialize_by(name: tag)
+            t.name = tag
+            if not t.valid?
+              p t.errors.full_messages
+            end  
+            t.save!
+            t
+          end
+
+          a.tags = tags
+        end
+      rescue => e
+        puts e.backtrace.join("\n")
+        next
       end
-      a.tags = tags
     end
 
   end

@@ -26,6 +26,10 @@ gem 'chinese_pinyin', '~> 1.0.0'
 # WYSIWYG Editor
 gem 'redactor-rails', '~> 0.5.0'
 
+# Pagination
+gem 'will_paginate', '~> 3.0.6'
+gem 'will_paginate-bootstrap'
+
 # File Upload
 gem 'carrierwave', '~> 0.10.0'
 gem 'mini_magick', '~> 4.3.6'

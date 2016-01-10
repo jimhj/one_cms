@@ -5,4 +5,19 @@ class Node < ActiveRecord::Base
 
   validates_presence_of :name, :slug
   validates_uniqueness_of :slug
+
+  def self.main_slugs
+    %w(syjk care cure jianfei prevent diet xinli)
+  end
+
+  def self.main
+    where(slug: main_slugs)
+  end
+
+  def headline
+    article = articles.where.not(thumb: nil).order('id DESC').first
+    article ||= articles.first
+    article ||= Article.where.not(thumb: nil).sample
+    article
+  end
 end

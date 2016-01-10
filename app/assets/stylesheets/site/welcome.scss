@@ -52,5 +52,13 @@
     .mixed-section-text {
       width: 340px;
     }
+
+    .section-headline h4 {
+      margin-top: 0px;
+    }
+
+    .tab-content ul.section-list li:first-child a {
+      padding-top: 10px;
+    }
   }
 }

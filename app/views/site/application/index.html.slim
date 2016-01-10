@@ -2,13 +2,12 @@
   .pull-left.carousel-focus-left
     .carousel-focus-container.carousel.slide data-ride="carousel"
       ol.carousel-indicators
-        li.active data-target=".carousel-focus-container" data-slide-to="0"
-        li data-target=".carousel-focus-container" data-slide-to="1"
-        li data-target=".carousel-focus-container" data-slide-to="2"
+        - Article.focus.each_with_index do |_article, ind|
+          li class=('active' if ind.zero?) data-target=".carousel-focus-container" data-slide-to="#{ind}"
       .carousel-inner role="listbox"
         - Article.focus.each_with_index do |article, ind|
           a.item class=('active' if ind.zero?) href="#{article_path(article)}" title="#{article.title}"
-            = image_tag article.thumb.url(:large), size: '650x340'
+            = image_tag article.thumb.url(:large), size: '650x340', alt: article.title, title: article.title
             .carousel-caption
               .carousel-caption-layer
               .carousel-caption-inner
@@ -17,89 +16,49 @@
   .pull-right.carousel-focus-right
     .headline
       h4 
-        a href="#" 宝宝巧吃水果 健康加分
-      p.text-muted 宝宝吃饭是妈妈最为关注的事情，但妈妈们往往忽略了给宝宝喂食水果时的注意事项。下面我们就来说一说吃水果普遍存在的误区，看看你有没有...
+        a href="#{article_path(Article.headline)}"  title="#{Article.headline.title}"= Article.headline.title
+      p.text-muted= Article.headline.seo_description
     ul.focus-list.list-unstyled
-      - 6.times do
+      - Article.topnews.each do |article|
         li
-          a href="#" 外婆的爱 纯手工温暖牌毛衣裳
+          a href="#{article_path(article)}" title="#{article.title}"= article.title
 
 
 .main-split-container
-  .left-side
-    .mixed-section
-      .mixed-section-nav
-        .pull-left
-          h4
-            a 健康咨询
-        ul.nav.nav-tabs.pull-right role="tablist"
-          li.active role="presentation"
-            a role="tab" data-toggle="tab" href=".tab1" 健康
-          li role="presentation"
-            a role="tab" data-toggle="tab" href=".tab2" 减肥              
-          li role="presentation"
-            a role="tab" data-toggle="tab" href=".tab3" 美容 
-      .mixed-section-inner       
-        .mixed-section-image.pull-left
-          = image_tag 'site/sample.jpg'
-          .image-layer        
-          .image-title
-            a href="#" 幸福妈妈冯颖的二孩时代
-        .mixed-section-text.pull-right
-          .section-headline
-            h4
-              a 冬季怀孕 孕早期最佳养胎攻略
-            p.text-muted 曾经有一份详细的孕期作息时间表放在我的面前，我不知道珍惜，当怀孕后...
-          .tab-content
-            ul.section-list.list-unstyled.tab-pane.active.tab1
-              - 4.times do
-                li
-                  a href="#" 孕妈冷空气过敏肿么破
-            ul.section-list.list-unstyled.tab-pane.fade.tab2
-              - 4.times do
-                li
-                  a href="#" 孕妈冷空气过敏肿么破222
-            ul.section-list.list-unstyled.tab-pane.fade.tab3
-              - 4.times do
-                li
-                  a href="#" 孕妈冷空气过敏肿么破333               
-    - 2.times do
+  .left-side              
+    - Node.main.each do |node|
       .mixed-section
         .mixed-section-nav
           .pull-left
             h4
-              a 健康咨询
+              a= node.name
           ul.nav.nav-tabs.pull-right role="tablist"
-            li.active role="presentation"
-              a role="tab" data-toggle="tab" href=".tab1" 健康
-            li role="presentation"
-              a role="tab" data-toggle="tab" href=".tab2" 减肥              
-            li role="presentation"
-              a role="tab" data-toggle="tab" href=".tab3" 美容 
+            - children = node.children.first(3)
+            - children.each_with_index do |child, ind|
+              li class=('active' if ind.zero?) role="presentation"
+                a role="tab" data-toggle="tab" href=".tab-#{child.slug}"= child.name
         .mixed-section-inner       
           .mixed-section-image.pull-left
-            = image_tag 'site/sample.jpg'
+            - headline = node.headline
+            = image_tag headline.thumb.url(:square), alt: headline.title, title: headline.title, size: '290x290'
             .image-layer        
             .image-title
-              a href="#" 幸福妈妈冯颖的二孩时代
-          .mixed-section-text.pull-right
-            .section-headline
-              h4
-                a 冬季怀孕 孕早期最佳养胎攻略
-              p.text-muted 曾经有一份详细的孕期作息时间表放在我的面前，我不知道珍惜，当怀孕后...
-            .tab-content
-              ul.section-list.list-unstyled.tab-pane.active.tab1
-                - 4.times do
-                  li
-                    a href="#" 孕妈冷空气过敏肿么破
-              ul.section-list.list-unstyled.tab-pane.fade.tab2
-                - 4.times do
-                  li
-                    a href="#" 孕妈冷空气过敏肿么破222
-              ul.section-list.list-unstyled.tab-pane.fade.tab3
-                - 4.times do
-                  li
-                    a href="#" 孕妈冷空气过敏肿么破333                                 
+              a href="#{article_path(headline)}" title="#{headline.title}"= headline.title.truncate(15)
+          .mixed-section-text.pull-right.tab-content
+            - children.each_with_index do |child, ind|
+              - klass = "tab-#{child.slug}"
+              - ind.zero? ? (klass << ' active') : (klass << ' fade')
+              .tab-pane class=klass
+                - child_headline = child.headline
+                .section-headline
+                  h4
+                    a href="#{article_path(child_headline)}" title="#{child_headline.title}"= child_headline.title.truncate(16)
+                  p.text-muted= child_headline.seo_description
+                ul.section-list.list-unstyled
+                  - child.articles.where.not(id: child_headline.id).order('id DESC').limit(4).each do |article|
+                    li
+                      a href="#{article_path(article)}" title="#{article.title}"= article.title
+                                
   .right-side
     - 3.times do
       .mixed-section

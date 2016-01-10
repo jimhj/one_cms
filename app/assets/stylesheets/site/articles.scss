@@ -42,6 +42,11 @@
     font-size: 14px;
     line-height: 28px;
 
+    a, a.hot-link {
+      color: $brand-success;
+      text-decoration: underline;
+    }
+
     p {
       margin-bottom: 20px;
       text-align: justify;
@@ -50,6 +55,7 @@
 
   .article-footer {
     @include clearfix;
+    padding-top: 10px;
     padding-bottom: 20px;
 
     .tags {

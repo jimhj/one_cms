@@ -1,8 +1,8 @@
 - if @article.persisted?
-  - path = admin_article_path
+  - path = admin_article_path(page: params[:page])
   - method = 'put'
 - else
-  - path = admin_articles_path
+  - path = admin_articles_path(page: params[:page])
   - method = 'post'
 = form_for @article, url: path, class: 'form', method: method, multipart: true do |f|
   .form-group.form-group-bordered

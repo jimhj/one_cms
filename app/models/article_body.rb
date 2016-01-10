@@ -23,10 +23,12 @@ class ArticleBody < ActiveRecord::Base
       if ele.name == 'a'
         ele.set_attribute(:href, keyword.url)
         ele.set_attribute(:target, '_blank')
+        ele.set_attribute(:css, 'hot-link')
         ele.set_attribute(:title, keyword.name)
       else
         link = Nokogiri::XML::Node.new "a", doc
         link.set_attribute(:href, keyword.url)
+        link.set_attribute(:css, 'hot-link')
         link.set_attribute(:target, '_blank')
         link.set_attribute(:title, keyword.name)
         link.content = keyword.name
