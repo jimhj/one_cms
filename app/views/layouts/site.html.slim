@@ -13,7 +13,10 @@ html
           = image_tag 'site/logo_1.png'
         ul.nav.navbar-nav.main-nav
           - Node.main.each_with_index do |node, ind|
-            li class=('left-border' if ind.zero?)
+            - klass = ''
+            - klass << 'active ' if params[:slug] == node.slug
+            - klass << 'left-border' if ind.zero?
+            li class="#{klass}"
               a title="#{node.name}" href="#{articles_path(node.slug)}"= node.short_name
               ul.dropdown-menu
                 - node.children.each do |child|

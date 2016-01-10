@@ -1,7 +1,8 @@
 class Site::ArticlesController < Site::ApplicationController
   def index
     @node = Node.find_by(slug: params[:slug])
-    @articles = @node.articles.order('id DESC').paginate(paginate_params)
+    node_ids = @node.self_and_descendants.pluck(:id)
+    @articles = Article.where(node_id: node_ids).order('id DESC').paginate(paginate_params)
   end
 
   def show

@@ -22,6 +22,13 @@ nav > .container {
 
     &:hover { color: $brand-success; }
   }
+
+  .main-nav > li.active > a {
+    &, &:hover {
+      background-color: $brand-success;
+      color: #ffffff;
+    }
+  }
   
   .main-nav > li.left-border > a {
     border-left: 1px solid rgba(0, 0, 0, 0.15);
