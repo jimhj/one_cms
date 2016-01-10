@@ -20,6 +20,28 @@ class Article < ActiveRecord::Base
     hot[1..-1]
   end
 
+  def self.pic(limit = 5)
+    sql = <<-SQL
+      select * from articles
+      where thumb is not null
+      order by rand()
+      limit #{limit}
+    SQL
+
+    find_by_sql(sql)
+  end
+
+  def self.random(limit = 10)
+    sql = <<-SQL
+      select * from articles
+      where thumb is null
+      order by rand()
+      limit #{limit}
+    SQL
+
+    find_by_sql(sql)    
+  end
+
   def more(limit = 8)
     more = node.articles.where.not(id: id).order('id DESC').limit(limit)
     if more.blank?

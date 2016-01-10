@@ -14,7 +14,7 @@ nav > .container {
   }
 
   .main-nav > li > a {
-    border-right: 1px solid #ececec;
+    border-right: 1px solid rgba(0, 0, 0, 0.15);
     padding: 10px 24px;
     line-height: 30px;
     color: #000;
@@ -24,7 +24,7 @@ nav > .container {
   }
   
   .main-nav > li.left-border > a {
-    border-left: 1px solid #ececec;
+    border-left: 1px solid rgba(0, 0, 0, 0.15);
   }
 
   .sub-nav {

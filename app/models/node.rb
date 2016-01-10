@@ -15,8 +15,16 @@ class Node < ActiveRecord::Base
     Hash[nodes]
   end
 
+  def short_name
+    Node.main_node_static[slug]
+  end
+
   def self.main
-    where(slug: main_slugs)
+    where(slug: main_slugs).order("FIELD(slug, 'syjk', 'care', 'cure', 'jianfei', 'prevent', 'diet', 'xinli')")
+  end
+
+  def self.rest
+    roots.where.not(slug: main_slugs)
   end
 
   def headline

@@ -59,15 +59,4 @@
                     li
                       a href="#{article_path(article)}" title="#{article.title}"= article.title
                                 
-  .right-side
-    - 3.times do
-      .mixed-section
-        .mixed-section-nav
-          h4
-            a 热门推荐
-        .mixed-section-inner
-          .mixed-section-text
-            ul.section-list.list-unstyled
-              - 8.times do
-                li
-                  a href="#" 孕妈冷空气过敏肿么破333                         
+  = render 'site/share/right_side'                      

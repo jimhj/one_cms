@@ -42,27 +42,4 @@
               li
                 a href="#{article_path(article)}" title="#{article.title}"= article.title.truncate(18)
 
-  .right-side
-    - 2.times do
-      .mixed-section
-        .mixed-section-nav
-          h4
-            a 热门推荐
-        .mixed-section-inner
-          .mixed-section-text
-            ul.section-list.list-unstyled
-              - 8.times do
-                li
-                  a href="#" 孕妈冷空气过敏肿么破333 
-    .list-section-narrow
-      .list-section-nav
-        h4 健康资讯 
-      .list-section-inner  
-        - 3.times do 
-          .list-section-item
-            h4
-              a 亲吻女人3个敏感部位让她更销魂
-            .content.clearfix
-              a.image href="#"
-                = image_tag 'site/sample.jpg', size: '90x60'
-              .summary.text-muted 亲吻表示对爱人的亲昵，能够给对方一种爱情的确切质感。在性爱中，...
+  = render 'site/share/right_side'

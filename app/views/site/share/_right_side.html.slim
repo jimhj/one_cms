@@ -1,0 +1,23 @@
+.right-side
+  .list-section-narrow
+    .list-section-nav
+      h4 焦点资讯 
+    .list-section-inner  
+      - Article.pic.each do |article| 
+        .list-section-item
+          h4
+            a title="#{article.title}" href="#{article_path(article)}"= article.title.truncate(18)
+          .content.clearfix
+            a.image title="#{article.title}" href="#{article_path(article)}"
+              = image_tag article.thumb.url(:small), size: '90x60', title: article.title, alt: article.title
+            .summary.text-muted= article.seo_description 
+  .mixed-section
+    .mixed-section-nav
+      h4
+        a 热门推荐
+    .mixed-section-inner
+      .mixed-section-text
+        ul.section-list.list-unstyled
+          - Article.random.each do |article|
+            li
+              a title="#{article.title}" href="#{article_path(article)}"= article.title.truncate(18)  
