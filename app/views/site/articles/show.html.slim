@@ -8,9 +8,9 @@
             span 首页
         - @article.node.self_and_ancestors.each do |node|
           li
-            a= node.name
+            a href="#{articles_path(node)}" title="#{node.name}"= node.name
 
-        li.active 正文页
+        li.active 正文
       .favorite.pull-right
         button.btn.btn-xs.btn-default
           i.fa.fa-star-o
@@ -38,9 +38,9 @@
       .mixed-section-inner
         .mixed-section-text
           ul.section-list.list-unstyled.clearfix.hor
-            - 8.times do
+            - @article.more.each do |article|
               li
-                a href="#" 孕妈冷空气过敏肿么破333 
+                a href="#{article_path(article)}" title="#{article.title}"= article.title.truncate(18)
 
   .right-side
     - 2.times do

@@ -19,4 +19,12 @@ class Article < ActiveRecord::Base
   def self.topnews
     hot[1..-1]
   end
+
+  def more(limit = 8)
+    more = node.articles.where.not(id: id).order('id DESC').limit(limit)
+    if more.blank?
+      more = Article.where.not(id: id).order('id DESC').limit(2000).sample(8)
+    end
+    more
+  end
 end
