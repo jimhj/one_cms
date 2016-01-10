@@ -10,6 +10,11 @@ class Node < ActiveRecord::Base
     %w(syjk care cure jianfei prevent diet xinli)
   end
 
+  def self.main_node_static
+    nodes = main_slugs.zip(%w(健康 保健 疾病 减肥 预防 饮食 心理))
+    Hash[nodes]
+  end
+
   def self.main
     where(slug: main_slugs)
   end

@@ -1,17 +1,17 @@
 .main-split-container
   .left-side.list-section
     .list-section-nav
-      h4 健康资讯
+      h4= @node.name
     .list-section-inner
-      - 10.times do
+      - @articles.each do |article|
         .list-section-item.clearfix
           .item-image.pull-left
-            a href="#"
-              = image_tag 'site/sample2.jpg', size: '200x150'
+            a href="#{article_path(article)}" title="#{article.title}"
+              = image_tag article.thumb.url(:middle), size: '200x150', alt: article.title, title: article.title
           .item-text.pull-right
             h4
-              a href="#" 胎宝长在肝脏上 宫外孕查与防
-            p.text-muted 近日，湖南湘潭一女子宝宝怀在肝脏上，上演“心肝宝贝”真人版，到医院检查发现宝宝怀在肝上。宫外孕可导致生命危险，这绝对不是危言耸听。由于宫外孕抢救不及时致...
+              a href="#{article_path(article)}" title="#{article.title}"= article.title
+            p.text-muted= article.seo_description
 
   .right-side
     .list-section-narrow

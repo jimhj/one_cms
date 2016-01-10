@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   scope module: :site do
     root 'application#index'
-    get '*slug/:id', to: 'articles#show', id: /\d.+/
-    get '*slug', to: 'articles#index'    
+    get ':slug/:id', to: 'articles#show'
+    get ':slug', to: 'articles#index', as: :articles
   end
 end

@@ -12,20 +12,9 @@ html
         a.navbar-brand href="#{root_url}" title="网站首页"
           = image_tag 'site/logo_1.png'
         ul.nav.navbar-nav.main-nav
-          li.left-border
-            a 健康
-          li
-            a 保健          
-          li
-            a 疾病
-          li
-            a 减肥
-          li
-            a 预防          
-          li
-            a 饮食  
-          li
-            a 心理 
+          - Node.main_node_static.each_pair do |k, v|
+            li class=('left-border' if k == 'syjk')
+              a title="#{v}" href="#{k}"= v
 
         ul.nav.navbar-nav.navbar-right.sub-nav
           li

@@ -15,9 +15,17 @@ class ThumbUploader < CarrierWave::Uploader::Base
     process resize_to_fill: [300, 300]
   end
 
+  version :middle, from_version: :square do
+    process resize_to_limit: [200, 150]
+  end  
+
   version :small do
     process resize_to_limit: [90, 60]
   end
+
+  def default_url(*args)
+    ActionController::Base.helpers.asset_path("site/" + [version_name, "thumb.png"].compact.join('_'))
+  end  
 
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
