@@ -20,6 +20,9 @@ gem 'bcrypt', '~> 3.1.10'
 # Slim for Template
 gem 'slim', '~> 3.0.3'
 
+# Hanzi to Pinyin
+gem 'chinese_pinyin', '~> 1.0.0'
+
 # WYSIWYG Editor
 gem 'redactor-rails', '~> 0.5.0'
 

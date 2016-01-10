@@ -4,6 +4,7 @@ class Article < ActiveRecord::Base
   has_many :taggings
   has_many :tags, through: :taggings
 
+  mount_uploader :thumb, ThumbUploader
   accepts_nested_attributes_for :article_body, allow_destroy: true
 
   validates_presence_of :node_id, :title

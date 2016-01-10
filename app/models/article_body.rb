@@ -4,16 +4,16 @@ class ArticleBody < ActiveRecord::Base
   belongs_to :article
   validates_presence_of :body
 
-  after_create do
-    # 1.提取关键词，加上内链
-    generate_keyword_links
+  # after_create do
+  #   # 1.提取关键词，加上内链
+  #   generate_keyword_links
 
-    # 2.把远程图片下载到本地
-    restore_remote_images
+  #   # 2.把远程图片下载到本地
+  #   # restore_remote_images
 
-    save
-    # TODO: use background job
-  end
+  #   save
+  #   # TODO: use background job
+  # end
 
   def generate_keyword_links
     doc = Nokogiri::HTML(self.body)
@@ -34,22 +34,30 @@ class ArticleBody < ActiveRecord::Base
       end
     end
 
-
     self.body_html = doc.to_s
   end
 
   def restore_remote_images
     doc = Nokogiri::HTML(body_html)
-    doc.css('img').each do |img|
+    remote_imgs = doc.css('img').collect do |img|
       unless img[:src].include?(CONFIG['carrierwave']['asset_host'])
         picture = RedactorRails.picture_model.new
-        img = MiniMagick::Image.open(img[:src])
-        picture.data = img
+        url = img[:src]
+        if not url.start_with?('http')
+          url = File.join('http://www.h4.com.cn', url).to_s
+        end
+        data = MiniMagick::Image.open(url)
+        picture.data = data
         picture.save
         img.set_attribute(:src, picture.url)
-        img = nil
-        # release memory
+        data = nil
       end
+
+      img[:src]
+    end
+
+    if article.thumb.blank? && remote_imgs.any?
+      article.remote_thumb_url = remote_imgs.first
     end
 
     self.body_html = doc.to_s

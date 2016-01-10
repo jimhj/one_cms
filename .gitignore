@@ -28,6 +28,8 @@ config/deploy/staging.rb
 config/deploy/production.rb
 config/unicorn.rb
 
+app/models/legacy
+
 ## Environment normalisation:
 /.bundle
 /vendor/bundle
