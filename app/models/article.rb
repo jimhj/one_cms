@@ -8,4 +8,6 @@ class Article < ActiveRecord::Base
   accepts_nested_attributes_for :article_body, allow_destroy: true
 
   validates_presence_of :node_id, :title
+
+  scope :focus, -> { where(focus: true).order('id DESC').limit(3) }
 end

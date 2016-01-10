@@ -79,8 +79,8 @@ namespace :legacy do
       
       b                  = a.build_article_body
       b.body             = article.article_body.body
+      b.restore_remote_images      
       b.generate_keyword_links
-      b.restore_remote_images
       if not b.valid?
         p b.errors.full_messages
       end 

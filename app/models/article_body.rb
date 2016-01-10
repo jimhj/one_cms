@@ -38,7 +38,7 @@ class ArticleBody < ActiveRecord::Base
   end
 
   def restore_remote_images
-    doc = Nokogiri::HTML(body_html)
+    doc = Nokogiri::HTML(self.body)
     remote_imgs = doc.css('img').collect do |img|
       unless img[:src].include?(CONFIG['carrierwave']['asset_host'])
         picture = RedactorRails.picture_model.new
@@ -60,6 +60,6 @@ class ArticleBody < ActiveRecord::Base
       article.remote_thumb_url = remote_imgs.first
     end
 
-    self.body_html = doc.to_s
+    self.body = doc.to_s
   end
 end

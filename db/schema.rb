@@ -46,12 +46,14 @@ ActiveRecord::Schema.define(version: 20151027143928) do
     t.string   "seo_title",       limit: 255
     t.string   "seo_keywords",    limit: 255
     t.string   "seo_description", limit: 255
+    t.boolean  "focus",           limit: 1,   default: false
     t.boolean  "hot",             limit: 1,   default: false
     t.integer  "status",          limit: 4,   default: 0
     t.datetime "created_at",                                  null: false
     t.datetime "updated_at",                                  null: false
   end
 
+  add_index "articles", ["focus"], name: "index_articles_on_focus", using: :btree
   add_index "articles", ["hot"], name: "index_articles_on_hot", using: :btree
   add_index "articles", ["node_id"], name: "index_articles_on_node_id", using: :btree
 

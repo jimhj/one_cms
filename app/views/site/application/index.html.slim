@@ -6,24 +6,13 @@
         li data-target=".carousel-focus-container" data-slide-to="1"
         li data-target=".carousel-focus-container" data-slide-to="2"
       .carousel-inner role="listbox"
-        a.item.active href="#"
-          = image_tag 'site/1.jpg', size: '650x340'
-          .carousel-caption
-            .carousel-caption-layer
-            .carousel-caption-inner
-              h4 多食维B 新妈妈的美丽胸部攻略
-        a.item href="#"
-          = image_tag 'site/2.jpg', size: '650x340'
-          .carousel-caption
-            .carousel-caption-layer
-            .carousel-caption-inner
-              h4 多食维B 新妈妈的美丽胸部攻略
-        a.item href="#"
-          = image_tag 'site/3.jpg', size: '650x340'
-          .carousel-caption
-            .carousel-caption-layer
-            .carousel-caption-inner
-              h4 多食维B 新妈妈的美丽胸部攻略
+        - Article.focus.each_with_index do |article, ind|
+          a.item class=('active' if ind.zero?) href="#{article_path(article)}" title="#{article.title}"
+            = image_tag article.thumb.url(:large), size: '650x340'
+            .carousel-caption
+              .carousel-caption-layer
+              .carousel-caption-inner
+                h4= article.title
 
   .pull-right.carousel-focus-right
     .headline

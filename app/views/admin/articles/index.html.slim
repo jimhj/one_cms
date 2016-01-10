@@ -12,21 +12,23 @@
           td.text-center 属性
           td.text-center 操作
         - @articles.each do |article|
-          tr
+          tr class=('warning' if article.focus?)
             td.w5.text-center= article.id
             td.w5.text-center
               input type="checkbox" name="choose"
             td.w35
-              a href="#"= article.title
+              a href="#{edit_admin_article_path(article)}"= article.title
             td.w10.text-center= article.source || 'admin'
             td.w15.text-center= article.node.name
             td.w10.text-center= article.created_at.strftime('%Y-%m-%d')            
             td.w10.text-center
-              i.fa.fa-photo
+              - if article.thumb.present?
+                i.fa.fa-photo title="有图"
               | &nbsp;
-              i.fa.fa-flag
+              - if article.focus?
+                i.fa.fa-flag title="焦点新闻"
             td.w10.text-center
-              a href="#"
+              a href="#{edit_admin_article_path(article)}"
                 i.fa.fa-pencil-square
               | &nbsp;
               a href="#{admin_article_path(article)}" data-confirm="确认删除吗？" data-method="DELETE"
