@@ -7,3 +7,14 @@ $(document).ready ->
     $(this).find('.dropdown-menu').show()
   .mouseleave ->
     $(this).find('.dropdown-menu').hide()
+
+  $('.favorite-btn').click ->
+    url = window.location.href
+    title = $('title').text()
+
+    if window.external && ('AddFavorite' in window.external)
+      window.external.AddFavorite(url, title)
+    else if window.sidebar && window.sidebar.addPanel
+      window.sidebar.addPanel(title, url, '')
+    else
+      alert('浏览器不支持, 请手动添加本文章到收藏夹')
