@@ -48,6 +48,10 @@ footer {
   font-size: 12px;
 
   &, a { color: #999; }
+  a.contact-us {
+    color: $brand-success;
+    margin-right: 5px;
+  }
 
   .container {
     width: 1000px !important;

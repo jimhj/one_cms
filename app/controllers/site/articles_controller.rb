@@ -5,6 +5,7 @@ class Site::ArticlesController < Site::ApplicationController
     @node = Node.find_by(slug: params[:slug])
     node_ids = @node.self_and_descendants.pluck(:id)
     @articles = Article.where(node_id: node_ids).order('id DESC').paginate(paginate_params)
+    @links = @node.links
   end
 
   def show

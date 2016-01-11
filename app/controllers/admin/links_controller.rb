@@ -2,7 +2,7 @@ class Admin::LinksController < Admin::ApplicationController
   before_action :find_link, only: [:edit, :update, :destroy]
 
   def index
-   @links = Link.order('sortrank DESC, id DESC') 
+   @links = Link.order('sortrank DESC, id DESC').paginate(paginate_params)
   end
 
   def new
@@ -44,4 +44,8 @@ class Admin::LinksController < Admin::ApplicationController
   def link_params
     params.require(:link).permit(:name, :url, :title, :qq, :sortrank, :linkable_type, :linkable_id)
   end
+
+  def paginate_params
+    { page: params[:page], per_page: 40 }
+  end  
 end

@@ -26,4 +26,6 @@
               | &nbsp;
               a href="#{admin_link_path(link)}" data-method="DELETE" data-confirm="确认删除吗，将无法恢复？"
                 i.fa.fa-trash
+
+    = will_paginate @links, renderer: BootstrapPagination::Rails
     
