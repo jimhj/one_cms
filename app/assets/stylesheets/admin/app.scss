@@ -3,6 +3,7 @@
 //= require twbs-admin/timeline
 //= require twbs-admin/menu
 //= require redactor-rails
+//= require bootstrap-select
 
 @import "font-awesome-sprockets";
 @import "font-awesome";
@@ -14,6 +15,10 @@
 // Login Page
 .login-panel .captcha {
   margin-left: 5px;
+}
+
+.bootstrap-select .dropdown-menu {
+  z-index: 9999;
 }
 
 .form-group-bordered {

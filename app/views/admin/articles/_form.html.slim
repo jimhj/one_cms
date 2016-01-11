@@ -11,7 +11,7 @@
   .form-group.form-group-bordered
     label 所属栏目 *
     .clearfix
-      = f.select :node_id, [['--选择栏目--', nil]] + nested_set_options(Node) { |i| '-' * i.level + ' ' + i.name } 
+      = f.select :node_id, nested_set_options(Node) { |i| '─' * i.level + i.name }, {}, class: 'selectpicker', "data-live-search": "true", title: '-- 选择栏目 --'
   .form-group.form-group-bordered
     label 文章来源
     input.form-control type="text" placeholder="文章来源"
