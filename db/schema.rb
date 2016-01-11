@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151027143928) do
+ActiveRecord::Schema.define(version: 20160111142015) do
 
   create_table "admin_users", force: :cascade do |t|
     t.string   "login",           limit: 30,  null: false
@@ -58,14 +58,41 @@ ActiveRecord::Schema.define(version: 20151027143928) do
   add_index "articles", ["node_id"], name: "index_articles_on_node_id", using: :btree
 
   create_table "channel_articles", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "channel_id", limit: 4
+    t.integer  "article_id", limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
+  add_index "channel_articles", ["article_id"], name: "index_channel_articles_on_article_id", using: :btree
+  add_index "channel_articles", ["channel_id"], name: "index_channel_articles_on_channel_id", using: :btree
+
   create_table "channels", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "name",            limit: 255, null: false
+    t.string   "slug",            limit: 255, null: false
+    t.string   "seo_keywords",    limit: 255
+    t.string   "seo_description", limit: 255
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
+
+  add_index "channels", ["slug"], name: "index_channels_on_slug", using: :btree
+
+  create_table "delayed_jobs", force: :cascade do |t|
+    t.integer  "priority",   limit: 4,     default: 0, null: false
+    t.integer  "attempts",   limit: 4,     default: 0, null: false
+    t.text     "handler",    limit: 65535,             null: false
+    t.text     "last_error", limit: 65535
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by",  limit: 255
+    t.string   "queue",      limit: 255
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
 
   create_table "keywords", force: :cascade do |t|
     t.string   "name",       limit: 30,                 null: false
@@ -147,5 +174,7 @@ ActiveRecord::Schema.define(version: 20151027143928) do
     t.datetime "created_at",                              null: false
     t.datetime "updated_at",                              null: false
   end
+
+  add_index "tags", ["slug"], name: "index_tags_on_slug", using: :btree
 
 end

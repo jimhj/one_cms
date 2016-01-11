@@ -12,6 +12,13 @@ class Article < ActiveRecord::Base
   scope :focus, -> { where(focus: true).order('id DESC').limit(3) }
   scope :hot, -> { where(hot: true).order('id DESC').limit(6) }
 
+  before_create do
+  end
+
+  def extract_keywords
+    
+  end
+
   def self.headline
     hot.first
   end

@@ -58,7 +58,8 @@ namespace :legacy do
     puts "\n\n\n"
 
     puts "======== 迁移文章 ========="
-    Legacy::Article.order('id DESC').limit(300).each_with_index do |article, i|
+    failed = []
+    Legacy::Article.order('id DESC').limit(100).each_with_index do |article, i|
       begin
         Article.transaction do
           puts "开始导入第 #{i + 1} 篇文章 id: #{article.id} ============"
@@ -80,8 +81,6 @@ namespace :legacy do
           
           b                  = a.build_article_body
           b.body             = article.article_body.body
-          b.restore_remote_images      
-          b.generate_keyword_links
           if not b.valid?
             p b.errors.full_messages
           end 
@@ -98,12 +97,35 @@ namespace :legacy do
           # end
 
           # a.tags = tags
+
+          sleep(1)
         end
       rescue => e
         puts e.backtrace.join("\n")
+        failed << article.id
         next
       end
     end
+    puts "\n\n\n"
 
+    puts "======== 迁移专题 ========="
+    Legacy::Channel.find_in_batches.with_index do |channels|
+      channels.each do |channel|
+        puts "==== 专题: #{channel.name}"
+
+        c                 = ::Channel.new
+        c.name            = channel.name
+        c.seo_keywords    = channel.keywords
+        c.seo_description = channel.name
+        if c.valid?
+          c.save
+        else
+          p c.errors.full_messages
+          next
+        end
+      end
+
+      break
+    end 
   end
 end

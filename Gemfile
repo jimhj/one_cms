@@ -46,6 +46,10 @@ gem 'rest-client', '~> 1.7.2'
 # HTML parse
 gem 'nokogiri', '~> 1.6.7.rc3', require: false
 
+# Background Job
+gem 'delayed_job_active_record', '~> 4.1.0'
+gem 'daemons', '~> 1.2.2'
+
 group :development, :test do
   gem 'byebug'
   gem 'web-console', '~> 2.0'

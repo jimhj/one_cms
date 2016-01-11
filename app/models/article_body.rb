@@ -4,20 +4,21 @@ class ArticleBody < ActiveRecord::Base
   belongs_to :article
   validates_presence_of :body
 
+  before_create do
+    restore_remote_images
+    generate_keyword_links    
+  end
+
+  before_update do
+    if self.body_changed?
+      restore_remote_images
+      generate_keyword_links
+    end
+  end
+
   after_create do
     article.analyze_keywords
-  end  
-
-  # after_create do
-  #   # 1.提取关键词，加上内链
-  #   generate_keyword_links
-
-  #   # 2.把远程图片下载到本地
-  #   # restore_remote_images
-
-  #   save
-  #   # TODO: use background job
-  # end
+  end
 
   def generate_keyword_links
     doc = Nokogiri::HTML(self.body)
