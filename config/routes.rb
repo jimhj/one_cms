@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   scope module: :site do
     root 'application#index'
     get 'feed',         to: 'articles#feed',    as: :feed
+    resources :tags,  only: [:index, :show]
     get ':slug/:id',    to: 'articles#show'
     get ':slug',        to: 'articles#index',   as: :articles
   end

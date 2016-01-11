@@ -86,6 +86,31 @@
         a { padding-top: 10px; }
       }      
     }
+
+    ul.tag-list {
+      @include clearfix;
+    }
+
+    ul.tag-list li {
+      float: left;
+      margin-right: 10px;
+      margin-bottom: 10px;
+    }
+
+    ul.tag-list li a {
+      display: inline-block;
+      padding: 5px 5px;
+      border: 1px solid #dddddd;
+      background-color: #ececec;
+      text-decoration: none;
+      font-size: 12px;
+
+      &:hover, &.active {
+        border: 1px solid darken($brand-success, 20%);
+        background-color: $brand-success;        
+        color: #ffffff;
+      }
+    }
   }
 
   .mixed-section-nav {
@@ -136,6 +161,10 @@
       height: 42px;
       line-height: 42px;
       padding-left: 15px;
+
+      i.fa {
+        margin-right: 5px;
+      }
     }    
 
     .right-nav {

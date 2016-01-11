@@ -14,6 +14,16 @@
   .mixed-section
     .mixed-section-nav
       h4
+        a 热门标签
+    .mixed-section-inner
+      .mixed-section-text
+        ul.tag-list.list-unstyled
+          - Tag.hot.each do |tag|
+            li
+              a title="#{tag.name}" href="#{tag_path(tag.slug)}"= tag.name
+  .mixed-section
+    .mixed-section-nav
+      h4
         a 热门推荐
     .mixed-section-inner
       .mixed-section-text

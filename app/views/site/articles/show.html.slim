@@ -30,7 +30,7 @@
         .tags.pull-left
           i.fa.fa-tags
           - @article.tags.each do |tag|
-            a href="#"= tag.name
+            a href="#{tag_path(tag.slug)}"= tag.name
 
     .more-like-this.mixed-section
       .mixed-section-nav
