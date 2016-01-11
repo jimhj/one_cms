@@ -1,0 +1,29 @@
+.row.pt-30
+  .col-lg-12.article-list
+    table.table.table-striped.table-hover.table-bordered.table-condensed
+      tbody
+        tr
+          td.text-center ID
+          td.text-center 网站
+          td.text-center url
+          td.text-center 栏目          
+          td.text-center 排序值
+          td.text-center 创建时间
+          td.text-center 操作
+        - @links.each do |link|
+          tr
+            td.w5.text-center= link.id
+            td.w20
+              a href="#{link.url}" target="_blank"= link.name
+            td.w40
+              a href="#{link.url}" target="_blank"= link.url
+            td.w10.text-center= link.linkable.try(:name) || '首页'
+            td.w10.text-center= link.sortrank
+            td.w10.text-center= link.created_at.strftime('%Y-%m-%d')
+            td.w10.text-center
+              a href="#{edit_admin_link_path(link)}"
+                i.fa.fa-pencil-square
+              | &nbsp;
+              a href="#{admin_link_path(link)}" data-method="DELETE" data-confirm="确认删除吗，将无法恢复？"
+                i.fa.fa-trash
+    

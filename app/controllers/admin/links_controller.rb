@@ -7,6 +7,7 @@ class Admin::LinksController < Admin::ApplicationController
 
   def new
     @link = Link.new
+    @link.linkable_type = 'Node'
   end
 
   def create
