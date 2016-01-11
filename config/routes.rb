@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     resources :articles
     resources :nodes
     resources :keywords
+    resources :links, except: :show
   end
 
   scope module: :site do

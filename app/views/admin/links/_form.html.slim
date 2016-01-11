@@ -1,0 +1,22 @@
+.row.link-form.pt-30
+  .col-lg-12
+    = render "admin/shared/errors", target: @link
+    = form_for @link, url: url, class: 'form' do |f|
+      .form-group.form-group-bordered
+        label 所属栏目 *
+        .clearfix
+          = f.select :linkable, nested_set_options(Node) { |i| '─' * i.level + i.name }, {}, class: 'selectpicker', "data-live-search": "true", title: '-- 选择栏目 --'
+      .form-group.form-group-bordered
+        label 网站名称 *
+        = f.text_field :name, class: 'form-control', placeholder: '输入网站名称'
+      .form-group.form-group-bordered
+        label 链接 title *
+        = f.text_field :title, class: 'form-control', placeholder: '链接title'
+      .form-group.form-group-bordered
+        label 网站 url *
+        = f.text_field :url, class: 'form-control', placeholder: '网站 url'
+      .form-group.form-group-bordered
+        label 排序值
+        = f.number_field :sortrank, class: 'form-control', placeholder: '排序值越大越靠前'
+      .form-group
+        button.btn.btn-primary.btn-lg type="submit" 保存
