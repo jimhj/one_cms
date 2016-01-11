@@ -4,6 +4,10 @@ class ArticleBody < ActiveRecord::Base
   belongs_to :article
   validates_presence_of :body
 
+  after_create do
+    article.analyze_keywords
+  end  
+
   # after_create do
   #   # 1.提取关键词，加上内链
   #   generate_keyword_links

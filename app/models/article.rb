@@ -49,4 +49,18 @@ class Article < ActiveRecord::Base
     end
     more
   end
+
+  def analyze_keywords
+    rsp = DiscuzKeyword.analyze(title, article_body.body)
+    keywords = rsp['total_response']['keyword']['result']['item'].collect{ |h| h.values }.flatten rescue []
+
+    self.tags = keywords.collect do |tag|        
+      t = ::Tag.find_or_initialize_by(name: tag)
+      t.name = tag
+      t.save!
+      t
+    end
+
+    update_attribute :seo_keywords, keywords.join(',')
+  end
 end

@@ -40,6 +40,9 @@ gem 'rucaptcha', '~> 0.3.1'
 # Nested Set
 gem 'awesome_nested_set', '~> 3.0.2'
 
+# Http Client
+gem 'rest-client', '~> 1.7.2'
+
 # HTML parse
 gem 'nokogiri', '~> 1.6.7.rc3', require: false
 

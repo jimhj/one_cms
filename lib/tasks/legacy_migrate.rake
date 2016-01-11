@@ -58,11 +58,10 @@ namespace :legacy do
     puts "\n\n\n"
 
     puts "======== 迁移文章 ========="
-    Legacy::Article.order('id DESC').limit(200).each_with_index do |article, i|
+    Legacy::Article.order('id DESC').limit(300).each_with_index do |article, i|
       begin
         Article.transaction do
           puts "开始导入第 #{i + 1} 篇文章 id: #{article.id} ============"
-          puts "文章标签: #{article.keywords}"
 
           node_name          = article.node.typename
           node               = ::Node.find_by(name: node_name)
@@ -88,17 +87,17 @@ namespace :legacy do
           end 
           b.save!
 
-          tags = article.tags.collect do |tag|        
-            t = ::Tag.find_or_initialize_by(name: tag)
-            t.name = tag
-            if not t.valid?
-              p t.errors.full_messages
-            end  
-            t.save!
-            t
-          end
+          # tags = article.tags.collect do |tag|        
+          #   t = ::Tag.find_or_initialize_by(name: tag)
+          #   t.name = tag
+          #   if not t.valid?
+          #     p t.errors.full_messages
+          #   end  
+          #   t.save!
+          #   t
+          # end
 
-          a.tags = tags
+          # a.tags = tags
         end
       rescue => e
         puts e.backtrace.join("\n")

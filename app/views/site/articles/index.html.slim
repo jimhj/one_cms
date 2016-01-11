@@ -1,19 +1,22 @@
 .main-split-container
-  .left-side.list-section
-    .list-section-nav
-      .pull-left
-        h4= @node.name
-      .pull-right.right-nav
-        = render_right_nav(@node)
-    .list-section-inner
-      - @articles.each do |article|
-        .list-section-item.clearfix
-          .item-image.pull-left
-            a href="#{article_path(article)}" title="#{article.title}"
-              = image_tag article.thumb.url(:middle), size: '200x150', alt: article.title, title: article.title
-          .item-text.pull-right
-            h4
-              a href="#{article_path(article)}" title="#{article.title}"= article.title
-            p.text-muted= article.seo_description
+  .left-side
+    .list-section
+      .list-section-nav
+        .pull-left
+          h4= @node.name
+        .pull-right.right-nav
+          = render_right_nav(@node)
+      .list-section-inner
+        - @articles.each do |article|
+          .list-section-item.clearfix
+            .item-image.pull-left
+              a href="#{article_path(article)}" title="#{article.title}"
+                = image_tag article.thumb.url(:middle), size: '200x150', alt: article.title, title: article.title
+            .item-text.pull-right
+              h4
+                a href="#{article_path(article)}" title="#{article.title}"= article.title
+              p.text-muted= article.seo_description
+
+    = will_paginate @articles, renderer: BootstrapPagination::Rails
   
   = render 'site/share/right_side'
