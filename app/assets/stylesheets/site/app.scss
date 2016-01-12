@@ -40,6 +40,13 @@ body {
     float: right;
     width: 310px;
   }
+
+  .blank-state {
+    height: 300px;
+    line-height: 300px;
+    text-align: center;
+    color: $text-muted;
+  }  
 }
 
 footer {
