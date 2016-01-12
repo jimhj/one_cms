@@ -1,6 +1,6 @@
 class Site::ChannelsController < Site::ApplicationController
   def index
-   @channels = Channel.order('sortrank DESC, id DESC').paginate(page: params[:page], per_page: 20)
+   @channels = Channel.order('sortrank DESC, id DESC').paginate(page: params[:page], per_page: 40)
   end
 
   def show

@@ -3,17 +3,18 @@
     .list-section
       .list-section-nav
         .pull-left
-          h4
-            i.fa.fa-book
-            span 热点专题  
+          h4 热点专题  
       .list-section-inner
         ul.section-list.list-unstyled
           - @channels.each do |channel|
-            .list-section-item
-              a title="#{channel.name}" href="#{channel_path(channel)}"
-                i.fa.fa-star-o
-                | &nbsp;
-                span= channel.name    
+            .list-section-item.clearfix
+              .pull-left
+                a title="#{channel.name}" href="#{channel_path(channel)}"
+                  i.fa.fa-book
+                  | &nbsp;
+                  span= channel.name
+              .pull-right.text-muted
+                small 文章 (#{channel.articles.count})
 
     = will_paginate @channels, renderer: BootstrapPagination::Rails
   

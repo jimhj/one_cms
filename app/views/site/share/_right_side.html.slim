@@ -13,10 +13,11 @@
             a.image title="#{article.title}" href="#{article_path(article)}"
               = image_tag article.thumb.url(:small), size: '90x60', title: article.title, alt: article.title
             .summary.text-muted= article.seo_description 
+            
   .mixed-section
     .mixed-section-nav
       h4
-        a 
+        a href="#{tags_path}"
           i.fa.fa-bookmark
           span 热门标签
     .mixed-section-inner
@@ -37,15 +38,16 @@
         ul.section-list.list-unstyled
           - Channel.random.each do |channel|
             li
-              a title="#{channel.name}" href="#{channel_path(channel)}"= channel.name              
-  .mixed-section
-    .mixed-section-nav
-      h4
-        i.fa.fa-book
-        span 热门文章
-    .mixed-section-inner
-      .mixed-section-text
-        ul.section-list.list-unstyled
-          - Article.random.each do |article|
-            li
-              a title="#{article.title}" href="#{article_path(article)}"= article.title.truncate(18)  
+              a title="#{channel.name}" href="#{channel_path(channel)}"= channel.name    
+
+  / .mixed-section
+  /   .mixed-section-nav
+  /     h4
+  /       i.fa.fa-book
+  /       span 热门文章
+  /   .mixed-section-inner
+  /     .mixed-section-text
+  /       ul.section-list.list-unstyled
+  /         - Article.random.each do |article|
+  /           li
+  /             a title="#{article.title}" href="#{article_path(article)}"= article.title.truncate(18)  

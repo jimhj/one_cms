@@ -1,6 +1,6 @@
 class Site::TagsController < Site::ApplicationController
   def index
-    # @tags = Tag.order('id DESC')
+    @tags = Tag.order('id DESC')
   end
 
   def show
