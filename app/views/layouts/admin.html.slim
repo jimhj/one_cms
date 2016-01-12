@@ -35,15 +35,20 @@ html
                   span.input-group-btn
                     button.btn.btn-default
                       i.fa.fa-search
+              / li
+              /   a.active href="#"
+              /     i.fa.fa-tasks.fa-fw
+              /     | 统计概况
               li
-                a.active href="#"
-                  i.fa.fa-tasks.fa-fw
-                  | 统计概况
-              li
-                a href="#{admin_nodes_path}"
+                a href="javascript:;"
                   i.fa.fa-sitemap.fa-fw
                   | 栏目管理
                   span.fa.arrow
+                ul.nav.nav-second-level.collapse
+                  li
+                    a href="#{admin_nodes_path}" 文章栏目列表
+                  li
+                    a href="#{new_admin_node_path}" 添加栏目
               li
                 a href="javascript:;"
                   i.fa.fa-file-text-o.fa-fw
@@ -55,12 +60,17 @@ html
                   li
                     a href="#{new_admin_article_path}" 添加文章
               li
-                a href="#"
+                a href="javascript:;"
                   i.fa.fa-folder-o.fa-fw
                   | 专题管理
                   span.fa.arrow
+                ul.nav.nav-second-level.collapse
+                  li
+                    a href="#{admin_channels_path}" 专题列表
+                  li
+                    a href="#{new_admin_channel_path}" 添加专题
               li
-                a href="#"
+                a href="javascript:;"
                   i.fa.fa-files-o.fa-fw
                   | 内链管理
                   span.fa.arrow 
@@ -79,11 +89,11 @@ html
                     a href="#{admin_links_path}" 友情链接列表
                   li
                     a href="#{new_admin_link_path}" 添加友情链接
-              li
-                a href="#"
-                  i.fa.fa-commenting-o.fa-fw
-                  | 评论管理
-                  span.fa.arrow
+              / li
+              /   a href="#"
+              /     i.fa.fa-commenting-o.fa-fw
+              /     | 评论管理
+              /     span.fa.arrow
               li
                 a href="#"
                   i.fa.fa-cog.fa-fw

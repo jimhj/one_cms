@@ -12,4 +12,8 @@ module ApplicationHelper
       "<a href='#{articles_path(child.slug)}' title='#{child.name}'>#{child.name}</a>"
     end.join('<span>-</span>').html_safe
   end
+
+  def channel_path(channel)
+    "/z/#{channel.slug}"
+  end
 end

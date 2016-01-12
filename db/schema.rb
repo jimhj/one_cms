@@ -68,12 +68,13 @@ ActiveRecord::Schema.define(version: 20160111142015) do
   add_index "channel_articles", ["channel_id"], name: "index_channel_articles_on_channel_id", using: :btree
 
   create_table "channels", force: :cascade do |t|
-    t.string   "name",            limit: 255, null: false
-    t.string   "slug",            limit: 255, null: false
+    t.string   "name",            limit: 255,                null: false
+    t.string   "slug",            limit: 255,                null: false
     t.string   "seo_keywords",    limit: 255
     t.string   "seo_description", limit: 255
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.integer  "sortrank",        limit: 4,   default: 1000
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
   end
 
   add_index "channels", ["slug"], name: "index_channels_on_slug", using: :btree
