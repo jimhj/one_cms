@@ -7,10 +7,16 @@ module ApplicationHelper
     File.join(root_url, article_path(article)).to_s
   end
 
-  def render_right_nav(node)
+  def render_node_nav(node)
      node.children.first(8).collect do |child|
       "<a href='#{articles_path(child.slug)}' title='#{child.name}'>#{child.name}</a>"
     end.join('<span>-</span>').html_safe
+  end
+
+  def render_keyword_nav(channel)
+     channel.keywords.first(8).collect do |keyword|
+      "<a href='#{url_for}'>#{keyword}</a>"
+    end.join('<span>-</span>').html_safe    
   end
 
   def channel_path(channel)

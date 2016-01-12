@@ -3,9 +3,11 @@
     .list-section
       .list-section-nav
         .pull-left
-          h4= @node.name
+          h4
+            i.fa.fa-book
+            span= @channel.name
         .pull-right.right-nav
-          = render_node_nav(@node)
+          = render_keyword_nav(@channel)        
       .list-section-inner
         - @articles.each do |article|
           .list-section-item.clearfix

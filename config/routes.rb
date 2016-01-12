@@ -16,6 +16,8 @@ Rails.application.routes.draw do
     root 'application#index'
     get 'feed',         to: 'articles#feed',    as: :feed
     resources :tags,  only: [:index, :show]
+    get 'z',            to: 'channels#index',   as: :channels
+    get 'z/:slug',      to: 'channels#show',    as: :channel
     get ':slug/:id',    to: 'articles#show'
     get ':slug',        to: 'articles#index',   as: :articles
   end

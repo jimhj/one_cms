@@ -1,0 +1,20 @@
+.main-split-container
+  .left-side
+    .list-section
+      .list-section-nav
+        .pull-left
+          h4
+            i.fa.fa-book
+            span 热点专题  
+      .list-section-inner
+        ul.section-list.list-unstyled
+          - @channels.each do |channel|
+            .list-section-item
+              a title="#{channel.name}" href="#{channel_path(channel)}"
+                i.fa.fa-star-o
+                | &nbsp;
+                span= channel.name    
+
+    = will_paginate @channels, renderer: BootstrapPagination::Rails
+  
+  = render 'site/share/right_side'

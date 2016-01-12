@@ -31,5 +31,15 @@ class Channel < ActiveRecord::Base
     if Channel.find_by(slug: self.slug)
       self.slug = "#{self.slug}#{rand(50)}"
     end
+  end
+
+  def self.random(limit = 10)
+    sql = <<-SQL
+      select * from channels
+      order by rand()
+      limit #{limit}
+    SQL
+
+    find_by_sql(sql)    
   end   
 end

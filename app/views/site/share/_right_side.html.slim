@@ -1,7 +1,9 @@
 .right-side
   .list-section-narrow
     .list-section-nav
-      h4 焦点资讯 
+      h4
+        i.fa.fa-image 
+        span 焦点资讯 
     .list-section-inner  
       - Article.pic.each do |article| 
         .list-section-item
@@ -14,17 +16,33 @@
   .mixed-section
     .mixed-section-nav
       h4
-        a 热门标签
+        a 
+          i.fa.fa-bookmark
+          span 热门标签
     .mixed-section-inner
       .mixed-section-text
         ul.tag-list.list-unstyled
           - Tag.hot.each do |tag|
             li
               a title="#{tag.name}" href="#{tag_path(tag.slug)}"= tag.name
+
   .mixed-section
     .mixed-section-nav
       h4
-        a 热门推荐
+        a href="#{channels_path}" 
+          i.fa.fa-book
+          span 热点专题
+    .mixed-section-inner
+      .mixed-section-text
+        ul.section-list.list-unstyled
+          - Channel.random.each do |channel|
+            li
+              a title="#{channel.name}" href="#{channel_path(channel)}"= channel.name              
+  .mixed-section
+    .mixed-section-nav
+      h4
+        i.fa.fa-book
+        span 热门文章
     .mixed-section-inner
       .mixed-section-text
         ul.section-list.list-unstyled
