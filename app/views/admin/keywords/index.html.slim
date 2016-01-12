@@ -1,10 +1,15 @@
 .row.pt-30
   .col-lg-12.article-list
+    p
+      a.btn.btn-default 
+        i.fa.fa-warning
+        | &nbsp;
+        span 重新生成所有文章内链
+
     table.table.table-striped.table-hover.table-bordered.table-condensed
       tbody
         tr
           td.text-center ID
-          td.text-center 选择
           td.text-center 词条
           td.text-center url
           td.text-center 排序值
@@ -13,8 +18,6 @@
         - @keywords.each do |keyword|
           tr
             td.w5.text-center= keyword.id
-            td.w5.text-center
-              input type="checkbox" name="choose"
             td.w20= keyword.name
             td.w40
               a href="#{keyword.url}"= keyword.url
@@ -26,4 +29,7 @@
               | &nbsp;
               a href="#{admin_keyword_path(keyword)}" data-method="DELETE" data-confirm="确认删除吗，将无法恢复？"
                 i.fa.fa-trash
+              | &nbsp;
+              a href="#" title="生成文章内链，耗时较长"  data-toggle="tooltip"
+                i.fa.fa-refresh
     

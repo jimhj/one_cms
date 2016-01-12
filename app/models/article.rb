@@ -70,4 +70,8 @@ class Article < ActiveRecord::Base
 
     update_attribute :seo_keywords, keywords.join(',')
   end
+
+  def body_html
+    article_body.body_html.presence || article_body.body 
+  end
 end

@@ -8,12 +8,11 @@ class Node < ActiveRecord::Base
   validates_uniqueness_of :slug
 
   def self.main_slugs
-    %w(syjk care cure jianfei prevent diet xinli)
+    CONFIG['main_nodes'].keys
   end
 
   def self.main_node_static
-    nodes = main_slugs.zip(%w(健康 保健 疾病 减肥 预防 饮食 心理))
-    Hash[nodes]
+    CONFIG['main_nodes']
   end
 
   def short_name
@@ -21,7 +20,7 @@ class Node < ActiveRecord::Base
   end
 
   def self.main
-    where(slug: main_slugs).order("FIELD(slug, 'syjk', 'care', 'cure', 'jianfei', 'prevent', 'diet', 'xinli')")
+    where(slug: main_slugs)
   end
 
   def self.rest

@@ -72,7 +72,6 @@ namespace :legacy do
           a.writer           = article.writer
           a.source           = article.source
           a.remote_thumb_url = article.pictures.first.try(:fullurl)
-          a.seo_keywords     = article.keywords
           a.seo_description  = article.description
           if not a.valid?
             p a.errors.full_messages
@@ -85,18 +84,6 @@ namespace :legacy do
             p b.errors.full_messages
           end 
           b.save!
-
-          # tags = article.tags.collect do |tag|        
-          #   t = ::Tag.find_or_initialize_by(name: tag)
-          #   t.name = tag
-          #   if not t.valid?
-          #     p t.errors.full_messages
-          #   end  
-          #   t.save!
-          #   t
-          # end
-
-          # a.tags = tags
 
           sleep(1)
         end

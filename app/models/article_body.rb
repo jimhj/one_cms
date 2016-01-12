@@ -6,18 +6,27 @@ class ArticleBody < ActiveRecord::Base
 
   before_create do
     restore_remote_images
-    generate_keyword_links    
   end
 
   before_update do
     if self.body_changed?
       restore_remote_images
-      generate_keyword_links
     end
   end
 
   after_create do
-    article.analyze_keywords
+    article.delay.analyze_keywords
+    self.delay.generate_keyword_links
+  end
+
+  after_save do
+    if article.title_changed? or body_changed?
+      article.delay.analyze_keywords
+    end
+
+    if self.body_changed?
+      self.delay.generate_keyword_links
+    end
   end
 
   def generate_keyword_links
@@ -25,6 +34,7 @@ class ArticleBody < ActiveRecord::Base
     keywords = Keyword.select(:name, :url).each do |keyword|
       ele = doc.xpath("//*[contains(text(), '#{keyword.name}')]").first
       next if ele.nil?
+
       if ele.name == 'a'
         ele.set_attribute(:href, keyword.url)
         ele.set_attribute(:target, '_blank')
@@ -41,26 +51,32 @@ class ArticleBody < ActiveRecord::Base
       end
     end
 
-    self.body_html = doc.to_s
+    update_attribute :body_html, doc.to_s
   end
 
   def restore_remote_images
     doc = Nokogiri::HTML(self.body)
     remote_imgs = doc.css('img').collect do |img|
-      unless img[:src].include?(CONFIG['carrierwave']['asset_host'])
-        picture = RedactorRails.picture_model.new
-        url = img[:src]
-        if not url.start_with?('http')
-          url = File.join('http://www.h4.com.cn', url).to_s
-        end
-        data = MiniMagick::Image.open(url)
-        picture.data = data
-        picture.save
-        img.set_attribute(:src, picture.url)
-        data = nil
-      end
+      begin
+        if not img[:src].include?(CONFIG['carrierwave']['asset_host'])
+          picture = RedactorRails.picture_model.new
+          url = img[:src]
 
-      img[:src]
+          if not url.start_with?('http')
+            url = File.join(CONFIG['legacy_image_dir'], url).to_s
+          end
+
+          data = MiniMagick::Image.open(url)
+          picture.data = data
+          picture.save
+          img.set_attribute(:src, picture.url)
+          data = nil
+        end
+
+        img[:src]
+      rescue => e
+        next
+      end
     end
 
     if article.thumb.blank? && remote_imgs.any?

@@ -8,3 +8,4 @@
 
 $(document).ready ->
   $('.selectpicker').selectpicker()
+  $('[data-toggle="tooltip"]').tooltip()
