@@ -59,39 +59,46 @@ namespace :legacy do
 
     puts "======== 迁移文章 ========="
     failed = []
-    Legacy::Article.order('id DESC').limit(100).each_with_index do |article, i|
-      begin
-        Article.transaction do
-          puts "开始导入第 #{i + 1} 篇文章 id: #{article.id} ============"
+    index = 0
+    batch_size = Rails.env.development? ? 100 : 1000
+    Legacy::Article.find_in_batches(batch_size: batch_size).with_index do |articles, ind|
+      articles.each do |article|
+        begin
+          Article.transaction do
+            puts "开始导入第 #{index + 1} 篇文章 id: #{article.id} ============"
 
-          node_name          = article.node.typename
-          node               = ::Node.find_by(name: node_name)
-          a                  = node.articles.build
-          a.title            = article.title
-          a.sort_rank        = article.sortrank
-          a.writer           = article.writer
-          a.source           = article.source
-          a.remote_thumb_url = article.pictures.first.try(:fullurl)
-          a.seo_description  = article.description
-          if not a.valid?
-            p a.errors.full_messages
-          end      
-          a.save!
-          
-          b                  = a.build_article_body
-          b.body             = article.article_body.body
-          if not b.valid?
-            p b.errors.full_messages
-          end 
-          b.save!
+            node_name          = article.node.typename
+            node               = ::Node.find_by(name: node_name)
+            a                  = node.articles.build
+            a.title            = article.title
+            a.sort_rank        = article.sortrank
+            a.writer           = article.writer
+            a.source           = article.source
+            a.remote_thumb_url = article.pictures.first.try(:fullurl)
+            a.seo_description  = article.description
+            if not a.valid?
+              p a.errors.full_messages
+            end      
+            a.save!
+            
+            b                  = a.build_article_body
+            b.body             = article.article_body.body
+            if not b.valid?
+              p b.errors.full_messages
+            end 
+            b.save!
 
-          sleep(1)
+            index += 1
+            sleep(1)
+          end
+        rescue => e
+          puts e.backtrace.join("\n")
+          failed << article.id
+          next
         end
-      rescue => e
-        puts e.backtrace.join("\n")
-        failed << article.id
-        next
       end
+
+      break if Rails.env.development?
     end
     puts "\n\n\n"
 
@@ -114,5 +121,8 @@ namespace :legacy do
 
       break
     end 
+
+    puts "\n\n\n"
+    puts "失败的文章: #{failed}"
   end
 end
