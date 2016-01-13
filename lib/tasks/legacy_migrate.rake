@@ -60,12 +60,16 @@ namespace :legacy do
     puts "======== 迁移文章 ========="
     failed = []
     index = 0
-    batch_size = Rails.env.development? ? 100 : 1000
+    batch_size = Rails.env.development? ? 300 : 1000
     Legacy::Article.find_in_batches(batch_size: batch_size).with_index do |articles, ind|
       articles.each do |article|
         begin
           Article.transaction do
             puts "开始导入第 #{index + 1} 篇文章 id: #{article.id} ============"
+            file               = article.pictures.first.try(:fullurl)
+            if file
+              puts "图片 #{file}"
+            end
 
             node_name          = article.node.typename
             node               = ::Node.find_by(name: node_name)
@@ -74,22 +78,31 @@ namespace :legacy do
             a.sort_rank        = article.sortrank
             a.writer           = article.writer
             a.source           = article.source
-            a.remote_thumb_url = article.pictures.first.try(:fullurl)
+
+            if Rails.env.development?
+              a.remote_thumb_url = file
+            else
+              _t                 = MiniMagick::Image.open(file)
+              a.thumb            = _t
+            end
+
             a.seo_description  = article.description
             if not a.valid?
               p a.errors.full_messages
             end      
             a.save!
+            _t                 = nil
             
             b                  = a.build_article_body
             b.body             = article.article_body.body
+
             if not b.valid?
               p b.errors.full_messages
             end 
             b.save!
 
             index += 1
-            sleep(1)
+            sleep(2)
           end
         rescue => e
           puts e.backtrace.join("\n")
@@ -119,7 +132,7 @@ namespace :legacy do
         end
       end
 
-      break
+      break if Rails.env.development?
     end 
 
     puts "\n\n\n"

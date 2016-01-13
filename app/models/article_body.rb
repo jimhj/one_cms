@@ -8,22 +8,13 @@ class ArticleBody < ActiveRecord::Base
     restore_remote_images
   end
 
-  before_update do
-    if self.body_changed?
-      restore_remote_images
-    end
-  end
-
   after_create do
     article.delay.analyze_keywords
     self.delay.generate_keyword_links
+    article.set_thumb
   end
 
-  after_save do
-    if article.title_changed? or body_changed?
-      article.delay.analyze_keywords
-    end
-
+  after_update do
     if self.body_changed?
       self.delay.generate_keyword_links
     end
@@ -75,13 +66,10 @@ class ArticleBody < ActiveRecord::Base
 
         img[:src]
       rescue => e
+        raise e
         next
       end
-    end
-
-    if article.thumb.blank? && remote_imgs.any?
-      article.remote_thumb_url = remote_imgs.first
-    end
+    end.compact
 
     self.body = doc.to_s
   end

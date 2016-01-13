@@ -12,11 +12,12 @@ class Article < ActiveRecord::Base
   scope :focus, -> { where(focus: true).order('id DESC').limit(3) }
   scope :hot, -> { where(hot: true).order('id DESC').limit(6) }
 
-  before_create do
-  end
-
-  def extract_keywords
-    
+  def set_thumb
+    imgs = Nokogiri::HTML(self.body_html).css('img').collect{ |img| img[:src] }
+    if self.thumb.blank? && imgs.any?
+      self.remote_thumb_url = imgs.first
+      self.save!
+    end    
   end
 
   def self.headline
