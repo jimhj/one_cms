@@ -53,6 +53,16 @@ gem 'nokogiri', '~> 1.6.7.rc3', require: false
 gem 'delayed_job_active_record', '~> 4.1.0'
 gem 'daemons', '~> 1.2.2'
 
+group :development do
+  # Deployment
+  gem 'capistrano', '~> 3.4.0'
+  gem 'capistrano-rvm'
+  gem 'capistrano-rails'
+  gem 'capistrano-bundler'
+  gem "capistrano-scm-copy"
+  gem 'capistrano3-unicorn'
+end
+
 group :development, :test do
   gem 'byebug'
   gem 'web-console', '~> 2.0'
