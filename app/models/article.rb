@@ -16,7 +16,8 @@ class Article < ActiveRecord::Base
     imgs = Nokogiri::HTML(self.body_html).css('img').collect{ |img| img[:src] }
     if self.thumb.blank? && imgs.any?
       self.remote_thumb_url = imgs.first
-      self.save!
+      self.save
+      p self.errors.full_messages
     end    
   end
 

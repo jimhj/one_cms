@@ -61,7 +61,7 @@ namespace :legacy do
     failed = []
     index = 0
     batch_size = Rails.env.development? ? 300 : 1000
-    Legacy::Article.find_in_batches(batch_size: batch_size).with_index do |articles, ind|
+    Legacy::Article.where(typeid: 28).find_in_batches(batch_size: batch_size).with_index do |articles, ind|
       articles.each do |article|
         begin
           Article.transaction do
@@ -74,6 +74,7 @@ namespace :legacy do
             node_name          = article.node.typename
             node               = ::Node.find_by(name: node_name)
             a                  = node.articles.build
+            a.id               = article.id
             a.title            = article.title
             a.sort_rank        = article.sortrank
             a.writer           = article.writer
