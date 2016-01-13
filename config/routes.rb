@@ -10,6 +10,8 @@ Rails.application.routes.draw do
     resources :keywords
     resources :links, except: :show
     resources :channels
+    get 'site_config',  to: 'site_config#edit',     as: :site_config
+    post 'site_config', to: 'site_config#update',  as: :site_configs
   end
 
   scope module: :site do

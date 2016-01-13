@@ -1,0 +1,1 @@
+SEEDDATA = YAML.load(File.read(File.expand_path('../../seed_data.yml', __FILE__)))

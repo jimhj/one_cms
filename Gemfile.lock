@@ -94,6 +94,8 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
+    meta-tags (2.1.0)
+      actionpack (>= 3.0.0)
     mime-types (2.99)
     mini_magick (4.3.6)
     mini_portile2 (2.0.0)
@@ -196,6 +198,7 @@ DEPENDENCIES
   delayed_job_active_record (~> 4.1.0)
   font-awesome-sass (~> 4.4.0)
   jquery-rails
+  meta-tags (~> 2.1.0)
   mini_magick (~> 4.3.6)
   mysql2 (= 0.3.20)
   nokogiri (~> 1.6.7.rc3)

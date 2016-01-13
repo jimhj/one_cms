@@ -1,0 +1,25 @@
+site_config:
+  -
+    key: app_name
+    key_name: '网站名称'
+    value: 健康私房话
+  -
+    key: seo_title
+    key_name: '网站S标题' 
+    value: 健康私房话
+  -
+    key: seo_keywords
+    key_name: '网站关键词' 
+    value: '健康私房话,H4健康网,H4'
+  -
+    key: seo_description
+    key_name: '网站描述'
+    value: '健康私房话专注健康养生保健,饮食健康,减肥瘦身,美容养颜,疾病咨询,健康服务,健康管理等健康私房话服务领域，是高端的、专注的、个性化的健康管理网站www.h4.com.cn'
+  -
+    key: contact_email 
+    key_name: '联系邮箱'
+    value: 'service@h4.com.cn'
+
+admin:
+  login: 'helloword'
+  password: '123456'

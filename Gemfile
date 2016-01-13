@@ -34,6 +34,9 @@ gem 'will_paginate-bootstrap'
 gem 'carrierwave', '~> 0.10.0'
 gem 'mini_magick', '~> 4.3.6'
 
+# Seo Meta Tags
+gem 'meta-tags', '~> 2.1.0'
+
 # Captcha
 gem 'rucaptcha', '~> 0.3.1'
 
