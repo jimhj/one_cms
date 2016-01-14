@@ -1,4 +1,4 @@
 class Legacy::Base < ActiveRecord::Base
   self.abstract_class = true
-  establish_connection CONFIG['legacy_database']
+  establish_connection Setting.legacy_database
 end

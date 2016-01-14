@@ -8,11 +8,11 @@ class Node < ActiveRecord::Base
   validates_uniqueness_of :slug
 
   def self.main_slugs
-    CONFIG['main_nodes'].keys
+    Setting.main_nodes.keys
   end
 
   def self.main_node_static
-    CONFIG['main_nodes']
+    Setting.main_nodes
   end
 
   def short_name

@@ -9,8 +9,11 @@ set :repo_url, 'git@github.com:jimhj/one_cms.git'
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
+set :delayed_job_workers, 2
+
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, "~/www/#{fetch(:application)}/"
+set :delayed_log_dir, "#{shared_path}/log"
 
 # Default value for :scm is :git
 # set :scm, :git
@@ -47,6 +50,7 @@ set :log_path, "#{shared_path}/log"
 namespace :deploy do
   task :restart do
     invoke 'unicorn:legacy_restart'
+    invoke 'delayed_job:restart'
   end
 end
 

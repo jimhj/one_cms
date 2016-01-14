@@ -17,7 +17,6 @@ class Article < ActiveRecord::Base
     if self.thumb.blank? && imgs.any?
       self.remote_thumb_url = imgs.first
       self.save
-      p self.errors.full_messages
     end    
   end
 

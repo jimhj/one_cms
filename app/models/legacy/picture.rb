@@ -4,7 +4,7 @@ class Legacy::Picture < Legacy::Base
   belongs_to :article, foreign_key: 'arcid'
 
   def fullurl
-    url = File.join CONFIG['legacy_image_dir'], self.url
+    url = File.join Setting.legacy_image_dir, self.url
     url.to_s
   end
 end

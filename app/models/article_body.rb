@@ -49,12 +49,12 @@ class ArticleBody < ActiveRecord::Base
     doc = Nokogiri::HTML(self.body)
     remote_imgs = doc.css('img').collect do |img|
       begin
-        if not img[:src].include?(CONFIG['carrierwave']['asset_host'])
+        if not img[:src].include?(Setting.carrierwave.asset_host)
           picture = RedactorRails.picture_model.new
           url = img[:src]
 
           if not url.start_with?('http')
-            url = File.join(CONFIG['legacy_image_dir'], url).to_s
+            url = File.join(Setting.legacy_image_dir, url).to_s
           end
 
           data = MiniMagick::Image.open(url)
