@@ -15,6 +15,8 @@ set :delayed_job_workers, 2
 set :deploy_to, "~/www/#{fetch(:application)}/"
 set :delayed_log_dir, "#{shared_path}/log"
 
+set :unicorn_config_path, "#{current_path}/config/unicorn.rb"
+
 # Default value for :scm is :git
 # set :scm, :git
 
