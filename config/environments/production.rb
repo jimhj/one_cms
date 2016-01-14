@@ -78,6 +78,8 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 end
 
+_conf = YAML.load(File.read(File.expand_path('../../config.yml', __FILE__)))[Rails.env]
+
 CarrierWave.configure do |config|
   config.asset_host = CONFIG['carrierwave']['asset_host']
 end

@@ -56,6 +56,9 @@ gem 'nokogiri', '~> 1.6.7.rc3', require: false
 gem 'delayed_job_active_record', '~> 4.1.0'
 gem 'daemons', '~> 1.2.2'
 
+# Access Config Yaml
+gem 'settingslogic', '~> 2.0.9'
+
 group :development do
   # Deployment
   gem 'capistrano', '~> 3.4.0'
@@ -64,6 +67,7 @@ group :development do
   gem 'capistrano-bundler'
   gem "capistrano-scm-copy"
   gem 'capistrano3-unicorn'
+  gem 'capistrano3-delayed-job', '~> 1.0'  
 end
 
 group :development, :test do
