@@ -67,9 +67,6 @@ namespace :legacy do
           Article.transaction do
             puts "开始导入第 #{index + 1} 篇文章 id: #{article.id} ============"
             file               = article.pictures.first.try(:fullurl)
-            if file
-              puts "图片 #{file}"
-            end
 
             node_name          = article.node.typename
             node               = ::Node.find_by(name: node_name)
@@ -80,11 +77,14 @@ namespace :legacy do
             a.writer           = article.writer
             a.source           = article.source
 
-            if Rails.env.development?
-              a.remote_thumb_url = file
-            else
-              _t                 = MiniMagick::Image.open(file)
-              a.thumb            = _t
+            if file
+              puts "图片 #{file}"
+              if Rails.env.development?
+                a.remote_thumb_url = file
+              else
+                _t                 = MiniMagick::Image.open(file)
+                a.thumb            = _t
+              end
             end
 
             a.seo_description  = article.description
