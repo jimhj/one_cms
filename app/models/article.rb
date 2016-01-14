@@ -13,11 +13,15 @@ class Article < ActiveRecord::Base
   scope :hot, -> { where(hot: true).order('id DESC').limit(6) }
 
   def set_thumb
+    return 0 if not self.thumb.blank?
     imgs = Nokogiri::HTML(self.body_html).css('img').collect{ |img| img[:src] }
-    if self.thumb.blank? && imgs.any?
-      self.remote_thumb_url = imgs.first
-      self.save
-    end    
+    return 1 if not imgs.any?
+    img = imgs.first.split(Setting.carrierwave.asset_host + '/').last
+    return 2 if img.nil?
+    img = Rails.root.join('public', img)
+    img = MiniMagick::Image.open(img)
+    self.thumb = img
+    self.save
   end
 
   def self.headline
