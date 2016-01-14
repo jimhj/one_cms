@@ -61,7 +61,7 @@ namespace :legacy do
     failed = []
     index = 0
     batch_size = Rails.env.development? ? 300 : 1000
-    Legacy::Article.where(typeid: 28).find_in_batches(batch_size: batch_size).with_index do |articles, ind|
+    Legacy::Article.find_in_batches(batch_size: batch_size).with_index do |articles, ind|
       articles.each do |article|
         begin
           Article.transaction do
@@ -103,7 +103,7 @@ namespace :legacy do
             b.save!
 
             index += 1
-            sleep(2)
+            sleep(1)
           end
         rescue => e
           puts e.backtrace.join("\n")
