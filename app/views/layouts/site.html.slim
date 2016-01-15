@@ -6,6 +6,9 @@ html
     = stylesheet_link_tag 'site/app'
     = csrf_meta_tags
     meta name="viewport" content="width=device-width, initial-scale=1"
+    meta http-equiv="X-UA-Compatible" content="IE=edge"
+    meta name="renderer" content="webkit"
+    
   body class="#{controller_name}"
     nav.navbar.navbar-default.navbar-fixed-top
       .container
@@ -51,7 +54,7 @@ html
             h4 友情链接
             .links
               - @links.each do |link|
-                a href="http://#{link.url}" target="_blank" title="#{link.title}"= link.name
+                a href="#{link.url}" target="_blank" title="#{link.title}"= link.name
             
         .text-center.announce 
           p 本站内容均来自互联网,本站不以营利为目的,这是一个注重分享交流的网站,为了建设健康向上的网络环境,请未满18周岁的少年在家长的陪同下观看。
