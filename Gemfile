@@ -59,6 +59,9 @@ gem 'daemons', '~> 1.2.2'
 # Access Config Yaml
 gem 'settingslogic', '~> 2.0.9'
 
+# Caching
+gem 'actionpack-action_caching', '~> 1.1.1' 
+
 group :development do
   # Deployment
   gem 'capistrano', '~> 3.4.0'

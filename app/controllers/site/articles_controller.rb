@@ -1,5 +1,9 @@
 class Site::ArticlesController < Site::ApplicationController
-  # caches_action :feed, expires_in: 1.hour
+  caches_action :feed, expires_in: 1.hour, if: Proc.new {
+    !request.format.mobile?
+  }
+
+  caches_action :show
 
   def index
     @node = Node.find_by(slug: params[:slug])
@@ -13,7 +17,7 @@ class Site::ArticlesController < Site::ApplicationController
   end
 
   def feed
-    @articles = Article.includes(:article_body).order('id DESC').limit(20)
+    @articles = Article.includes(:article_body, :node).order('id DESC').limit(20)
     render layout: false
   end
 

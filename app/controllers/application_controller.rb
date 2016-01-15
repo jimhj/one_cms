@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   private
 
   def mobile_device?
-    request.user_agent =~ /Mobile|webOS/ or request.subdomain == 'm' or true
+    request.user_agent =~ /Mobile|webOS/ or request.subdomain == 'm'
   end
 
   helper_method :mobile_device?
