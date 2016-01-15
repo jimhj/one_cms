@@ -14,4 +14,5 @@ Rails.application.config.assets.precompile += %w(
   site/app.css
   site/app.js
   bootstrap-ie7
+  mobile/app.css
 )
