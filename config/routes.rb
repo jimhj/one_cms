@@ -1,3 +1,9 @@
+class MobileConstraint
+  def self.matches?(request)
+    (agent_str =~ /Mobile|webOS/) or request.subdomain == 'm'
+  end
+end
+
 Rails.application.routes.draw do
   mount RedactorRails::Engine => '/redactor_rails'
   mount RuCaptcha::Engine => '/rucaptcha'
@@ -23,4 +29,9 @@ Rails.application.routes.draw do
     get ':slug/:id',    to: 'articles#show'
     get ':slug',        to: 'articles#index',   as: :articles
   end
+
+  constraints(MobileConstraint) do
+    scope module: 'mobile', as: :mobile do
+    end
+  end  
 end
