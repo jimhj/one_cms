@@ -1,6 +1,7 @@
 class MobileConstraint
   def self.matches?(request)
-    (agent_str =~ /Mobile|webOS/) or request.subdomain == 'm'
+    true
+    # (request.user_agent.to_s =~ /Mobile|webOS/) or request.subdomain == 'm' or true
   end
 end
 
@@ -20,6 +21,12 @@ Rails.application.routes.draw do
     post 'site_config', to: 'site_config#update',  as: :site_configs
   end
 
+  constraints(MobileConstraint) do
+    scope module: 'mobile', as: :mobile do
+      root 'application#index'
+    end
+  end 
+  
   scope module: :site do
     root 'application#index'
     get 'feed',         to: 'articles#feed',    as: :feed
@@ -28,10 +35,5 @@ Rails.application.routes.draw do
     get 'z/:slug',      to: 'channels#show',    as: :channel
     get ':slug/:id',    to: 'articles#show'
     get ':slug',        to: 'articles#index',   as: :articles
-  end
-
-  constraints(MobileConstraint) do
-    scope module: 'mobile', as: :mobile do
-    end
-  end  
+  end 
 end

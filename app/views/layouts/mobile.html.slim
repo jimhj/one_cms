@@ -1,0 +1,33 @@
+doctype html
+html
+  head
+    title H4 健康网 移动站
+    = javascript_include_tag 'mobile/app'
+    = stylesheet_link_tag 'mobile/app'
+    = csrf_meta_tags
+    meta name="viewport" content="width=device-width, initial-scale=1"
+    meta content="pc,mobile" name="applicable-device"
+    meta http-equiv="Cache-Control" content="no-transform"    
+
+  body class="#{controller_name}"
+    .header-logo
+      a.logo-brand href="#" title="健康私房话"
+    .header-nav role="navigation"
+      ul.list-unstyled.clearfix
+        li
+          a 减肥
+        li
+          a 饮食
+        li
+          a 保健
+        li
+          a 预防
+        li
+          a 疾病
+        li
+          a 健康
+        li
+          a 心理
+
+    .mian-container.container
+      = yield

@@ -1,6 +1,5 @@
 $font-family-sans-serif: "微软雅黑", "microsoft yahei", verdana, lucida, Arial, sans-serif, "黑体";
 $body-bg: #f8f8f8;
-// $brand-success: #00bb99;
 $brand-success: #5cb85c !default;
 $link-color: #454545;
 $link-hover-color: $brand-success;
@@ -9,10 +8,52 @@ $pagination-active-border: $brand-success;
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
-// @import "bootstrap-customize";
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
 body {
-  background: #F1F1F1 image-url('site/bg.png') repeat;
+  background-color: #F1F1F1;
+}
+
+// Header Logo
+.header-logo {
+  background-color: $brand-success;
+  padding: 5px 0px;
+
+  a.logo-brand {
+    display: block;
+    background-image: image-url('mobile/logo.png');
+    background-repeat: no-repeat;
+    width: 140px;
+    height: 40px;
+    margin: 0 auto;
+  }
+}
+
+// Navbar
+.header-nav {
+  width: 100%;
+  background-color: #ffffff;
+}
+
+.header-nav > ul {
+  li {
+    float: left;
+    width: 14%;
+
+    &:last-child {
+      margin-right: 0px;
+    }
+  }
+
+  li > a {
+    display: block;
+    text-align: center;
+    padding: 10px 0px;
+    text-decoration: none;
+  }
+
+  li:hover a, li.active a {
+    border-bottom: 2px solid $brand-success;
+  }
 }
