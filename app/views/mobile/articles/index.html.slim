@@ -1,0 +1,21 @@
+- Node.main.each do |node|
+  - children = node.children.first(3)
+  .article-container.container
+    .container-nav
+      ul.nav.nav-tabs role="tablist"
+        - children.each_with_index do |child, ind|
+          li class=('active' if ind.zero?) role="presentation"
+            a role="tab" data-toggle="tab" href=".tab-#{child.slug}"= child.name
+
+    .container-inner.tab-content
+      - children.each_with_index do |child, ind|
+        - klass = "tab-#{child.slug}"
+        - ind.zero? ? (klass << ' active') : (klass << ' fade')
+        .tab-pane class=klass
+          ul.list-unstyled
+            - Article.all.sample(10).each do |article|
+              li
+                a= article.title
+
+            li.more
+              a href="#" 查看更多 ...
