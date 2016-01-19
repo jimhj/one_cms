@@ -1,11 +1,11 @@
 // Navbar
-nav.navbar {
+.nav.navbar {
   border-top: 2px solid $brand-success;
   background-color: #ffffff;
   @include box-shadow(0 1px 2px #f1f1f1);
 }
 
-nav > .container {
+.nav > .container {
   width: 1000px !important;
 
   .navbar-brand {

@@ -5,4 +5,16 @@
       span= @article.created_at.strftime('%F')
       span #{@article.source} #{@article.writer}
   .article-body
-    = sanitize @article.body_html
+    = article_format @article.body_html
+
+.article-container.container
+  .container-nav
+    ul.nav.nav-tabs role="tablist"
+      li.active role="presentation"
+        a role="tab" data-toggle="tab" href="#" 相关文章
+
+  .container-inner
+    ul.list-unstyled
+      - Article.all.sample(5).each do |article|
+        li
+          a= article.title

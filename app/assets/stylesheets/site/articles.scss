@@ -47,10 +47,16 @@
       text-decoration: underline;
     }
 
-    // p {
-    //   margin-bottom: 20px;
-    //   text-align: justify;
-    // }
+    p {
+      margin-bottom: 20px;
+      text-align: justify;
+    }
+
+    br {
+      display: block;
+      content: ' ';
+      margin-bottom: 20px;
+    }    
   }
 
   .article-footer {

@@ -22,4 +22,11 @@ module ApplicationHelper
   def channel_path(channel)
     "/z/#{channel.slug}"
   end
+
+  def article_format(html)
+    cleanup = html.gsub(/<p>(<br>){0,}<\/p>/, '')
+                  .gsub(/(<br>){2,}/, '<br>')
+           
+    sanitize cleanup
+  end
 end

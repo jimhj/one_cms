@@ -24,7 +24,7 @@
           span 作者：#{@article.writer}
 
       .article-content
-        = sanitize @article.body_html
+        = article_format @article.body_html
 
       .article-footer
         .tags.pull-left

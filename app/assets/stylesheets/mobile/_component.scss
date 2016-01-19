@@ -24,6 +24,16 @@
     padding: 15px 15px;
     line-height: 28px;
 
+    p {
+      margin-bottom: 10px;
+    }
+
+    br {
+      display: block;
+      content: ' ';
+      margin-bottom: 10px;
+    }
+
     a, a.hot-link {
       color: $brand-success;
       text-decoration: underline;
