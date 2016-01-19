@@ -1,3 +1,36 @@
+.article-detail {
+  background-color: #ffffff;
+  margin-top: 20px;
+
+  .article-header {
+    padding-top: 15px;
+    border-bottom: 1px dotted #ececec;    
+  }
+
+  .article-header h1 {
+    font-size: 20px;
+    margin-top: 0px;
+    text-align: center;
+  }
+
+  .article-header p.text-muted {
+    font-size: 12px;
+    text-align: center;
+
+    span { margin-right: 5px; }
+  }
+
+  .article-body {
+    padding: 15px 15px;
+    line-height: 28px;
+
+    a, a.hot-link {
+      color: $brand-success;
+      text-decoration: underline;
+    }    
+  }
+}
+
 .container.article-container {
   padding: 0;
   margin-top: 10px;

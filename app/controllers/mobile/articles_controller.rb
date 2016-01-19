@@ -3,6 +3,6 @@ class Mobile::ArticlesController < Mobile::ApplicationController
   end
 
   def show
-    
+    @article = Article.all.sample
   end
 end

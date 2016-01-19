@@ -1,0 +1,8 @@
+.article-detail
+  .article-header
+    h1= @article.title
+    p.text-muted
+      span= @article.created_at.strftime('%F')
+      span #{@article.source} #{@article.writer}
+  .article-body
+    = sanitize @article.body_html
