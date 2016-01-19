@@ -16,4 +16,6 @@ Rails.application.config.assets.precompile += %w(
   bootstrap-ie7
   mobile/app.css
   mobile/app.js
+  swiper.js
+  swiper.css
 )

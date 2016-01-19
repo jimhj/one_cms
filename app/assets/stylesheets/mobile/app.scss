@@ -10,6 +10,8 @@ $pagination-active-border: $brand-success;
 @import "bootstrap";
 @import "font-awesome-sprockets";
 @import "font-awesome";
+@import "mobile/component";
+@import "mobile/index";
 
 body {
   background-color: #F1F1F1;
@@ -56,4 +58,23 @@ body {
   li:hover a, li.active a {
     border-bottom: 2px solid $brand-success;
   }
+}
+
+// Main Container
+.main-container {
+  padding: 0;
+}
+
+.footer {
+  margin-top: 40px;
+  background-color: #4F4F4F;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  margin-bottom: 0px;
+  font-size: 12px;
+
+  .copyright {
+    padding: 0px 20px;
+    color: #fafafa;
+  }  
 }

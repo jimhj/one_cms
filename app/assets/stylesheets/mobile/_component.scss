@@ -1,0 +1,109 @@
+.container.article-container {
+  padding: 0;
+  margin-top: 10px;
+  border-top: 1px solid #ececec;
+
+  .container-nav {
+    padding-left: 10px;
+    background-color: #fafafa;
+    border-bottom: 1px solid #ececec;
+
+    .nav-tabs {
+      border-bottom: none;
+    }
+
+    .nav-tabs > li {
+      margin-bottom: 0px;
+    }
+
+    .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+      border: none;
+      border-bottom: 2px solid $brand-success;
+    }
+
+    .nav-tabs > li > a {
+      border-radius: 0;
+    }
+  }
+
+  .container-inner {
+    background-color: #ffffff;
+
+    ul li {
+      list-style-type: square;
+      list-style-position: inside;
+      border-bottom: 1px dotted #ececec; 
+      padding: 10px 10px;
+
+      &:last-child { 
+        border-bottom: none; 
+      }
+
+      &.more {
+        list-style: none;
+        text-align: center;
+        background-color: #fafafa;
+      }
+
+      &.more a {
+        color: $text-muted;
+      }
+    }
+
+    ul.tag-list {
+      @include clearfix;
+      padding-left: 5%;
+      padding-right: 5%;
+      padding-top: 10px;
+    }
+
+    ul.tag-list li {
+      list-style: none;
+      padding: 0;
+      border-bottom: none;
+      float: left;
+      width: 30%;
+      margin-bottom: 10px;
+
+      &:nth-child(3n+2) {
+        margin-left: 5%;
+        margin-right: 5%;
+      }
+
+      & > a {
+        display: block;
+        width: 100%;
+        text-align: center;
+        border: 1px solid #dddddd;
+        background-color: #ececec;
+        text-decoration: none;
+        font-size: 12px;     
+        padding: 5px 5px;
+        overflow: hidden;   
+      }
+    }
+
+    ul.link-list {
+      @include clearfix;
+      padding-left: 10px;
+      padding-top: 20px;
+    }
+
+    ul.link-list li {
+      list-style: none;
+      padding: 0;
+      border-bottom: none;
+      float: left;
+      margin-bottom: 20px;
+      margin-right: 10px;
+
+      & > a {
+        display: block;
+        width: 100%;
+        text-decoration: none;
+        font-size: 12px;     
+        overflow: hidden;   
+      }
+    }
+  }
+}
