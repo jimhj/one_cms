@@ -1,0 +1,15 @@
+.article-container.container
+  .container-nav
+    ul.nav.nav-tabs role="tablist"
+      li.active role="presentation"
+        a role="tab" data-toggle="tab" href="#" 
+          i.fa.fa-book 
+          span 专题名称
+
+  .container-inner
+    ul.list-unstyled
+      - Article.all.sample(20).each do |article|
+        li
+          a= article.title
+    .loadmore.loadmore-pagination
+      = simple_pagination

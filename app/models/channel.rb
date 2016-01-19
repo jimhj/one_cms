@@ -1,5 +1,5 @@
 class Channel < ActiveRecord::Base
-  has_many :channel_articles
+  has_many :channel_articles, dependent: :destroy
   has_many :articles, through: :channel_articles
 
   validates_presence_of :name, :seo_keywords
