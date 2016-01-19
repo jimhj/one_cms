@@ -1,0 +1,16 @@
+.article-container.container
+  .container-nav
+    ul.nav.nav-tabs role="tablist"
+      li.active role="presentation"
+        a role="tab" data-toggle="tab" href="#" 热门标签
+
+  .container-inner
+    ul.list-unstyled.tag-list
+      / - Tag.all.sample(20).each do |tag|
+      - 5.times do
+        - %w(降压药 血液循环 健康 生活习惯 糖尿病 睡眠质量 魔鬼身材 性生活 蛋白质).each do |tag|
+          li.active
+            a= tag
+
+    .loadmore
+      a href="#" 加载更多

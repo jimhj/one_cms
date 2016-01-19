@@ -24,6 +24,11 @@ Rails.application.routes.draw do
   constraints(MobileConstraint) do
     scope module: 'mobile', as: :mobile do
       root 'application#index'
+      resources :tags,  only: [:index, :show]
+      get 'z',            to: 'channels#index',   as: :channels
+      get 'z/:slug',      to: 'channels#show',    as: :channel
+      get ':slug/:id',    to: 'articles#show'
+      get ':slug',        to: 'articles#index',   as: :articles
     end
   end 
   

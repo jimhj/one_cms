@@ -29,6 +29,20 @@
   .container-inner {
     background-color: #ffffff;
 
+    .loadmore {
+      text-align: center;
+      background-color: #fafafa;
+      border-top: 1px solid #ececec;
+      padding: 10px 0;
+
+      a {
+        display: block;
+        text-align: center;
+        width: 100%;
+        color: $text-muted;
+      }
+    }
+
     ul li {
       list-style-type: square;
       list-style-position: inside;
@@ -78,9 +92,15 @@
         background-color: #ececec;
         text-decoration: none;
         font-size: 12px;     
-        padding: 5px 5px;
+        padding: 10px 0px;
         overflow: hidden;   
       }
+
+      &.active > a {
+        border: 1px solid darken($brand-success, 20%);
+        background-color: $brand-success;        
+        color: #ffffff;
+      }      
     }
 
     ul.link-list {
