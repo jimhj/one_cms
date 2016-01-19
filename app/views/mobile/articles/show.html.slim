@@ -6,6 +6,10 @@
       span #{@article.source} #{@article.writer}
   .article-body
     = article_format @article.body_html
+  .article-footer
+    i.fa.fa-tags
+    - %w(降压药 血液循环 健康 生活习惯 糖尿病).each do |tag|
+        a= tag
 
 .article-container.container
   .container-nav

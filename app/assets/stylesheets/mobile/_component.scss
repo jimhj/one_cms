@@ -39,6 +39,22 @@
       text-decoration: underline;
     }    
   }
+
+  .article-footer {
+    padding-left: 15px;
+    padding-bottom: 15px;
+    padding-right: 15px;
+
+    &, a {
+      display: inline-block;
+      color: $brand-success;
+    }
+
+    a {
+      text-decoration: underline;
+      margin-left: 10px;
+    }
+  }  
 }
 
 .container.article-container {
