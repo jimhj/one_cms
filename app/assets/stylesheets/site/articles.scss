@@ -2,6 +2,7 @@
   @include clearfix;
   height: 22px;
   line-height: 22px;
+  margin-bottom: 10px;
 }
 
 .breadcrumb-container .breadcrumb {
@@ -16,7 +17,6 @@
 .article-detail-container {
   background-color: #ffffff;
   border: 1px solid #dddddd;
-  margin-top: 10px;
   min-height: 300px;
 
   .article-header {

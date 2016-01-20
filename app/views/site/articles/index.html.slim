@@ -1,5 +1,20 @@
 .main-split-container
   .left-side
+    .breadcrumb-container
+      ol.breadcrumb.pull-left
+        li
+          a href="#{root_path}"
+            i.fa.fa-caret-right 
+            span 首页
+        - @node.ancestors.each do |node|
+          li
+            a href="#{articles_path(node.slug)}" title="#{node.name}"= node.name
+
+        li.active= @node.name 
+      .favorite.pull-right
+        button.btn.btn-xs.btn-default.favorite-btn
+          i.fa.fa-star-o
+          | 收藏   
     .list-section
       .list-section-nav
         .pull-left
