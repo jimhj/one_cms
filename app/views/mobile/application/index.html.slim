@@ -52,7 +52,7 @@
     ul.list-unstyled.tag-list
       - Tag.order('taggings_count DESC').limit(15).each do |tag|
         li
-          a title=tag.name href="#{tag_path(tag)}"= tag.name
+          a title=tag.name href="#{tag_path(tag.slug)}"= tag.name
     .loadmore
       a href="#{tags_path}" 查看更多 ...
 

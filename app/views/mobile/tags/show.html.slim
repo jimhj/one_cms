@@ -2,15 +2,15 @@
   .container-nav
     ul.nav.nav-tabs role="tablist"
       li.active role="presentation"
-        a role="tab" data-toggle="tab" href="#" 
+        a role="tab" data-toggle="tab" href="#{tag_path(@tag.slug)}" 
           i.fa.fa-tags
-          span 热点专题
+          span= @tag.name
 
   .container-inner
     ul.list-unstyled
       - @articles.each do |article|
         li
-          a= article.title
+          a href="#{article_path(article)}" title="#{article.title}"= article.title
     .loadmore.loadmore-pagination
       = simple_pagination
 
@@ -18,13 +18,12 @@
   .container-nav
     ul.nav.nav-tabs role="tablist"
       li.active role="presentation"
-        a role="tab" data-toggle="tab" href="#" 热门标签
+        a role="tab" data-toggle="tab" href="#{tags_path}" 热门标签
 
   .container-inner
     ul.list-unstyled.tag-list
-      / - Tag.all.sample(20).each do |tag|
-      - %w(降压药 血液循环 健康 生活习惯 糖尿病 睡眠质量 魔鬼身材 性生活 蛋白质).each do |tag|
+      - Tag.hot.limit(15).each do |tag|
         li
-          a= tag
+          a href="#{tag_path(tag.slug)}" title="#{tag.name}"= tag.name
     .loadmore
-      a href="#" 查看更多 ...
+      a href="#{tags_path}" 查看更多 ...
