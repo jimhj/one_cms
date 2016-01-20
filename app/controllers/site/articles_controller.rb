@@ -1,6 +1,5 @@
 class Site::ArticlesController < Site::ApplicationController
   caches_action :feed, expires_in: 1.hour
-  # caches_action :show
 
   def index
     @node = Node.find_by(slug: params[:slug])
@@ -8,7 +7,8 @@ class Site::ArticlesController < Site::ApplicationController
                        .paginate(page: params[:page], per_page: 20, total_entries: 1000000)
     @links = @node.links.pc
 
-    set_meta title: "#{@node.name}_#{@node.seo_title}",
+    title = [@node.name, @node.seo_title.presence || nil].compact.join('_')
+    set_meta title: title,
              description: @node.seo_description,
              keywords: @node.seo_keywords
   end

@@ -61,6 +61,7 @@ gem 'settingslogic', '~> 2.0.9'
 
 # Caching
 gem 'actionpack-action_caching', '~> 1.1.1' 
+gem 'actionpack-page_caching', '~> 1.0.2'
 
 group :development do
   # Deployment
