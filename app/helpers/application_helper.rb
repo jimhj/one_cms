@@ -29,4 +29,13 @@ module ApplicationHelper
            
     sanitize cleanup
   end
+
+  def render_seo_meta_tags
+    display_meta_tags site: SiteConfig.app_name, 
+                      title: SiteConfig.seo_title,
+                      description: SiteConfig.seo_description,
+                      keywords: SiteConfig.seo_keywords,
+                      separator: '-',
+                      reverse: true
+  end
 end

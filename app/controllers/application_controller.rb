@@ -18,4 +18,11 @@ class ApplicationController < ActionController::Base
   #     request.format = :mobile 
   #   end
   # end
+
+  private
+
+  def set_meta(tags)
+    tags = tags.delete_if { |name, value| value.blank? }
+    set_meta_tags tags
+  end
 end
