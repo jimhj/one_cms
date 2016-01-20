@@ -36,7 +36,7 @@ class Article < ActiveRecord::Base
     sql = <<-SQL
       select * from articles
       where thumb is not null
-      order by rand()
+      and rand() < 0.01
       limit #{limit}
     SQL
 
@@ -47,7 +47,7 @@ class Article < ActiveRecord::Base
     sql = <<-SQL
       select * from articles
       where thumb is null
-      order by rand()
+      and rand() < 0.01
       limit #{limit}
     SQL
 

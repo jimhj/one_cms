@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160113060208) do
+ActiveRecord::Schema.define(version: 20160120132846) do
 
   create_table "admin_users", force: :cascade do |t|
     t.string   "login",           limit: 30,  null: false
@@ -112,6 +112,7 @@ ActiveRecord::Schema.define(version: 20160113060208) do
     t.string   "qq",            limit: 20
     t.integer  "sortrank",      limit: 4,   default: 1000
     t.integer  "status",        limit: 4,   default: 0
+    t.string   "device",        limit: 255, default: "PC"
     t.datetime "created_at",                               null: false
     t.datetime "updated_at",                               null: false
   end

@@ -5,4 +5,12 @@ class Link < ActiveRecord::Base
   default_scope {
     order('sortrank DESC, id DESC')
   }
+
+  scope :pc, -> {
+    where(device: 'PC')
+  }
+
+  scope :mobile, -> {
+    where(device: 'MOBILE')
+  }
 end

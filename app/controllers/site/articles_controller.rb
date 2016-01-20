@@ -6,7 +6,7 @@ class Site::ArticlesController < Site::ApplicationController
     @node = Node.find_by(slug: params[:slug])
     @articles = Article.where(node_id: @node.self_and_descendants.pluck(:id)).order('id DESC')
                        .paginate(page: params[:page], per_page: 20, total_entries: 1000000)
-    @links = @node.links
+    @links = @node.links.pc
 
     set_meta title: "#{@node.name}_#{@node.seo_title}",
              description: @node.seo_description,

@@ -19,9 +19,9 @@
       .article-header
         h1= @article.title
         p.text-muted
-          span= @article.created_at.strftime('%F %T')
+          span= @article.created_at.strftime('%F')
           span 来源：#{@article.source}
-          span 作者：#{@article.writer}
+          span 投稿：#{@article.writer}
 
       .article-content
         = article_format @article.body_html

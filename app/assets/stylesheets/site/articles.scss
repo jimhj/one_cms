@@ -47,16 +47,33 @@
       text-decoration: underline;
     }
 
+    // p {
+    //   margin-bottom: 20px;
+    //   text-align: justify;
+    // }
+
+    // br {
+    //   display: block;
+    //   content: ' ';
+    //   margin-bottom: 20px;
+    // }  
+
+
     p {
-      margin-bottom: 20px;
-      text-align: justify;
+      margin-bottom: 10px;
     }
 
     br {
       display: block;
       content: ' ';
-      margin-bottom: 20px;
-    }    
+      margin-bottom: 10px;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+      margin: 10px auto;
+    }      
   }
 
   .article-footer {
