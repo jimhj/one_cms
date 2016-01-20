@@ -14,20 +14,9 @@ html
       a.logo-brand href="#{mobile_root_path}" title="健康私房话"
     .header-nav role="navigation"
       ul.list-unstyled.clearfix
-        li
-          a 减肥
-        li
-          a 饮食
-        li
-          a 保健
-        li
-          a 预防
-        li
-          a 疾病
-        li
-          a 健康
-        li
-          a 心理
+        - Node.main.each do |node|
+          li
+            a href="#{mobile_articles_path(node.slug)}"= node.short_name
 
     .main-container.container
       = yield

@@ -5,6 +5,8 @@
 
   a.swiper-slide {
     display: block;
+    max-height: 300px;
+    overflow: hidden;
   }
 
   .swiper-slide img {

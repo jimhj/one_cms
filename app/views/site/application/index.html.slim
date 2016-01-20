@@ -36,7 +36,7 @@
             - children = node.children.first(3)
             - children.each_with_index do |child, ind|
               li class=('active' if ind.zero?) role="presentation"
-                a role="tab" data-toggle="tab" href=".tab-#{child.slug}"= child.name
+                a role="tab" data-toggle="tab" href="#tab-#{child.slug}"= child.name
         .mixed-section-inner       
           .mixed-section-image.pull-left
             - headline = node.headline
@@ -46,9 +46,8 @@
               a href="#{article_path(headline)}" title="#{headline.title}"= headline.title.truncate(15)
           .mixed-section-text.pull-right.tab-content
             - children.each_with_index do |child, ind|
-              - klass = "tab-#{child.slug}"
-              - ind.zero? ? (klass << ' active') : (klass << ' fade')
-              .tab-pane class=klass
+              - klass = ind.zero? ? 'active' : 'fade'
+              .tab-pane class=klass id="tab-#{child.slug}"
                 - child_headline = child.headline
                 .section-headline
                   h4

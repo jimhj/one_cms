@@ -13,9 +13,9 @@
         - ind.zero? ? (klass << ' active') : (klass << ' fade')
         .tab-pane class=klass
           ul.list-unstyled
-            - Article.all.sample(10).each do |article|
+            - child.articles.order('id DESC').limit(5).each do |article|
               li
-                a= article.title
+                a title=article.title href="#{article_path(article)}"= article.title
 
             li.more
-              a href="#" 查看更多 ...
+              a href="#{mobile_articles_path(child.slug)}" 查看更多 ...

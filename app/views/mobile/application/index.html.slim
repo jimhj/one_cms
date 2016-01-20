@@ -1,11 +1,8 @@
 .swiper-container
   .swiper-wrapper
-    a.swiper-slide.swiper-slide-0 data-title="这是一个测试标题1" href="#"
-      = image_tag 'site/1.jpg'
-    a.swiper-slide.swiper-slide-1 data-title="这是一个测试标题2" href="#"
-      = image_tag 'site/2.jpg'
-    a.swiper-slide.swiper-slide-2 data-title="这是一个测试标题3" href="#"
-      = image_tag 'site/3.jpg'
+    - Article.focus.each_with_index do |article, ind|
+      a.swiper-slide class="swiper-slide-#{ind}" data-title="#{article.title}" href="#{article_path(article)}"
+        = image_tag article.thumb.url(:middle)
   .swiper-pagination-container
     .pagination-title 
     .pagination-bullets
@@ -17,62 +14,60 @@
       ul.nav.nav-tabs role="tablist"
         - children.each_with_index do |child, ind|
           li class=('active' if ind.zero?) role="presentation"
-            a role="tab" data-toggle="tab" href=".tab-#{child.slug}"= child.name
+            a role="tab" data-toggle="tab" href="#tab-#{child.slug}"= child.name
 
     .container-inner.tab-content
       - children.each_with_index do |child, ind|
-        - klass = "tab-#{child.slug}"
-        - ind.zero? ? (klass << ' active') : (klass << ' fade')
-        .tab-pane class=klass
+        - klass = ind.zero? ? 'active' : 'fade'
+        .tab-pane id="tab-#{child.slug}" class=klass
           ul.list-unstyled
-            - Article.all.sample(5).each do |article|
+            - child.articles.order('id DESC').limit(5).each do |article|
               li
-                a= article.title
+                a title=article.title href="#{article_path(article)}"= article.title
 
             li.more
-              a href="#" 查看更多 ...
+              a href="#{mobile_articles_path(child.slug)}" 查看更多 ...
 
 .article-container.container
   .container-nav
     ul.nav.nav-tabs role="tablist"
       li.active role="presentation"
-        a role="tab" data-toggle="tab" href="#" 热点专题
+        a role="tab" data-toggle="tab" href="#{channels_path}" 热点专题
 
   .container-inner
     ul.list-unstyled
-      - Article.all.sample(5).each do |article|
+      - Channel.order('id DESC').limit(10).each do |channel|
         li
-          a= article.title
+          a href="#{channel_path(channel)}" title="#{channel.name}"= channel.name
       li.more
-        a href="#" 查看更多 ...
+        a href="#{channels_path}" 查看更多 ...
 
 .article-container.container
   .container-nav
     ul.nav.nav-tabs role="tablist"
       li.active role="presentation"
-        a role="tab" data-toggle="tab" href="#" 热门标签
+        a role="tab" data-toggle="tab" href="#{tags_path}" 热门标签
 
   .container-inner
     ul.list-unstyled.tag-list
-      / - Tag.all.sample(20).each do |tag|
-      - %w(降压药 血液循环 健康 生活习惯 糖尿病 睡眠质量 魔鬼身材 性生活 蛋白质).each do |tag|
+      - Tag.order('taggings_count DESC').limit(15).each do |tag|
         li
-          a= tag
+          a title=tag.name href="#{tag_path(tag)}"= tag.name
     .loadmore
-      a href="#" 查看更多 ...
+      a href="#{tags_path}" 查看更多 ...
 
-.article-container.container
-  .container-nav
-    ul.nav.nav-tabs role="tablist"
-      li.active role="presentation"
-        a role="tab" data-toggle="tab" href="#" 友情链接
+- if @links.present?
+  .article-container.container
+    .container-nav
+      ul.nav.nav-tabs role="tablist"
+        li.active role="presentation"
+          a role="tab" data-toggle="tab" href="javascript:;" 友情链接
 
-  .container-inner
-    ul.list-unstyled.link-list
-      / - Tag.all.sample(20).each do |tag|
-      - %w(降压药 血液循环 健康 生活习惯 糖尿病 睡眠质量 魔鬼身材 性生活 蛋白质).each do |tag|
-        li
-          a= tag
+    .container-inner
+      ul.list-unstyled.link-list
+        - @links.each do |link|
+          li
+            a href="#{link.url}" target="_blank" title="#{link.title}"= link.name
 
 = stylesheet_link_tag 'swiper'
 = javascript_include_tag 'swiper'
