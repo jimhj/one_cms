@@ -1,13 +1,13 @@
 class Site::ChannelsController < Site::ApplicationController
   def index
-    @channels = Channel.order('sortrank DESC, id DESC').paginate(page: params[:page], per_page: 40)
+    @channels = Channel.order('sortrank DESC, id DESC').paginate(page: params[:page], per_page: 40, total_entries: 1000000)
 
     set_meta title: '热门专题'
   end
 
   def show
     @channel = Channel.find_by(slug: params[:slug])
-    @articles = @channel.articles.order('id DESC').paginate(page: params[:page], per_page: 20)
+    @articles = @channel.articles.order('id DESC').paginate(page: params[:page], per_page: 20, total_entries: 100000)
 
     seo_ary = [@channel.name, @channel.seo_keywords.presence || nil].compact
     set_meta title: seo_ary.join('_'),

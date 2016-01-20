@@ -34,6 +34,6 @@
                 p.text-muted= article.seo_description
         - else
           .blank-state 暂时没有文章
-    = will_paginate @articles, renderer: BootstrapPagination::Rails
-  
+    = will_paginate @articles, renderer: BootstrapPagination::Rails, inner_window: 1
+
   = render 'site/share/right_side'

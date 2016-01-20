@@ -4,8 +4,8 @@ class Site::ArticlesController < Site::ApplicationController
 
   def index
     @node = Node.find_by(slug: params[:slug])
-    node_ids = @node.self_and_descendants.pluck(:id)
-    @articles = Article.where(node_id: node_ids).order('id DESC').paginate(paginate_params)
+    @articles = Article.where(node_id: @node.self_and_descendants.pluck(:id)).order('id DESC')
+                       .paginate(page: params[:page], per_page: 20, total_entries: 1000000)
     @links = @node.links
 
     set_meta title: "#{@node.name}_#{@node.seo_title}",
@@ -24,11 +24,5 @@ class Site::ArticlesController < Site::ApplicationController
   def feed
     @articles = Article.includes(:article_body, :node).order('id DESC').limit(20)
     render layout: false
-  end
-
-  private
-
-  def paginate_params
-    { page: params[:page], per_page: 20 }
   end   
 end

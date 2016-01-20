@@ -7,7 +7,7 @@ class Site::TagsController < Site::ApplicationController
 
   def show
     @tag = Tag.find_by(slug: params[:id])
-    @articles = @tag.articles.order('id DESC').paginate(page: params[:page], per_page: 20)
+    @articles = @tag.articles.order('id DESC').paginate(page: params[:page], per_page: 20, total_entries: 10000)
 
     set_meta title: [@tag.name, @tag.seo_title.presence || nil].compact.join('_'),
                   description: @tag.seo_description,
