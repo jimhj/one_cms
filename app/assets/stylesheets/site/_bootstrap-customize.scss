@@ -1,4 +1,9 @@
 // Navbar
+
+.dropdown-menu {
+  min-width: 120px;
+}
+
 .nav.navbar {
   border-top: 2px solid $brand-success;
   background-color: #ffffff;
