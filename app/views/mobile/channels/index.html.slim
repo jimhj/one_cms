@@ -1,15 +1,15 @@
 .article-container.container
   .container-nav
-    ul.nav.nav-tabs role="tablist"
-      li.active role="presentation"
-        a role="tab" data-toggle="tab" href="#" 
+    ul.nav.nav-tabs
+      li.active
+        a title="热门专题" href="#{channels_path}" 
           i.fa.fa-book 
           span 热门专题
 
   .container-inner
     ul.list-unstyled
-      - Article.all.sample(20).each do |article|
+      - @channels.each do |channel|
         li
-          a= article.title
+          a href="#{channel_path(channel)}" title="#{channel.name}"= channel.name
     .loadmore.loadmore-pagination
       = simple_pagination

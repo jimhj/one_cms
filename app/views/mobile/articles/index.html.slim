@@ -1,21 +1,34 @@
-- Node.main.each do |node|
-  - children = node.children.first(3)
+.article-container.container
+  .container-nav
+    ul.nav.nav-tabs role="tablist"
+      li.active role="presentation"
+        a role="tab" data-toggle="tab" href="#{mobile_articles_path(@node.slug)}"= @node.name
+
+  .container-inner.tab-content
+    .tab-pane.active
+      - if @articles.any? 
+        ul.list-unstyled
+          - @articles.each do |article|
+            li
+              a title=article.title href="#{article_path(article)}"= article.title
+
+        .loadmore.loadmore-pagination
+          = simple_pagination
+      - else
+        p.empty-data.text-muted.text-center 暂时没有文章
+
+- @node.children.each do |child|
   .article-container.container
     .container-nav
       ul.nav.nav-tabs role="tablist"
-        - children.each_with_index do |child, ind|
-          li class=('active' if ind.zero?) role="presentation"
-            a role="tab" data-toggle="tab" href=".tab-#{child.slug}"= child.name
+        li.active role="presentation"
+          a href="#{mobile_articles_path(child.slug)}"= child.name
 
     .container-inner.tab-content
-      - children.each_with_index do |child, ind|
-        - klass = "tab-#{child.slug}"
-        - ind.zero? ? (klass << ' active') : (klass << ' fade')
-        .tab-pane class=klass
-          ul.list-unstyled
-            - child.articles.order('id DESC').limit(5).each do |article|
-              li
-                a title=article.title href="#{article_path(article)}"= article.title
+      .tab-pane.active 
+        ul.list-unstyled.tag-list
+          - child.self_and_descendants.each do |node|
+            li
+              a title=node.name href="#{mobile_articles_path(node.slug)}"= node.name
 
-            li.more
-              a href="#{mobile_articles_path(child.slug)}" 查看更多 ...
+                

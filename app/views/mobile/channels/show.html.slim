@@ -1,15 +1,29 @@
 .article-container.container
   .container-nav
-    ul.nav.nav-tabs role="tablist"
-      li.active role="presentation"
-        a role="tab" data-toggle="tab" href="#" 
+    ul.nav.nav-tabs
+      li.active
+        a title="#{@channel.name}" href="#{channel_path(@channel)}" 
           i.fa.fa-book 
-          span 专题名称
+          span= @channel.name
 
   .container-inner
     ul.list-unstyled
-      - Article.all.sample(20).each do |article|
+      - @articles.each do |article|
         li
-          a= article.title
+          a href="#{article_path(article)}" title="#{article.title}"= article.title
     .loadmore.loadmore-pagination
       = simple_pagination
+
+.article-container.container
+  .container-nav
+    ul.nav.nav-tabs role="tablist"
+      li.active
+        a title="热点专题" href="#{channels_path}" 热点专题
+
+  .container-inner
+    ul.list-unstyled
+      - Channel.order('id DESC').limit(10).each do |channel|
+        li
+          a href="#{channel_path(channel)}" title="#{channel.name}"= channel.name
+      li.more
+        a href="#{channels_path}" 查看更多 ...

@@ -96,6 +96,11 @@
   .container-inner {
     background-color: #ffffff;
 
+    .empty-data {
+      height: 60px;
+      line-height: 60px; 
+    }
+
     .loadmore {
       text-align: center;
       background-color: #fafafa;
