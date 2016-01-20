@@ -3,3 +3,5 @@
     - @tags.each do |tag|
       li
         a class=('active' if tag.hot?) title="#{tag.name}" href="#{tag_path(tag.slug)}"= tag.name  
+
+= will_paginate @tags, renderer: BootstrapPagination::Rails

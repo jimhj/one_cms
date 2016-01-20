@@ -1,7 +1,7 @@
 class Site::TagsController < Site::ApplicationController
   def index
-    @tags = Tag.order('id DESC')
-    
+    @tags = Tag.order('id DESC').paginate(page: params[:page], per_page: 105, total_entries: 1000000)
+
     set_meta title: '热门标签'
   end
 
