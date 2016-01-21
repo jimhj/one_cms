@@ -4,6 +4,7 @@ html
     = render_seo_meta_tags
     = javascript_include_tag 'site/app'
     = stylesheet_link_tag 'site/app'
+    = favicon_link_tag 'h4.ico'
     = csrf_meta_tags
     meta charset="utf-8"    
     meta name="viewport" content="width=device-width, initial-scale=1"
@@ -20,35 +21,36 @@ html
       .container
         a.navbar-brand href="#{root_url}" title="网站首页"
           = image_tag 'site/logo_1.png'
-        ul.nav.navbar-nav.main-nav
-          - Node.main.each_with_index do |node, ind|
-            - klass = ''
-            - klass << 'active ' if params[:slug] == node.slug
-            - klass << 'left-border' if ind.zero?
-            li class="#{klass}"
-              a title="#{node.name}" href="#{articles_path(node.slug)}"= node.short_name
-              ul.dropdown-menu
-                - node.children.each do |child|
-                  li
-                    a href="#{articles_path(child.slug)}"= child.name
+        - cache(['desktop-navigation', @node.try(:slug)].join('/')) do
+          ul.nav.navbar-nav.main-nav
+            - Node.main.each_with_index do |node, ind|
+              - klass = ''
+              - klass << 'active ' if params[:slug] == node.slug
+              - klass << 'left-border' if ind.zero?
+              li class="#{klass}"
+                a title="#{node.name}" href="#{articles_path(node.slug)}"= node.short_name
+                ul.dropdown-menu
+                  - node.children.each do |child|
+                    li
+                      a href="#{articles_path(child.slug)}"= child.name
 
-        ul.nav.navbar-nav.navbar-right.sub-nav
-          li
-            a 
-              = icon('caret-right')
-              | 更多   
-              ul.dropdown-menu
-                - Node.rest.each do |node|
-                  li
-                    a href="#{articles_path(node.slug)}"= node.name                   
-          li
-            a href="mailto:bd@h4.com.cn?subject=健康私房话投稿"
-              = icon('send')
-              | 投稿
-          li
-            a href="#{feed_path}" title="feed"
-              = icon('rss')
-              | RSS            
+          ul.nav.navbar-nav.navbar-right.sub-nav
+            li
+              a 
+                = icon('caret-right')
+                | 更多   
+                ul.dropdown-menu
+                  - Node.rest.each do |node|
+                    li
+                      a href="#{articles_path(node.slug)}"= node.name                   
+            li
+              a href="mailto:bd@h4.com.cn?subject=健康私房话投稿"
+                = icon('send')
+                | 投稿
+            li
+              a href="#{feed_path(format: 'xml')}" title="feed"
+                = icon('rss')
+                | RSS            
 
     .main-container.container
       = yield

@@ -14,9 +14,10 @@ html
       a.logo-brand href="#{mobile_root_path}" title="健康私房话"
     .header-nav role="navigation"
       ul.list-unstyled.clearfix
-        - Node.main.each do |node|
-          li
-            a href="#{mobile_articles_path(node.slug)}"= node.short_name
+        - cache('mobile-navigation') do
+          - Node.main.each do |node|
+            li
+              a href="#{mobile_articles_path(node.slug)}"= node.short_name
 
     .main-container.container
       = yield

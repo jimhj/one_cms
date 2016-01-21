@@ -20,7 +20,7 @@
         .pull-left
           h4= @node.name
         .pull-right.right-nav
-          = render_node_nav(@node)
+          = render_node_nav
       .list-section-inner
         - if @articles.any?
           - @articles.each do |article|

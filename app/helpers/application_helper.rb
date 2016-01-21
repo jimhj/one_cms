@@ -7,8 +7,8 @@ module ApplicationHelper
     File.join(root_url, article_path(article)).to_s
   end
 
-  def render_node_nav(node)
-     node.children.first(8).collect do |child|
+  def render_node_nav
+     @nodes.first(8).collect do |child|
       "<a href='#{articles_path(child.slug)}' title='#{child.name}'>#{child.name}</a>"
     end.join('<span>-</span>').html_safe
   end
@@ -26,6 +26,7 @@ module ApplicationHelper
   def article_format(html)
     cleanup = html.gsub(/<p>(<br>){0,}<\/p>/, '')
                   .gsub(/(<br>){2,}/, '<br>')
+                  # .gsub('#p#分页标题#e#', '')
            
     sanitize cleanup
   end

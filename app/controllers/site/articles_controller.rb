@@ -1,9 +1,11 @@
 class Site::ArticlesController < Site::ApplicationController
   caches_action :feed, expires_in: 1.hour
+  caches_action :index, :cache_path => Proc.new { |c| c.request.url + '-desktop' }, :expires_in => 1.hour
 
   def index
     @node = Node.find_by(slug: params[:slug])
-    @articles = Article.where(node_id: @node.self_and_descendants.pluck(:id)).order('id DESC')
+    @nodes = @node.self_and_descendants
+    @articles = Article.where(node_id: @nodes.pluck(:id)).order('id DESC')
                        .paginate(page: params[:page], per_page: 20, total_entries: 1000000)
     @links = @node.links.pc
 
@@ -15,10 +17,15 @@ class Site::ArticlesController < Site::ApplicationController
 
   def show
     @article = Article.find params[:id]
+    @node = @article.node
+    @nodes = @node.self_and_ancestors
+    @more_articles = Article.includes(:node).where(node_id: @nodes.pluck(:id)).where.not(id: @article.id).limit(8)
 
     set_meta title: @article.title,
                   description: @article.seo_description,
-                  keywords: @article.seo_keywords       
+                  keywords: @article.seo_keywords
+
+    fresh_when(etag: @article, last_modified: @article.updated_at, public: true, template: false) 
   end
 
   def feed

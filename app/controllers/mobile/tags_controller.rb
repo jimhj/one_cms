@@ -1,4 +1,7 @@
 class Mobile::TagsController < Mobile::ApplicationController
+  caches_action :index, :cache_path => Proc.new { |c| c.request.url + '-mobile' }, :expires_in => 1.hour
+  caches_action :show, :cache_path => Proc.new { |c| c.request.url + '-mobile' }, :expires_in => 1.hour  
+  
   def index
     @tags = Tag.order('id DESC').paginate(page: params[:page], per_page: 60)
 

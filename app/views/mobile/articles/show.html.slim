@@ -20,6 +20,6 @@
 
   .container-inner
     ul.list-unstyled
-      - @article.more(5).each do |article|
+      - @more_articles.each do |article|
         li
           a title="#{article.title}" href="#{article_path(article)}"= article.title

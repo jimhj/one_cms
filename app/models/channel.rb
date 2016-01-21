@@ -36,7 +36,7 @@ class Channel < ActiveRecord::Base
   def self.random(limit = 10)
     sql = <<-SQL
       select * from channels
-      order by rand()
+      where rand() < 0.01 
       limit #{limit}
     SQL
 

@@ -6,7 +6,7 @@
           a href="#{root_path}"
             i.fa.fa-caret-right 
             span 首页
-        - @article.node.self_and_ancestors.each do |node|
+        - @nodes.each do |node|
           li
             a href="#{articles_path(node.slug)}" title="#{node.name}"= node.name
 
@@ -38,7 +38,7 @@
       .mixed-section-inner
         .mixed-section-text
           ul.section-list.list-unstyled.clearfix.hor
-            - @article.more.each do |article|
+            - @more_articles.each do |article|
               li
                 a href="#{article_path(article)}" title="#{article.title}"= article.title.truncate(18)
 

@@ -54,14 +54,6 @@ class Article < ActiveRecord::Base
     find_by_sql(sql)    
   end
 
-  def more(limit = 8)
-    more = node.articles.where.not(id: id).order('id DESC').limit(limit)
-    if more.blank?
-      more = Article.where.not(id: id).order('id DESC').limit(2000).sample(8)
-    end
-    more
-  end
-
   def analyze_keywords
     rsp = DiscuzKeyword.analyze(title, article_body.body)
     keywords = rsp['total_response']['keyword']['result']['item'].collect{ |h| h.values }.flatten rescue []

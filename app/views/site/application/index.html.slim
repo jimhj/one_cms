@@ -2,10 +2,10 @@
   .pull-left.carousel-focus-left
     .carousel-focus-container.carousel.slide data-ride="carousel"
       ol.carousel-indicators
-        - Article.focus.each_with_index do |_article, ind|
+        - @focus.each_with_index do |_article, ind|
           li class=('active' if ind.zero?) data-target=".carousel-focus-container" data-slide-to="#{ind}"
       .carousel-inner role="listbox"
-        - Article.focus.each_with_index do |article, ind|
+        - @focus.each_with_index do |article, ind|
           a.item class=('active' if ind.zero?) href="#{article_path(article)}" title="#{article.title}"
             = image_tag article.thumb.url(:large), size: '650x340', alt: article.title, title: article.title
             .carousel-caption
@@ -19,7 +19,7 @@
         a href="#{article_path(Article.headline)}"  title="#{Article.headline.title}"= Article.headline.title
       p.text-muted= Article.headline.seo_description
     ul.focus-list.list-unstyled
-      - Article.topnews.each do |article|
+      - @topnews.each do |article|
         li
           a href="#{article_path(article)}" title="#{article.title}"= article.title
 
