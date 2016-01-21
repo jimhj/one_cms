@@ -5,9 +5,8 @@ module Mobile::ApplicationHelper
 
     current = (params[:page].presence || 0).to_i
     parameters = request.query_parameters
-    prev_page = current - 1
-    prev_page = 1 if prev_page <= 0
-    next_page = current + 1
+    prev_page = current - (current <= 1 ? 0 : 1)
+    next_page = current + (current.zero? ? 2 : 1)
 
     prev_html = %Q(<a href="#{url_for(parameters.merge(page: prev_page))}" class="btn btn-default">#{prev_text}</a>)
     next_html = %Q(<a href="#{url_for(parameters.merge(page: next_page))}" class="btn btn-default">#{next_text}</a>)
