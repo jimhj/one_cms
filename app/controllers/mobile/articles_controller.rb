@@ -1,5 +1,6 @@
 class Mobile::ArticlesController < Mobile::ApplicationController
   caches_action :index, :cache_path => Proc.new { |c| c.request.url + '-mobile' }, :expires_in => 1.hour
+  caches_action :show, :cache_path => Proc.new{ |c| 'articles-' + c.params[:id] + '-mobile' }, :expires_in => 1.hour
 
   def index
     @node = Node.find_by(slug: params[:slug])

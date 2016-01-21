@@ -1,6 +1,7 @@
 class Site::ArticlesController < Site::ApplicationController
   caches_action :feed, expires_in: 1.hour
   caches_action :index, :cache_path => Proc.new { |c| c.request.url + '-desktop' }, :expires_in => 1.hour
+  caches_action :show, :cache_path => Proc.new{ |c| 'articles-' + c.params[:id] + '-desktop' }, :expires_in => 1.hour  
 
   def index
     @node = Node.find_by(slug: params[:slug])
