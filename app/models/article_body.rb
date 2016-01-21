@@ -10,22 +10,14 @@ class ArticleBody < ActiveRecord::Base
 
   after_create do
     article.delay.analyze_keywords
-    self.delay.generate_keyword_links
     article.set_thumb
   end
 
-  after_update do
-    if self.body_changed?
-      self.delay.generate_keyword_links
-    end
-  end
-
-  def generate_keyword_links
+  def with_keywords
     doc = Nokogiri::HTML(self.body)
     keywords = Keyword.select(:name, :url).each do |keyword|
-      ele = doc.xpath("//*[contains(text(), '#{keyword.name}')]").first
+      ele = doc.xpath("//p[contains(text(), '#{keyword.name}')]").first
       next if ele.nil?
-
       if ele.name == 'a'
         ele.set_attribute(:href, keyword.url)
         ele.set_attribute(:target, '_blank')
@@ -42,7 +34,7 @@ class ArticleBody < ActiveRecord::Base
       end
     end
 
-    update_attribute :body_html, doc.to_s
+    doc.to_s
   end
 
   def restore_remote_images

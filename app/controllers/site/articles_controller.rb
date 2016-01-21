@@ -28,7 +28,7 @@ class Site::ArticlesController < Site::ApplicationController
                   description: @article.seo_description,
                   keywords: @article.seo_keywords
 
-    fresh_when(etag: @article, last_modified: @article.updated_at, public: true, template: false) 
+    fresh_when(etag: [@article, Keyword.recent], template: false) 
   end
 
   def feed

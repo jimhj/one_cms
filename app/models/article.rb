@@ -55,6 +55,7 @@ class Article < ActiveRecord::Base
   end
 
   def body_html
-    article_body.body_html.presence || article_body.body 
+    # article_body.body_html.presence || article_body.body 
+    article_body.with_keywords
   end
 end
