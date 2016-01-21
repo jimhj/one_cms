@@ -12,6 +12,8 @@ class Site::TagsController < Site::ApplicationController
     @tag = Tag.find_by(slug: params[:id])
     @articles = @tag.articles.order('id DESC').paginate(page: params[:page], per_page: 20, total_entries: 10000)
 
+    @channel_keywords = @tag.seo_keywords
+    
     set_meta title: [@tag.name, @tag.seo_title.presence || nil].compact.join('_'),
                   description: @tag.seo_description,
                   keywords: @tag.seo_keywords.presence || @tag.name      

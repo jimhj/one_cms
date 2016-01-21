@@ -5,10 +5,11 @@ class Site::ArticlesController < Site::ApplicationController
 
   def index
     @node = Node.find_by(slug: params[:slug])
-    @nodes = @node.self_and_descendants
-    @articles = Article.where(node_id: @nodes.pluck(:id)).order('id DESC')
+    @nodes = @node.descendants
+    @articles = Article.where(node_id: @node.self_and_descendants.pluck(:id)).order('id DESC')
                        .paginate(page: params[:page], per_page: 20, total_entries: 1000000)
     @links = @node.links.pc
+    @channel_keywords = @node.seo_keywords
 
     title = [@node.name, @node.seo_title.presence || nil].compact.join('_')
     set_meta title: title,
@@ -21,7 +22,8 @@ class Site::ArticlesController < Site::ApplicationController
     @node = @article.node
     @nodes = @node.self_and_ancestors
     @more_articles = Article.includes(:node).where(node_id: @nodes.pluck(:id)).where.not(id: @article.id).limit(8)
-
+    @channel_keywords = @article.seo_keywords
+    
     set_meta title: @article.title,
                   description: @article.seo_description,
                   keywords: @article.seo_keywords

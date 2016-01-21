@@ -12,6 +12,8 @@ class Site::ChannelsController < Site::ApplicationController
     @channel = Channel.find_by(slug: params[:slug])
     @articles = @channel.articles.order('id DESC').paginate(page: params[:page], per_page: 20, total_entries: 100000)
 
+    @channel_keywords = @channel.seo_keywords
+
     seo_ary = [@channel.name, @channel.seo_keywords.presence || nil].compact
     set_meta title: seo_ary.join('_'),
              description: @channel.seo_description,

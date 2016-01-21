@@ -8,7 +8,7 @@ module ApplicationHelper
   end
 
   def render_node_nav
-     @nodes.first(8).collect do |child|
+     @nodes.first(7).collect do |child|
       "<a href='#{articles_path(child.slug)}' title='#{child.name}'>#{child.name}</a>"
     end.join('<span>-</span>').html_safe
   end

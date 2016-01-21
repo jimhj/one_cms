@@ -10,7 +10,7 @@ class Article < ActiveRecord::Base
   validates_presence_of :node_id, :title
 
   scope :focus, -> { where(focus: true).order('id DESC').limit(3) }
-  scope :hot, -> { where(hot: true).order('id DESC').limit(6) }
+  scope :hot, -> { where(hot: true, thumb: nil).order('id DESC').limit(6) }
 
   def set_thumb
     return 0 if not self.thumb.blank?
@@ -24,34 +24,20 @@ class Article < ActiveRecord::Base
     self.save
   end
 
+  def self.pic(nodes = nil)
+    articles = where(hot: true).where.not(thumb: nil).order('id DESC')
+    if nodes.present?
+      articles = articles.where(node_id: nodes.pluck(:id))
+    end
+    articles.limit(5)
+  end
+
   def self.headline
     hot.first
   end
 
   def self.topnews
     hot[1..-1]
-  end
-
-  def self.pic(limit = 5)
-    sql = <<-SQL
-      select * from articles
-      where thumb is not null
-      and rand() < 0.01
-      limit #{limit}
-    SQL
-
-    find_by_sql(sql)
-  end
-
-  def self.random(limit = 10)
-    sql = <<-SQL
-      select * from articles
-      where thumb is null
-      and rand() < 0.01
-      limit #{limit}
-    SQL
-
-    find_by_sql(sql)    
   end
 
   def analyze_keywords

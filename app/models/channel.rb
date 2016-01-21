@@ -33,13 +33,16 @@ class Channel < ActiveRecord::Base
     end
   end
 
-  def self.random(limit = 10)
-    sql = <<-SQL
-      select * from channels
-      where rand() < 0.01 
-      limit #{limit}
-    SQL
+  def self.hot(keywords = nil)
+    if keywords.present?
+      keywords = keywords.split(/,|，|\s/)
+      subsql = keywords.collect do |keyword|
+        "name like '%#{keyword}%'"
+      end.join(' or ')
 
-    find_by_sql(sql)    
+      self.where(subsql).order('id DESC').limit(10)
+    else
+      order('id DESC').limit(10) 
+    end
   end   
 end
