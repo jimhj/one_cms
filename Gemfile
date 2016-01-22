@@ -63,6 +63,9 @@ gem 'settingslogic', '~> 2.0.9'
 gem 'actionpack-action_caching', '~> 1.1.1' 
 gem 'actionpack-page_caching', '~> 1.0.2'
 
+# Schedule
+gem 'whenever', '~> 0.9.4'
+
 group :development do
   # Deployment
   gem 'capistrano', '~> 3.4.0'

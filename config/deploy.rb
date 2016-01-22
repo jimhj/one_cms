@@ -56,6 +56,30 @@ namespace :deploy do
   end
 end
 
+namespace :whenever do
+  task :refresh do
+    on roles(:web, :db, :app) do
+      within release_path do
+        execute :bundle, "exec whenever -c -s 'environment=production'"
+        execute :bundle, "exec whenever -w -s 'environment=production'"
+      end
+    end
+  end
+end
+
+namespace :sitemap do
+  task :refresh do
+    on roles(:web, :db, :app) do
+      within release_path do
+        with rails_env: :production do
+          execute :bundle, "exec rake g:sitemap --trace"
+        end
+      end
+    end    
+  end
+end
+
 after 'deploy:published', 'deploy:restart'
+after 'deploy:published', 'whenever:refresh'
 
 
