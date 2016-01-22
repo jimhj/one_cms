@@ -9,7 +9,7 @@ class Site::ChannelsController < Site::ApplicationController
   end
 
   def show
-    @channel = Channel.find_by(slug: params[:slug])
+    @channel = Channel.find_by!(slug: params[:slug])
     @articles = @channel.articles.order('id DESC').paginate(page: params[:page], per_page: 20, total_entries: 100000)
 
     @channel_keywords = @channel.seo_keywords

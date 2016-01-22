@@ -4,7 +4,7 @@ class Site::ArticlesController < Site::ApplicationController
   caches_action :show, :cache_path => Proc.new{ |c| 'articles-' + c.params[:id] + '-desktop' }, :expires_in => 1.hour  
 
   def index
-    @node = Node.find_by(slug: params[:slug])
+    @node = Node.find_by!(slug: params[:slug])
     @nodes = @node.descendants
     @articles = Article.where(node_id: @node.self_and_descendants.pluck(:id)).order('id DESC')
                        .paginate(page: params[:page], per_page: 20, total_entries: 1000000)

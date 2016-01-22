@@ -9,7 +9,7 @@ class Site::TagsController < Site::ApplicationController
   end
 
   def show
-    @tag = Tag.find_by(slug: params[:id])
+    @tag = Tag.find_by!(slug: params[:id])
     @articles = @tag.articles.order('id DESC').paginate(page: params[:page], per_page: 20, total_entries: 10000)
 
     @channel_keywords = @tag.seo_keywords

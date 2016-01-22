@@ -58,7 +58,6 @@ class ArticleBody < ActiveRecord::Base
 
         img[:src]
       rescue => e
-        raise e
         next
       end
     end.compact

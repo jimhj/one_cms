@@ -26,7 +26,7 @@ module ApplicationHelper
   def article_format(html)
     cleanup = html.gsub(/<p>(<br>){0,}<\/p>/, '')
                   .gsub(/(<br>){2,}/, '<br>')
-                  # .gsub('#p#分页标题#e#', '')
+                  .gsub('#p#分页标题#e#', '')
            
     sanitize cleanup
   end
