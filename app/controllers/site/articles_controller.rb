@@ -1,11 +1,11 @@
 class Site::ArticlesController < Site::ApplicationController
   caches_action :feed, expires_in: 1.hour
-  caches_action :index, :cache_path => Proc.new { |c| c.request.url + '-desktop' }, :expires_in => 1.hour
+  caches_action :index, :cache_path => Proc.new { |c| c.request.url + '-desktop' }, :expires_in => 6.hour
   caches_action :show, :cache_path => Proc.new{ |c| 'articles-' + c.params[:id] + '-desktop' }, :expires_in => 1.hour  
 
   def index
     @node = Node.find_by!(slug: params[:slug])
-    @nodes = @node.descendants
+    @nodes = @node.root.self_and_descendants
     @articles = Article.where(node_id: @node.self_and_descendants.pluck(:id)).order('id DESC')
                        .paginate(page: params[:page], per_page: 20, total_entries: 1000000)
     @links = @node.links.pc
@@ -20,7 +20,7 @@ class Site::ArticlesController < Site::ApplicationController
   def show
     @article = Article.find params[:id]
     @node = @article.node
-    @nodes = @node.self_and_ancestors
+    @nodes = @node.root.self_and_ancestors
     @more_articles = Article.includes(:node).where(node_id: @nodes.pluck(:id)).where.not(id: @article.id).limit(8)
     @channel_keywords = @article.seo_keywords
     

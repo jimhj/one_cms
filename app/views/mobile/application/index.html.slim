@@ -8,7 +8,7 @@
     .pagination-bullets
 
 - Node.main.each do |node|
-  - children = node.children.first(3)
+  - children = node.children.last(3)
   .article-container.container
     .container-nav
       ul.nav.nav-tabs role="tablist"
@@ -21,7 +21,7 @@
         - klass = ind.zero? ? 'active' : 'fade'
         .tab-pane id="tab-#{child.slug}" class=klass
           ul.list-unstyled
-            - child.articles.order('id DESC').limit(5).each do |article|
+            - child.descendants_articles.order('id DESC').limit(5).each do |article|
               li
                 a title=article.title href="#{article_path(article)}"= article.title
 

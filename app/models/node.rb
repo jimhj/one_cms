@@ -20,7 +20,7 @@ class Node < ActiveRecord::Base
   end
 
   def self.main
-    where(slug: main_slugs)
+    includes(:children).where(slug: main_slugs)
   end
 
   def self.rest
