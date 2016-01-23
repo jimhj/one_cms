@@ -28,10 +28,13 @@ class Node < ActiveRecord::Base
   end
 
   def headline
-    node_ids = self.self_and_descendants.pluck(:id)
-    article = Article.where(node_id: node_ids).where.not(thumb: nil).order('id DESC').first
-    article ||= articles.first
+    article = descendants_articles.where.not(thumb: nil).order('id DESC').first
     article ||= Article.where.not(thumb: nil).sample
     article
+  end
+
+  def descendants_articles
+    node_ids = self.self_and_descendants.pluck(:id)
+    Article.where(node_id: node_ids)
   end
 end

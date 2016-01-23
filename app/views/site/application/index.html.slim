@@ -33,7 +33,7 @@
             h4
               a= node.name
           ul.nav.nav-tabs.pull-right role="tablist"
-            - children = node.children.first(3)
+            - children = node.children.last(3)
             - children.each_with_index do |child, ind|
               li class=('active' if ind.zero?) role="presentation"
                 a role="tab" data-toggle="tab" href="#tab-#{child.slug}"= child.name
@@ -54,7 +54,7 @@
                     a href="#{article_path(child_headline)}" title="#{child_headline.title}"= child_headline.title.truncate(16)
                   p.text-muted= child_headline.seo_description
                 ul.section-list.list-unstyled
-                  - child.articles.where.not(id: child_headline.id).order('id DESC').limit(4).each do |article|
+                  - child.descendants_articles.where.not(id: child_headline.id).order('id DESC').limit(4).each do |article|
                     li
                       a href="#{article_path(article)}" title="#{article.title}"= article.title
                                 
