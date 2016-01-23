@@ -34,15 +34,12 @@ class Channel < ActiveRecord::Base
   end
 
   def self.hot(keywords = nil)
-    if keywords.present?
-      keywords = keywords.split(/,|，|\s/)
-      subsql = keywords.collect do |keyword|
-        "name like '%#{keyword}%'"
-      end.join(' or ')
+    keywords ||= Setting.main_nodes.values.join(',')
+    keywords = keywords.split(/,|，|\s/)
+    subsql = keywords.collect do |keyword|
+      "name like '%#{keyword}%'"
+    end.join(' or ')
 
-      self.where(subsql).order('id DESC').limit(10)
-    else
-      order('id DESC').limit(10) 
-    end
+    self.where(subsql).order('id ASC').limit(10)
   end   
 end
