@@ -1,6 +1,6 @@
 class Admin::ArticlesController < Admin::ApplicationController
   def index
-    @articles = Article.joins(:article_body, :node).paginate(paginate_params).order('created_at DESC')
+    @articles = Article.joins(:node).paginate(paginate_params).order('created_at DESC')
   end
 
   def new
