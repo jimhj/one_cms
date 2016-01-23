@@ -25,7 +25,7 @@ class Article < ActiveRecord::Base
   end
 
   def self.pic(nodes = nil)
-    articles = where(hot: true).where.not(thumb: nil).order('id DESC')
+    articles = where.not(thumb: nil).order('id DESC')
     if nodes.present?
       articles = articles.where(node_id: nodes.pluck(:id))
     end
