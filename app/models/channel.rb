@@ -40,6 +40,11 @@ class Channel < ActiveRecord::Base
       "name like '%#{keyword}%'"
     end.join(' or ')
 
-    self.where(subsql).order('id ASC').limit(10)
+    hots = self.where(subsql).order('id ASC')
+    if hots.blank?
+      hots = self.order('id ASC')
+    end
+    
+    hots.limit(10)
   end   
 end
