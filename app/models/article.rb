@@ -9,6 +9,7 @@ class Article < ActiveRecord::Base
 
   validates_presence_of :node_id, :title
 
+  scope :recent, -> { order('id DESC').limit(10) }
   scope :focus, -> { where(focus: true).order('id DESC').limit(3) }
   scope :hot, -> { where(hot: true, thumb: nil).order('id DESC').limit(6) }
 
