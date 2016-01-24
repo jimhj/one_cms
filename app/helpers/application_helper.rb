@@ -20,7 +20,7 @@ module ApplicationHelper
   end
 
   def channel_path(channel)
-    "/z/#{channel.slug}"
+    "/z/#{channel.slug}/"
   end
 
   def article_format(html)

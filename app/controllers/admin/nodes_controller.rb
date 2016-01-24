@@ -22,11 +22,23 @@ class Admin::NodesController < Admin::ApplicationController
 
   def update
     @node = Node.find params[:id]
+    # if node_params[:parent_id] == 0
+    # else
+    # end
     if @node.update_attributes(node_params)
       redirect_to admin_nodes_path
     else
       render action: :edit
     end
+  end
+
+  def destroy
+    @node = Node.find params[:id]
+    ActiveRecord::Base.transaction do
+      @node.destroy
+    end
+
+    redirect_to admin_nodes_path
   end
 
   private

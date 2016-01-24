@@ -42,7 +42,7 @@ class Admin::LinksController < Admin::ApplicationController
   end
 
   def link_params
-    params.require(:link).permit(:name, :url, :title, :qq, :sortrank, :linkable_type, :linkable_id)
+    params.require(:link).permit(:name, :url, :title, :qq, :sortrank, :device, :linkable_type, :linkable_id)
   end
 
   def paginate_params

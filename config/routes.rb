@@ -24,21 +24,21 @@ Rails.application.routes.draw do
   constraints(MobileConstraint) do
     scope module: 'mobile', as: :mobile do
       root 'application#index'
-      resources :tags,  only: [:index, :show]
-      get 'z',            to: 'channels#index',   as: :channels
-      get 'z/:slug',      to: 'channels#show',    as: :channel
+      resources :tags,  only: [:index, :show],    trailing_slash: true
+      get 'z',            to: 'channels#index',   as: :channels, trailing_slash: true
+      get 'z/:slug',      to: 'channels#show',    as: :channel, trailing_slash: true
       get ':slug/:id',    to: 'articles#show'
-      get ':slug',        to: 'articles#index',   as: :articles
+      get ':slug',        to: 'articles#index',   as: :articles, trailing_slash: true
     end
   end 
   
   scope module: :site do
     root 'application#index'
     get 'feed',         to: 'articles#feed',    as: :feed
-    resources :tags,  only: [:index, :show]
-    get 'z',            to: 'channels#index',   as: :channels
-    get 'z/:slug',      to: 'channels#show',    as: :channel
+    resources :tags,  only: [:index, :show],    trailing_slash: true
+    get 'z',            to: 'channels#index',   as: :channels, trailing_slash: true
+    get 'z/:slug',      to: 'channels#show',    as: :channel, trailing_slash: true
     get ':slug/:id',    to: 'articles#show'
-    get ':slug',        to: 'articles#index',   as: :articles
+    get ':slug',        to: 'articles#index',   as: :articles, trailing_slash: true
   end 
 end
