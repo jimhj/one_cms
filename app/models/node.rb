@@ -28,9 +28,10 @@ class Node < ActiveRecord::Base
   end
 
   def headline
-    article = descendants_articles.where.not(thumb: nil).order('id DESC').first
+    articles = descendants_articles.order('id DESC')
+    article = descendants_articles.where.not(thumb: nil).first
+    article ||= articles.first
     article ||= Article.where.not(thumb: nil).sample
-    article
   end
 
   def descendants_articles

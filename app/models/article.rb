@@ -25,9 +25,10 @@ class Article < ActiveRecord::Base
   end
 
   def self.pic(nodes = nil)
-    articles = where.not(thumb: nil).order('id DESC')
+    articles = Article.order('thumb DESC, id DESC')
     if nodes.present?
-      articles = articles.where(node_id: nodes.pluck(:id))
+      node_articles = Article.where(node_id: nodes.pluck(:id))
+      articles = node_articles if not node_articles.blank?
     end
     articles.limit(5)
   end
