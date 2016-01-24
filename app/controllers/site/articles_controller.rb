@@ -5,7 +5,7 @@ class Site::ArticlesController < Site::ApplicationController
 
   def index
     @node = Node.find_by!(slug: params[:slug])
-    @nodes = @node.root.self_and_descendants
+    @nodes = @node.self_and_descendants
     @articles = Article.where(node_id: @node.self_and_descendants.pluck(:id)).order('id DESC')
                        .paginate(page: params[:page], per_page: 20, total_entries: 1000000)
     @links = @node.links.pc
