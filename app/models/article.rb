@@ -33,12 +33,10 @@ class Article < ActiveRecord::Base
     read_attribute(:seo_description) || article_body.body.strip_tags.first(200)
   end
 
-  def self.pic(nodes = nil)
-    articles = Article.order('thumb DESC, id DESC')
-    if nodes.present?
-      node_articles = Article.where.not(node_id: nodes.pluck(:id))
-      articles = node_articles if not node_articles.blank?
-    end
+  def self.pic
+    node_ids = Node.all.pluck(:id)
+    node_ids = node_ids.sample(10)
+    articles = Article.where(node_id: node_ids).order('thumb DESC, id DESC')
     articles.limit(5)
   end
 

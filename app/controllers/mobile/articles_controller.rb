@@ -4,7 +4,7 @@ class Mobile::ArticlesController < Mobile::ApplicationController
 
   def index
     @node = Node.find_by(slug: params[:slug])
-    @nodes = @node.self_and_descendants
+    @nodes = @node.root.self_and_descendants
     @articles = Article.where(node_id: @nodes.pluck(:id)).order('id DESC').paginate(page: params[:page], per_page: 20)
     @links = @node.links.mobile
 
@@ -16,8 +16,8 @@ class Mobile::ArticlesController < Mobile::ApplicationController
   def show
     @article = Article.find params[:id]
     @node = @article.node
-    @nodes = @node.self_and_ancestors
-    @more_articles = Article.includes(:node).where(node_id: @nodes.pluck(:id)).where.not(id: @article.id).limit(5)
+    @nodes = @node.root.self_and_ancestors
+    @more_articles = Article.where(node_id: @nodes.pluck(:id)).where.not(id: @article.id).limit(5)
     set_meta title: @article.title,
                   description: @article.seo_description,
                   keywords: @article.seo_keywords

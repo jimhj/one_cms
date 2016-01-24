@@ -6,7 +6,7 @@
           i.fa.fa-image 
           span 焦点资讯 
       .list-section-inner
-        - Article.pic(@nodes).each do |article| 
+        - Article.pic.each do |article| 
           .list-section-item
             h4
               a title="#{article.title}" href="#{article_path(article)}"= article.title.truncate(18)
