@@ -32,11 +32,12 @@ module ApplicationHelper
   end
 
   def render_seo_meta_tags
+    reverse = !(controller_name == 'application' && action_name == 'index')
     display_meta_tags site: SiteConfig.app_name, 
                       title: SiteConfig.seo_title,
                       description: SiteConfig.seo_description,
                       keywords: SiteConfig.seo_keywords,
                       separator: '-',
-                      reverse: true
+                      reverse: reverse
   end
 end
