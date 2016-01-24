@@ -20,8 +20,8 @@ class Site::ArticlesController < Site::ApplicationController
   def show
     @article = Article.find params[:id]
     @node = @article.node
-    @nodes = @node.root.self_and_ancestors
-    @more_articles = Article.includes(:node).where(node_id: @nodes.pluck(:id)).where.not(id: @article.id).limit(8)
+    @nodes = @node.self_and_ancestors
+    @more_articles = Article.where(node_id: @nodes.pluck(:id)).where.not(id: @article.id).limit(8)
     @channel_keywords = @article.seo_keywords
     
     set_meta title: @article.title,

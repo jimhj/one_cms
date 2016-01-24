@@ -24,10 +24,19 @@ class Article < ActiveRecord::Base
     self.save
   end
 
+  def set_description
+    self.seo_description = article_body.body.strip_tags.first(200)
+    self.save
+  end
+
+  def seo_description
+    read_attribute(:seo_description) || article_body.body.strip_tags.first(200)
+  end
+
   def self.pic(nodes = nil)
     articles = Article.order('thumb DESC, id DESC')
     if nodes.present?
-      node_articles = Article.where(node_id: nodes.pluck(:id))
+      node_articles = Article.where.not(node_id: nodes.pluck(:id))
       articles = node_articles if not node_articles.blank?
     end
     articles.limit(5)
