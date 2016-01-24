@@ -17,6 +17,9 @@
         label 网站 url *
         = f.text_field :url, class: 'form-control', placeholder: '网站 url'
       .form-group.form-group-bordered
+        label 联系 QQ
+        = f.text_field :qq, class: 'form-control', placeholder: '联系 QQ'
+      .form-group.form-group-bordered
         label 排序值
         = f.number_field :sortrank, class: 'form-control', placeholder: '排序值越大越靠前'
       .form-group.form-group-bordered

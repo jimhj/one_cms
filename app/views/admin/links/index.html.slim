@@ -8,6 +8,7 @@
           td.text-center url
           td.text-center 栏目          
           td.text-center 排序值
+          td.text-center qq
           td.text-center 创建时间
           td.text-center 操作
         - @links.each do |link|
@@ -18,8 +19,12 @@
             td.w40
               a href="#{link.url}" target="_blank"= link.url
             td.w10.text-center= link.linkable.try(:name) || '首页'
-            td.w10.text-center= link.sortrank
+            td.w5.text-center= link.sortrank
             td.w10.text-center= link.created_at.strftime('%Y-%m-%d')
+            td.w5.text-center
+              - if not link.qq.blank?
+                a target="_blank" href="http://wpa.qq.com/msgrd?V=3&uin=&Site=健康私房话&Menu=yes"
+                  img border=0 src="http://wpa.qq.com/pa?p=1:#{link.qq}:1" alt="点击这里给我发消息"
             td.w10.text-center
               a href="#{edit_admin_link_path(link)}"
                 i.fa.fa-pencil-square

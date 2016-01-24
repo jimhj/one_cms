@@ -20,6 +20,15 @@ class Admin::NodesController < Admin::ApplicationController
     @node = Node.find params[:id]
   end
 
+  def update
+    @node = Node.find params[:id]
+    if @node.update_attributes(node_params)
+      redirect_to admin_nodes_path
+    else
+      render action: :edit
+    end
+  end
+
   private
 
   def node_params
