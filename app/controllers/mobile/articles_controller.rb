@@ -15,7 +15,7 @@ class Mobile::ArticlesController < Mobile::ApplicationController
 
   def show
     @article = Article.find params[:id]
-    @node = @article.node
+    @node = Node.find_by!(slug: params[:slug])
     @nodes = @node.root.self_and_ancestors
     @more_articles = Article.where(node_id: @nodes.pluck(:id)).where.not(id: @article.id).limit(5)
     set_meta title: @article.title,

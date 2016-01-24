@@ -19,7 +19,7 @@ class Site::ArticlesController < Site::ApplicationController
 
   def show
     @article = Article.find params[:id]
-    @node = @article.node
+    @node = Node.find_by!(slug: params[:slug])
     @nodes = @node.self_and_ancestors
     @more_articles = Article.where(node_id: @nodes.pluck(:id)).where.not(id: @article.id).limit(8)
     @channel_keywords = @article.seo_keywords
