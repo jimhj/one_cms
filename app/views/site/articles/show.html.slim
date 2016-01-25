@@ -25,11 +25,14 @@
 
       .article-content
         - SiteAd.leftsidearticletop.each do |ad|
-          .article-ad
+          .article-ad-top
             = raw ad.value
-            
+
         = article_format @article.body_html
 
+        - SiteAd.leftsidearticlebottom.each do |ad|
+          .article-ad-bottom
+            = raw ad.value
       .article-footer
         .tags.pull-left
           i.fa.fa-tags
