@@ -79,6 +79,18 @@ namespace :sitemap do
   end
 end
 
+namespace :clear do
+  task :cache do
+    on roles(:web, :db, :app) do
+      within release_path do
+        with rails_env: :production do
+          execute :bundle, "exec rake tmp:clear --trace"
+        end
+      end
+    end    
+  end
+end
+
 after 'deploy:published', 'deploy:restart'
 after 'deploy:published', 'whenever:refresh'
 after 'deploy:restart', 'sitemap:refresh'
