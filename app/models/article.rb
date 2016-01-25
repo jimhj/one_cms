@@ -31,7 +31,7 @@ class Article < ActiveRecord::Base
   end
 
   def seo_description
-    read_attribute(:seo_description) || article_body.body.strip_tags.first(200)
+    read_attribute(:seo_description) || (article_body.try(:body).try(:strip_tags) || '').first(200)
   end
 
   def self.pic
@@ -66,5 +66,9 @@ class Article < ActiveRecord::Base
   def body_html
     # article_body.body_html.presence || article_body.body 
     article_body.with_keywords
+  end
+
+  def keywords
+    seo_keywords.split(/,|，/)
   end
 end

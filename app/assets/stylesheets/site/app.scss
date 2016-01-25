@@ -6,6 +6,8 @@ $link-color: #454545;
 $link-hover-color: $brand-success;
 $pagination-active-bg: $brand-success;
 $pagination-active-border: $brand-success;
+$border-radius-large: 0;
+$border-radius-base: 0;
 
 @import "bootstrap-sprockets";
 @import "bootstrap";

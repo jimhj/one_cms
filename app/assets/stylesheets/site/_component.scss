@@ -74,10 +74,14 @@
         border-bottom: none; 
         a { padding-bottom: 0px; }
       }
+
+      .text-muted {
+        font-size: 12px;
+      }
     }
 
     ul.section-list li a {
-      display: inline-block;
+      display: block;
       padding: 10px 0px;
     }
 

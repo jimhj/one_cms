@@ -81,5 +81,6 @@ end
 
 after 'deploy:published', 'deploy:restart'
 after 'deploy:published', 'whenever:refresh'
+after 'deploy:restart', 'sitemap:refresh'
 
 

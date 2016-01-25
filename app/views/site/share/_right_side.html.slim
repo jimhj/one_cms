@@ -1,5 +1,9 @@
 - cache(['desktop-pic', @node || 'global']) do
   .right-side
+    - SiteAd.rightsidetop.each do |ad|
+      .mixed-section.ad-section
+        .mixed-section-inner= raw ad.value
+
     .list-section-narrow
       .list-section-nav
         h4
@@ -14,7 +18,11 @@
               a.image title="#{article.title}" href="#{article_path(article)}"
                 = image_tag article.thumb.url(:small), size: '90x60', title: article.title, alt: article.title
               .summary.text-muted= article.seo_description 
-              
+
+    - SiteAd.rightsidemiddle.each do |ad|
+      .mixed-section.ad-section
+        .mixed-section-inner= raw ad.value
+
     .mixed-section
       .mixed-section-nav
         h4
@@ -51,4 +59,8 @@
           ul.section-list.list-unstyled
             - Article.recent.each do |article|
               li
-                a title="#{article.title}" href="#{article_path(article)}"= article.title.truncate(18)  
+                a title="#{article.title}" href="#{article_path(article)}"= article.title.truncate(18) 
+
+    - SiteAd.rightsidebottom.each do |ad|
+      .mixed-section.ad-section
+        .mixed-section-inner= raw ad.value 

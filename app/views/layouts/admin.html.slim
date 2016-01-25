@@ -95,6 +95,16 @@ html
                   | 缓存管理
                   span.fa.arrow
               li
+                a href="#{admin_site_ads_path}"
+                  i.fa.fa-tv.fa-fw
+                  | 广告管理
+                ul.nav.nav-second-level.collapse
+                  li
+                    a href="#{admin_site_ads_path}" 广告列表
+                  li
+                    a href="#{new_admin_site_ad_path}" 添加广告
+
+              li
                 a href="#{admin_site_config_path}"
                   i.fa.fa-cog.fa-fw
                   | 网站设置

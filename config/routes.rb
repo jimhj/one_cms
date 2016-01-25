@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     resources :keywords
     resources :links, except: :show
     resources :channels
+    resources :site_ads
     get 'site_config',  to: 'site_config#edit',     as: :site_config
     post 'site_config', to: 'site_config#update',  as: :site_configs
   end
@@ -35,8 +36,9 @@ Rails.application.routes.draw do
   
   scope module: :site do
     root 'application#index'
+    resources :tags,  only: [:index, :show],    trailing_slash: true    
     get 'feed',         to: 'articles#feed',    as: :feed
-    resources :tags,  only: [:index, :show],    trailing_slash: true
+    get 'search',       to: 'articles#search',  as: :search
     get 'z',            to: 'channels#index',   as: :channels, trailing_slash: true
     get 'z/:slug',      to: 'channels#show',    as: :channel, trailing_slash: true
     get ':slug/:id',    to: 'articles#show'

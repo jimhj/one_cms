@@ -24,6 +24,10 @@
           span 投稿：#{@article.writer}
 
       .article-content
+        - SiteAd.leftsidearticletop.each do |ad|
+          .article-ad
+            = raw ad.value
+            
         = article_format @article.body_html
 
       .article-footer
@@ -31,6 +35,11 @@
           i.fa.fa-tags
           - @article.tags.each do |tag|
             a href="#{tag_path(tag.slug)}"= tag.name
+
+    - SiteAd.leftsidemiddle.each do |ad|
+      .more-like-this.mixed-section
+        .mixed-section-inner
+          = raw ad.value
 
     .more-like-this.mixed-section
       .mixed-section-nav
