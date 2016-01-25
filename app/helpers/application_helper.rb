@@ -24,9 +24,15 @@ module ApplicationHelper
   end
 
   def article_format(html)
+    strs = [
+      '#p#分页标题#e#',
+      '.hzh {display: none; }'
+    ]
+
     cleanup = html.gsub(/<p>(<br>){0,}<\/p>/, '')
-                  .gsub(/(<br>){2,}/, '<br>')
-                  .gsub('#p#分页标题#e#', '')
+                  .gsub(/(<br>){2,}(&nbsp;){0,}/, '<br>')
+
+    strs.each { |str| cleanup = cleanup.gsub(str, '') }
            
     sanitize cleanup
   end
