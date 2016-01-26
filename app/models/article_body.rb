@@ -3,7 +3,7 @@ require 'nokogiri'
 class ArticleBody < ActiveRecord::Base
   belongs_to :article
   validates_presence_of :body
-  validates_uniqueness_of :body
+  # validates_uniqueness_of :body
 
   before_create do
     restore_remote_images
