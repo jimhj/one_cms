@@ -1,4 +1,6 @@
 class Article < ActiveRecord::Base
+  include ActionView::Helpers::SanitizeHelper
+  
   belongs_to :node
   has_one :article_body, dependent: :destroy
   has_many :taggings
@@ -26,12 +28,12 @@ class Article < ActiveRecord::Base
   end
 
   def set_description
-    self.seo_description = article_body.body.strip_tags.first(200)
+    self.seo_description = strip_tags(article_body.body).first(200)
     self.save
   end
 
   def seo_description
-    read_attribute(:seo_description) || (article_body.try(:body).try(:strip_tags) || '').first(200)
+    read_attribute(:seo_description) || strip_tags(article_body.try(:body) || '').first(200)
   end
 
   def self.pic
