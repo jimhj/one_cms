@@ -6,6 +6,10 @@
   .mixed-section-inner {
     @include clearfix;
     padding: 15px 15px;
+
+    &.narrow-padding-bottom {
+      padding-bottom: 5px;
+    }
   }
 
   .mixed-section-image {
@@ -93,6 +97,7 @@
 
     ul.tag-list {
       @include clearfix;
+      margin-bottom: 0px;
     }
 
     ul.tag-list li {
