@@ -10,6 +10,7 @@ class Article < ActiveRecord::Base
   accepts_nested_attributes_for :article_body, allow_destroy: true
 
   validates_presence_of :node_id, :title
+  validates_uniqueness_of :title
 
   scope :recent, -> { order('id DESC').limit(10) }
   scope :focus, -> { where(focus: true).order('id DESC').limit(3) }

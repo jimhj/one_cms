@@ -8,11 +8,19 @@ class Admin::NodesController < Admin::ApplicationController
   end
 
   def create
-    @node = Node.new(node_params)
-    if @node.save
-      redirect_to admin_nodes_path
+    if @node = Node.find_by(slug: node_params[:slug])
+      if @node.update_attributes(node_params)
+        redirect_to admin_nodes_path
+      else
+        render action: :new
+      end
     else
-      render action: :new
+      @node = Node.new(node_params)
+      if @node.save
+        redirect_to admin_nodes_path
+      else
+        render action: :new
+      end      
     end
   end
 
