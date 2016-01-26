@@ -1,7 +1,7 @@
 .breadcrumb-container {
   @include clearfix;
-  height: 22px;
-  line-height: 22px;
+  height: 30px;
+  line-height: 30px;
   margin-bottom: 10px;
 }
 
@@ -12,6 +12,29 @@
   padding: 0;
 
   .fa-caret-right { margin-right: 5px; }
+}
+
+.breadcrumb-container .search-field {
+  width: 200px;
+  position: relative;
+
+  i.fa.fa-search, input.input-sm {
+    position: absolute;
+  }
+
+  i.fa.fa-search {
+    top: 8px;
+    left: 8px;
+    color: #cccccc;
+  }
+
+  input.input-sm {
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding-left: 24px;
+    border-radius: 20px;
+  }
 }
 
 .article-detail-container {

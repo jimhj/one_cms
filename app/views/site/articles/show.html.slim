@@ -11,10 +11,10 @@
             a href="#{articles_path(node.slug)}" title="#{node.name}"= node.name
 
         li.active 正文
-      .favorite.pull-right
-        button.btn.btn-xs.btn-default.favorite-btn
-          i.fa.fa-star-o
-          | 收藏    
+      .search-field.pull-right
+        = form_tag search_path, method: 'GET' do
+          input.form-control.input-sm type="text" placeholder="搜索关键词" name="q" value=""
+          i.fa.fa-search 
     .article-detail-container
       .article-header
         h1= @article.title
