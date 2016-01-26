@@ -7,7 +7,6 @@ html
     = favicon_link_tag 'h4.ico'
     = csrf_meta_tags
     meta charset="utf-8"    
-    meta name="viewport" content="width=device-width, initial-scale=1"
     meta http-equiv="X-UA-Compatible" content="IE=edge"
     meta name="renderer" content="webkit"
     meta content="pc,mobile" name="applicable-device"
@@ -15,6 +14,7 @@ html
 
     /[if lt IE 8]
         = stylesheet_link_tag 'bootstrap-ie7'
+        = javascript_include_tag 'respond'
 
   body class="#{controller_name}"
     .nav.navbar.navbar-default.navbar-fixed-top role="navigation"
@@ -39,10 +39,10 @@ html
               a 
                 = icon('caret-right')
                 | 更多   
-                ul.dropdown-menu
-                  - Node.rest.each do |node|
-                    li
-                      a href="#{articles_path(node.slug)}"= node.name                   
+              ul.dropdown-menu
+                - Node.rest.each do |node|
+                  li
+                    a href="#{articles_path(node.slug)}"= node.name                   
             li
               a href="mailto:bd@h4.com.cn?subject=健康私房话投稿"
                 = icon('send')
@@ -55,7 +55,7 @@ html
     .main-container.container
       = yield
 
-    footer
+    .footer role="footer"
       .container
         - if @links.present?
           .website

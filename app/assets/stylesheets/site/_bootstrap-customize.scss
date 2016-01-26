@@ -10,6 +10,23 @@
   @include box-shadow(0 1px 2px #f1f1f1);
 }
 
+.navbar-collapse.collapse {
+  display: block !important;  
+}
+
+.nav.navbar-nav {
+  margin: 0;
+}
+
+.navbar-nav > li, .navbar-nav {
+  float: left !important;
+  // margin: 0;
+}
+
+.navbar-right {
+  float: right !important;
+}
+
 .nav > .container {
   width: 1000px !important;
 
@@ -23,7 +40,7 @@
   }
 
   .main-nav > li > a {
-    border-right: 1px solid rgba(0, 0, 0, 0.15);
+    border-right: 1px solid #dcdcdc;
     padding: 10px 24px 10px 24px;
     margin-right: -1px;
     line-height: 30px;
@@ -46,6 +63,9 @@
 
   .sub-nav {
     font-size: 12px;
+    & > li > a {
+      padding-top: 15px;
+    }
     i.fa { margin-right: 5px; }
   }
 
