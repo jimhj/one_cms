@@ -54,4 +54,9 @@
               li
                 a href="#{article_path(article)}" title="#{article.title}"= article.title.truncate(18)
 
+    - SiteAd.leftsidebottom.each do |ad|
+      .more-like-this.mixed-section
+        .mixed-section-inner
+          = raw ad.value
+          
   = render 'site/share/right_side'
