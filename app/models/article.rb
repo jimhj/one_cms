@@ -20,9 +20,9 @@ class Article < ActiveRecord::Base
     return 0 if not self.thumb.blank?
     imgs = Nokogiri::HTML(self.body_html).css('img').collect{ |img| img[:src] }
     return 1 if not imgs.any?
-    img = imgs.first.split(Setting.carrierwave.asset_host + '/').last
+    img = imgs.first
     return 2 if img.nil?
-    img = Rails.root.join('public', img)
+    # img = Rails.root.join('public', img)
     img = MiniMagick::Image.open(img)
     self.thumb = img
     self.save

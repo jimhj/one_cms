@@ -11,7 +11,7 @@ class ArticleBody < ActiveRecord::Base
 
   after_create do
     article.delay.analyze_keywords
-    article.set_thumb
+    article.delay.set_thumb
     
     if article.seo_description.blank?
       article.set_description
