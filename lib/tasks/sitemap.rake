@@ -36,7 +36,7 @@ namespace :g do
         }
       end
 
-      Article.order('id DESC').limit(100).each do |article|
+      Article.order('id DESC').limit(1000).each do |article|
         xm.url {
           xm.loc File.join(host, article.node.slug, article.id.to_s).to_s
           xm.lastmod article.updated_at.strftime('%F')
