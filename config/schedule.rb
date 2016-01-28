@@ -17,6 +17,6 @@
 #   runner "AnotherModel.prune_old_records"
 # end
 
-every 1.day, :at => '00:00 am' do
+every 2.hours do
   rake 'g:sitemap'
 end
