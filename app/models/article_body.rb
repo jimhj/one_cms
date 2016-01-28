@@ -50,9 +50,9 @@ class ArticleBody < ActiveRecord::Base
           picture = RedactorRails.picture_model.new
           url = img[:src]
 
-          if not url.start_with?('http')
-            url = File.join(Setting.legacy_image_dir, url).to_s
-          end
+          # if not url.start_with?('http')
+          #   url = File.join(Setting.legacy_image_dir, url).to_s
+          # end
 
           data = MiniMagick::Image.open(url)
           picture.data = data
@@ -63,6 +63,7 @@ class ArticleBody < ActiveRecord::Base
 
         img[:src]
       rescue => e
+        # raise e
         next
       end
     end.compact
