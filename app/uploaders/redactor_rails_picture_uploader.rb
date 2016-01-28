@@ -15,9 +15,9 @@ class RedactorRailsPictureUploader < CarrierWave::Uploader::Base
   def store_dir
     # "system/redactor_assets/pictures/#{model.id}"
     if model.id <= 64008
-      File.join Setting.upload_dir, "system/redactor_assets/pictures_2/#{model.id}"
-    else
       File.join Setting.upload_dir, "system/redactor_assets/pictures/#{model.id}"
+    else
+      File.join Setting.upload_dir, "system/redactor_assets/pictures_2/#{model.id}"
     end
   end
 
