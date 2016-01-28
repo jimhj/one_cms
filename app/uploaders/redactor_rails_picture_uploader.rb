@@ -17,7 +17,7 @@ class RedactorRailsPictureUploader < CarrierWave::Uploader::Base
     if model.id <= 64008
       "system/redactor_assets/pictures/#{model.id}"
     else
-      "system/redactor_assets/pictures_2/#{model.created_at.strftime('%Y%m')}/#{model.id}"
+      "system/redactor_assets/pictures_2/#{model.id}"
     end
   end
 
