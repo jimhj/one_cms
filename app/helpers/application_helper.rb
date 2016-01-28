@@ -26,7 +26,8 @@ module ApplicationHelper
   def article_format(html)
     strs = [
       '#p#分页标题#e#',
-      '.hzh {display: none; }'
+      '.hzh {display: none; }',
+      '养生吧（www.ys8.com）'
     ]
 
     cleanup = html.gsub(/<p>(<br>){0,}<\/p>/, '')
