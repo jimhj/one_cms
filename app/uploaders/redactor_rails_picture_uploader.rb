@@ -14,7 +14,11 @@ class RedactorRailsPictureUploader < CarrierWave::Uploader::Base
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
     # "system/redactor_assets/pictures/#{model.id}"
-    File.join Setting.upload_dir, "system/redactor_assets/pictures/#{model.id}"
+    if model.id <= 64008
+      File.join Setting.upload_dir, "system/redactor_assets/pictures_2/#{model.id}"
+    else
+      File.join Setting.upload_dir, "system/redactor_assets/pictures/#{model.id}"
+    end
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
