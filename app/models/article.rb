@@ -23,7 +23,7 @@ class Article < ActiveRecord::Base
   end
 
   after_update do
-    if (self.linked.changed? || self.link_word.changed?) && self.linked?
+    if (changed_attributes.keys.include?('linked') or changed_attributes.keys.include?('link_word')) && self.linked?
       self.delay.create_keyword
     end
   end
