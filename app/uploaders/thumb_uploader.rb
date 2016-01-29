@@ -29,7 +29,11 @@ class ThumbUploader < CarrierWave::Uploader::Base
 
   def store_dir
     # "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
-    "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+    if model.id <= 821431
+      "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+    else
+      "uploads/#{model.class.to_s.underscore}/#{mounted_as}_#{id_partition}/#{model.id}"
+    end
   end
 
   def extension_white_list
@@ -41,5 +45,9 @@ class ThumbUploader < CarrierWave::Uploader::Base
       @name ||= Digest::MD5.hexdigest(File.dirname(current_path))
       "#{@name}.#{file.extension}"
     end
+  end
+
+  def id_partition
+    ("%09d" % model.id).scan(/\d{3}/).join("_")
   end
 end

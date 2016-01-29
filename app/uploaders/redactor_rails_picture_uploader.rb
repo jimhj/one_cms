@@ -14,10 +14,13 @@ class RedactorRailsPictureUploader < CarrierWave::Uploader::Base
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
     # "system/redactor_assets/pictures/#{model.id}"
+
     if model.id <= 64008
       "system/redactor_assets/pictures/#{model.id}"
-    else
+    elsif model.id > 64008 && model.id <= 821431
       "system/redactor_assets/pictures_2/#{model.id}"
+    else
+      "system/redactor_assets/pictures_#{id_partition}/#{model.id}"
     end
   end
 
@@ -57,5 +60,9 @@ class RedactorRailsPictureUploader < CarrierWave::Uploader::Base
       @name ||= Digest::MD5.hexdigest(current_path)
       "#{Time.now.year}/#{@name}.#{file.extension.downcase}"
     end
+  end
+
+  def id_partition
+    ("%09d" % model.id).scan(/\d{3}/).join("_")
   end
 end
