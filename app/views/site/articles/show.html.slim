@@ -37,6 +37,10 @@
           - @article.tags.each do |tag|
             a href="#{tag_path(tag.slug)}"= tag.name
 
+    .mixed-section.more-like-this
+      .mixed-section-inner
+        = render 'site/share/changyan'
+
     - SiteAd.leftsidemiddle.actived.each do |ad|
       .more-like-this.mixed-section
         .mixed-section-inner
