@@ -16,6 +16,9 @@
     label 文章来源
     = f.text_field :source, class: 'form-control', placeholder: '文章来源'
   .form-group.form-group-bordered
+    label 投稿
+    = f.text_field :writer, class: 'form-control', placeholder: '作者'
+  .form-group.form-group-bordered
     label 文章题图
     = f.file_field :thumb
   .form-group.form-group-bordered

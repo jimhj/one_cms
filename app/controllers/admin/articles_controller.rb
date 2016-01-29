@@ -44,7 +44,7 @@ class Admin::ArticlesController < Admin::ApplicationController
   private
 
   def article_params
-    params.require(:article).permit(:node_id, :title, :short_title, :thumb, :source, :seo_title, :seo_keywords, :seo_description, :hot, :focus, :article_body_attributes => [:id, :body])
+    params.require(:article).permit(:node_id, :title, :short_title, :thumb, :source, :writer, :seo_title, :seo_keywords, :seo_description, :hot, :focus, :article_body_attributes => [:id, :body])
   end
 
   def paginate_params
