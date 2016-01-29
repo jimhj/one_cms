@@ -1,5 +1,5 @@
 class Site::ArticlesController < Site::ApplicationController
-  caches_action :feed, expires_in: 1.day
+  caches_action :feed, expires_in: 2.hours
   caches_action :index, :cache_path => Proc.new { |c| c.request.url + '-desktop' }, :expires_in => 6.hours
   caches_action :show, :cache_path => Proc.new{ |c| 'articles' + "-#{c.params[:slug]}-" + c.params[:id] + '-desktop' }, :expires_in => 1.day
 
@@ -37,7 +37,7 @@ class Site::ArticlesController < Site::ApplicationController
   end
 
   def feed
-    @articles = Article.includes(:article_body, :node).order('id DESC').limit(20)
+    @articles = Article.includes(:article_body, :node).order('id DESC').limit(1000)
     render layout: false
   end   
 end
