@@ -1,7 +1,7 @@
 - cache(['desktop-pic', @node || 'global']) do
   .right-side
     .search-field
-      = form_tag search_path, method: 'GET' do
+      = form_tag search_path, method: 'GET', target: '_blank' do
         input.form-control.input-sm type="text" placeholder="搜索关键词" name="q" value=""
         i.fa.fa-search
         input.btn.btn-default.btn-sm type="submit" value="搜索"

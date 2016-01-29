@@ -41,7 +41,7 @@ Rails.application.routes.draw do
     get 'search',       to: 'articles#search',  as: :search
     get 'z',            to: 'channels#index',   as: :channels, trailing_slash: true
     get 'z/:slug',      to: 'channels#show',    as: :channel, trailing_slash: true
-    get ':slug/:id',    to: 'articles#show'
+    get ':slug/:id',    to: 'articles#show',    as: :article
     get ':slug',        to: 'articles#index',   as: :articles, trailing_slash: true
   end 
 end

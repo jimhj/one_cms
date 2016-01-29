@@ -30,6 +30,10 @@
               | &nbsp;
               - if article.hot?
                 i.fa.fa-fire title="热门头条"
+              | &nbsp;
+              - if article.linked?
+                i.fa.fa-link title="内链"
+              | &nbsp;
             td.w10.text-center
               a href="#{edit_admin_article_path(article, page: params[:page])}"
                 i.fa.fa-pencil-square

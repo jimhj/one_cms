@@ -16,6 +16,17 @@ class Article < ActiveRecord::Base
   scope :focus, -> { where(focus: true).order('id DESC').limit(3) }
   scope :hot, -> { where(hot: true, thumb: nil).order('id DESC').limit(6) }
 
+  after_create do
+    if self.linked?
+      self.delay.create_keyword
+    end
+  end
+
+  def create_keyword
+    link = "http://www.h4.com.cn/#{node.slug}/#{id}"
+    Keyword.create(name: self.link_word, url: link, sortrank: 1000)
+  end
+
   def set_thumb
     return 0 if not self.thumb.blank?
     imgs = Nokogiri::HTML(self.body_html).css('img').collect{ |img| img[:src] }

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160126151116) do
+ActiveRecord::Schema.define(version: 20160129140239) do
 
   create_table "admin_users", force: :cascade do |t|
     t.string   "login",           limit: 30,  null: false
@@ -49,6 +49,8 @@ ActiveRecord::Schema.define(version: 20160126151116) do
     t.boolean  "focus",           limit: 1,   default: false
     t.boolean  "hot",             limit: 1,   default: false
     t.integer  "status",          limit: 4,   default: 0
+    t.boolean  "linked",          limit: 1,   default: false
+    t.string   "link_word",       limit: 255
     t.datetime "created_at",                                  null: false
     t.datetime "updated_at",                                  null: false
   end
