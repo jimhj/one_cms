@@ -22,6 +22,12 @@ class Article < ActiveRecord::Base
     end
   end
 
+  after_update do
+    if (self.linked.changed? || self.link_word.changed?) && self.linked?
+      self.delay.create_keyword
+    end
+  end
+
   def create_keyword
     link = "http://www.h4.com.cn/#{node.slug}/#{id}"
     Keyword.create(name: self.link_word, url: link, sortrank: 1000)
