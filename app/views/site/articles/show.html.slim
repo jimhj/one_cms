@@ -27,7 +27,8 @@
             = raw ad.value
 
         = article_format @article.body_html
-
+        / = render 'site/share/donate'
+        
         - SiteAd.leftsidearticlebottom.actived.each do |ad|
           .article-ad-bottom
             = raw ad.value
