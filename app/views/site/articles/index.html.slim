@@ -11,9 +11,8 @@
             a href="#{articles_path(node.slug)}" title="#{node.name}"= node.name
 
         li.active= @node.name 
-      .search-field.pull-right
-        = form_tag search_path, method: 'GET' do
-          input.form-control.input-sm type="text" placeholder="搜索关键词" name="q" value=""
+      .social-share.pull-right
+        = render 'site/share/bd_share'
           i.fa.fa-search   
     .list-section
       .list-section-nav

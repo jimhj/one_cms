@@ -12,10 +12,8 @@
 
         li.active= @tag.name
          
-      .search-field.pull-right
-        = form_tag search_path, method: 'GET' do
-          input.form-control.input-sm type="text" placeholder="搜索关键词" name="q" value=""
-          i.fa.fa-search 
+      .social-share.pull-right
+        = render 'site/share/bd_share'
 
     .list-section
       .list-section-nav
