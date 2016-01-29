@@ -24,13 +24,13 @@
           span 投稿：#{@article.writer}
 
       .article-content
-        - SiteAd.leftsidearticletop.each do |ad|
+        - SiteAd.leftsidearticletop.actived.each do |ad|
           .article-ad-top
             = raw ad.value
 
         = article_format @article.body_html
 
-        - SiteAd.leftsidearticlebottom.each do |ad|
+        - SiteAd.leftsidearticlebottom.actived.each do |ad|
           .article-ad-bottom
             = raw ad.value
       .article-footer
@@ -39,7 +39,7 @@
           - @article.tags.each do |tag|
             a href="#{tag_path(tag.slug)}"= tag.name
 
-    - SiteAd.leftsidemiddle.each do |ad|
+    - SiteAd.leftsidemiddle.actived.each do |ad|
       .more-like-this.mixed-section
         .mixed-section-inner
           = raw ad.value
@@ -54,7 +54,7 @@
               li
                 a href="#{article_path(article)}" title="#{article.title}"= article.title.truncate(18)
 
-    - SiteAd.leftsidebottom.each do |ad|
+    - SiteAd.leftsidebottom.actived.each do |ad|
       .more-like-this.mixed-section
         .mixed-section-inner
           = raw ad.value

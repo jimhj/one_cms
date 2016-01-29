@@ -5,6 +5,10 @@ class SiteAd < ActiveRecord::Base
     order('sortrank DESC, id DESC')
   }
 
+  scope :actived, -> {
+    where(active: true)
+  }
+
   def self.types
     {
       'leftsidearticletop'    => '正文内容上方',
