@@ -20,7 +20,7 @@ class RedactorRailsPictureUploader < CarrierWave::Uploader::Base
     elsif model.id > 64008 && model.id <= 128381
       "system/redactor_assets/pictures_2/#{model.id}"
     else
-      "system/redactor_assets/pictures_#{id_partition}/#{model.id}"
+      "system/redactor_assets/pictures_3/#{id_partition}/#{model.id}"
     end
   end
 
@@ -63,6 +63,6 @@ class RedactorRailsPictureUploader < CarrierWave::Uploader::Base
   end
 
   def id_partition
-    ("%09d" % model.id).scan(/\d{3}/).join("_")
+    ("%09d" % model.id).scan(/\d{3}/).join("/")
   end
 end

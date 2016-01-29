@@ -32,7 +32,7 @@ class ThumbUploader < CarrierWave::Uploader::Base
     if model.id <= 821431
       "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
     else
-      "uploads/#{model.class.to_s.underscore}/#{mounted_as}_#{id_partition}/#{model.id}"
+      "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{id_partition}/#{model.id}"
     end
   end
 
@@ -48,6 +48,6 @@ class ThumbUploader < CarrierWave::Uploader::Base
   end
 
   def id_partition
-    ("%09d" % model.id).scan(/\d{3}/).join("_")
+    ("%09d" % model.id).scan(/\d{3}/).join("/")
   end
 end
