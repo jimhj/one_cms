@@ -17,7 +17,7 @@ class RedactorRailsPictureUploader < CarrierWave::Uploader::Base
 
     if model.id <= 64008
       "system/redactor_assets/pictures/#{model.id}"
-    elsif model.id > 64008 && model.id <= 821431
+    elsif model.id > 64008 && model.id <= 128381
       "system/redactor_assets/pictures_2/#{model.id}"
     else
       "system/redactor_assets/pictures_#{id_partition}/#{model.id}"
