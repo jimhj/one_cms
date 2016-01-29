@@ -37,7 +37,7 @@ class Site::ArticlesController < Site::ApplicationController
   end
 
   def feed
-    @articles = Article.includes(:article_body, :node).order('id DESC').limit(1000)
+    @articles = Article.includes(:article_body, :node).order('id DESC').limit(200)
     render layout: false
   end   
 end
