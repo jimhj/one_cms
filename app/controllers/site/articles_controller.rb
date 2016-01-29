@@ -1,7 +1,7 @@
 class Site::ArticlesController < Site::ApplicationController
   caches_action :feed, expires_in: 1.day
   caches_action :index, :cache_path => Proc.new { |c| c.request.url + '-desktop' }, :expires_in => 6.hours
-  caches_action :show, :cache_path => Proc.new{ |c| 'articles-' + " #{c.params[:slug]} -" + c.params[:id] + '-desktop' }, :expires_in => 1.day
+  caches_action :show, :cache_path => Proc.new{ |c| 'articles' + "-#{c.params[:slug]}-" + c.params[:id] + '-desktop' }, :expires_in => 1.day
 
   def index
     @node = Node.find_by!(slug: params[:slug])
@@ -18,8 +18,8 @@ class Site::ArticlesController < Site::ApplicationController
   end
 
   def show
-    @article = Article.find params[:id]
     @node = Node.find_by!(slug: params[:slug])
+    @article = @node.articles.find(params[:id])
     @nodes = @node.self_and_ancestors
     @more_articles = Article.where(node_id: @nodes.pluck(:id)).where.not(id: @article.id).limit(8)
     @channel_keywords = @article.seo_keywords
