@@ -1,6 +1,6 @@
 class Admin::KeywordsController < Admin::ApplicationController
   def index
-    @keywords = Keyword.order('sortrank DESC, created_at DESC')
+    @keywords = Keyword.order('sortrank DESC, created_at DESC').paginate(per_page: 50, page: params[:page], total_entries: 20000)
   end
 
   def new

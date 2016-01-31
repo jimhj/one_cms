@@ -24,3 +24,4 @@
               a href="#{admin_keyword_path(keyword)}" data-method="DELETE" data-confirm="确认删除吗，将无法恢复？"
                 i.fa.fa-trash
     
+    = will_paginate @keywords, renderer: BootstrapPagination::Rails
