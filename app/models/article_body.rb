@@ -23,28 +23,20 @@ class ArticleBody < ActiveRecord::Base
     keywords = Keyword.select(:name, :url).each do |keyword|
       ele = doc.xpath("//p[contains(text(), '#{keyword.name}')]").first
       next if ele.nil?
-      # if ele.name == 'a'
-      #   ele.set_attribute(:href, keyword.url)
-      #   ele.set_attribute(:target, '_blank')
-      #   ele.set_attribute(:css, 'hot-link')
-      #   ele.set_attribute(:title, keyword.name)
-      # else
-      #   link = Nokogiri::XML::Node.new "a", doc
-      #   link.set_attribute(:href, keyword.url)
-      #   link.set_attribute(:css, 'hot-link')
-      #   link.set_attribute(:target, '_blank')
-      #   link.set_attribute(:title, keyword.name)
-      #   link.content = keyword.name
-      #   ele.inner_html = ele.content.sub(/#{keyword.name}/, link.to_html)
-      # end
-
-      link = Nokogiri::XML::Node.new "a", doc
-      link.set_attribute(:href, keyword.url)
-      link.set_attribute(:css, 'hot-link')
-      link.set_attribute(:target, '_blank')
-      link.set_attribute(:title, keyword.name)
-      link.content = keyword.name
-      ele.inner_html = ele.content.sub(/#{keyword.name}/, link.to_html)      
+      if ele.name == 'a'
+        ele.set_attribute(:href, keyword.url)
+        ele.set_attribute(:target, '_blank')
+        ele.set_attribute(:css, 'hot-link')
+        ele.set_attribute(:title, keyword.name)
+      else
+        link = Nokogiri::XML::Node.new "a", doc
+        link.set_attribute(:href, keyword.url)
+        link.set_attribute(:css, 'hot-link')
+        link.set_attribute(:target, '_blank')
+        link.set_attribute(:title, keyword.name)
+        link.content = keyword.name
+        ele.inner_html = ele.content.sub(/#{keyword.name}/, link.to_html)
+      end    
     end
 
     doc.to_s
