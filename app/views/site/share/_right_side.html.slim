@@ -1,72 +1,71 @@
-- cache(['desktop-pic', Article.maximum(:id)]) do
-  .right-side
-    .search-field
-      = form_tag search_path, method: 'GET', target: '_blank' do
-        input.form-control.input-sm type="text" placeholder="搜索关键词" name="q" value=""
-        i.fa.fa-search
-        input.btn.btn-default.btn-sm type="submit" value="搜索"
+.right-side
+  .search-field
+    = form_tag search_path, method: 'GET', target: '_blank' do
+      input.form-control.input-sm type="text" placeholder="搜索关键词" name="q" value=""
+      i.fa.fa-search
+      input.btn.btn-default.btn-sm type="submit" value="搜索"
 
-    - SiteAd.rightsidetop.actived.each do |ad|
-      .mixed-section.ad-section
-        .mixed-section-inner= raw ad.value
+  - SiteAd.rightsidetop.actived.each do |ad|
+    .mixed-section.ad-section
+      .mixed-section-inner= raw ad.value
 
-    .list-section-narrow
-      .list-section-nav
-        h4
-          i.fa.fa-image 
-          span 焦点资讯 
-      .list-section-inner
-        - Article.pic.each do |article| 
-          .list-section-item
-            h4
-              a title="#{article.title}" href="#{article_path(article)}"= article.title.truncate(18)
-            .content.clearfix
-              a.image title="#{article.title}" href="#{article_path(article)}"
-                = image_tag article.thumb.url(:small), size: '90x60', title: article.title, alt: article.title
-              .summary.text-muted= article.seo_description 
+  .list-section-narrow
+    .list-section-nav
+      h4
+        i.fa.fa-image 
+        span 焦点资讯 
+    .list-section-inner
+      - Article.pic.each do |article| 
+        .list-section-item
+          h4
+            a title="#{article.title}" href="#{article_path(article)}"= article.title.truncate(18)
+          .content.clearfix
+            a.image title="#{article.title}" href="#{article_path(article)}"
+              = image_tag article.thumb.url(:small), size: '90x60', title: article.title, alt: article.title
+            .summary.text-muted= article.seo_description 
 
-    - SiteAd.rightsidemiddle.actived.each do |ad|
-      .mixed-section.ad-section
-        .mixed-section-inner= raw ad.value
+  - SiteAd.rightsidemiddle.actived.each do |ad|
+    .mixed-section.ad-section
+      .mixed-section-inner= raw ad.value
 
-    .mixed-section
-      .mixed-section-nav
-        h4
-          a href="#{tags_path}"
-            i.fa.fa-bookmark
-            span 热门标签
-      .mixed-section-inner.narrow-padding-bottom
-        .mixed-section-text
-          ul.tag-list.list-unstyled
-            - Tag.hot.each do |tag|
-              li
-                a title="#{tag.name}" href="#{tag_path(tag.slug)}"= tag.name
+  .mixed-section
+    .mixed-section-nav
+      h4
+        a href="#{tags_path}"
+          i.fa.fa-bookmark
+          span 热门标签
+    .mixed-section-inner.narrow-padding-bottom
+      .mixed-section-text
+        ul.tag-list.list-unstyled
+          - Tag.hot.each do |tag|
+            li
+              a title="#{tag.name}" href="#{tag_path(tag.slug)}"= tag.name
 
-    .mixed-section
-      .mixed-section-nav
-        h4
-          a href="#{channels_path}" 
-            i.fa.fa-book
-            span 热点专题
-      .mixed-section-inner
-        .mixed-section-text
-          ul.section-list.list-unstyled
-            - Channel.hot(@channel_keywords).each do |channel|
-              li
-                a title="#{channel.name}" href="#{channel_path(channel)}"= channel.name    
+  .mixed-section
+    .mixed-section-nav
+      h4
+        a href="#{channels_path}" 
+          i.fa.fa-book
+          span 热点专题
+    .mixed-section-inner
+      .mixed-section-text
+        ul.section-list.list-unstyled
+          - Channel.hot(@channel_keywords).each do |channel|
+            li
+              a title="#{channel.name}" href="#{channel_path(channel)}"= channel.name    
 
-    .mixed-section
-      .mixed-section-nav
-        h4
-          i.fa.fa-star
-          span 最新文章
-      .mixed-section-inner
-        .mixed-section-text
-          ul.section-list.list-unstyled
-            - Article.recent.each do |article|
-              li
-                a title="#{article.title}" href="#{article_path(article)}"= article.title.truncate(18) 
+  .mixed-section
+    .mixed-section-nav
+      h4
+        i.fa.fa-star
+        span 最新文章
+    .mixed-section-inner
+      .mixed-section-text
+        ul.section-list.list-unstyled
+          - Article.recent.each do |article|
+            li
+              a title="#{article.title}" href="#{article_path(article)}"= article.title.truncate(18) 
 
-    - SiteAd.rightsidebottom.actived.each do |ad|
-      .mixed-section.ad-section
-        .mixed-section-inner= raw ad.value 
+  - SiteAd.rightsidebottom.actived.each do |ad|
+    .mixed-section.ad-section
+      .mixed-section-inner= raw ad.value 
