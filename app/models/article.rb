@@ -20,12 +20,20 @@ class Article < ActiveRecord::Base
     if self.linked?
       self.delay.create_keyword
     end
+
+    self.delay.notify_baidu_spider
   end
 
   after_update do
     if (changed_attributes.keys.include?('linked') or changed_attributes.keys.include?('link_word')) && self.linked?
       self.delay.create_keyword
     end
+  end
+
+  def notify_baidu_spider
+    url = "http://www.h4.com.cn/#{node.slug}/#{id}"
+    site = RestClient::Resource.new('http://data.zz.baidu.com')
+    site['urls?site=www.h4.com.cn&token=2yEYwtNjfx5k5sNB'].post url, :content_type => 'text/plain'
   end
 
   def create_keyword
