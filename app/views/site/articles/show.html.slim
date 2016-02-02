@@ -27,7 +27,12 @@
             = raw ad.value
 
         = article_format @article.body_html
-        / = render 'site/share/donate'
+
+        .clearfix.text-center.next-prev
+          - if @article.prev
+            a.btn.btn-default title="#{@article.prev.title}" href="#{article_path(@article.prev)}" &#8592; 上一篇 
+          - if @article.next
+            a.btn.btn-default title="#{@article.next.title}" href="#{article_path(@article.next)}" 下一篇：#{@article.next.title.truncate(20)} &#8594;
         
         - SiteAd.leftsidearticlebottom.actived.each do |ad|
           .article-ad-bottom

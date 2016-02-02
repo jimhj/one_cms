@@ -3,7 +3,6 @@ require 'nokogiri'
 class ArticleBody < ActiveRecord::Base
   belongs_to :article
   validates_presence_of :body
-  # validates_uniqueness_of :body
 
   before_create do
     restore_remote_images
@@ -18,9 +17,19 @@ class ArticleBody < ActiveRecord::Base
     end
   end
 
-  def with_keywords
-    doc = Nokogiri::HTML(self.body)
-    keywords = Keyword.select(:name, :url).each do |keyword|
+  def replace_keywords
+    update_column(:body_html, nil) if cached_keyword_id.zero?
+
+    keywords = Keyword.order('id DESC').select(:id, :name, :url)
+    if not cached_keyword_id.zero?
+      keywords = keywords.where('id > ?', cached_keyword_id)
+    end
+    keywords = keywords.limit(5000)
+
+    return self.body_html if keywords.blank?
+    
+    doc = Nokogiri::HTML(self.body_html.presence || self.body)
+    keywords.each do |keyword|
       ele = doc.xpath("//p[contains(text(), '#{keyword.name}')]").first
       next if ele.nil?
       if ele.name == 'a'
@@ -38,9 +47,14 @@ class ArticleBody < ActiveRecord::Base
         ele.inner_html = ele.content.sub(/#{keyword.name}/, link.to_html)
       end    
     end
+    update_columns(cached_keyword_id: keywords.first.id, body_html: doc.to_s)
 
     doc.to_s
   end
+
+  # def cached_keyword_id
+    
+  # end
 
   def restore_remote_images
     doc = Nokogiri::HTML(self.body)

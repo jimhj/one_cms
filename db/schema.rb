@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160129140239) do
+ActiveRecord::Schema.define(version: 20160202131253) do
 
   create_table "admin_users", force: :cascade do |t|
     t.string   "login",           limit: 30,  null: false
@@ -25,10 +25,11 @@ ActiveRecord::Schema.define(version: 20160129140239) do
   end
 
   create_table "article_bodies", force: :cascade do |t|
-    t.integer "article_id",   limit: 4,     null: false
-    t.text    "body",         limit: 65535
-    t.text    "body_html",    limit: 65535
-    t.string  "redirect_url", limit: 100
+    t.integer "article_id",        limit: 4,                 null: false
+    t.text    "body",              limit: 65535
+    t.text    "body_html",         limit: 65535
+    t.integer "cached_keyword_id", limit: 4,     default: 0
+    t.string  "redirect_url",      limit: 100
   end
 
   add_index "article_bodies", ["article_id"], name: "index_article_bodies_on_article_id", using: :btree

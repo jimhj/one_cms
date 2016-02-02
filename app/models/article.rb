@@ -91,9 +91,17 @@ class Article < ActiveRecord::Base
     update_attribute :seo_keywords, keywords.join(',')
   end
 
+  def next
+    Article.where("id < ?", id).order("id DESC").first
+  end
+
+  def prev
+    Article.where("id > ?", id).order("id ASC").first
+  end
+
   def body_html
     # article_body.body_html.presence || article_body.body 
-    article_body.with_keywords
+    article_body.replace_keywords
   end
 
   def keywords
