@@ -1,4 +1,4 @@
-- cache(['desktop-pic', @node || 'global']) do
+- cache(['desktop-pic', Article.maximum(:id)]) do
   .right-side
     .search-field
       = form_tag search_path, method: 'GET', target: '_blank' do
