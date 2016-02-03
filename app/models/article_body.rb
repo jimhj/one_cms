@@ -60,7 +60,7 @@ class ArticleBody < ActiveRecord::Base
 
     keywords.each do |kw|
       link = "<a href='#{kw.url}' class='hot-link' target='_blank'>#{kw.name}</a>"
-      self.body_html = (self.body_html.presence || self.body).sub(/#{kw.name}/, link)
+      self.body_html = (self.body_html.presence || self.body).sub(kw.name, link)
     end
 
     update_columns(cached_keyword_id: keywords.first.try(:id) || 0, body_html: self.body_html)
