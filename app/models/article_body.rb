@@ -1,6 +1,8 @@
 require 'nokogiri'
 
 class ArticleBody < ActiveRecord::Base
+  include ActionView::Helpers::SanitizeHelper
+
   belongs_to :article
   validates_presence_of :body
 
@@ -18,8 +20,6 @@ class ArticleBody < ActiveRecord::Base
   end
 
   def replace_keywords
-    update_column(:body_html, nil) if cached_keyword_id.zero?
-
     keywords = Keyword.order('id DESC').select(:id, :name, :url)
     if not cached_keyword_id.zero?
       keywords = keywords.where('id > ?', cached_keyword_id)
@@ -32,29 +32,19 @@ class ArticleBody < ActiveRecord::Base
     keywords.each do |keyword|
       ele = doc.xpath("//p[contains(text(), '#{keyword.name}')]").first
       next if ele.nil?
-      if ele.name == 'a'
-        ele.set_attribute(:href, keyword.url)
-        ele.set_attribute(:target, '_blank')
-        ele.set_attribute(:css, 'hot-link')
-        ele.set_attribute(:title, keyword.name)
-      else
-        link = Nokogiri::XML::Node.new "a", doc
-        link.set_attribute(:href, keyword.url)
-        link.set_attribute(:css, 'hot-link')
-        link.set_attribute(:target, '_blank')
-        link.set_attribute(:title, keyword.name)
-        link.content = keyword.name
-        ele.inner_html = ele.content.sub(/#{keyword.name}/, link.to_html)
-      end    
+      link = Nokogiri::XML::Node.new "a", doc
+      link.set_attribute(:href, keyword.url)
+      link.set_attribute(:css, 'hot-link')
+      link.set_attribute(:target, '_blank')
+      link.set_attribute(:title, keyword.name)
+      link.content = keyword.name
+      ele.inner_html = ele.content.gsub(/#{keyword.name}/, link.to_html)
     end
-    update_columns(cached_keyword_id: keywords.first.id, body_html: doc.to_s)
 
-    doc.to_s
+    update_columns(cached_keyword_id: keywords.first.try(:id) || 0, body_html: doc.to_html)
+
+    doc.to_html
   end
-
-  # def cached_keyword_id
-    
-  # end
 
   def restore_remote_images
     doc = Nokogiri::HTML(self.body)
@@ -77,7 +67,6 @@ class ArticleBody < ActiveRecord::Base
 
         img[:src]
       rescue => e
-        # raise e
         next
       end
     end.compact
