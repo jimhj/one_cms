@@ -67,12 +67,11 @@ html
                 a href="#{link.url}" target="_blank" title="#{link.title}"= link.name
             
         .text-center.announce 
-          p 本站内容均来自互联网,本站不以营利为目的,这是一个注重分享交流的网站,为了建设健康向上的网络环境,请未满18周岁的少年在家长的陪同下观看。
+          p 声明：健康私房话所发布的内容来源于网友分享，仅出于分享健康知识，并不意味着赞同其观点或证实其描述。文章内容仅供参考，具体治疗及选购请咨询医生或相关专业人士。
           p 
-            | 如果喜欢，请支持正版！若侵犯到您的权益，
+            | 若有相关问题，请联系 
             a.contact-us href="mailto:#{SiteConfig.contact_email}"
-              | <i class="fa fa-envelope"></i> 联系我们
-            | 处理   
+              | <i class="fa fa-envelope"></i> #{SiteConfig.contact_email}
         .copy-right.text-center.text-muted Copyright 2008-2018 健康私房话 www.h4.com.cn 版权所有 京ICP备11031391号
 
     = render 'site/share/aly'
