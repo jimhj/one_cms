@@ -1,7 +1,5 @@
 class MobileConstraint
   def self.matches?(request)
-    # true
-    p request.subdomain
     (request.user_agent.to_s =~ /Mobile|webOS/) or request.subdomain == 'm.h4'
   end
 end
@@ -9,6 +7,8 @@ end
 Rails.application.routes.draw do
   mount RedactorRails::Engine => '/redactor_rails'
   mount RuCaptcha::Engine => '/rucaptcha'
+
+  match "/delayed_job" => DelayedJobWeb, :anchor => false, via: [:get, :post]
 
   namespace :onecmsmanage, module: :admin, as: :admin do
     get :login, to: 'sessions#new'

@@ -55,6 +55,7 @@ gem 'nokogiri', '~> 1.6.7.rc3', require: false
 # Background Job
 gem 'delayed_job_active_record', '~> 4.1.0'
 gem 'daemons', '~> 1.2.2'
+gem 'delayed_job_web', '~> 1.2.10'
 
 # Access Config Yaml
 gem 'settingslogic', '~> 2.0.9'
