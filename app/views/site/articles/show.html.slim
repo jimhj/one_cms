@@ -29,9 +29,9 @@
         = article_format @article.body_html
 
         .clearfix.text-center.next-prev
-          - if @article.prev
+          - if @article.prev && @article.prev.node.present?
             a.btn.btn-default title="#{@article.prev.title}" href="#{article_path(@article.prev)}" &#8592; 上一篇 
-          - if @article.next
+          - if @article.next && @article.next.node.present?
             a.btn.btn-default title="#{@article.next.title}" href="#{article_path(@article.next)}" 下一篇：#{@article.next.title.truncate(20)} &#8594;
         
         - SiteAd.leftsidearticlebottom.actived.each do |ad|
@@ -60,7 +60,7 @@
           ul.section-list.list-unstyled.clearfix.hor
             - @more_articles.each do |article|
               li
-                a href="#{article_path(article)}" title="#{article.title}"= article.title.truncate(18)
+                a href="#{article_path(article)}" title="#{article.title}"= article.title.truncate(14)
 
     - SiteAd.leftsidebottom.actived.each do |ad|
       .more-like-this.mixed-section
