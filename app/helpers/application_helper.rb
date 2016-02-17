@@ -30,6 +30,8 @@ module ApplicationHelper
       '养生吧（www.ys8.com）'
     ]
 
+    # cleanup = html
+
     cleanup = html.gsub(/<p>(<br>){0,}<\/p>/, '')
                   .gsub(/(<br>){2,}(&nbsp;){0,}/, '<br>')
 
