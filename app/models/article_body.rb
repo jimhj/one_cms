@@ -24,7 +24,7 @@ class ArticleBody < ActiveRecord::Base
     if not cached_keyword_id.zero?
       keywords = keywords.where('id > ?', cached_keyword_id)
     end
-    keywords = keywords.limit(5000)
+    keywords = keywords.limit(2000)
 
     if keywords.blank?
       return self.body_html || self.body
@@ -33,9 +33,9 @@ class ArticleBody < ActiveRecord::Base
     keywords.each do |keyword|
       doc = Nokogiri::HTML(self.body_html.presence || self.body)
 
-      doc.search("//br/preceding-sibling::text()|//br/following-sibling::text()").each do |node|
-        node.replace(Nokogiri.make("<p>#{node.to_html}</p>"))
-      end      
+      # doc.search("//br/preceding-sibling::text()|//br/following-sibling::text()").each do |node|
+      #   node.replace(Nokogiri.make("<p>#{node.to_html}</p>"))
+      # end      
 
       ele = doc.xpath("//text()[not(ancestor::a)][contains(., '#{keyword.name}')]").first
       next if ele.nil?
