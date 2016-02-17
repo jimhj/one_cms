@@ -30,7 +30,7 @@ class ArticleBody < ActiveRecord::Base
       return self.body_html || self.body
     end
     
-    keywords.each do |keyword|
+    keywords.to_a.sort_by { |k| k.name.size }.each do |keyword|
       doc = Nokogiri::HTML(self.body_html.presence || self.body)
 
       # doc.search("//br/preceding-sibling::text()|//br/following-sibling::text()").each do |node|
