@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160203030434) do
+ActiveRecord::Schema.define(version: 20160217031407) do
 
   create_table "admin_users", force: :cascade do |t|
     t.string   "login",           limit: 30,  null: false
@@ -101,7 +101,7 @@ ActiveRecord::Schema.define(version: 20160203030434) do
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
 
   create_table "keywords", force: :cascade do |t|
-    t.string   "name",       limit: 30,                 null: false
+    t.string   "name",       limit: 100,                null: false
     t.string   "url",        limit: 100,                null: false
     t.integer  "sortrank",   limit: 4,   default: 1000
     t.datetime "created_at",                            null: false

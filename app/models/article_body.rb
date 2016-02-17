@@ -59,7 +59,7 @@ class ArticleBody < ActiveRecord::Base
     return self.body_html if keywords.blank?
 
     keywords.each do |kw|
-      link = "<a href='#{kw.url}' class='hot-link' target='_blank' title='#{kw.name}'>#{kw.name}</a>"
+      link = "<a href='#{kw.url}' class='hot-link' target='_blank'>#{kw.name}</a>"
       self.body_html = (self.body_html.presence || self.body).sub(kw.name, link)
     end
 
