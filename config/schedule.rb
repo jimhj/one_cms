@@ -20,3 +20,7 @@
 every 2.hours do
   rake 'g:sitemap'
 end
+
+every 1.hours do
+  rake 'tmp:clear'
+end
