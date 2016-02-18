@@ -52,7 +52,7 @@ class ArticleBody < ActiveRecord::Base
       self.body_html = doc.to_html
     end
 
-    update_columns(cached_keyword_id: keywords.first.try(:id) || 0, body_html: self.body_html)
+    update_columns(cached_keyword_id: keywords.last.try(:id) || 0, body_html: self.body_html)
 
     self.body_html || self.body
   end
