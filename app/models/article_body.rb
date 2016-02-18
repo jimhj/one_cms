@@ -22,7 +22,7 @@ class ArticleBody < ActiveRecord::Base
   def replace_keywords
     keywords = Keyword.order('id DESC, sortrank DESC').select(:id, :name, :url)
     if not cached_keyword_id.zero?
-      keywords = keywords.where('id > ?', cached_keyword_id)
+      keywords = keywords.where('id < ?', cached_keyword_id)
     end
     keywords = keywords.limit(2000)
 
