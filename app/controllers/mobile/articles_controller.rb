@@ -18,7 +18,7 @@ class Mobile::ArticlesController < Mobile::ApplicationController
     @node = Node.find_by!(slug: params[:slug])
     @nodes = @node.root.self_and_ancestors
     @more_articles = Article.where(node_id: @nodes.pluck(:id)).where.not(id: @article.id).limit(5)
-    set_meta title: @article.title,
+    set_meta_tags title: @article.title,
                   description: @article.seo_description,
                   keywords: @article.seo_keywords
 
