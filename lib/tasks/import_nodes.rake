@@ -6,6 +6,8 @@ namespace :nodes do
       cfn = 0
       CSV.foreach(Rails.root.join('config', 'yuernode.csv').to_s) do |row|
         node_name, parent_node_id, node_id, id, slug = row
+        node_name = node_name.split(' ').last
+        next
         if Rails.env.development?
           parent_node                                  = Node.find_by(id: parent_node_id)
           next if parent_node.nil?
@@ -20,7 +22,7 @@ namespace :nodes do
         node                                         = Node.new
         node.id                                      = node_id
         node.name                                    = node_name.strip
-        node.slug                                    = slug.strip
+        node.slug                                    = slug
         if not node.valid?
           p node.errors.full_messages
         end
