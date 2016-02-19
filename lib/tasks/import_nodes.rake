@@ -7,7 +7,7 @@ namespace :nodes do
       CSV.foreach(Rails.root.join('config', 'yuernode.csv').to_s) do |row|
         node_name, parent_node_id, node_id, id, slug = row
         node_name = node_name.split(' ').last
-        next
+        # next
         if Rails.env.development?
           parent_node                                  = Node.find_by(id: parent_node_id)
           next if parent_node.nil?
