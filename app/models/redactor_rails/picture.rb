@@ -4,4 +4,10 @@ class RedactorRails::Picture < RedactorRails::Asset
   def url_content
     url(:content)
   end
+
+  # after_create do
+  #   if assetable.present?
+  #     assetable.increment :pictures_count
+  #   end
+  # end
 end

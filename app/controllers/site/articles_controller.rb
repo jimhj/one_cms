@@ -20,6 +20,11 @@ class Site::ArticlesController < Site::ApplicationController
   def show
     @node = Node.find_by!(slug: params[:slug])
     @article = @node.articles.find(params[:id])
+
+    if @article.pictures_count < 0
+      @article.set_pictures_count
+    end
+    
     @nodes = @node.self_and_ancestors
     @more_articles = Article.where(node_id: @nodes.pluck(:id)).where.not(id: @article.id).limit(8)
     @channel_keywords = @article.seo_keywords

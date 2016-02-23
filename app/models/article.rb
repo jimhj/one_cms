@@ -45,14 +45,14 @@ class Article < ActiveRecord::Base
     return 0 if not self.thumb.blank?
     imgs = Nokogiri::HTML(self.body_html).css('img').collect{ |img| img[:src] }
     return 1 if not imgs.any?
-    
+
     imgs.each do |img_src|
       img_path = img_src.split(Setting.carrierwave.asset_host + '/').last
       next if img_path.nil?
       img_url = Rails.root.join('public', img_path)
       img = MiniMagick::Image.open(img_url)
 
-      if img[:width] >= 100 && img[:height] >= 100
+      if img[:width].to_i >= 100 && img[:height].to_i >= 100
         self.thumb = img
         self.save
         break
@@ -60,6 +60,21 @@ class Article < ActiveRecord::Base
         next
       end
     end
+  end
+
+  def set_pictures_count
+    imgs = Nokogiri::HTML(self.body_html).css('img').to_a.select do |img|
+      img_path = img[:src].split(Setting.carrierwave.asset_host + '/').last
+      if img_path.nil?
+        false
+      else
+        img_url = Rails.root.join('public', img_path)
+        img = MiniMagick::Image.open(img_url)        
+        img[:width].to_i >= 100 && img[:height].to_i >= 100
+      end
+    end
+
+    update_column :pictures_count, imgs.count
   end
 
   def set_description

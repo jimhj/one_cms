@@ -13,7 +13,8 @@ class ArticleBody < ActiveRecord::Base
   after_create do
     article.delay.analyze_keywords
     article.delay.set_thumb
-    
+    article.delay.set_pictures_count
+
     if article.seo_description.blank?
       article.set_description
     end
@@ -64,6 +65,7 @@ class ArticleBody < ActiveRecord::Base
       begin
         if not img[:src].include?(Setting.carrierwave.asset_host)
           picture = RedactorRails.picture_model.new
+          # picture.assetable = article
           url = img[:src]
 
           # if not url.start_with?('http')
