@@ -1,3 +1,19 @@
+.articles {
+  .nopic > .item-text {
+    width: 100%;
+    // padding: 0 15px;
+  }
+
+  .morepics > .item-text {
+    // margin-top: 15px;
+    // margin-bottom: 15px;
+  }
+
+  .morepics .item-image-list .item-image {
+    margin-right: 15px;
+  }
+}
+
 .breadcrumb-container {
   @include clearfix;
   height: 20px;

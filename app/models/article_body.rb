@@ -13,7 +13,7 @@ class ArticleBody < ActiveRecord::Base
   after_create do
     article.delay.analyze_keywords
     article.delay.set_thumb
-    article.delay.set_pictures_count
+    # article.delay.set_pictures_count
 
     if article.seo_description.blank?
       article.set_description

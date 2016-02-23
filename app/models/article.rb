@@ -123,6 +123,12 @@ class Article < ActiveRecord::Base
     end
   end
 
+  def pictures
+    Rails.cache.fetch([self.id, 'picture_urls']) do
+      Nokogiri::HTML(article_body.body).css('img').collect{ |img| img[:src] }.select{ |src| src.include?(Setting.carrierwave.asset_host) }
+    end
+  end
+
   def next
     Article.where("id < ?", id).order("id DESC").first
   end
