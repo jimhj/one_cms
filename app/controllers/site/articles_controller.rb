@@ -22,7 +22,7 @@ class Site::ArticlesController < Site::ApplicationController
     @article = @node.articles.find(params[:id])
 
     if @article.pictures_count < 0
-      @article.set_pictures_count
+      @article.delay.set_pictures_count
     end
     
     @nodes = @node.self_and_ancestors
