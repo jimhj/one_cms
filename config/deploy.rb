@@ -9,7 +9,7 @@ set :repo_url, 'git@github.com:jimhj/one_cms.git'
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
-set :delayed_job_workers, 6
+set :delayed_job_workers, 8
 
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, "~/www/#{fetch(:application)}/"
