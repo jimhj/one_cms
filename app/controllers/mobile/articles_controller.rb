@@ -19,9 +19,9 @@ class Mobile::ArticlesController < Mobile::ApplicationController
     @nodes = @node.root.self_and_ancestors
     @more_articles = Article.where(node_id: @nodes.pluck(:id)).where.not(id: @article.id).limit(5)
 
-    if @article.pictures_count < 0
-      @article.set_pictures_count
-    end
+    # if @article.pictures_count < 0
+    #   @article.set_pictures_count
+    # end
     
     set_meta_tags title: @article.title,
                   description: @article.seo_description,
