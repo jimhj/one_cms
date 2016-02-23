@@ -33,7 +33,11 @@ class Article < ActiveRecord::Base
   def notify_baidu_spider
     url = "http://www.h4.com.cn/#{node.slug}/#{id}"
     site = RestClient::Resource.new('http://data.zz.baidu.com')
-    site['urls?site=www.h4.com.cn&token=2yEYwtNjfx5k5sNB'].post url, :content_type => 'text/plain'
+    begin
+      site['urls?site=www.h4.com.cn&token=2yEYwtNjfx5k5sNB'].post url, :content_type => 'text/plain'
+    rescue
+      true
+    end
   end
 
   def create_keyword

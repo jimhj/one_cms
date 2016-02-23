@@ -20,7 +20,7 @@ class Mobile::ArticlesController < Mobile::ApplicationController
     @more_articles = Article.where(node_id: @nodes.pluck(:id)).where.not(id: @article.id).limit(5)
 
     if @article.pictures_count < 0
-      @article.delay.set_pictures_count
+      @article.set_pictures_count
     end
     
     set_meta_tags title: @article.title,
