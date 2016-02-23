@@ -45,12 +45,21 @@ class Article < ActiveRecord::Base
     return 0 if not self.thumb.blank?
     imgs = Nokogiri::HTML(self.body_html).css('img').collect{ |img| img[:src] }
     return 1 if not imgs.any?
-    img = imgs.first.split(Setting.carrierwave.asset_host + '/').last
-    return 2 if img.nil?
-    img = Rails.root.join('public', img)
-    img = MiniMagick::Image.open(img)
-    self.thumb = img
-    self.save
+    
+    imgs.each do |img_src|
+      img_path = img_src.split(Setting.carrierwave.asset_host + '/').last
+      next if img_path.nil?
+      img_url = Rails.root.join('public', img_path)
+      img = MiniMagick::Image.open(img_url)
+
+      if img[:width] >= 100 && img[:height] >= 100
+        self.thumb = img
+        self.save
+        break
+      else
+        next
+      end
+    end
   end
 
   def set_description

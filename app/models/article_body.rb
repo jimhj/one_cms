@@ -57,24 +57,6 @@ class ArticleBody < ActiveRecord::Base
     self.body_html || self.body
   end
 
-  # def replace_keywords
-  #   keywords = Keyword.order('id DESC').select(:id, :name, :url)
-  #   if not cached_keyword_id.zero?
-  #     keywords = keywords.where('id > ?', cached_keyword_id)
-  #   end
-  #   keywords = keywords.limit(10000)
-    
-  #   return self.body_html if keywords.blank?
-
-  #   keywords.each do |kw|
-  #     link = "<a href='#{kw.url}' class='hot-link' target='_blank'>#{kw.name}</a>"
-  #     self.body_html = (self.body_html.presence || self.body).sub(kw.name, link)
-  #   end
-
-  #   update_columns(cached_keyword_id: keywords.first.try(:id) || 0, body_html: self.body_html)
-  #   self.body_html
-  # end
-
 
   def restore_remote_images
     doc = Nokogiri::HTML(self.body)
