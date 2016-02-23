@@ -23,7 +23,7 @@
       .list-section-inner
         - if @articles.any?
           - @articles.each do |article|
-            - if article.pictures.size >= 2
+            - if article.pictures.size >= 3
               .list-section-item.morepics
                 .item-text
                   h4
@@ -33,7 +33,7 @@
                     .item-image.pull-left
                       a href="#{article_path(article)}" title="#{article.title}"
                         = image_tag picture_url, size: '200x150', alt: article.title, title: article.title
-                                     
+
             - elsif article.pictures.size > 0
               .list-section-item.one-pic.clearfix
                 .item-image.pull-left
