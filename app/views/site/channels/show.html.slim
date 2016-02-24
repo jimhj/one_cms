@@ -22,17 +22,35 @@
             span= @channel.name
         .pull-right.right-nav
           = render_keyword_nav(@channel)        
-      .list-section-inner
+      .list-section-inner.article-list-container
         - if @articles.any?
           - @articles.each do |article|
-            .list-section-item.clearfix
-              .item-image.pull-left
-                a href="#{article_path(article)}" title="#{article.title}"
-                  = image_tag article.thumb.url(:middle), size: '200x150', alt: article.title, title: article.title
-              .item-text.pull-right
-                h4
-                  a href="#{article_path(article)}" title="#{article.title}"= article.title
-                p.text-muted= article.seo_description
+            - if article.pictures.size >= 3
+              .list-section-item.morepics
+                .item-text
+                  h4
+                    a href="#{article_path(article)}" title="#{article.title}"= article.title
+                .item-image-list.clearfix
+                  - article.pictures.first(3).each do |picture_url|
+                    .item-image.pull-left
+                      a href="#{article_path(article)}" title="#{article.title}"
+                        = image_tag picture_url, size: '180x120', alt: article.title, title: article.title
+
+            - elsif article.pictures.size > 0
+              .list-section-item.one-pic.clearfix
+                .item-image.pull-left
+                  a href="#{article_path(article)}" title="#{article.title}"
+                    = image_tag article.pictures.first, size: '180x120', alt: article.title, title: article.title
+                .item-text.pull-left
+                  h4
+                    a href="#{article_path(article)}" title="#{article.title}"= article.title
+                  p.text-muted= article.seo_description            
+            - else
+              .list-section-item.nopic.clearfix
+                .item-text
+                  h4
+                    a href="#{article_path(article)}" title="#{article.title}"= article.title
+                  p.text-muted= article.seo_description
         - else
           .blank-state 暂时没有文章
 
