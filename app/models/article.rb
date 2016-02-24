@@ -124,8 +124,24 @@ class Article < ActiveRecord::Base
   end
 
   def pictures
-    Rails.cache.fetch([self.id, 'picture_urls']) do
-      Nokogiri::HTML(article_body.body).css('img').collect{ |img| img[:src] }.select{ |src| src.include?(Setting.carrierwave.asset_host) }
+    # Rails.cache.fetch([self.id, 'picture_urls']) do
+    Rails.cache.fetch([self.id, 'pic_urls']) do
+      Nokogiri::HTML(article_body.body).css('img').collect{ |img| img[:src] }.first(4).select do |src| 
+        valid_src = src.include?(Setting.carrierwave.asset_host)
+
+        img_path = src.split(Setting.carrierwave.asset_host + '/').last
+        valid_demission = if img_path.nil?
+          false
+        else
+          img_url = Rails.root.join('public', img_path)
+          img = MiniMagick::Image.open(img_url) rescue false    
+          demission = img && img[:width].to_i >= 100 && img[:height].to_i >= 100
+          img = nil
+          demission
+        end  
+        
+        valid_src && valid_demission     
+      end 
     end
   end
 
@@ -138,7 +154,7 @@ class Article < ActiveRecord::Base
   end
 
   def body_html
-    # article_body.body_html.presence || article_body.body 
+    # article_body.body_html.presence || article_body.body
     article_body.replace_keywords
   end
 

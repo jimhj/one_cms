@@ -23,7 +23,7 @@
       .list-section-inner.article-list-container
         - if @articles.any?
           - @articles.each do |article|
-            - if article.pictures.size >= 3 && !article.thumb.blank?
+            - if article.pictures.size >= 3
               .list-section-item.morepics
                 .item-text
                   h4
@@ -34,11 +34,11 @@
                       a href="#{article_path(article)}" title="#{article.title}"
                         = image_tag picture_url, size: '180x120', alt: article.title, title: article.title
 
-            - elsif article.pictures.size > 0 && !article.thumb.blank?
+            - elsif article.pictures.size > 0
               .list-section-item.one-pic.clearfix
                 .item-image.pull-left
                   a href="#{article_path(article)}" title="#{article.title}"
-                    = image_tag article.thumb.url(:middle), size: '180x120', alt: article.title, title: article.title
+                    = image_tag article.pictures.first, size: '180x120', alt: article.title, title: article.title
                 .item-text.pull-left
                   h4
                     a href="#{article_path(article)}" title="#{article.title}"= article.title
