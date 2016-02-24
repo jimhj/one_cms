@@ -20,7 +20,7 @@
           h4= @node.name
         .pull-right.right-nav
           = render_node_nav
-      .list-section-inner
+      .list-section-inner.article-list-container
         - if @articles.any?
           - @articles.each do |article|
             - if article.pictures.size >= 3 && !article.thumb.blank?
@@ -32,14 +32,14 @@
                   - article.pictures.first(3).each do |picture_url|
                     .item-image.pull-left
                       a href="#{article_path(article)}" title="#{article.title}"
-                        = image_tag picture_url, size: '200x150', alt: article.title, title: article.title
+                        = image_tag picture_url, size: '180x120', alt: article.title, title: article.title
 
             - elsif article.pictures.size > 0 && !article.thumb.blank?
               .list-section-item.one-pic.clearfix
                 .item-image.pull-left
                   a href="#{article_path(article)}" title="#{article.title}"
-                    = image_tag article.thumb.url(:middle), size: '200x150', alt: article.title, title: article.title
-                .item-text.pull-right
+                    = image_tag article.thumb.url(:middle), size: '180x120', alt: article.title, title: article.title
+                .item-text.pull-left
                   h4
                     a href="#{article_path(article)}" title="#{article.title}"= article.title
                   p.text-muted= article.seo_description            
@@ -51,6 +51,7 @@
                   p.text-muted= article.seo_description
         - else
           .blank-state 暂时没有文章
+
     = will_paginate @articles, renderer: BootstrapPagination::Rails, inner_window: 1
 
   = render 'site/share/right_side'
