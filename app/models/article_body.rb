@@ -84,6 +84,7 @@ class ArticleBody < ActiveRecord::Base
           picture.data = data
           picture.save
           img.set_attribute(:src, picture.url)
+          img.set_attribute(:alt, article.title)
           data = nil
         end
 
