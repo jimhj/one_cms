@@ -133,9 +133,8 @@ class Article < ActiveRecord::Base
   end
 
   def pictures
-    # Rails.cache.fetch([self.id, 'picture_urls']) do
     Rails.cache.fetch([self.id, 'pic_urls']) do
-      Nokogiri::HTML(article_body.body).css('img').collect{ |img| img[:src] }.first(4).select do |src| 
+      srcs = Nokogiri::HTML(article_body.body).css('img').collect { |img| img[:src] }.select do |src| 
         valid_src = src.include?(Setting.carrierwave.asset_host)
 
         img_path = src.split(Setting.carrierwave.asset_host + '/').last
@@ -149,8 +148,14 @@ class Article < ActiveRecord::Base
           demission
         end  
         
-        valid_src && valid_demission     
-      end 
+        valid_src && valid_demission    
+      end
+
+      if self.pictures_count < 0
+        self.update_column :pictures_count, srcs.size
+      end
+
+      srcs
     end
   end
 

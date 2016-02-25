@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160223061022) do
+ActiveRecord::Schema.define(version: 20160225082041) do
 
   create_table "admin_users", force: :cascade do |t|
     t.string   "login",           limit: 30,  null: false
@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 20160223061022) do
   add_index "articles", ["focus"], name: "index_articles_on_focus", using: :btree
   add_index "articles", ["hot"], name: "index_articles_on_hot", using: :btree
   add_index "articles", ["node_id"], name: "index_articles_on_node_id", using: :btree
+  add_index "articles", ["pictures_count"], name: "index_articles_on_pictures_count", using: :btree
   add_index "articles", ["thumb"], name: "index_articles_on_thumb", using: :btree
   add_index "articles", ["title"], name: "index_articles_on_title", using: :btree
 
