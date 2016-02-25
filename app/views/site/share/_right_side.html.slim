@@ -14,9 +14,9 @@
       .list-section-nav
         h4
           i.fa.fa-image 
-          span 焦点资讯 
+          span 图文资讯 
       .list-section-inner
-        - Article.pic.each do |article| 
+        - Article.pic(@article).each do |article| 
           .list-section-item
             h4
               a title="#{article.title}" href="#{article_path(article)}"= article.title.truncate(18)

@@ -90,9 +90,13 @@ class Article < ActiveRecord::Base
     read_attribute(:seo_description) || strip_tags(article_body.try(:body) || '').first(200)
   end
 
-  def self.pic
-    node_ids = Node.all.pluck(:id)
-    node_ids = node_ids.sample(10)
+  def self.pic(article = nil)
+    if article.nil?
+      node_ids = Node.all.pluck(:id)
+      node_ids = node_ids.sample(10)
+    else
+      node_ids = article.node.root.self_and_descendants.pluck(:id)
+    end
     articles = Article.where(node_id: node_ids).order('thumb DESC, id DESC')
     articles.limit(5)
   end
@@ -121,6 +125,11 @@ class Article < ActiveRecord::Base
     rescue
       true
     end
+  end
+
+  def hidden_thumb
+    # pic = pictures.first
+    # pic ||= RedactorRails::Picture.where('width >= 121 and height >= 75')
   end
 
   def pictures
