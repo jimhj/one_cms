@@ -75,7 +75,15 @@ body {
       border-top-left-radius: 0;
       border-bottom-left-radius: 0;
     }
-  }  
+  }
+
+  .right-side .mixed-section.ad-section {
+    border: none;
+    background-color: transparent;
+    .mixed-section-inner {
+      padding: 0 0;
+    }
+  }
 
   .blank-state {
     height: 300px;
