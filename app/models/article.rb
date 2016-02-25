@@ -45,26 +45,26 @@ class Article < ActiveRecord::Base
     Keyword.create(name: self.link_word, url: link, sortrank: 1000)
   end
 
-  def set_thumb
-    return 0 if not self.thumb.blank?
-    imgs = Nokogiri::HTML(self.body_html).css('img').collect{ |img| img[:src] }
-    return 1 if not imgs.any?
+  # def set_thumb
+  #   return 0 if not self.thumb.blank?
+  #   imgs = Nokogiri::HTML(self.body_html).css('img').collect{ |img| img[:src] }
+  #   return 1 if not imgs.any?
 
-    imgs.each do |img_src|
-      img_path = img_src.split(Setting.carrierwave.asset_host + '/').last
-      next if img_path.nil?
-      img_url = Rails.root.join('public', img_path)
-      img = MiniMagick::Image.open(img_url)
+  #   imgs.each do |img_src|
+  #     img_path = img_src.split(Setting.carrierwave.asset_host + '/').last
+  #     next if img_path.nil?
+  #     img_url = Rails.root.join('public', img_path)
+  #     img = MiniMagick::Image.open(img_url)
 
-      if img[:width].to_i >= 100 && img[:height].to_i >= 100
-        self.thumb = img
-        self.save
-        break
-      else
-        next
-      end
-    end
-  end
+  #     if img[:width].to_i >= 100 && img[:height].to_i >= 100
+  #       self.thumb = img
+  #       self.save
+  #       break
+  #     else
+  #       next
+  #     end
+  #   end
+  # end
 
   def set_pictures_count
     imgs = Nokogiri::HTML(self.body_html).css('img').to_a.select do |img|
@@ -151,9 +151,9 @@ class Article < ActiveRecord::Base
         valid_src && valid_demission    
       end
 
-      # if self.pictures_count < 0
-      #   self.update_column :pictures_count, srcs.size
-      # end
+      if self.pictures_count < 0
+        self.update_column :pictures_count, srcs.size
+      end
 
       srcs
     end

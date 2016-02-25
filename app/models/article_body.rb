@@ -2,18 +2,18 @@ require 'nokogiri'
 
 class ArticleBody < ActiveRecord::Base
   include ActionView::Helpers::SanitizeHelper
-  attr_accessor :pictures_count
 
   belongs_to :article
   validates_presence_of :body
 
-  before_create do
-    restore_remote_images
-  end
+  # before_create do
+  #   restore_remote_images
+  # end
 
   after_create do
+    restore_remote_images
     article.delay.analyze_keywords
-    article.delay.set_thumb
+    # article.delay.set_thumb
     # article.delay.set_pictures_count
 
     if article.seo_description.blank?
@@ -61,6 +61,7 @@ class ArticleBody < ActiveRecord::Base
 
 
   def restore_remote_images
+    pic = 0
     doc = Nokogiri::HTML(self.body)
     remote_imgs = doc.css('img').collect do |img|
       begin
@@ -75,6 +76,11 @@ class ArticleBody < ActiveRecord::Base
 
           data = MiniMagick::Image.open(url)
 
+          if data[:width].to_i >= 100 && data[:height].to_i >= 100
+            article.thumb = data if article.thumb.blank?
+            pic += 1
+          end
+
           picture.data = data
           picture.save
           img.set_attribute(:src, picture.url)
@@ -87,6 +93,8 @@ class ArticleBody < ActiveRecord::Base
       end
     end.compact
 
-    self.body = doc.to_s
+    update_column :body, doc.to_s
+    article.pictures_count = pic
+    article.save
   end
 end
