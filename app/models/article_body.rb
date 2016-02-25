@@ -2,6 +2,7 @@ require 'nokogiri'
 
 class ArticleBody < ActiveRecord::Base
   include ActionView::Helpers::SanitizeHelper
+  attr_accessor :pictures_count
 
   belongs_to :article
   validates_presence_of :body
@@ -73,6 +74,7 @@ class ArticleBody < ActiveRecord::Base
           # end
 
           data = MiniMagick::Image.open(url)
+
           picture.data = data
           picture.save
           img.set_attribute(:src, picture.url)

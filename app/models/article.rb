@@ -151,9 +151,9 @@ class Article < ActiveRecord::Base
         valid_src && valid_demission    
       end
 
-      if self.pictures_count < 0
-        self.update_column :pictures_count, srcs.size
-      end
+      # if self.pictures_count < 0
+      #   self.update_column :pictures_count, srcs.size
+      # end
 
       srcs
     end
