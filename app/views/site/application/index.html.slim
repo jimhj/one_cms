@@ -7,7 +7,7 @@
       .carousel-inner role="listbox"
         - @focus.each_with_index do |article, ind|
           a.item class=('active' if ind.zero?) href="#{article_path(article)}" title="#{article.title}"
-            = image_tag article.thumb.url(:large), size: '650x340', alt: article.title, title: article.title
+            = image_tag article.thumb.url(:large), size: '660x340', alt: article.title, title: article.title
             .carousel-caption
               .carousel-caption-layer
               .carousel-caption-inner

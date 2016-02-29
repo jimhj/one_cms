@@ -60,7 +60,7 @@
           ul.section-list.list-unstyled.clearfix.hor
             - @more_articles.each do |article|
               li
-                a href="#{article_path(article)}" title="#{article.title}"= article.title.truncate(14)
+                a href="#{article_path(article)}" title="#{article.title}"= article.title
 
     - SiteAd.leftsidebottom.actived.each do |ad|
       .more-like-this.mixed-section

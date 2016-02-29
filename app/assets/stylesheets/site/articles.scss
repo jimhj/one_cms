@@ -190,14 +190,18 @@
   ul.section-list {}
   ul.section-list.hor li {
     float: left;
-    width: 260px;
-    overflow: hidden;
+    width: 240px;
+    height: 20px;
     border-bottom: none;
     margin-right: 40px;
+    margin-bottom: 10px;
 
-    a {
-      padding: 0;
-      margin-bottom: 10px;
+    a { 
+      padding: 0; 
+      display: block;
+      overflow: hidden;    
+      text-overflow: ellipsis;    
+      white-space: nowrap;
     }
   }
 }

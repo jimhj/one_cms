@@ -5,18 +5,19 @@
   border: 1px solid #ececec;
 
   .carousel-focus-left .carousel {
-    width: 650px;
+    width: 660px;
     height: 340px;
 
     .item { height: 340px; }
   }
 
   .carousel-focus-right {
-    padding-right: 10px;
+    margin-right: 10px;
+    // padding-right: 0px;
   }
 
   .headline {
-    width: 300px;
+    width: 290px;
     background-color: #ffffff;
     border-bottom: 1px dotted #ececec;
 
