@@ -1,0 +1,132 @@
+body.wechat {
+  font-family: "Helvetica Neue",Helvetica,"Hiragino Sans GB","Microsoft YaHei",Arial,sans-serif;
+  line-height: 1.6;
+  background-color: #ffffff;
+}
+
+.wechat-article {
+  word-wrap: break-word;
+}
+
+.wechat-article .content-inner {
+  padding: 20px 15px 15px;
+  background: #ffffff;
+}
+
+.wechat-article .article-title {}
+
+.wechat-article .article-title h1 {
+  margin-top: 0px;
+  margin-bottom: 10px;
+  line-height: 1.4;
+  font-weight: 400;
+  font-size: 24px;  
+}
+
+.wechat-article .article-info {
+  margin-bottom: 18px;
+  line-height: 20px;
+  font-size: 17px;
+
+  em, a {
+    font-style: normal;
+    color: #8c8c8c;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 8px;
+    margin-bottom: 10px;    
+  }
+
+  a {
+    display: inline-block;
+    color: #607fa6;
+    text-decoration: none;
+  }
+}
+
+.wechat-article .article-content {
+  overflow: hidden;
+  color: #3e3e3e;
+
+  font-size: 17px;
+  font-family: Avenir, sans-serif;
+
+  a {
+    color: #607fa6;
+    text-decoration: underline;
+  }
+
+  p {
+    font-family: Avenir, sans-serif;
+    border: 0px;
+    margin-top: 2px;
+    margin-bottom: 22px;
+    outline: 0px;
+    color: rgb(51, 51, 51);
+    white-space: normal;
+    clear: both;
+    min-height: 1em;    
+  }  
+
+  img {
+    display: block;
+    max-width: 100%;
+    height: auto!important;
+  } 
+}
+
+.wechat-article .article-content * {
+  max-width: 100%!important;
+  box-sizing: border-box!important;
+  -webkit-box-sizing: border-box!important;
+  word-wrap: break-word!important;
+}
+
+.wechat-toolbar {
+  margin-top: 20px;
+  font-size: 17px;
+  // border-bottom: 1px solid #cccccc;
+  hr {
+    margin-top: 10px;
+  }
+
+  em, a {
+    font-style: normal;
+    color: #8c8c8c;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 8px;
+  }
+
+  a {
+    display: inline-block;
+    color: #607fa6;
+    text-decoration: none;
+  }  
+}
+
+.more-arts {
+  font-size: 17px;
+
+  li {
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eeeeee;
+  }
+
+  .thumb {
+    float: left;
+    margin-right: 15px;
+  }
+
+  .link {
+    float: left;
+    max-width: 80%;
+    overflow: hidden;
+
+    a {
+      color: #607fa6;
+      text-decoration: none;
+    }
+  }
+}

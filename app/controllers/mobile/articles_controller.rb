@@ -17,7 +17,7 @@ class Mobile::ArticlesController < Mobile::ApplicationController
     @article = Article.find params[:id]
     @node = Node.find_by!(slug: params[:slug])
     @nodes = @node.root.self_and_ancestors
-    @more_articles = Article.where(node_id: @nodes.pluck(:id)).where.not(id: @article.id).limit(5)
+    @more_articles = Article.where(node_id: @nodes.pluck(:id)).where.not(id: @article.id).limit(20)
 
     # if @article.pictures_count < 0
     #   @article.set_pictures_count
@@ -27,6 +27,8 @@ class Mobile::ArticlesController < Mobile::ApplicationController
                   description: @article.seo_description,
                   keywords: @article.seo_keywords
 
-    fresh_when(etag: [@article, Keyword.recent], template: false) 
+    render layout: false, template: 'mobile/articles/wechat-show'
+
+    fresh_when(etag: [@article, Keyword.recent], template: false)    
   end
 end

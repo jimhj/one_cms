@@ -1,0 +1,37 @@
+doctype html
+html
+  head
+    = render_seo_meta_tags
+    = stylesheet_link_tag 'mobile/app'
+    = csrf_meta_tags
+    meta name="viewport" content="width=device-width, initial-scale=1"
+    meta content="mobile" name="applicable-device"
+    meta http-equiv="Cache-Control" content="no-transform"
+  body.wechat
+    .wechat-article
+      .content-inner
+        .article-title
+          h1= @article.title
+        .article-info 
+          em= @article.created_at.strftime('%F')
+          em= @article.source
+          a href="#{articles_path(@article.node.slug)}"= @article.node.name
+        .article-content
+          = article_format @article.body_html
+
+        .wechat-toolbar
+          em 更多文章
+          a href="#{mobile_root_url}" title="网站首页" 网站首页
+          hr
+
+        ul.list-unstyled.more-arts
+          - @more_articles.each do |article|
+            - pic = article.pictures.first || article.thumb.url
+            li.clearfix
+              .thumb
+                a href="#{article_path(article)}" title="#{article.title}"
+                  = image_tag pic, :size => '50x50', alt: article.title 
+              .link
+                a href="#{article_path(article)}" title="#{article.title}"= article.title
+
+
