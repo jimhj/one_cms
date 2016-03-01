@@ -11,7 +11,8 @@
           td.text-center 操作
         - @nodes.each do |node|
           tr
-            td.w5.text-center= node.id
+            td.w5.text-center
+              a href="#{articles_path(node.slug)}" target="_blank"= node.id
             td.w35= node.name
             td.text-center.w30= node.slug
             td.w10.text-center= node.sortrank

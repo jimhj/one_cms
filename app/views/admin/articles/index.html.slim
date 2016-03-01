@@ -13,7 +13,8 @@
           td.text-center 操作
         - @articles.each do |article|
           tr class=('warning' if article.focus?)
-            td.w5.text-center= article.id
+            td.w5.text-center
+              a href="#{article_path(article)}" target="_blank"= article.id
             td.w5.text-center
               input type="checkbox" name="choose"
             td.w35
@@ -41,7 +42,7 @@
               a href="#{admin_article_path(article)}" data-confirm="确认删除吗？" data-method="DELETE"
                 i.fa.fa-trash
               | &nbsp;
-              a href="#{admin_article_path(article)}"
+              a href="#{article_path(article)}" target="_blank"
                 i.fa.fa-globe
 
     = will_paginate @articles, renderer: BootstrapPagination::Rails
