@@ -62,10 +62,10 @@
           span 最新文章
       .mixed-section-inner
         .mixed-section-text
-          ul.section-list.list-unstyled
+          ul.section-list.list-unstyled.recent
             - Article.recent.each do |article|
               li
-                a title="#{article.title}" href="#{article_path(article)}"= article.title.truncate(18) 
+                a title="#{article.title}" href="#{article_path(article)}"= article.title 
 
     - SiteAd.rightsidebottom.actived.each do |ad|
       .mixed-section.ad-section
