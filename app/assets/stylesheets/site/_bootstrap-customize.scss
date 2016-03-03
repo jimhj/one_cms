@@ -5,9 +5,33 @@
 }
 
 .nav.navbar {
-  border-top: 2px solid $brand-success;
-  background-color: #ffffff;
+  // border-top: 2px solid $brand-success;
+  // background-color: #ffffff;
+  background-color: $brand-success;
   @include box-shadow(0 1px 2px #f1f1f1);
+
+  form.navbar-form {
+    input {
+      width: 240px;
+      border-radius: 20px;
+      border: none;
+      background-color: darken($brand-success, 10%);
+      margin-top: 3px;
+      color: #fff;
+      padding-left: 15px;
+    }
+
+    .form-group {
+      position: relative;
+    }
+
+    .form-group i.fa.fa-search {
+      position: absolute;
+      right: 15px;
+      top: 10px;
+      color: darken($brand-success, 20%);
+    }
+  }
 }
 
 .navbar-collapse.collapse {
@@ -29,37 +53,38 @@
 
 .nav > .container {
   width: 1000px !important;
+  padding-left: 0px;
+  padding-right: 0px;
 
-  .navbar-brand {
-    padding: 0px 0px 0px 0px;
-    padding-right: 20px;
+  .main-nav > li {
+    padding: 8px 14px 8px 14px;
+    border-left: 1px solid rgba(0, 0, 0, 0.15);
+    margin-right: -1px;    
 
-    img {
-      margin-top: 5px;
-    }
+    &.right-border { border-right: 1px solid rgba(0, 0, 0, 0.15); }
   }
 
   .main-nav > li > a {
-    border-right: 1px solid #dcdcdc;
-    padding: 10px 24px 10px 24px;
+    padding: 2px 10px;
     margin-right: -1px;
     line-height: 30px;
-    color: #000;
     font-size: 18px;
 
-    &:hover { color: $brand-success; }
+    color: #ffffff;
+
+    &:hover { 
+      border-radius: 20px;
+      background-color: darken($brand-success, 10%);
+    }
   }
 
   .main-nav > li.active > a {
     &, &:hover {
-      background-color: $brand-success;
-      color: #ffffff;
+      border-radius: 20px;
+      background-color: darken($brand-success, 10%);      
     }
   }
-  
-  .main-nav > li.left-border > a {
-    border-left: 1px solid rgba(0, 0, 0, 0.15);
-  }
+
 
   .sub-nav {
     font-size: 12px;
