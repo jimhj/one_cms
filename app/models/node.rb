@@ -36,6 +36,6 @@ class Node < ActiveRecord::Base
 
   def descendants_articles
     node_ids = self.self_and_descendants.pluck(:id)
-    Article.where(node_id: node_ids)
+    Article.where(node_id: node_ids).where.not(thumb: nil).order('id DESC, thumb DESC')
   end
 end

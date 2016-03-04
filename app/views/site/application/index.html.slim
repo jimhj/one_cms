@@ -25,37 +25,34 @@
 
 
 .main-split-container
-  .left-side              
+  .left-side
     - Node.main.each do |node|
-      .mixed-section
-        .mixed-section-nav
+      .list-section
+        .list-section-nav
           .pull-left
             h4
-              a= node.name
-          ul.nav.nav-tabs.pull-right role="tablist"
-            - children = node.children.last(3)
-            - children.each_with_index do |child, ind|
-              li class=('active' if ind.zero?) role="presentation"
-                a role="tab" data-toggle="tab" href="#tab-#{child.slug}"= child.name
-        .mixed-section-inner       
-          .mixed-section-image.pull-left
-            - headline = node.headline
-            = image_tag headline.thumb.url(:square), alt: headline.title, title: headline.title, size: '290x290'
-            .image-layer        
-            .image-title
-              a href="#{article_path(headline)}" title="#{headline.title}"= headline.title.truncate(15)
-          .mixed-section-text.pull-right.tab-content
-            - children.each_with_index do |child, ind|
-              - klass = ind.zero? ? 'active' : 'fade'
-              .tab-pane class=klass id="tab-#{child.slug}"
-                - child_headline = child.headline
-                .section-headline
+              a href="#{articles_path(node.slug)}"= node.name
+        .list-section-inner.article-list-container
+          - node.descendants_articles.limit(5).each do |article|
+            - if article.pictures.size >= 3
+              .list-section-item.morepics
+                .item-text
                   h4
-                    a href="#{article_path(child_headline)}" title="#{child_headline.title}"= child_headline.title.truncate(16)
-                  p.text-muted= child_headline.seo_description
-                ul.section-list.list-unstyled
-                  - child.descendants_articles.where.not(id: child_headline.id).order('id DESC').limit(4).each do |article|
-                    li
-                      a href="#{article_path(article)}" title="#{article.title}"= article.title
+                    a href="#{article_path(article)}" title="#{article.title}"= article.title
+                .item-image-list.clearfix
+                  - article.pictures.first(3).each do |picture_url|
+                    .item-image.pull-left
+                      a href="#{article_path(article)}" title="#{article.title}"
+                        = image_tag picture_url, size: '180x120', alt: article.title, title: article.title
+
+            - elsif article.pictures.size > 0
+              .list-section-item.one-pic.clearfix
+                .item-image.pull-left
+                  a href="#{article_path(article)}" title="#{article.title}"
+                    = image_tag article.pictures.first, size: '180x120', alt: article.title, title: article.title
+                .item-text.pull-left
+                  h4
+                    a href="#{article_path(article)}" title="#{article.title}"= article.title
+                  p.text-muted= article.seo_description            
                                 
   = render 'site/share/right_side'                      
