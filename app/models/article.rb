@@ -14,7 +14,7 @@ class Article < ActiveRecord::Base
 
   scope :recent, -> { order('id DESC').limit(10) }
   scope :focus, -> { where(focus: true).order('updated_at DESC, id DESC').limit(3) }
-  scope :hot, -> { where(hot: true, thumb: nil).order('id DESC').limit(6) }
+  scope :hot, -> { where(hot: true).order('updated_at DESC, id DESC').limit(6) }
 
   after_create do
     if self.linked?
