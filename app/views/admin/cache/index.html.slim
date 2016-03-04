@@ -1,0 +1,8 @@
+.row.pt-30
+  .col-lg-12
+    p
+      a.btn.btn-lg.btn-success href="#{admin_cache_refresh_path(cache_name: 'desktop/index')}" data-method="post" data-confirm="确认更新吗？" 更新PC站首页缓存
+      a.btn.btn-lg.btn-success href="#{admin_cache_refresh_path(cache_name: 'mobile/index')}" data-method="post" data-confirm="确认更新吗？" 更新移动站首页缓存
+    hr
+    p
+      a.btn.btn-lg.btn-success href="#{admin_cache_refresh_all_path}" data-method="post" data-confirm="确认更新吗？" 更新所有缓存

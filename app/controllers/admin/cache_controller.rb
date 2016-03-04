@@ -1,21 +1,31 @@
 class Admin::CacheController < Admin::ApplicationController
-  def recache_index
-    cache_views = ['desktop/index', 'mobile/index']
-    cache_views.each do |view|
-      expire_fragement(view)
-      curl " 127.0.0.1:7654", view.include?('mobile')
-    end
+  def refresh
+    expire_fragment(params[:cache_name])
+    redirect_to admin_cache_path
   end
 
-  def cache_tag
+  def refresh_all
+    system "echo 'flush_all' | nc localhost 11211"
+    redirect_to admin_cache_path
   end
 
-  def cache_channel
-  end
+  # def recache_index
+  #   cache_views = ['desktop/index', 'mobile/index']
+  #   cache_views.each do |view|
+  #     expire_fragement(view)
+  #     curl " 127.0.0.1:7654", view.include?('mobile')
+  #   end
+  # end
 
-  def cache_article_list
+  # def cache_tag
+  # end
+
+  # def cache_channel
+  # end
+
+  # def cache_article_list
     
-  end
+  # end
 
   private
 
