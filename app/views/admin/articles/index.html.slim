@@ -18,7 +18,7 @@
             td.w5.text-center
               input type="checkbox" name="choose"
             td.w35
-              a href="#{edit_admin_article_path(article, page: params[:page])}"= article.title
+              a href="#{edit_admin_article_path(article, page: params[:page], node_id: params[:node_id])}"= article.title
             td.w10.text-center= article.source || 'admin'
             td.w15.text-center= article.node.name
             td.w10.text-center= article.created_at.strftime('%Y-%m-%d')            
@@ -38,7 +38,7 @@
               - if article.recommend?
                 i.fa.fa-star title="推荐"
             td.w10.text-center
-              a href="#{edit_admin_article_path(article, page: params[:page])}"
+              a href="#{edit_admin_article_path(article, page: params[:page], node_id: params[:node_id])}"
                 i.fa.fa-pencil-square
               | &nbsp;
               a href="#{admin_article_path(article)}" data-confirm="确认删除吗？" data-method="DELETE"
