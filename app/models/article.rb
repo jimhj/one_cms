@@ -177,7 +177,7 @@ class Article < ActiveRecord::Base
   end
 
   def self.recommend
-    recommends = self.where(recommend: true).order('id DESC').limit(30)
+    recommends = self.where(recommend: true).order('id DESC, updated_at DESC').limit(30)
     if recommends.count < 30
       needs = self.where.not(id: recommends.pluck(:id)).where.not(thumb: nil).order('id DESC, thumb DESC').limit(30 - recommends.count)
     else
