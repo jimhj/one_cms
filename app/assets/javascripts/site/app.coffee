@@ -8,6 +8,9 @@ $(document).ready ->
   .mouseleave ->
     $(this).find('.dropdown-menu').hide()
 
+  $('i.fa.fa-search').click ->
+    $(this).parents('form')[0].submit()
+
   $('.favorite-btn').click ->
     url = window.location.href
     title = $('title').text()

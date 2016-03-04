@@ -27,6 +27,7 @@
 
     .form-group i.fa.fa-search {
       position: absolute;
+      cursor: pointer;
       right: 15px;
       top: 10px;
       color: darken($brand-success, 20%);
