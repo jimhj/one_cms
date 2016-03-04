@@ -23,7 +23,6 @@
         li
           a href="#{article_path(article)}" title="#{article.title}"= article.title
 
-
 .main-split-container
   .left-side
     .list-section
@@ -31,7 +30,7 @@
         .pull-left
           h4 最近更新
       .list-section-inner.article-list-container
-        - Article.where.not(thumb: nil).order('id DESC, thumb DESC').limit(30).each do |article|
+        - Article.recommend.each do |article|
           - if article.pictures.size >= 3
             .list-section-item.morepics
               .item-text
@@ -52,5 +51,11 @@
                 h4
                   a href="#{article_path(article)}" title="#{article.title}"= article.title
                 p.text-muted= article.seo_description            
-                                
+          - else
+            .list-section-item.nopic.clearfix
+              .item-text
+                h4
+                  a href="#{article_path(article)}" title="#{article.title}"= article.title
+                p.text-muted= article.seo_description
+
   = render 'site/share/right_side'                      

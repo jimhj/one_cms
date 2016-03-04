@@ -175,4 +175,14 @@ class Article < ActiveRecord::Base
   def keywords
     seo_keywords.split(/,|，/)
   end
+
+  def self.recommend
+    recommends = self.where(recommend: true).order('id DESC').limit(30)
+    if recommends.count < 30
+      needs = self.where.not(id: recommends.pluck(:id)).where.not(thumb: nil).order('id DESC, thumb DESC').limit(30 - recommends.count)
+    else
+      needs = []
+    end
+    recommends.to_a + needs.to_a
+  end
 end

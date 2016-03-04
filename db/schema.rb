@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160225082041) do
+ActiveRecord::Schema.define(version: 20160304042736) do
 
   create_table "admin_users", force: :cascade do |t|
     t.string   "login",           limit: 30,  null: false
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 20160225082041) do
     t.string   "seo_description", limit: 255
     t.boolean  "focus",           limit: 1,   default: false
     t.boolean  "hot",             limit: 1,   default: false
+    t.boolean  "recommend",       limit: 1,   default: false
     t.integer  "status",          limit: 4,   default: 0
     t.boolean  "linked",          limit: 1,   default: false
     t.string   "link_word",       limit: 255

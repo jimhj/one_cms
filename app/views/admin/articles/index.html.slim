@@ -35,6 +35,8 @@
               - if article.linked?
                 i.fa.fa-link title="内链"
               | &nbsp;
+              - if article.recommend?
+                i.fa.fa-star title="推荐"
             td.w10.text-center
               a href="#{edit_admin_article_path(article, page: params[:page])}"
                 i.fa.fa-pencil-square
