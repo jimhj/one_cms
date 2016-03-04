@@ -26,33 +26,31 @@
 
 .main-split-container
   .left-side
-    - Node.main.each do |node|
-      .list-section
-        .list-section-nav
-          .pull-left
-            h4
-              a href="#{articles_path(node.slug)}"= node.name
-        .list-section-inner.article-list-container
-          - node.descendants_articles.limit(5).each do |article|
-            - if article.pictures.size >= 3
-              .list-section-item.morepics
-                .item-text
-                  h4
-                    a href="#{article_path(article)}" title="#{article.title}"= article.title
-                .item-image-list.clearfix
-                  - article.pictures.first(3).each do |picture_url|
-                    .item-image.pull-left
-                      a href="#{article_path(article)}" title="#{article.title}"
-                        = image_tag picture_url, size: '180x120', alt: article.title, title: article.title
+    .list-section
+      .list-section-nav
+        .pull-left
+          h4 最近更新
+      .list-section-inner.article-list-container
+        - Article.where.not(thumb: nil).order('id DESC, thumb DESC').limit(30).each do |article|
+          - if article.pictures.size >= 3
+            .list-section-item.morepics
+              .item-text
+                h4
+                  a href="#{article_path(article)}" title="#{article.title}"= article.title
+              .item-image-list.clearfix
+                - article.pictures.first(3).each do |picture_url|
+                  .item-image.pull-left
+                    a href="#{article_path(article)}" title="#{article.title}"
+                      = image_tag picture_url, size: '180x120', alt: article.title, title: article.title
 
-            - elsif article.pictures.size > 0
-              .list-section-item.one-pic.clearfix
-                .item-image.pull-left
-                  a href="#{article_path(article)}" title="#{article.title}"
-                    = image_tag article.pictures.first, size: '180x120', alt: article.title, title: article.title
-                .item-text.pull-left
-                  h4
-                    a href="#{article_path(article)}" title="#{article.title}"= article.title
-                  p.text-muted= article.seo_description            
+          - elsif article.pictures.size > 0
+            .list-section-item.one-pic.clearfix
+              .item-image.pull-left
+                a href="#{article_path(article)}" title="#{article.title}"
+                  = image_tag article.pictures.first, size: '180x120', alt: article.title, title: article.title
+              .item-text.pull-left
+                h4
+                  a href="#{article_path(article)}" title="#{article.title}"= article.title
+                p.text-muted= article.seo_description            
                                 
   = render 'site/share/right_side'                      
