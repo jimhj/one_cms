@@ -30,7 +30,7 @@ class Admin::ArticlesController < Admin::ApplicationController
   def update
     @article = Article.find params[:id]
     if @article.update_attributes(article_params)
-      redirect_to admin_articles_path(page: params[:page])
+      redirect_to admin_articles_path(page: params[:page], node_id: params[:node_id])
     else
       render action: :edit
     end
