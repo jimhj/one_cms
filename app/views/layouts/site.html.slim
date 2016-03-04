@@ -26,7 +26,11 @@ html
             = image_tag 'site/logo_4.png'
             span 传播健康知识，倡导健康生活
         .pull-right
-          ul.list-unstyled                  
+          ul.list-unstyled
+            li.pull-left
+              a href="#{tags_path}" title="热门标签"
+                = icon('tags')
+                | 热门标签                             
             li.pull-left
               a href="mailto:bd@h4.com.cn?subject=健康私房话投稿"
                 = icon('send')
