@@ -12,8 +12,9 @@
         - @nodes.each do |node|
           tr
             td.w5.text-center
-              a href="#{articles_path(node.slug)}" target="_blank"= node.id
-            td.w35= node.name
+              a href="#{admin_articles_path(node_id: node.id)}"= node.id
+            td.w35
+              a href="#{admin_articles_path(node_id: node.id)}"= node.name
             td.text-center.w30= node.slug
             td.w10.text-center= node.sortrank
             td.w10.text-center= node.created_at.strftime('%Y-%m-%d')
@@ -28,8 +29,10 @@
                 i.fa.fa-trash
           - node.descendants.each do |child|
             tr.warning
-              td.w5.text-center= child.id
-              td.w35= raw('&nbsp;&nbsp;' * child.level + '└' + child.name)
+              td.w5.text-center
+                a href="#{admin_articles_path(node_id: child.id)}"= child.id
+              td.w35
+                a href="#{admin_articles_path(node_id: child.id)}"= raw('&nbsp;&nbsp;' * child.level + '└' + child.name)
               td.text-center.w30= child.slug
               td.w10.text-center= child.sortrank
               td.w10.text-center= child.created_at.strftime('%Y-%m-%d')

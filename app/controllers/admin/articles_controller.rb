@@ -1,6 +1,12 @@
 class Admin::ArticlesController < Admin::ApplicationController
   def index
-    @articles = Article.joins(:node).paginate(paginate_params).order('created_at DESC')
+    if params[:node_id].blank?
+      @articles = Article.joins(:node).paginate(paginate_params).order('created_at DESC')
+    else
+      @node = Node.find params[:node_id]
+      node_ids = @node.self_and_descendants.pluck(:id)
+      @articles = Article.where(node_id: node_ids).joins(:node).paginate(paginate_params).order('created_at DESC')
+    end
   end
 
   def new
