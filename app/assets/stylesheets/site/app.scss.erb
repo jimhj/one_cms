@@ -44,7 +44,7 @@ body {
   a.brand-logo span {
     vertical-align: bottom;
     margin-left: 20px;
-    font-size: 16px;
+    font-size: 14px;
     color: #aaa;
   }
 
@@ -56,7 +56,17 @@ body {
     }
 
     li > a {
-      color: #aaa;
+      // font-size: 12px;
+      background-color: #ddd;
+      color: #838383;
+      padding: 4px 10px;
+      border-radius: 16px;
+      text-decoration: none;
+
+      &:hover {
+        background-color: $brand-success;
+        color: #fff;
+      }
 
       i.fa {
         margin-right: 5px;

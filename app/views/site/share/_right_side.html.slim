@@ -36,18 +36,18 @@
               li
                 a title="#{tag.name}" href="#{tag_path(tag.slug)}"= tag.name
 
-    .mixed-section
-      .mixed-section-nav
-        h4
-          a href="#{channels_path}" 
-            i.fa.fa-book
-            span 热点专题
-      .mixed-section-inner
-        .mixed-section-text
-          ul.section-list.list-unstyled
-            - Channel.hot(@channel_keywords).each do |channel|
-              li
-                a title="#{channel.name}" href="#{channel_path(channel)}"= channel.name    
+    / .mixed-section
+    /   .mixed-section-nav
+    /     h4
+    /       a href="#{channels_path}" 
+    /         i.fa.fa-book
+    /         span 热点专题
+    /   .mixed-section-inner
+    /     .mixed-section-text
+    /       ul.section-list.list-unstyled
+    /         - Channel.hot(@channel_keywords).each do |channel|
+    /           li
+    /             a title="#{channel.name}" href="#{channel_path(channel)}"= channel.name    
 
     .mixed-section
       .mixed-section-nav
