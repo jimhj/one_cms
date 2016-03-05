@@ -61,7 +61,7 @@ class ArticleBody < ActiveRecord::Base
 
 
   def restore_remote_images
-    pic = 0
+    # pic = 0
     doc = Nokogiri::HTML(self.body)
     remote_imgs = doc.css('img').collect do |img|
       begin
@@ -74,11 +74,16 @@ class ArticleBody < ActiveRecord::Base
           #   url = File.join(Setting.legacy_image_dir, url).to_s
           # end
 
-          data = MiniMagick::Image.open(url)
+          begin
+            data = MiniMagick::Image.open(url)
+          rescue => e
+            data = nil
+            next
+          end
 
           if data[:width].to_i >= 100 && data[:height].to_i >= 100
             article.thumb = data if article.thumb.blank?
-            pic += 1
+            # pic += 1
           end
 
           picture.data = data
