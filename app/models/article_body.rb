@@ -6,9 +6,9 @@ class ArticleBody < ActiveRecord::Base
   belongs_to :article
   validates_presence_of :body
 
-  # before_create do
-  #   restore_remote_images
-  # end
+  before_create do
+    self.body = strip_links(self.body)
+  end
 
   after_create do
     restore_remote_images
@@ -67,29 +67,15 @@ class ArticleBody < ActiveRecord::Base
       begin
         if not img[:src].include?(Setting.carrierwave.asset_host)
           picture = RedactorRails.picture_model.new
-          # picture.assetable = article
-          url = img[:src]
-          if not (url =~ /(\.jpeg|\.jpg|\.png|\.gif)$/)
-            url = url << '.jpg'
-          end
+          picture.remote_data_url = img[:src]
+          next if not picture.save
 
-          begin
-            data = MiniMagick::Image.open(url)
-          rescue => e
-            data = nil
-            next
-          end
-
-          if data[:width].to_i >= 100 && data[:height].to_i >= 100
-            article.thumb = data if article.thumb.blank?
+          if picture.width.to_i >= 100 && picture.height.to_i >= 100
+            article.thumb = picture.data if article.thumb.blank?
             pic += 1
           end
-
-          picture.data = data
-          picture.save
           img.set_attribute(:src, picture.url)
           img.set_attribute(:alt, article.title)
-          data = nil
         end
 
         img[:src]

@@ -50,16 +50,16 @@ class RedactorRailsPictureUploader < CarrierWave::Uploader::Base
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   def extension_white_list
-    RedactorRails.image_file_types
+    # RedactorRails.image_file_types
+    nil
   end
 
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
   def filename
-    if super.present?
-      @name ||= Digest::MD5.hexdigest(current_path)
-      "#{Time.now.year}/#{@name}.#{file.extension.downcase}"
-    end
+    # p file.content_type.split('image/')
+    @name ||= Digest::MD5.hexdigest(current_path)
+    "#{Time.now.year}/#{@name}.#{file.content_type.split('image/').last.downcase}"
   end
 
   def id_partition
