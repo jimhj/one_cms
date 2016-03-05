@@ -9,7 +9,7 @@ namespace :g do
     xm = Builder::XmlMarkup.new(:ident => 2, :margin => 4)
     xm.instruct!  
     xm.urlset {
-      Node.order('sortrank DESC').each do |node|
+      Node.where.not(slug: nil).order('sortrank DESC').each do |node|
         xm.url {
           xm.loc File.join(host, node.slug).to_s + '/'
           xm.lastmod node.updated_at.strftime('%F')
@@ -37,6 +37,8 @@ namespace :g do
       end
 
       Article.order('id DESC').limit(1000).each do |article|
+        next if article.node.nil?
+
         xm.url {
           xm.loc File.join(host, article.node.slug, article.id.to_s).to_s
           xm.lastmod article.updated_at.strftime('%F')
