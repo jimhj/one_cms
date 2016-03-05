@@ -69,7 +69,6 @@ class ArticleBody < ActiveRecord::Base
           picture = RedactorRails.picture_model.new
           # picture.assetable = article
           url = img[:src]
-          # if url.end_with?('.jpg') or url.end_with?('.jpeg')
           if not (url =~ /(\.jpeg|\.jpg|\.png|\.gif)$/)
             url = url << '.jpg'
           end
