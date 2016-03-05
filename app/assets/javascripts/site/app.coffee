@@ -1,8 +1,14 @@
 # = require jquery
 # = require jquery_ujs
 # = require bootstrap-sprockets
+# = require jquery.sticky
 
 $(document).ready ->
+  $('.nav.navbar').sticky({ topSpacing: 0 }).on 'sticky-start', ->
+    $(this).css 'opacity', 0.9
+  .on 'sticky-end', ->
+    $(this).css 'opacity', 1
+
   $('.navbar-nav > li').mouseenter ->
     $(this).find('.dropdown-menu').show()
   .mouseleave ->

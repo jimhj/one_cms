@@ -9,6 +9,7 @@
   // background-color: #ffffff;
   background-color: $brand-success;
   @include box-shadow(0 1px 2px #f1f1f1);
+  z-index: 99999;
 
   form.navbar-form {
     input {
