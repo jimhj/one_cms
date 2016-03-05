@@ -44,7 +44,7 @@ class ArticleBody < ActiveRecord::Base
 
       link = Nokogiri::XML::Node.new "a", doc
       link.set_attribute(:href, keyword.url)
-      link.set_attribute(:css, 'hot-link')
+      link.set_attribute(:class, 'hot-link')
       link.set_attribute(:target, '_blank')
       link.set_attribute(:title, keyword.name)
       link.content = keyword.name
