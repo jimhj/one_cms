@@ -58,6 +58,7 @@
         .mixed-section-text
           ul.section-list.list-unstyled
             - Article.recent.each do |article|
+              - next if article.node.blank?
               li
                 a title="#{article.title}" href="#{article_path(article)}"= article.title.truncate(18) 
 
