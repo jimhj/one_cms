@@ -72,6 +72,7 @@ class ArticleBody < ActiveRecord::Base
           # if url.end_with?('.jpg') or url.end_with?('.jpeg')
           if not (url =~ /(\.jpeg|\.jpg|\.png|\.gif)$/)
             url = url << '.jpg'
+          end
 
           begin
             data = MiniMagick::Image.open(url)
