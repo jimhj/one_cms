@@ -1,11 +1,11 @@
-.swiper-container
-  .swiper-wrapper
-    - Article.focus.each_with_index do |article, ind|
-      a.swiper-slide class="swiper-slide-#{ind}" data-title="#{article.title}" href="#{article_path(article)}"
-        = image_tag article.thumb.url(:middle)
-  .swiper-pagination-container
-    .pagination-title 
-    .pagination-bullets
+/ .swiper-container
+/   .swiper-wrapper
+/     - Article.focus.each_with_index do |article, ind|
+/       a.swiper-slide class="swiper-slide-#{ind}" data-title="#{article.title}" href="#{article_path(article)}"
+/         = image_tag article.thumb.url(:middle)
+/   .swiper-pagination-container
+/     .pagination-title 
+/     .pagination-bullets
 
 .list-container
   - @articles.each do |article|
