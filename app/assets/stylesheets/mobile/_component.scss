@@ -69,17 +69,22 @@
   }
 
   .list-item .item-inner {
-    padding: 10px 10px;
+    padding: 20px 10px;
     border-bottom: 1px solid #ececec;
 
     h4 {
       font-size: 16px;
       margin-top: 0px;
+      margin-bottom: 0px;
     }
   }
 
   .list-item:last-child .item-inner {
     border-bottom: none;
+  }
+
+  .item-inner .item-text {
+    margin-bottom: 10px;
   }
 
   .item-inner .item-text p {
@@ -90,7 +95,7 @@
   .item-inner {
     .item-image { 
       max-width: 30%; 
-      max-height: 100px;
+      max-height: 100%;
       overflow: hidden;
     }
 
@@ -107,6 +112,10 @@
   .one-pic .item-text {
     width: 60%;
     margin-left: 10px;
+  }
+
+  .morepics small {
+    // margin-bottom: 10px;
   }
 
   .morepics .item-image {
@@ -127,7 +136,7 @@
 
 .loadmore {
   text-align: center;
-  border-top: 1px solid #ececec;
+  // border-top: 1px solid #ececec;
   padding: 10px 0;
 
   a {
