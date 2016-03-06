@@ -185,7 +185,7 @@ class Article < ActiveRecord::Base
     end
     recommends = self.where(recommend: true).order('updated_at DESC, id DESC').offset(offset).limit(30)
     if recommends.count < 30
-      needs = self.where.not(id: recommends.pluck(:id)).where.not(thumb: nil).order('id DESC, thumb DESC').limit(30 - recommends.count)
+      needs = self.where.not(id: recommends.pluck(:id)).where.not(thumb: nil).order('id DESC, thumb DESC').offset(offset).limit(30 - recommends.count)
     else
       needs = []
     end
