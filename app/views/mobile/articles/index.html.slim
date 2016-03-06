@@ -5,7 +5,10 @@
         .item-inner.clearfix
           .item-text
             h4
-              a href="#{article_path(article)}" title="#{article.title}"= article.title
+              a href="#{article_path(article)}" title="#{article.title}"
+                = article.title
+            .text-muted: small= article.created_at.strftime('%F')
+
           .item-image-list.clearfix
             - article.pictures.first(3).each do |picture_url|
               .item-image.pull-left
@@ -21,16 +24,16 @@
           .item-text.pull-left
             h4
               a href="#{article_path(article)}" title="#{article.title}"= article.title
+            .text-muted: small= article.created_at.strftime('%F')
     - else
       .list-item.nopic
         .item-inner.clearfix
           .item-text
             h4
               a href="#{article_path(article)}" title="#{article.title}"= article.title
-            p.text-muted= article.seo_description
-
-.loadmore.loadmore-pagination
-  = simple_pagination
+            .text-muted: small= article.created_at.strftime('%F')
+  .loadmore.loadmore-pagination
+    = simple_pagination
 
 
 - @node.children.each do |child|    
