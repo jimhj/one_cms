@@ -15,21 +15,43 @@ $pagination-active-border: $brand-success;
 @import "wechat-article";
 
 body {
-  background-color: #F1F1F1;
+  background-color: #f8f8f8;
+  -webkit-font-smoothing: antialiased;
 }
 
 // Header Logo
 .header-logo {
   background-color: $brand-success;
   padding: 5px 0px;
+  width: 100%;
+  text-align: center;
 
   a.logo-brand {
-    display: block;
+    display: inline-block;
     background-image: image-url('mobile/logo_2.png');
     background-repeat: no-repeat;
     width: 160px;
     height: 40px;
-    margin: 0 auto;
+  }
+
+  ul.toolbar {
+    float: right;
+    margin-bottom: 0px;
+    padding-top: 13px;
+
+    li {
+      float: left;
+      margin-right: 10px;
+    }
+
+    li > a {
+      text-decoration: none;
+
+      i.fa {
+        margin-right: 5px;
+      }
+      color: #fff;
+    }
   }
 }
 

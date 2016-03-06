@@ -7,54 +7,85 @@
     .pagination-title 
     .pagination-bullets
 
-- Node.main.each do |node|
-  - children = node.children.last(3)
-  .article-container.container
-    .container-nav
-      ul.nav.nav-tabs role="tablist"
-        - children.each_with_index do |child, ind|
-          li class=('active' if ind.zero?) role="presentation"
-            a role="tab" data-toggle="tab" href="#tab-#{child.slug}"= child.name
+.list-container
+  - Article.recommend.each do |article|
+    - if article.pictures.size >= 3
+      .list-item.morepics
+        .item-inner.clearfix
+          .item-text
+            h4
+              a href="#{article_path(article)}" title="#{article.title}"= article.title
+          .item-image-list.clearfix
+            - article.pictures.first(3).each do |picture_url|
+              .item-image.pull-left
+                a href="#{article_path(article)}" title="#{article.title}"
+                  = image_tag picture_url, alt: article.title, title: article.title
 
-    .container-inner.tab-content
-      - children.each_with_index do |child, ind|
-        - klass = ind.zero? ? 'active' : 'fade'
-        .tab-pane id="tab-#{child.slug}" class=klass
-          ul.list-unstyled
-            - child.descendants_articles.order('id DESC').limit(5).each do |article|
-              li
-                a title=article.title href="#{article_path(article)}"= article.title
+    - elsif article.pictures.size > 0
+      .list-item.one-pic
+        .item-inner.clearfix
+          .item-image.pull-left
+            a href="#{article_path(article)}" title="#{article.title}"
+              = image_tag article.pictures.first, alt: article.title, title: article.title
+          .item-text.pull-left
+            h4
+              a href="#{article_path(article)}" title="#{article.title}"= article.title
+    - else
+      .list-item.nopic
+        .item-inner.clearfix
+          .item-text
+            h4
+              a href="#{article_path(article)}" title="#{article.title}"= article.title
+            p.text-muted= article.seo_description
 
-            li.more
-              a href="#{mobile_articles_path(child.slug)}" 查看更多 ...
+/ - Node.main.each do |node|
+/   - children = node.children.last(3)
+/   .article-container.container
+/     .container-nav
+/       ul.nav.nav-tabs role="tablist"
+/         - children.each_with_index do |child, ind|
+/           li class=('active' if ind.zero?) role="presentation"
+/             a role="tab" data-toggle="tab" href="#tab-#{child.slug}"= child.name
 
-.article-container.container
-  .container-nav
-    ul.nav.nav-tabs role="tablist"
-      li.active
-        a title="热点专题" href="#{channels_path}" 热点专题
+/     .container-inner.tab-content
+/       - children.each_with_index do |child, ind|
+/         - klass = ind.zero? ? 'active' : 'fade'
+/         .tab-pane id="tab-#{child.slug}" class=klass
+/           ul.list-unstyled
+/             - child.descendants_articles.order('id DESC').limit(5).each do |article|
+/               li
+/                 a title=article.title href="#{article_path(article)}"= article.title
 
-  .container-inner
-    ul.list-unstyled
-      - Channel.hot.each do |channel|
-        li
-          a href="#{channel_path(channel)}" title="#{channel.name}"= channel.name
-      li.more
-        a href="#{channels_path}" 查看更多 ...
+/             li.more
+/               a href="#{mobile_articles_path(child.slug)}" 查看更多 ...
 
-.article-container.container
-  .container-nav
-    ul.nav.nav-tabs role="tablist"
-      li.active
-        a title="热门标签" href="#{tags_path}" 热门标签
+/ .article-container.container
+/   .container-nav
+/     ul.nav.nav-tabs role="tablist"
+/       li.active
+/         a title="热点专题" href="#{channels_path}" 热点专题
 
-  .container-inner
-    ul.list-unstyled.tag-list
-      - Tag.order('taggings_count DESC').limit(15).each do |tag|
-        li
-          a title=tag.name href="#{tag_path(tag.slug)}"= tag.name
-    .loadmore
-      a href="#{tags_path}" 查看更多 ...
+/   .container-inner
+/     ul.list-unstyled
+/       - Channel.hot.each do |channel|
+/         li
+/           a href="#{channel_path(channel)}" title="#{channel.name}"= channel.name
+/       li.more
+/         a href="#{channels_path}" 查看更多 ...
+
+/ .article-container.container
+/   .container-nav
+/     ul.nav.nav-tabs role="tablist"
+/       li.active
+/         a title="热门标签" href="#{tags_path}" 热门标签
+
+/   .container-inner
+/     ul.list-unstyled.tag-list
+/       - Tag.order('taggings_count DESC').limit(15).each do |tag|
+/         li
+/           a title=tag.name href="#{tag_path(tag.slug)}"= tag.name
+/     .loadmore
+/       a href="#{tags_path}" 查看更多 ...
 
 - if @links.present?
   .article-container.container

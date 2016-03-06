@@ -1,34 +1,34 @@
-.article-container.container
-  .container-nav
-    ul.nav.nav-tabs role="tablist"
-      li.active role="presentation"
-        a role="tab" data-toggle="tab" href="#{mobile_articles_path(@node.slug)}"= @node.name
+.list-container
+  - @articles.each do |article|
+    - if article.pictures.size >= 3
+      .list-item.morepics
+        .item-inner.clearfix
+          .item-text
+            h4
+              a href="#{article_path(article)}" title="#{article.title}"= article.title
+          .item-image-list.clearfix
+            - article.pictures.first(3).each do |picture_url|
+              .item-image.pull-left
+                a href="#{article_path(article)}" title="#{article.title}"
+                  = image_tag picture_url, alt: article.title, title: article.title
 
-  .container-inner.tab-content
-    .tab-pane.active
-      - if @articles.any? 
-        ul.list-unstyled
-          - @articles.each do |article|
-            li
-              a title=article.title href="#{article_path(article)}"= article.title
+    - elsif article.pictures.size > 0
+      .list-item.one-pic
+        .item-inner.clearfix
+          .item-image.pull-left
+            a href="#{article_path(article)}" title="#{article.title}"
+              = image_tag article.pictures.first, alt: article.title, title: article.title
+          .item-text.pull-left
+            h4
+              a href="#{article_path(article)}" title="#{article.title}"= article.title
+    - else
+      .list-item.nopic
+        .item-inner.clearfix
+          .item-text
+            h4
+              a href="#{article_path(article)}" title="#{article.title}"= article.title
+            p.text-muted= article.seo_description
 
-        .loadmore.loadmore-pagination
-          = simple_pagination
-      - else
-        p.empty-data.text-muted.text-center 暂时没有文章
-
-- @node.children.each do |child|
-  .article-container.container
-    .container-nav
-      ul.nav.nav-tabs role="tablist"
-        li.active role="presentation"
-          a href="#{mobile_articles_path(child.slug)}"= child.name
-
-    .container-inner.tab-content
-      .tab-pane.active 
-        ul.list-unstyled.tag-list
-          - child.self_and_descendants.each do |node|
-            li
-              a title=node.name href="#{mobile_articles_path(node.slug)}"= node.name
-
+.loadmore.loadmore-pagination
+  = simple_pagination
                 

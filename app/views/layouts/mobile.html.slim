@@ -12,6 +12,15 @@ html
   body class="#{controller_name}"
     .header-logo
       a.logo-brand href="#{mobile_root_path}" title="健康私房话"
+      / ul.toolbar.list-unstyled
+      /   li
+      /     a href="#"
+      /       i.fa.fa-tags 
+      /       span 标签
+      /   li
+      /     a href="#"
+      /       i.fa.fa-book
+      /       span 专题
     .header-nav role="navigation"
       ul.list-unstyled.clearfix
         - cache('mobile-navigation') do
