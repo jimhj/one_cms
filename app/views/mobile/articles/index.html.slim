@@ -31,4 +31,19 @@
 
 .loadmore.loadmore-pagination
   = simple_pagination
+
+
+- @node.children.each do |child|    
+  .article-container.container
+    .container-nav   
+      ul.nav.nav-tabs role="tablist"    
+        li.active role="presentation"   
+          a href="#{mobile_articles_path(child.slug)}"= child.name    
+    
+    .container-inner.tab-content    
+      .tab-pane.active    
+        ul.list-unstyled.tag-list   
+          - child.self_and_descendants.each do |node|   
+            li    
+              a title=node.name href="#{mobile_articles_path(node.slug)}"= node.name
                 
