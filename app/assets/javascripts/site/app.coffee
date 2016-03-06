@@ -5,7 +5,7 @@
 
 $(document).ready ->
   $('.nav.navbar').sticky({ topSpacing: 0 }).on 'sticky-start', ->
-    $(this).css 'opacity', 0.9
+    $(this).css 'opacity', 0.95
   .on 'sticky-end', ->
     $(this).css 'opacity', 1
 
