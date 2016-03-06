@@ -14,7 +14,12 @@ Rails.application.routes.draw do
     get :login, to: 'sessions#new'
     post :login, to: 'sessions#create'
     resources :articles
-    resources :nodes
+    resources :nodes do
+      collection do
+        get :list
+      end
+    end
+
     resources :keywords
     resources :links, except: :show
     resources :channels

@@ -3,6 +3,10 @@ class Admin::NodesController < Admin::ApplicationController
     @nodes = Node.roots
   end
 
+  def list
+    @nodes = Node.order('id ASC')
+  end
+
   def new
     @node = Node.new(parent_id: params[:parent_id])
   end

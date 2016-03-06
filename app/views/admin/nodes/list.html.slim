@@ -1,0 +1,24 @@
+.row.pt-30.node-list
+  .col-lg-12
+    table.table.table-hover.table-bordered.table-condensed
+      tbody
+        tr
+          td.text-center ID
+          td.text-center 名称
+          td.text-center 路径
+          td.text-center seo_title
+          td.text-center seo_description
+          td.text-center seo_keywords
+          td.text-center 操作
+        - @nodes.each do |node|
+          tr
+            td.w5= node.id
+            td= node.name
+            td style="max-width:100px;"= node.slug
+            td style="max-width:200px;"= node.seo_title
+            td style="max-width:300px;"= node.seo_description
+            td style="max-width:200px;"= node.seo_keywords
+            td
+              a href="#{edit_admin_node_path(node)}"
+                i.fa.fa-edit
+
