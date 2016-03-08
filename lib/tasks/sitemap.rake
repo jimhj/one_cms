@@ -3,7 +3,7 @@ require 'builder'
 namespace :g do
   desc 'Generate sitemap'
   task :sitemap => :environment do
-    host = Rails.env.development? ? 'http://127.0.0.1:8000': 'http://www.h4.com.cn'
+    host = Rails.env.development? ? 'http://127.0.0.1:8000': "http://#{SiteConfig.actived.domain || 'www.h4.com.cn'}"
 
     file = Rails.root.join('public', 'sitemap.xml').to_s
     xm = Builder::XmlMarkup.new(:ident => 2, :margin => 4)
