@@ -2,8 +2,8 @@ $font-family-sans-serif: "微软雅黑", "microsoft yahei", verdana, lucida, Ari
 $body-bg: #f8f8f8;
 // $brand-success: #5cb85c !default;
 // $link-color: #454545;
-$brand-success: <%= SiteConfig.actived.brand_color %>;
-$link-color: <%= SiteConfig.actived.text_color %>;
+$brand-success: <%= Setting.color_schema.brand_success %>;
+$link-color: <%= Setting.color_schema.link_color %>;
 $link-hover-color: $brand-success;
 $pagination-active-bg: $brand-success;
 $pagination-active-border: $brand-success;
