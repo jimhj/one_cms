@@ -9,6 +9,20 @@ class Admin::CacheController < Admin::ApplicationController
     redirect_to admin_cache_path
   end
 
+  def precompile
+    env = Rails.env.development? ? 'development' : 'production'
+    system "rake tmp:clear; rake assets:precompile"
+    redirect_to admin_cache_path
+  end
+
+  # def restart
+  #   if Rails.env.production?
+  #     system 
+  #   end
+
+  #   redirect_to admin_cache_path
+  # end
+
   # def recache_index
   #   cache_views = ['desktop/index', 'mobile/index']
   #   cache_views.each do |view|

@@ -30,6 +30,8 @@ Rails.application.routes.draw do
       get '/', to: 'cache#index'
       post 'refresh', to: 'cache#refresh', as: :refresh
       post :refresh_all
+      post :precompile
+      post :restart
     end
   end
 
