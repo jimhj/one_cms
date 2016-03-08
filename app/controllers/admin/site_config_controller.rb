@@ -1,17 +1,20 @@
 class Admin::SiteConfigController < Admin::ApplicationController
   def edit
-    @configs = SiteConfig.all
+    @config = SiteConfig.first
   end
 
   def update
-    confs = params.except(*request.path_parameters.keys).except(:utf8, :authenticity_token)
-    confs.each_pair do |key, value|
-      c = SiteConfig.find_by(key: key)
-      next if c.nil?
-      value.permit!
-      c.update_attributes(value)
+    @config = SiteConfig.first
+    if @config.update_attributes config_params
+      redirect_to admin_site_config_path
+    else
+      render :edit
     end
+  end
 
-    redirect_to :back
+  private
+
+  def config_params
+    params.require(:site_config).permit!
   end
 end

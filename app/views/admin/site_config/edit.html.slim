@@ -1,9 +1,50 @@
 .row.site-config-form.pt-30
   .col-lg-12
-    = form_tag admin_site_configs_path, method: 'post', class: 'form'
-      - @configs.each do |conf|
-        .form-group.form-group-bordered
-          label= "#{conf.key_name} *"
-          = text_area_tag "[#{conf.key}][value]", conf.value, class: 'form-control', placeholder: '输入内链名称'
+    = render "admin/shared/errors", target: @config
+    = form_for @config, url: admin_site_configs_path, multipart: true, method: 'POST', class: 'form' do |f|
+      .form-group.form-group-bordered
+        label 网站名称 *
+        = f.text_field :site_name, class: 'form-control'
+      .form-group.form-group-bordered
+        label 网站标语 *
+        = f.text_field :site_slogan, class: 'form-control'
+      .form-group.form-group-bordered
+        label 网站 logo *
+        = f.file_field :logo
+        - if !@config.logo.blank?
+          div style="margin-top: 10px;"
+            = image_tag @config.logo.url
+      .form-group.form-group-bordered
+        label 网站主色 (导航，链接等) *
+        = f.text_field :brand_color, class: 'form-control'
+      .form-group.form-group-bordered
+        label 列表链接颜色 *
+        = f.text_field :text_color, class: 'form-control'
+      .form-group.form-group-bordered
+        label 联系邮箱
+        = f.text_field :contact_email, class: 'form-control'
+      .form-group.form-group-bordered
+        label 投稿邮箱
+        = f.text_field :bd_email, class: 'form-control'
+
+      .form-group.form-group-bordered
+        label ICP 备案号
+        = f.text_field :icp, class: 'form-control'
+      .form-group.form-group-bordered
+        label 版权信息
+        = f.text_area :copyright, class: 'form-control'
+      .form-group.form-group-bordered
+        label 法律声明
+        = f.text_area :declare, class: 'form-control'
+
+      .form-group.form-group-bordered
+        label 网站 SEO 标题 *
+        = f.text_field :site_title, class: 'form-control'
+      .form-group.form-group-bordered
+        label 网站 SEO 关键字 *
+        = f.text_field :site_keywords, class: 'form-control'
+      .form-group.form-group-bordered
+        label 网站 SEO 描述 *
+        = f.text_area :site_description, class: 'form-control', style: 'height: 100px;'
       .form-group
         button.btn.btn-primary.btn-lg type="submit" 保存
