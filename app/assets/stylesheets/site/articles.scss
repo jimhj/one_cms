@@ -181,6 +181,11 @@
 .more-like-this {
   margin-top: 20px;
 
+  &.ad-section .mixed-section-inner {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
   .mixed-section-inner {
     padding-bottom: 5px;
 
