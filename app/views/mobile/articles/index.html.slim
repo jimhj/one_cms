@@ -13,14 +13,14 @@
             - article.pictures.first(3).each do |picture_url|
               .item-image.pull-left
                 a href="#{article_path(article)}" title="#{article.title}"
-                  = image_tag picture_url, alt: article.title, title: article.title
+                  = image_tag qn_picture_url(picture_url), alt: article.title, title: article.title
 
     - elsif article.pictures.size > 0
       .list-item.one-pic
         .item-inner.clearfix
           .item-image.pull-left
             a href="#{article_path(article)}" title="#{article.title}"
-              = image_tag article.pictures.first, alt: article.title, title: article.title
+              = image_tag qn_picture_url(article.pictures.first), alt: article.title, title: article.title
           .item-text.pull-left
             h4
               a href="#{article_path(article)}" title="#{article.title}"= article.title
