@@ -32,7 +32,7 @@ html
             li.clearfix
               .thumb
                 a href="#{article_path(article)}" title="#{article.title}"
-                  = image_tag pic, :size => '50x50', alt: article.title 
+                  = image_tag qn_picture_url(pic), :size => '50x50', alt: article.title 
               .link
                 a href="#{article_path(article)}" title="#{article.title}"= article.title
 
