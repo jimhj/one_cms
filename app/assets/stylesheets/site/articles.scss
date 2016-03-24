@@ -30,6 +30,16 @@
     width: 100%;
   }  
 
+  .item-image {
+    width: 180px;
+    height: 120px;
+    text-align: center;
+    img { 
+      max-width: 180px;
+      max-height: 120px;
+    }
+  }
+
   .morepics .item-image-list .item-image {
     margin-right: 30px;
   }
