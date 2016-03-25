@@ -6,7 +6,9 @@ namespace :g do
     host = Rails.env.development? ? 'http://127.0.0.1:8000': "http://#{SiteConfig.actived.domain || 'www.h4.com.cn'}"
     index_file = Rails.root.join('public', 'sitemap.xml').to_s
     sitemap_file_dir = Rails.root.join('public', 'sitemap').to_s
-    FileUtils.remove_dir(sitemap_file_dir)
+    if File.directory?(sitemap_file_dir)
+      FileUtils.remove_dir(sitemap_file_dir)
+    end
     FileUtils.mkdir_p(sitemap_file_dir)
 
     index_xm = Builder::XmlMarkup.new(:ident => 2, :margin => 4)
