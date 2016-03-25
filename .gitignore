@@ -11,6 +11,7 @@ capybara-*.html
 /public/system
 /public/uploads
 /public/assets
+/public/sitemap
 /public/sitemap.xml
 /public/apiclient_cert.p12
 /coverage/
