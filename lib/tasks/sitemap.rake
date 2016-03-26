@@ -20,7 +20,7 @@ namespace :g do
           loc = "sitemap/#{node.id}-#{page}.xml"
           file = Rails.root.join('public', loc).to_s
           node_ids = node.self_and_descendants.pluck(:id)
-          articles = Article.where(node_id: node_ids).order('id DESC').paginate(per_page: 10000, total_entries: 1000000, page: page)     
+          articles = Article.where(node_id: node_ids).order('id DESC').paginate(per_page: 10000, total_entries: 100000, page: page)     
           next if articles.blank?
 
           xm = Builder::XmlMarkup.new(:ident => 2, :margin => 4)
