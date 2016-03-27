@@ -16,7 +16,7 @@ namespace :g do
     index_xm.sitemapindex {
       Node.all.order('id DESC').each_with_index do |node, ind|
         node_id = node.id
-        1.upto(10).each do |page|
+        [1].each do |page|
           loc = "sitemap/#{node.id}-#{page}.xml"
           file = Rails.root.join('public', loc).to_s
           node_ids = node.self_and_descendants.pluck(:id)
