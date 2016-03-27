@@ -21,7 +21,9 @@ namespace :g do
         next if count.zero?
 
         size = count / 10000
-        1.upto(size + 1).each do |page|
+        size = size + 1
+        size = 10 if size >= 10
+        1.upto(size ).each do |page|
           loc = "sitemap/#{node_id}-#{page}.xml"
           # file = Rails.root.join('public', loc).to_s
           # xm = Builder::XmlMarkup.new(:ident => 2, :margin => 4)
