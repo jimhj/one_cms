@@ -35,6 +35,8 @@ Rails.application.routes.draw do
     end
   end
 
+  match 'sitemap/:node_id-:page', to: 'sitemap#show', constraints: { format: 'xml' }, via: :get
+
   constraints(MobileConstraint) do
     scope module: 'mobile', as: :mobile do
       root 'application#index'
@@ -55,5 +57,5 @@ Rails.application.routes.draw do
     get 'z/:slug',      to: 'channels#show',    as: :channel, trailing_slash: true
     get ':slug/:id',    to: 'articles#show',    as: :article
     get ':slug',        to: 'articles#index',   as: :articles, trailing_slash: true
-  end 
+  end
 end

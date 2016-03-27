@@ -16,32 +16,33 @@ namespace :g do
     index_xm.sitemapindex {
       Node.all.order('id DESC').each_with_index do |node, ind|
         node_id = node.id
-        [1].each do |page|
-          loc = "sitemap/#{node.id}-#{page}.xml"
-          file = Rails.root.join('public', loc).to_s
-          node_ids = node.self_and_descendants.pluck(:id)
-          articles = Article.where(node_id: node_ids).order('id DESC').paginate(per_page: 10000, total_entries: 1000000, page: page)     
-          next if articles.blank?
+        node_ids = node.self_and_descendants.pluck(:id)
+        count = Article.where(node_id: node_ids).count
+        next if count.zero?
 
-          xm = Builder::XmlMarkup.new(:ident => 2, :margin => 4)
-          xm.instruct! 
-          xm.urlset {
-            articles.each do |article|
-              next if article.node.nil?
+        size = count / 10000
+        1.upto(size + 1).each do |page|
+          loc = "sitemap/#{node_id}-#{page}.xml"
+          # file = Rails.root.join('public', loc).to_s
+          # xm = Builder::XmlMarkup.new(:ident => 2, :margin => 4)
+          # xm.instruct! 
+          # xm.urlset {
+          #   articles.each do |article|
+          #     next if article.node.nil?
 
-              xm.url {
-                xm.loc File.join(host, article.node.slug, article.id.to_s).to_s
-                xm.lastmod article.updated_at.strftime('%F')
-                xm.changefreq 'daily'
-                xm.priority 1.0
-              }
-            end 
-          }
+          #     xm.url {
+          #       xm.loc File.join(host, article.node.slug, article.id.to_s).to_s
+          #       xm.lastmod article.updated_at.strftime('%F')
+          #       xm.changefreq 'daily'
+          #       xm.priority 1.0
+          #     }
+          #   end 
+          # }
 
-          xml = xm.to_s.gsub('<to_s/>', '')
-          File.open file, 'w+' do |f|
-            f.write xml
-          end
+          # xml = xm.to_s.gsub('<to_s/>', '')
+          # File.open file, 'w+' do |f|
+          #   f.write xml
+          # end
 
           index_xm.sitemap {
             index_xm.loc File.join(host, loc).to_s
