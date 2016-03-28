@@ -1,27 +1,26 @@
 .main-split-container
   .left-side
-    .breadcrumb-container
-      ol.breadcrumb.pull-left
-        li
-          a href="#{root_path}"
-            i.fa.fa-caret-right 
-            span 首页
-        li
-          a href="#{channels_path}"
-            span 热门专题
+    / .breadcrumb-container
+    /   ol.breadcrumb.pull-left
+    /     li
+    /       a href="#{root_path}"
+    /         i.fa.fa-caret-right 
+    /         span 首页
+    /     li
+    /       a href="#{channels_path}"
+    /         span 热门专题
 
-        li.active= @channel.name
+    /     li.active= @channel.name
          
-      .social-share.pull-right
-        = render 'site/share/bd_share' 
+    /   .social-share.pull-right
+    /     = render 'site/share/bd_share' 
     .list-section
       .list-section-nav
-        .pull-left
-          h4
+        h4.pull-left
+          a
             i.fa.fa-book
-            span= @channel.name
-        .pull-right.right-nav
-          = render_keyword_nav(@channel)        
+            = @channel.name
+        .pull-right= render 'site/share/bd_share' 
       .list-section-inner.article-list-container
         - if @articles.any?
           - @articles.each do |article|

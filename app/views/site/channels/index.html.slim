@@ -1,20 +1,21 @@
 .main-split-container
   .left-side
-    .breadcrumb-container
-      ol.breadcrumb.pull-left
-        li
-          a href="#{root_path}"
-            i.fa.fa-caret-right 
-            span 首页
+    / .breadcrumb-container
+    /   ol.breadcrumb.pull-left
+    /     li
+    /       a href="#{root_path}"
+    /         i.fa.fa-caret-right 
+    /         span 首页
 
-        li.active 热门专题
+    /     li.active 热门专题
 
-      .social-share.pull-right
-        = render 'site/share/bd_share'
+    /   .social-share.pull-right
+    /     = render 'site/share/bd_share'
     .list-section
       .list-section-nav
-        .pull-left
-          h4 热点专题  
+        h4.pull-left: a 热点专题 
+        .pull-right
+          = render 'site/share/bd_share'
       .list-section-inner
         ul.section-list.list-unstyled
           - @channels.each do |channel|

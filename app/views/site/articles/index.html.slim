@@ -1,25 +1,25 @@
 .main-split-container
   .left-side
-    .breadcrumb-container
-      ol.breadcrumb.pull-left
-        li
-          a href="#{root_path}"
-            i.fa.fa-caret-right 
-            span 首页
-        - @node.ancestors.each do |node|
-          li
-            a href="#{articles_path(node.slug)}" title="#{node.name}"= node.name
+    / .breadcrumb-container
+    /   ol.breadcrumb.pull-left
+    /     li
+    /       a href="#{root_path}"
+    /         i.fa.fa-caret-right 
+    /         span 首页
+    /     - @node.ancestors.each do |node|
+    /       li
+    /         a href="#{articles_path(node.slug)}" title="#{node.name}"= node.name
 
-        li.active= @node.name 
-      .social-share.pull-right
-        = render 'site/share/bd_share'
-          i.fa.fa-search   
+    /     li.active= @node.name 
+    /   .social-share.pull-right
+    /     = render 'site/share/bd_share'
     .list-section
       .list-section-nav
         .pull-left
-          h4= @node.name
-        .pull-right.right-nav
-          = render_node_nav
+        h4.pull-left: a= @node.name
+        .pull-right
+          = render 'site/share/bd_share'
+
       .list-section-inner.article-list-container
         - if @articles.any?
           - @articles.each do |article|
