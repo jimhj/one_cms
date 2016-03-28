@@ -184,7 +184,7 @@ class Article < ActiveRecord::Base
       offset = load * (page - 1)
     end
 
-    recommends = self.where(recommend: true).order('updated_at DESC, id DESC').offset(offset).limit(load)
+    recommends = self.where(recommend: true).order('id DESC').offset(offset).limit(load)
     if recommends.count < load
       needs = self.where.not(id: recommends.pluck(:id)).where.not(thumb: nil).order('id DESC, thumb DESC').offset(offset).limit(load - recommends.count)
     else
