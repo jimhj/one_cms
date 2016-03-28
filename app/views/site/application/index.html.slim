@@ -31,32 +31,8 @@
         .pull-left
           h4: a 热点推荐
       .list-section-inner.article-list-container
-        - Article.recommend.each do |article|
-          - if article.pictures.size >= 3
-            .list-section-item.morepics
-              .item-text
-                h4
-                  a href="#{article_path(article)}" title="#{article.title}"= article.title
-              .item-image-list.clearfix
-                - article.pictures.first(3).each do |picture_url|
-                  .item-image.pull-left
-                    a href="#{article_path(article)}" title="#{article.title}"
-                      = image_tag qn_picture_url(picture_url), alt: article.title, title: article.title
-
-          - elsif article.pictures.size > 0
-            .list-section-item.one-pic.clearfix
-              .item-image.pull-left
-                a href="#{article_path(article)}" title="#{article.title}"
-                  = image_tag qn_picture_url(article.pictures.first), alt: article.title, title: article.title
-              .item-text.pull-left
-                h4
-                  a href="#{article_path(article)}" title="#{article.title}"= article.title
-                p.text-muted= article.seo_description            
-          - else
-            .list-section-item.nopic.clearfix
-              .item-text
-                h4
-                  a href="#{article_path(article)}" title="#{article.title}"= article.title
-                p.text-muted= article.seo_description
+        = render 'site/application/index_articles', articles: @articles
+        .text-center
+          a.btn.btn-default.loadMore data-loading-text="加载中..." data-page=1 加载更多
 
   = render 'site/share/right_side'                      

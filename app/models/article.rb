@@ -176,16 +176,17 @@ class Article < ActiveRecord::Base
     seo_keywords.split(/,|，/)
   end
 
-  def self.recommend(page: 1)
+  def self.recommend(page: 1, load: 20)
     page = page.to_i
     if page == 0
       offset = 0
     else
       offset = 10 * (page - 1)
     end
-    recommends = self.where(recommend: true).order('updated_at DESC, id DESC').offset(offset).limit(30)
-    if recommends.count < 30
-      needs = self.where.not(id: recommends.pluck(:id)).where.not(thumb: nil).order('id DESC, thumb DESC').offset(offset).limit(30 - recommends.count)
+
+    recommends = self.where(recommend: true).order('updated_at DESC, id DESC').offset(offset).limit(load)
+    if recommends.count < load
+      needs = self.where.not(id: recommends.pluck(:id)).where.not(thumb: nil).order('id DESC, thumb DESC').offset(offset).limit(load - recommends.count)
     else
       needs = []
     end

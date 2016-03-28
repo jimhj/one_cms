@@ -19,6 +19,17 @@ $(document).ready ->
   $('i.fa.fa-search').click ->
     $(this).parents('form')[0].submit()
 
+  $('.loadMore').click ->
+    $el = $(this)
+    page = $el.data 'page'
+    next_page = parseInt(page) + 1
+    $el.button 'loading'
+    $.get '/', page: next_page, (rsp) ->
+      $el.parent().before rsp.html
+      $el.data 'page', next_page
+      $el.button 'reset'
+    , 'json'
+
   $('.favorite-btn').click ->
     url = window.location.href
     title = $('title').text()
