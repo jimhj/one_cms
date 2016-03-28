@@ -9,7 +9,7 @@ $(document).ready ->
   .on 'sticky-end', ->
     $(this).css 'opacity', 1
 
-  $('.ad-stick').sticky({ topSpacing: 0 })
+  $('.ad-stick').sticky({ topSpacing: 60 })
 
   $('.navbar-nav > li').mouseenter ->
     $(this).find('.dropdown-menu').show()
