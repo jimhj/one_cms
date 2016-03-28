@@ -28,7 +28,7 @@
     .list-section
       .list-section-nav
         .pull-left
-          h4 最近更新
+          h4: a 热点推荐
       .list-section-inner.article-list-container
         - Article.recommend.each do |article|
           - if article.pictures.size >= 3
