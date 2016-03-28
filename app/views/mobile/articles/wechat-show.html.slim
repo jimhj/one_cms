@@ -19,7 +19,7 @@ html
           em= @article.source
           a href="#{articles_path(@article.node.slug)}"= @article.node.name
         .article-content
-          = article_format @article.body_html
+          = replace_inner_link_domain(article_format @article.body_html)
 
         .wechat-toolbar
           em 更多文章
