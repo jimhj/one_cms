@@ -15,7 +15,7 @@ module Mobile::ApplicationHelper
   end
 
   def replace_inner_link_domain(html)
-    html = html.gsub(/(www\.)?h4\.com\.cn/, 'm.h4.com.cn')
+    html = html.gsub(/www\.h4\.com\.cn/, 'm.h4.com.cn')
     raw html
   end
 end
