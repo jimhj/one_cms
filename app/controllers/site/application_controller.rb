@@ -8,7 +8,7 @@ class Site::ApplicationController < ApplicationController
   def index
     @links = Link.where(linkable_id: 0).pc
     @focus = Article.focus
-    @topnews = Article.topnews
+    @topnews = Article.hot
     @articles = Article.recommend(page: params[:page], load: 20)
 
     respond_to do |req|

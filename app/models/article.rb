@@ -14,7 +14,7 @@ class Article < ActiveRecord::Base
 
   scope :recent, -> { order('id DESC').limit(10) }
   scope :focus, -> { where(focus: true).order('updated_at DESC, id DESC').limit(3) }
-  scope :hot, -> { where(hot: true).order('updated_at DESC, id DESC').limit(6) }
+  scope :hot, -> { where(hot: true).order('updated_at DESC, id DESC').limit(8) }
 
   after_create do
     if self.linked?
@@ -181,7 +181,7 @@ class Article < ActiveRecord::Base
     if page == 0
       offset = 0
     else
-      offset = 10 * (page - 1)
+      offset = load * (page - 1)
     end
 
     recommends = self.where(recommend: true).order('updated_at DESC, id DESC').offset(offset).limit(load)

@@ -13,15 +13,25 @@
               .carousel-caption-inner
                 h4= article.title
 
-  .pull-right.carousel-focus-right
-    .headline
-      h4 
-        a href="#{article_path(Article.headline)}"  title="#{Article.headline.title}"= Article.headline.title
-      p.text-muted= Article.headline.seo_description
-    ul.focus-list.list-unstyled
-      - @topnews.each do |article|
-        li
-          a href="#{article_path(article)}" title="#{article.title}"= article.title
+  .pull-right.carousel-focus-right.mixed-section
+    .mixed-section-nav
+      h4
+        a 头条推荐
+    .mixed-section-inner
+      .mixed-section-text
+        ul.section-list.list-unstyled
+          - @topnews.each do |article|
+            - next if article.node.blank?
+            li
+              a title="#{article.title}" href="#{article_path(article)}"= article.title.truncate(18) 
+    / .headline
+    /   h4 
+    /     a href="#{article_path(Article.headline)}"  title="#{Article.headline.title}"= Article.headline.title
+    /   p.text-muted= Article.headline.seo_description
+    / ul.focus-list.list-unstyled
+    /   - @topnews.each do |article|
+    /     li
+    /       a href="#{article_path(article)}" title="#{article.title}"= article.title
 
 .main-split-container
   .left-side
