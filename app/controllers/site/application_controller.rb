@@ -13,7 +13,7 @@ class Site::ApplicationController < ApplicationController
   end
 
   def more
-    @articles = Article.recommend(page: params[:page], load: 20)
+    @articles = Article.recommend(page: params[:page], load: 10)
     html = render_to_string(partial: 'site/application/index_articles', layout: false, locals: { articles: @articles })
     render json: { html: html }
   end
