@@ -24,7 +24,7 @@ $(document).ready ->
     page = $el.data 'page'
     next_page = parseInt(page) + 1
     $el.button 'loading'
-    $.get '/', page: next_page, (rsp) ->
+    $.get '/more', page: next_page, (rsp) ->
       $el.parent().before rsp.html
       $el.data 'page', next_page
       $el.button 'reset'

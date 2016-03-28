@@ -50,6 +50,7 @@ Rails.application.routes.draw do
   
   scope module: :site do
     root 'application#index'
+    get 'more',         to: 'application#more'
     resources :tags,  only: [:index, :show],    trailing_slash: true    
     get 'feed',         to: 'articles#feed',    as: :feed
     get 'search',       to: 'articles#search',  as: :search
