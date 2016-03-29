@@ -8,7 +8,7 @@
         .item-image.pull-left
           a href="#{article_path(article)}" title="#{article.title}"
             - if lazyload
-              img.lazy src="#{image_path('site/thumb.png')}" data-original="#{qn_picture_url(picture_url)}" alt="#{article.title}" title="#{article.title}"
+              img class="lazy-#{page}" src="#{image_path('site/thumb.png')}" data-original="#{qn_picture_url(picture_url)}" alt="#{article.title}" title="#{article.title}"
             - else
               = image_tag qn_picture_url(picture_url), alt: article.title, title: article.title
 
@@ -18,7 +18,7 @@
       a href="#{article_path(article)}" title="#{article.title}"
         - picture_url = article.pictures.first
         - if lazyload
-          img.lazy src="#{image_path('site/thumb.png')}" data-original="#{qn_picture_url(picture_url)}" alt="#{article.title}" title="#{article.title}"
+          img class="lazy-#{page}" src="#{image_path('site/thumb.png')}" data-original="#{qn_picture_url(picture_url)}" alt="#{article.title}" title="#{article.title}"
         - else
           = image_tag qn_picture_url(picture_url), alt: article.title, title: article.title
     .item-text.pull-left

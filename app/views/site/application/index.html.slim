@@ -41,7 +41,7 @@
         .pull-left
           h4: a 热点推荐
       .list-section-inner.article-list-container
-        = render partial: 'site/application/index_article', collection: @articles, as: :article, locals: { lazyload: true }
+        = render partial: 'site/application/index_article', collection: @articles, as: :article, locals: { lazyload: true, page: params[:page].presence || 1 }
         .text-center
           a.btn.btn-default.loadMore data-loading-text="加载中..." data-page=1 加载更多
 

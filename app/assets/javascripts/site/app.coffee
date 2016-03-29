@@ -27,12 +27,12 @@ $(document).ready ->
     $el.button 'loading'
     $.get '/more', page: next_page, (rsp) ->
       $el.parent().before rsp.html
-      $('.lazy').lazyload(effect : "fadeIn")
+      $(".lazy-#{next_page}").lazyload(effect : "fadeIn")
       $el.data 'page', next_page
       $el.button 'reset'
     , 'json'
 
-  $('img.lazy').lazyload(
+  $('img.lazy-1').lazyload(
     effect : "fadeIn"
   )
 
