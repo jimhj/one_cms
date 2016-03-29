@@ -186,13 +186,11 @@ class Article < ActiveRecord::Base
 
     recommends = self.where(recommend: true).order('id DESC').offset(offset).limit(load)
 
-    if Rails.env.development?
-      if recommends.count < load
-        needs = self.where.not(id: recommends.pluck(:id)).where.not(thumb: nil).order('id DESC, thumb DESC').offset(offset).limit(load - recommends.count)
-      else
-        needs = []
-      end
-      recommends = recommends.to_a + needs.to_a
+    if recommends.count < load
+      needs = self.where.not(id: recommends.pluck(:id)).where.not(thumb: nil).order('id DESC, thumb DESC').offset(offset).limit(load - recommends.count)
+    else
+      needs = []
     end
+    recommends = recommends.to_a + needs.to_a
   end
 end
