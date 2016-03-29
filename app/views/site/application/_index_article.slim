@@ -1,0 +1,33 @@
+- if article.pictures.size >= 3
+  .list-section-item.morepics
+    .item-text
+      h4
+        a href="#{article_path(article)}" title="#{article.title}"= article.title
+    .item-image-list.clearfix
+      - article.pictures.first(3).each do |picture_url|
+        .item-image.pull-left
+          a href="#{article_path(article)}" title="#{article.title}"
+            - if lazyload
+              img.lazy src="#{image_path('site/thumb.png')}" data-original="#{qn_picture_url(picture_url)}" alt="#{article.title}" title="#{article.title}"
+            - else
+              = image_tag qn_picture_url(picture_url), alt: article.title, title: article.title
+
+- elsif article.pictures.size > 0
+  .list-section-item.one-pic.clearfix
+    .item-image.pull-left
+      a href="#{article_path(article)}" title="#{article.title}"
+        - picture_url = article.pictures.first
+        - if lazyload
+          img.lazy src="#{image_path('site/thumb.png')}" data-original="#{qn_picture_url(picture_url)}" alt="#{article.title}" title="#{article.title}"
+        - else
+          = image_tag qn_picture_url(picture_url), alt: article.title, title: article.title
+    .item-text.pull-left
+      h4
+        a href="#{article_path(article)}" title="#{article.title}"= article.title
+      p.text-muted= article.seo_description            
+- else
+  .list-section-item.nopic.clearfix
+    .item-text
+      h4
+        a href="#{article_path(article)}" title="#{article.title}"= article.title
+      p.text-muted= article.seo_description

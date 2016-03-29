@@ -2,6 +2,7 @@
 # = require jquery_ujs
 # = require bootstrap-sprockets
 # = require jquery.sticky
+# = require jquery.lazyload
 
 $(document).ready ->
   $('.nav.navbar').sticky({ topSpacing: 0 }).on 'sticky-start', ->
@@ -26,9 +27,14 @@ $(document).ready ->
     $el.button 'loading'
     $.get '/more', page: next_page, (rsp) ->
       $el.parent().before rsp.html
+      $('.lazy').lazyload(effect : "fadeIn")
       $el.data 'page', next_page
       $el.button 'reset'
     , 'json'
+
+  $('img.lazy').lazyload(
+    effect : "fadeIn"
+  )
 
   $('.favorite-btn').click ->
     url = window.location.href
