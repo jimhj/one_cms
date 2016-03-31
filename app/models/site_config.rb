@@ -1,6 +1,6 @@
 class SiteConfig < ActiveRecord::Base
   mount_uploader :logo, ThumbUploader, mount_on: :site_logo
-  store :extras, accessors: [:brand_color, :text_color, :contact_email, :bd_email, :icp, :declare, :copyright, :domain]
+  store :extras, accessors: [:brand_color, :text_color, :contact_email, :bd_email, :icp, :declare, :copyright, :domain, :checked_aid]
   validates_presence_of :site_name, :site_title, :site_slogan, :domain
 
   def self.actived
