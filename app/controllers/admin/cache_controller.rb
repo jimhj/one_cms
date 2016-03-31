@@ -1,6 +1,12 @@
 class Admin::CacheController < Admin::ApplicationController
   def refresh
-    expire_fragment(params[:cache_name])
+    if params[:cache_name] == 'desktop/index'
+      expire_page '/page_cache/desktop/index'
+    elsif params[:cache_name] == 'mobile/index'
+      expire_page '/page_cache/mobile/index'
+    else
+      expire_fragment(params[:cache_name])
+    end
     redirect_to admin_cache_path
   end
 
