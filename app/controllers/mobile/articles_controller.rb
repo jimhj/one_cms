@@ -19,7 +19,7 @@ class Mobile::ArticlesController < Mobile::ApplicationController
     # @nodes = @node.root.self_and_ancestors
     # @more_articles = Article.where(node_id: @nodes.pluck(:id)).where.not(id: @article.id).limit(20)
     @nodes = Node.all.pluck(:id).sample(20)
-    @more_articles = Article.where(node_id: @nodes).where.not(thumb: nil).limit(30).select{ |art| art.pictures.count > 0 }.first(20)
+    @more_articles = Article.where(node_id: @nodes).where.not(thumb: nil).limit(30).select{ |art| art.pictures.count > 0 }.first(5)
 
     # if @article.pictures_count < 0
     #   @article.set_pictures_count
