@@ -1,10 +1,10 @@
 class Admin::CacheController < Admin::ApplicationController
   def refresh
-    if params[:cache_name] == 'desktop/index'
-      expire_page '/page_cache/desktop/index'
-    else
-      expire_fragment(params[:cache_name])
-    end
+    # if params[:cache_name] == 'desktop/index'
+    #   # expire_page '/page_cache/desktop/index'
+    # else
+    expire_fragment(params[:cache_name])
+    # end
     redirect_to admin_cache_path
   end
 
