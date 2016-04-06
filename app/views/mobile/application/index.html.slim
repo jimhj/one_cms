@@ -106,19 +106,19 @@
           li
             a href="#{link.url}" target="_blank" title="#{link.title}"= link.name
 
-= stylesheet_link_tag 'swiper'
-= javascript_include_tag 'swiper'
+/ = stylesheet_link_tag 'swiper'
+/ = javascript_include_tag 'swiper'
 
-javascript:
-  $(function () {
-    var mySwiper = new Swiper ('.swiper-container', {
-      speed: 3000,
-      autoplay: true,
-      pagination: '.pagination-bullets'
-    });
+/ javascript:
+/   $(function () {
+/     var mySwiper = new Swiper ('.swiper-container', {
+/       speed: 3000,
+/       autoplay: true,
+/       pagination: '.pagination-bullets'
+/     });
 
-    mySwiper.on('slideChangeStart', function (swiper) {
-      $slide = $('.swiper-slide-' + swiper.activeIndex);
-      $('.pagination-title').text($slide.data('title'));
-    });      
-  });
+/     mySwiper.on('slideChangeStart', function (swiper) {
+/       $slide = $('.swiper-slide-' + swiper.activeIndex);
+/       $('.pagination-title').text($slide.data('title'));
+/     });      
+/   });
