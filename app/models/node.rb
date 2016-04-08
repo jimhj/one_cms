@@ -7,24 +7,12 @@ class Node < ActiveRecord::Base
   validates_presence_of :name, :slug
   validates_uniqueness_of :slug
 
-  def self.main_slugs
-    Setting.main_nodes.keys
-  end
-
-  def self.main_node_static
-    Setting.main_nodes
+  def self.rest
+    roots.where(is_nav: false)
   end
 
   def short_name
-    Node.main_node_static[slug]
-  end
-
-  def self.main
-    includes(:children).where(slug: main_slugs)
-  end
-
-  def self.rest
-    roots.where.not(slug: main_slugs)
+    nav_name.presence || name
   end
 
   def headline

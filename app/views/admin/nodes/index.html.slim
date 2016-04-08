@@ -3,19 +3,29 @@
     table.table.table-hover.table-bordered.table-condensed
       tbody
         tr
-          td.text-center ID
           td.text-center 名称
+          td.text-center 导航名称
           td.text-center 路径
           td.text-center 排序值
           td.text-center 创建时间
           td.text-center 操作
-        - @nodes.each do |node|
-          tr
-            td.w5.text-center
-              a href="#{admin_articles_path(node_id: node.id)}"= node.id
-            td.w35
-              a href="#{admin_articles_path(node_id: node.id)}"= node.name
-            td.text-center.w30= node.slug
+
+        - Node.each_with_level(Node.order('lft ASC')) do |node, level|
+          tr class=('hide' unless node.root?) data-node_id=node.id data-parent=node.parent_id.to_i
+            td.w20 style="padding-left: #{level * 20 + 20}px;" 
+              - if node.leaf? && !node.root?
+                span.node-tree.contract
+              - else
+                span.node-tree.explode
+                
+              a href="#{admin_articles_path(node_id: node.id)}"
+                - if node.is_nav?
+                  i.fa.fa-home
+                  | &nbsp;
+                span= node.name.strip
+            td.text-center.w20= node.nav_name.presence || node.name
+            td.text-center.w20
+              span= node.slug
             td.w10.text-center= node.sortrank
             td.w10.text-center= node.created_at.strftime('%Y-%m-%d')
             td.w10.text-center
@@ -27,22 +37,4 @@
               | &nbsp;
               a href="#{admin_node_path(node)}" data-method="DELETE" data-confirm="确认删除吗，将无法恢复？"
                 i.fa.fa-trash
-          - node.descendants.each do |child|
-            tr.warning
-              td.w5.text-center
-                a href="#{admin_articles_path(node_id: child.id)}"= child.id
-              td.w35
-                a href="#{admin_articles_path(node_id: child.id)}"= raw('&nbsp;&nbsp;' * child.level + '└' + child.name)
-              td.text-center.w30= child.slug
-              td.w10.text-center= child.sortrank
-              td.w10.text-center= child.created_at.strftime('%Y-%m-%d')
-              td.w10.text-center
-                a href="#{new_admin_node_path(parent_id: child.id)}" title="添加子栏目"
-                  i.fa.fa-plus
-                | &nbsp;              
-                a href="#{edit_admin_node_path(child)}"
-                  i.fa.fa-pencil-square
-                | &nbsp;
-                a href="#{admin_node_path(child)}" data-method="DELETE" data-confirm="确认删除吗，将无法恢复？"
-                  i.fa.fa-trash            
   

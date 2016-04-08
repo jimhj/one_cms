@@ -24,7 +24,7 @@ html
     .header-nav role="navigation"
       ul.list-unstyled.clearfix
         - cache('mobile-navigation') do
-          - Node.main.each do |node|
+          - Node.where(is_nav: true).order('sortrank DESC').each_with_index  do |node, ind|
             li
               a href="#{mobile_articles_path(node.slug)}"= node.short_name
 

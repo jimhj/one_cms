@@ -47,7 +47,7 @@ html
       .container
         - cache(['desktop-navigation', @node.try(:slug)].join('/')) do
           ul.nav.navbar-nav.main-nav
-            - Node.main.each_with_index do |node, ind|
+            - Node.where(is_nav: true).order('sortrank DESC').each_with_index do |node, ind|
               - klass = ''
               - klass << 'active ' if params[:slug] == node.slug
               - klass << 'left-border' if ind.zero?

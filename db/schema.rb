@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160308123609) do
+ActiveRecord::Schema.define(version: 20160331070105) do
 
   create_table "admin_users", force: :cascade do |t|
     t.string   "login",           limit: 30,  null: false
@@ -143,8 +143,8 @@ ActiveRecord::Schema.define(version: 20160308123609) do
   add_index "links", ["linkable_type", "linkable_id"], name: "index_links_on_linkable_type_and_linkable_id", using: :btree
 
   create_table "nodes", force: :cascade do |t|
-    t.string   "name",            limit: 30,                 null: false
-    t.string   "slug",            limit: 30,                 null: false
+    t.string   "name",            limit: 30,                  null: false
+    t.string   "slug",            limit: 30,                  null: false
     t.integer  "parent_id",       limit: 4
     t.integer  "lft",             limit: 4,   default: 0
     t.integer  "rgt",             limit: 4,   default: 0
@@ -154,8 +154,10 @@ ActiveRecord::Schema.define(version: 20160308123609) do
     t.string   "seo_keywords",    limit: 255
     t.string   "seo_description", limit: 255
     t.integer  "sortrank",        limit: 4,   default: 1000
-    t.datetime "created_at",                                 null: false
-    t.datetime "updated_at",                                 null: false
+    t.boolean  "is_nav",          limit: 1,   default: false
+    t.string   "nav_name",        limit: 255
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
   end
 
   add_index "nodes", ["depth"], name: "index_nodes_on_depth", using: :btree

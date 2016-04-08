@@ -88,3 +88,32 @@
   &.w40 { width: 40%; }
 }
 // Aticles Style End
+
+.contract, .explode {
+  display: inline-block;
+  margin-right: 5px;
+  cursor: pointer;
+  background-repeat: no-repeat;
+  width: 11px;
+  height: 11px;
+}
+
+.contract {
+  background-image: image-url('admin/contract.gif');
+}
+
+.explode {
+  background-image: image-url('admin/explode.gif');
+}
+
+
+
+
+
+
+
+
+
+
+
+

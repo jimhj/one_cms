@@ -10,3 +10,12 @@
 $(document).ready ->
   $('.selectpicker').selectpicker()
   $('[data-toggle="tooltip"]').tooltip()
+
+  $('.node-tree').click ->
+    $t = $(this)
+    $tr = $t.parents('tr')
+    node_id = $tr.data 'node_id'
+    parent_id = $tr.data 'parent'
+
+    $t.toggleClass('contract').toggleClass('explode')
+    $("tr[data-parent=#{node_id}]").toggleClass('hide');

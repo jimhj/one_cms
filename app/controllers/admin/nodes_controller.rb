@@ -1,6 +1,6 @@
 class Admin::NodesController < Admin::ApplicationController
   def index
-    @nodes = Node.roots
+    @nodes = Node.order('lft ASC')
   end
 
   def list
@@ -56,6 +56,6 @@ class Admin::NodesController < Admin::ApplicationController
   private
 
   def node_params
-    params.require(:node).permit(:name, :parent_id, :slug, :seo_title, :seo_keywords, :seo_description)
+    params.require(:node).permit(:name, :is_nav, :nav_name, :parent_id, :slug, :seo_title, :seo_keywords, :seo_description)
   end
 end
