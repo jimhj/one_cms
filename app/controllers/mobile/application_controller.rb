@@ -2,12 +2,8 @@ class Mobile::ApplicationController < ApplicationController
   layout 'mobile'
 
   # self.page_cache_directory = Rails.root.join('public/page_cache/mobile').to_s
-  
-  caches_action :index, cache_path: 'mobile/index', if: Proc.new {
-    controller_name == 'application'
-  }, :expires_in => 2.hours
 
-  # caches_action :index, :cache_path => Proc.new { |c| c.request.url + '-mobile-index' }, :expires_in => 2.hours
+  caches_action :index, :cache_path => Proc.new { |c| c.request.url + '-mobile-index' }, :expires_in => 2.hours
 
   # caches_page :index, if: Proc.new {
   #   controller_name == 'application'
