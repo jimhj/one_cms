@@ -12,7 +12,7 @@ class Article < ActiveRecord::Base
   validates_presence_of :node_id, :title
   validates_uniqueness_of :title
 
-  scope :recent, -> { order('id DESC').limit(10) }
+  scope :recent, -> { where(recommend: false).order('id DESC').limit(10) }
   scope :focus, -> { where(focus: true).order('updated_at DESC, id DESC').limit(3) }
   scope :hot, -> { where(hot: true).order('updated_at DESC, id DESC').limit(8) }
 
@@ -45,26 +45,6 @@ class Article < ActiveRecord::Base
     Keyword.create(name: self.link_word, url: link, sortrank: 1000)
   end
 
-  # def set_thumb
-  #   return 0 if not self.thumb.blank?
-  #   imgs = Nokogiri::HTML(self.body_html).css('img').collect{ |img| img[:src] }
-  #   return 1 if not imgs.any?
-
-  #   imgs.each do |img_src|
-  #     img_path = img_src.split(Setting.carrierwave.asset_host + '/').last
-  #     next if img_path.nil?
-  #     img_url = Rails.root.join('public', img_path)
-  #     img = MiniMagick::Image.open(img_url)
-
-  #     if img[:width].to_i >= 100 && img[:height].to_i >= 100
-  #       self.thumb = img
-  #       self.save
-  #       break
-  #     else
-  #       next
-  #     end
-  #   end
-  # end
 
   def set_pictures_count
     imgs = Nokogiri::HTML(self.body_html).css('img').to_a.select do |img|
@@ -88,17 +68,6 @@ class Article < ActiveRecord::Base
 
   def seo_description
     read_attribute(:seo_description) || strip_tags(article_body.try(:body) || '').first(200)
-  end
-
-  def self.pic(article = nil)
-    if article.nil?
-      node_ids = Node.all.pluck(:id)
-      node_ids = node_ids.sample(10)
-    else
-      node_ids = article.node.root.self_and_descendants.pluck(:id)
-    end
-    articles = Article.where(node_id: node_ids).order('thumb DESC, id DESC')
-    articles.limit(5)
   end
 
   def self.headline
@@ -127,34 +96,35 @@ class Article < ActiveRecord::Base
     end
   end
 
-  def hidden_thumb
-    # pic = pictures.first
-    # pic ||= RedactorRails::Picture.where('width >= 121 and height >= 75')
-  end
 
   def pictures
-    Rails.cache.fetch([self.id, 'pic_urls']) do
-      srcs = Nokogiri::HTML(article_body.body).css('img').collect { |img| img[:src] }.select do |src| 
-        valid_src = src.include?(Setting.carrierwave.asset_host)
+    srcs = RedactorRails::Picture.where(assetable: self).collect { |pic| pic.url }
+    if srcs.blank?
+      Rails.cache.fetch([self.id, 'pic_urls']) do
+        srcs = Nokogiri::HTML(article_body.body).css('img').collect { |img| img[:src] }.select do |src| 
+          valid_src = src.include?(Setting.carrierwave.asset_host)
 
-        img_path = src.split(Setting.carrierwave.asset_host + '/').last
-        valid_demission = if img_path.nil?
-          false
-        else
-          img_url = Rails.root.join('public', img_path)
-          img = MiniMagick::Image.open(img_url) rescue false    
-          demission = img && img[:width].to_i >= 100 && img[:height].to_i >= 100
-          img = nil
-          demission
-        end  
-        
-        valid_src && valid_demission    
+          img_path = src.split(Setting.carrierwave.asset_host + '/').last
+          valid_demission = if img_path.nil?
+            false
+          else
+            img_url = Rails.root.join('public', img_path)
+            img = MiniMagick::Image.open(img_url) rescue false    
+            demission = img && img[:width].to_i >= 100 && img[:height].to_i >= 100
+            img = nil
+            demission
+          end  
+          
+          valid_src && valid_demission    
+        end
+
+        if self.pictures_count < 0
+          self.update_column :pictures_count, srcs.size
+        end
+
+        srcs
       end
-
-      if self.pictures_count < 0
-        self.update_column :pictures_count, srcs.size
-      end
-
+    else
       srcs
     end
   end

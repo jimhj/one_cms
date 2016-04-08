@@ -68,6 +68,7 @@ class ArticleBody < ActiveRecord::Base
         if not img[:src].include?(Setting.carrierwave.asset_host)
           picture = RedactorRails.picture_model.new
           picture.remote_data_url = img[:src]
+          picture.assetable = article
           next if not picture.save
 
           if picture.width.to_i >= 100 && picture.height.to_i >= 100
