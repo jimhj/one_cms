@@ -1,6 +1,6 @@
 class Mobile::ArticlesController < Mobile::ApplicationController
   caches_action :index, :cache_path => Proc.new { |c| c.request.url + '-mobile' }, :expires_in => 6.hours
-  caches_action :show, :cache_path => Proc.new{ |c| 'articles-' + "#{c.params[:slug]}-" + c.params[:id] + '-mobile' }, :expires_in => 2.hours
+  caches_action :show, :cache_path => Proc.new{ |c| 'articles-' + "#{c.params[:slug]}-" + c.params[:id] + '-mobile' }, :expires_in => 6.hours
 
   def index
     @node = Node.find_by(slug: params[:slug])
@@ -19,7 +19,7 @@ class Mobile::ArticlesController < Mobile::ApplicationController
     # @nodes = @node.root.self_and_ancestors
     # @more_articles = Article.where(node_id: @nodes.pluck(:id)).where.not(id: @article.id).limit(20)
     @nodes = Node.all.pluck(:id).sample(20)
-    @more_articles = Article.where('pictures_count > 0').limit(1000).sample(5)
+    @more_articles = Article.where('pictures_count > 0').limit(30).sample(5)
     # @more_articles = Article.where(node_id: @nodes).where.not(thumb: nil).limit(30).select{ |art| art.pictures.count > 0 }.first(5)
 
     # if @article.pictures_count < 0
