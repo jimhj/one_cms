@@ -163,11 +163,18 @@ class Article < ActiveRecord::Base
   end
 
   def self.recommend(page: 1, load: 20)
+    # first_load = 20
     page = page.to_i
-    if page == 0
-      offset = 0
-    else
-      offset = load * (page - 1)
+    # if page == 0
+    #   offset = 0
+    # else
+    #   offset = load * (page - 1)
+    # end
+    init_offset = 20
+    if page == 1
+      offset = init_offset
+    elsif page > 1
+      offset = load * (page - 1) + init_offset
     end
 
     recommends = self.where(recommend: true).order('id DESC').offset(offset).limit(load)

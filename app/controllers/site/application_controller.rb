@@ -15,11 +15,11 @@ class Site::ApplicationController < ApplicationController
     @links = Link.where(linkable_id: 0).pc
     @focus = Article.focus
     @topnews = Article.hot
-    @articles = Article.recommend(page: params[:page], load: 20)
+    @articles = Article.recommend
   end
 
   def more
-    @articles = Article.recommend(page: params[:page], load: 20)
+    @articles = Article.recommend(page: params[:page], load: 5)
     html = render_to_string(partial: 'site/application/index_article', layout: false, collection: @articles, as: :article, locals: { lazyload: true, page: params[:page] })
     render json: { html: html }
   end
