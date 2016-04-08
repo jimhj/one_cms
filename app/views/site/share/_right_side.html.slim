@@ -4,18 +4,18 @@
       .mixed-section.ad-section
         .mixed-section-inner= raw ad.value
 
-    .mixed-section
-      .mixed-section-nav
-        h4
-          a href="#{tags_path}"
-            / i.fa.fa-bookmark
-            span 热门标签
-      .mixed-section-inner.narrow-padding-bottom
-        .mixed-section-text
-          ul.tag-list.list-unstyled
-            - Tag.hot.each do |tag|
-              li
-                a title="#{tag.name}" href="#{tag_path(tag.slug)}"= tag.name
+    / .mixed-section
+    /   .mixed-section-nav
+    /     h4
+    /       a href="#{tags_path}"
+    /         / i.fa.fa-bookmark
+    /         span 热门标签
+    /   .mixed-section-inner.narrow-padding-bottom
+    /     .mixed-section-text
+    /       ul.tag-list.list-unstyled
+    /         - Tag.hot.each do |tag|
+    /           li
+    /             a title="#{tag.name}" href="#{tag_path(tag.slug)}"= tag.name
 
     / .list-section-narrow
     /   .list-section-nav
