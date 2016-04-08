@@ -98,35 +98,51 @@ class Article < ActiveRecord::Base
 
 
   def pictures
-    srcs = RedactorRails::Picture.where(assetable: self).collect { |pic| pic.url }
-    if srcs.blank?
-      Rails.cache.fetch([self.id, 'pic_urls']) do
-        srcs = Nokogiri::HTML(article_body.body).css('img').collect { |img| img[:src] }.select do |src| 
-          valid_src = src.include?(Setting.carrierwave.asset_host)
+    article = { assetable_type: self.class.name, assetable_id: self.id }
+    condition = 'width >= 100 and height >= 100'
+    assets = RedactorRails::Picture.where(article).where(condition)
 
-          img_path = src.split(Setting.carrierwave.asset_host + '/').last
-          valid_demission = if img_path.nil?
-            false
-          else
-            img_url = Rails.root.join('public', img_path)
-            img = MiniMagick::Image.open(img_url) rescue false    
-            demission = img && img[:width].to_i >= 100 && img[:height].to_i >= 100
-            img = nil
-            demission
-          end  
+    if assets.blank?
+      # Rails.cache.fetch([self.id, 'pic_urls']) do
+        # srcs = Nokogiri::HTML(article_body.body).css('img').collect { |img| img[:src] }.select do |src| 
+        #   valid_src = src.include?(Setting.carrierwave.asset_host)
+
+        #   img_path = src.split(Setting.carrierwave.asset_host + '/').last
+        #   valid_demission = if img_path.nil?
+        #     false
+        #   else
+        #     img_url = Rails.root.join('public', img_path)
+        #     img = MiniMagick::Image.open(img_url) rescue false    
+        #     demission = img && img[:width].to_i >= 100 && img[:height].to_i >= 100
+        #     img = nil
+        #     demission
+        #   end  
           
-          valid_src && valid_demission    
-        end
+        #   valid_src && valid_demission    
+        # end
 
-        if self.pictures_count < 0
-          self.update_column :pictures_count, srcs.size
-        end
+      filenames = Nokogiri::HTML(article_body.body).css('img').collect do |img|
+        src = img[:src]
+        next unless src.include?(Setting.carrierwave.asset_host)
 
-        srcs
+        img_path = src.split(Setting.carrierwave.asset_host + '/').last
+        img_path.split('/').last(2).join('/')
+      end.compact
+
+      assets = RedactorRails::Picture.where(data_file_name: filenames).where(condition)
+      assets.update_all(article)
+
+      if self.pictures_count < 0
+        self.update_column :pictures_count, assets.count
       end
-    else
-      srcs
+
+      # srcs
+      # end
+    # else
+      # srcs
     end
+
+    assets.collect{ |pic| pic.url }
   end
 
   def next
