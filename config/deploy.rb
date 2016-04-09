@@ -3,7 +3,6 @@
 # config valid only for current version of Capistrano
 lock '3.4.0'
 
-set :application, 'h4'
 set :repo_url, 'git@github.com:jimhj/one_cms.git'
 
 # Default branch is :master
@@ -12,7 +11,6 @@ set :repo_url, 'git@github.com:jimhj/one_cms.git'
 set :delayed_job_workers, 8
 
 # Default deploy_to directory is /var/www/my_app_name
-set :deploy_to, "~/www/#{fetch(:application)}/"
 set :delayed_log_dir, "#{shared_path}/log"
 
 set :unicorn_config_path, "#{current_path}/config/unicorn.rb"
