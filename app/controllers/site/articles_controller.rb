@@ -37,7 +37,7 @@ class Site::ArticlesController < Site::ApplicationController
   end
 
   def search
-    url = "http://s.h4.com.cn/cse/search?q=#{CGI::escape(params[:q])}&click=1&s=14346881451190138661&nsid=1"
+    url = "#{Setting.baidu_search_host}/cse/search?q=#{CGI::escape(params[:q])}&click=1&s=14346881451190138661&nsid=1"
     redirect_to url
   end
 
