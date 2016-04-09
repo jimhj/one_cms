@@ -3,7 +3,7 @@
 # config valid only for current version of Capistrano
 lock '3.4.0'
 
-set :application, 'h4'
+set :application, 'msj'
 set :deploy_to, "~/www/#{fetch(:application)}/"
 set :repo_url, 'git@github.com:jimhj/one_cms.git'
 
@@ -93,6 +93,6 @@ end
 
 after 'deploy:published', 'deploy:restart'
 after 'deploy:published', 'whenever:refresh'
-after 'deploy:restart', 'sitemap:refresh'
+# after 'deploy:restart', 'sitemap:refresh'
 
 
