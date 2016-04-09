@@ -5,6 +5,8 @@ class MobileConstraint
 end
 
 Rails.application.routes.draw do
+  match 'robots', to: 'application#robots', format: :txt, via: :get
+
   mount RedactorRails::Engine => '/redactor_rails'
   mount RuCaptcha::Engine => '/rucaptcha'
 

@@ -19,6 +19,10 @@ class ApplicationController < ActionController::Base
   #   end
   # end
 
+  def robots
+    render :text => "Sitemap:http://#{SiteConfig.actived.domain}/sitemap.xml\nDisallow:/*?*"
+  end
+
   private
 
   def set_meta(tags)
