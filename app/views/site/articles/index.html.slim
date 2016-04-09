@@ -1,18 +1,5 @@
 .main-split-container
   .left-side
-    / .breadcrumb-container
-    /   ol.breadcrumb.pull-left
-    /     li
-    /       a href="#{root_path}"
-    /         i.fa.fa-caret-right 
-    /         span 首页
-    /     - @node.ancestors.each do |node|
-    /       li
-    /         a href="#{articles_path(node.slug)}" title="#{node.name}"= node.name
-
-    /     li.active= @node.name 
-    /   .social-share.pull-right
-    /     = render 'site/share/bd_share'
     .list-section
       .list-section-nav
         .pull-left
@@ -32,13 +19,13 @@
                   - article.pictures.first(3).each do |picture_url|
                     .item-image.pull-left
                       a href="#{article_path(article)}" title="#{article.title}"
-                        = image_tag qn_picture_url(picture_url), alt: article.title, title: article.title
+                        = image_tag picture_url alt: article.title, title: article.title
 
             - elsif article.pictures.size > 0
               .list-section-item.one-pic.clearfix
                 .item-image.pull-left
                   a href="#{article_path(article)}" title="#{article.title}"
-                    = image_tag qn_picture_url(article.pictures.first), alt: article.title, title: article.title
+                    = image_tag article.pictures.first, alt: article.title, title: article.title
                 .item-text.pull-left
                   h4
                     a href="#{article_path(article)}" title="#{article.title}"= article.title

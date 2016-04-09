@@ -49,15 +49,4 @@ module ApplicationHelper
                       separator: '-',
                       reverse: reverse
   end
-
-  def qn_picture_url(picture_url, version: 'thumb')
-    if Setting.qiniu.mirror_on 
-      image_path = picture_url.split(Setting.carrierwave.asset_host + '/').last
-      url = File.join(Setting.qiniu.host, image_path).to_s 
-      url << "!thumb"
-      url
-    else
-      picture_url
-    end
-  end
 end

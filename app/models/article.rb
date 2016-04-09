@@ -115,7 +115,7 @@ class Article < ActiveRecord::Base
       self.update_column(:pictures_count, pictures.count)
     end
 
-    pictures.map(&:url)
+    pictures.collect { |pic| pic.qn_url(:thumb) }
   end
 
   def next

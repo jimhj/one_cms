@@ -5,9 +5,15 @@ class RedactorRails::Picture < RedactorRails::Asset
     url(:content)
   end
 
-  # after_create do
-  #   if assetable.present?
-  #     assetable.increment :pictures_count
-  #   end
-  # end
+  def qn_url(version)
+    return url if not Setting.qiniu.active
+
+    image_path = url.split(Setting.carrierwave.asset_host + '/').last
+    host = if Setting.qiniu.mirror_on
+      Setting.qiniu.mirror_host
+    else
+      Setting.qiniu.host
+    end
+    "#{File.join(host, image_path).to_s}!#{version}"
+  end
 end
