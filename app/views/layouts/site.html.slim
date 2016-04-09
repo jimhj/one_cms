@@ -66,7 +66,7 @@ html
 
         = form_tag search_path, method: 'GET', target: '_blank', class: 'navbar-form navbar-right', role: 'search' do
           .form-group
-            input.form-control.input-sm type="text" placeholder="搜索关键词" name="q" value="减肥"
+            input.form-control.input-sm type="text" placeholder="搜索关键词" name="q" value="#{Tag.hot.sample.try(:name)}"
             i.fa.fa-search           
 
     .main-container.container
