@@ -84,5 +84,5 @@ html
         .text-center.announce= SiteConfig.actived.declare.html_safe
         .copy-right.text-center.text-muted= SiteConfig.actived.copyright.html_safe
 
-    = render 'site/share/aly'
-
+    - SiteAd.global.each do |ad|
+      = raw ad.value

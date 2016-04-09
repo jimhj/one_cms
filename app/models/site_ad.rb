@@ -18,7 +18,7 @@ class SiteAd < ActiveRecord::Base
       'rightsidetop'          => '右侧上方',
       'rightsidemiddle'       => '右侧中间',
       'rightsidebottom'       => '右侧下方',
-      'globalleftright'       => '全站对联广告'
+      'global'                => '全站广告'
     }    
   end
 
