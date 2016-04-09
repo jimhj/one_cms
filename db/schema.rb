@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160331070105) do
+ActiveRecord::Schema.define(version: 20160409092720) do
 
   create_table "admin_users", force: :cascade do |t|
     t.string   "login",           limit: 30,  null: false
@@ -200,6 +200,8 @@ ActiveRecord::Schema.define(version: 20160331070105) do
     t.string  "site_keywords",    limit: 255
     t.string  "site_description", limit: 255
     t.string  "site_logo",        limit: 255
+    t.string  "mobile_logo",      limit: 255
+    t.string  "favicon",          limit: 255
     t.text    "extras",           limit: 65535
     t.boolean "active",           limit: 1,     default: true
   end

@@ -18,6 +18,19 @@
           div style="margin-top: 10px;"
             = image_tag @config.logo.url
       .form-group.form-group-bordered
+        label 移动站 logo *
+        = f.file_field :mobile_logo
+        - if !@config.mobile_logo.blank?
+          div style="margin-top: 10px;"
+            = image_tag @config.mobile_logo.url
+      .form-group.form-group-bordered
+        label Favicon
+        = f.file_field :favicon
+        - if !@config.favicon.blank?
+          div style="margin-top: 10px;"
+            = image_tag @config.favicon.url
+
+      .form-group.form-group-bordered
         label 网站主色 (导航，链接等) *
         = f.text_field :brand_color, class: 'form-control'
       .form-group.form-group-bordered
