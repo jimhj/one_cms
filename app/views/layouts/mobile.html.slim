@@ -11,7 +11,7 @@ html
 
   body class="#{controller_name}"
     .header-logo
-      a.logo-brand href="#{mobile_root_path}" title="#{SiteConfig.actived.site_slogan}"
+      a.logo-brand style="background-image: url('#{SiteConfig.actived.mobile_logo.url}');" href="#{mobile_root_path}" title="#{SiteConfig.actived.site_slogan}"
     .header-nav role="navigation"
       ul.list-unstyled.clearfix
         - cache('mobile-navigation') do
