@@ -63,30 +63,27 @@ class ArticleBody < ActiveRecord::Base
   def restore_remote_images
     pic = 0
     doc = Nokogiri::HTML(self.body)
-    remote_imgs = doc.css('img').collect do |img|
+    doc.css('img').each do |img|
       begin
-        if not img[:src].include?(Setting.carrierwave.asset_host)
-          picture = RedactorRails.picture_model.new
-          picture.remote_data_url = img[:src]
-          picture.assetable = article
-          next if not picture.save
+        next if img[:src].include?(Setting.carrierwave.asset_host)
 
-          if picture.width.to_i >= 100 && picture.height.to_i >= 100
-            article.thumb = picture.data if article.thumb.blank?
-            pic += 1
-          end
-          img.set_attribute(:src, picture.url)
-          img.set_attribute(:alt, article.title)
+        picture = RedactorRails.picture_model.new
+        picture.remote_data_url = img[:src]
+        if picture.width.to_i >= 100 && picture.height.to_i >= 100
+          picture.assetable = article
+          pic += 1
         end
 
-        img[:src]
+        next if not picture.save
+
+        img.set_attribute(:src, picture.url)
+        img.set_attribute(:alt, article.title)
       rescue => e
         next
       end
-    end.compact
+    end
 
     update_column :body, doc.to_s
-    article.pictures_count = pic
-    article.save
+    article.update_column :pictures_count, pic
   end
 end

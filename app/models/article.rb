@@ -5,6 +5,7 @@ class Article < ActiveRecord::Base
   has_one :article_body, dependent: :destroy
   has_many :taggings
   has_many :tags, through: :taggings
+  has_many :picture_assets, -> { where('height >= 100 and width >= 100') }, as: :assetable, class_name: 'RedactorRails::Picture'
 
   mount_uploader :thumb, ThumbUploader
   accepts_nested_attributes_for :article_body, allow_destroy: true
@@ -31,17 +32,17 @@ class Article < ActiveRecord::Base
   end
 
   def notify_baidu_spider
-    url = "http://www.h4.com.cn/#{node.slug}/#{id}"
+    url = "http://#{SiteConfig.actived.domain}/#{node.slug}/#{id}"
     site = RestClient::Resource.new('http://data.zz.baidu.com')
     begin
-      site['urls?site=www.h4.com.cn&token=2yEYwtNjfx5k5sNB'].post url, :content_type => 'text/plain'
+      site["urls?site=#{SiteConfig.actived.domain}&token=2yEYwtNjfx5k5sNB"].post url, :content_type => 'text/plain'
     rescue
       true
     end
   end
 
   def create_keyword
-    link = "http://www.h4.com.cn/#{node.slug}/#{id}"
+    link = "http://#{SiteConfig.actived.domain}/#{node.slug}/#{id}"
     Keyword.create(name: self.link_word, url: link, sortrank: 1000)
   end
 
@@ -98,29 +99,9 @@ class Article < ActiveRecord::Base
 
 
   def pictures
-    article = { assetable_type: self.class.name, assetable_id: self.id }
-    condition = 'width >= 100 and height >= 100'
-    assets = RedactorRails::Picture.where(article).where(condition)
+    pictures = self.picture_assets
 
-    if assets.blank?
-      # Rails.cache.fetch([self.id, 'pic_urls']) do
-        # srcs = Nokogiri::HTML(article_body.body).css('img').collect { |img| img[:src] }.select do |src| 
-        #   valid_src = src.include?(Setting.carrierwave.asset_host)
-
-        #   img_path = src.split(Setting.carrierwave.asset_host + '/').last
-        #   valid_demission = if img_path.nil?
-        #     false
-        #   else
-        #     img_url = Rails.root.join('public', img_path)
-        #     img = MiniMagick::Image.open(img_url) rescue false    
-        #     demission = img && img[:width].to_i >= 100 && img[:height].to_i >= 100
-        #     img = nil
-        #     demission
-        #   end  
-          
-        #   valid_src && valid_demission    
-        # end
-
+    if pictures.blank?
       filenames = Nokogiri::HTML(article_body.body).css('img').collect do |img|
         src = img[:src]
         next unless src.include?(Setting.carrierwave.asset_host)
@@ -129,20 +110,12 @@ class Article < ActiveRecord::Base
         img_path.split('/').last(2).join('/')
       end.compact
 
-      assets = RedactorRails::Picture.where(data_file_name: filenames).where(condition)
-      assets.update_all(article)
-
-      if self.pictures_count < 0
-        self.update_column :pictures_count, assets.count
-      end
-
-      # srcs
-      # end
-    # else
-      # srcs
+      pictures = RedactorRails::Picture.where(data_file_name: filenames).where('width >= 100 and height >= 100')
+      pictures.update_all(assetable_type: self.class.name, assetable_id: self.id)
+      self.update_column(:pictures_count, pictures.count)
     end
 
-    assets.collect{ |pic| pic.url }
+    pictures.map(&:url)
   end
 
   def next
@@ -174,7 +147,7 @@ class Article < ActiveRecord::Base
     recommends = self.where(recommend: true).order('id DESC').offset(offset).limit(load)
 
     if recommends.count < load
-      needs = self.where.not(id: recommends.pluck(:id)).where.not(thumb: nil).order('id DESC, thumb DESC').offset(offset).limit(load - recommends.count)
+      needs = self.where.not(id: recommends.pluck(:id)).order('id DESC').offset(offset).limit(load - recommends.count)
     else
       needs = []
     end
