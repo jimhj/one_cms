@@ -3,9 +3,9 @@ $font-family-sans-serif: "微软雅黑", "microsoft yahei", verdana, lucida, Ari
 // $brand-success: #5cb85c !default;
 // $link-color: #454545;
 
-$body-bg: <%= SiteConfig.actived.background_color rescue '#f8f8f8' %>;
-$brand-success: <%= SiteConfig.actived.brand_color rescue '#5cb85c !default;' %>;
-$link-color: <%= SiteConfig.actived.text_color rescue '#454545;' %>;
+$body-bg: <%= (SiteConfig.actived.background_color.presence || '#f8f8f8') rescue '#f8f8f8' %>;
+$brand-success: <%= SiteConfig.actived.brand_color rescue '#5cb85c !default' %>;
+$link-color: <%= SiteConfig.actived.text_color rescue '#454545' %>;
 
 $link-hover-color: $brand-success;
 $pagination-active-bg: $brand-success;
