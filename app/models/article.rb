@@ -35,7 +35,7 @@ class Article < ActiveRecord::Base
     url = "http://#{SiteConfig.actived.domain}/#{node.slug}/#{id}"
     site = RestClient::Resource.new('http://data.zz.baidu.com')
     begin
-      site["urls?site=#{SiteConfig.actived.domain}&token=2yEYwtNjfx5k5sNB"].post url, :content_type => 'text/plain'
+      site["urls?site=#{SiteConfig.actived.domain}&token=#{Setting.baidu_notify_token}"].post url, :content_type => 'text/plain'
     rescue
       true
     end
