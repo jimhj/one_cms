@@ -16,15 +16,9 @@ class Mobile::ArticlesController < Mobile::ApplicationController
   def show
     @article = Article.find params[:id]
     @node = Node.find_by!(slug: params[:slug])
-    # @nodes = @node.root.self_and_ancestors
-    # @more_articles = Article.where(node_id: @nodes.pluck(:id)).where.not(id: @article.id).limit(20)
+
     @nodes = Node.all.pluck(:id).sample(20)
     @more_articles = Article.where('pictures_count > 0').limit(30).sample(5)
-    # @more_articles = Article.where(node_id: @nodes).where.not(thumb: nil).limit(30).select{ |art| art.pictures.count > 0 }.first(5)
-
-    # if @article.pictures_count < 0
-    #   @article.set_pictures_count
-    # end
     
     set_meta_tags title: @article.title,
                   description: @article.seo_description,
