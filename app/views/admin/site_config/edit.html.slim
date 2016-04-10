@@ -30,15 +30,20 @@
           div style="margin-top: 10px;"
             = image_tag @config.favicon.url
 
+      / .form-group.form-group-bordered
+      /   label 网站主色 (导航，链接等) *
+      /   = f.text_field :brand_color, class: 'form-control'
+      / .form-group.form-group-bordered
+      /   label 网站背景色*
+      /   = f.text_field :background_color, class: 'form-control'
+      / .form-group.form-group-bordered
+      /   label 列表链接颜色 *
+      /   = f.text_field :text_color, class: 'form-control'
       .form-group.form-group-bordered
-        label 网站主色 (导航，链接等) *
-        = f.text_field :brand_color, class: 'form-control'
-      .form-group.form-group-bordered
-        label 网站背景色*
-        = f.text_field :background_color, class: 'form-control'
-      .form-group.form-group-bordered
-        label 列表链接颜色 *
-        = f.text_field :text_color, class: 'form-control'
+        label 网站主题 *
+        div
+          = f.select :theme, [['绿色健康', 'green'], ['橙色食谱', 'orange']]
+
       .form-group.form-group-bordered
         label 联系邮箱
         = f.text_field :contact_email, class: 'form-control'

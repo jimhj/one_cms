@@ -11,12 +11,14 @@ Rails.application.config.assets.version = '1.0'
 Rails.application.config.assets.precompile += %w(
   admin/app.js
   admin/app.css
-  site/app.css
+  site/themes/green.css
+  site/themes/orange.css
   site/app.js
   bootstrap-ie7.css
   respond.js
-  mobile/app.css
   mobile/app.js
+  mobile/themes/green.css
+  mobile/themes/orange.css
   swiper.js
   swiper.css
 )

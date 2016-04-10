@@ -1,24 +1,3 @@
-$font-family-sans-serif: "微软雅黑", "microsoft yahei", verdana, lucida, Arial, sans-serif, "黑体";
-// $body-bg: #f8f8f8;
-// $brand-success: #5cb85c !default;
-// $link-color: #454545;
-
-$body-bg: <%= (SiteConfig.actived.background_color.presence || '#f8f8f8') rescue '#f8f8f8' %>;
-$brand-success: <%= SiteConfig.actived.brand_color rescue '#5cb85c !default' %>;
-$link-color: <%= SiteConfig.actived.text_color rescue '#454545' %>;
-
-$link-hover-color: $brand-success;
-$pagination-active-bg: $brand-success;
-$pagination-active-border: $brand-success;
-
-@import "bootstrap-sprockets";
-@import "bootstrap";
-@import "font-awesome-sprockets";
-@import "font-awesome";
-@import "mobile/component";
-@import "mobile/index";
-@import "wechat-article";
-
 body {
   background-color: $body-bg;
   -webkit-font-smoothing: antialiased;

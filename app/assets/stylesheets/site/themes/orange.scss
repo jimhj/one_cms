@@ -1,0 +1,21 @@
+$font-family-sans-serif: "微软雅黑", "microsoft yahei", verdana, lucida, Arial, sans-serif, "黑体";
+$body-bg: #fae8c8;
+$brand-success: #ff8400 !default;
+$link-color: #454545;
+
+$link-hover-color: $brand-success;
+$pagination-active-bg: $brand-success;
+$pagination-active-border: $brand-success;
+$border-radius-large: 0;
+$border-radius-base: 0;
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "font-awesome-sprockets";
+@import "font-awesome";
+@import "site/bootstrap-customize";
+@import "site/component";
+@import "site/global";
+@import "site/welcome";
+@import "site/articles";
+@import "site/tags";

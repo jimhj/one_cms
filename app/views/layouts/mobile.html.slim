@@ -3,7 +3,7 @@ html
   head
     = render_seo_meta_tags
     = javascript_include_tag 'mobile/app'
-    = stylesheet_link_tag 'mobile/app'
+    = stylesheet_link_tag "mobile/themes/#{SiteConfig.actived.theme.presence || 'green'}"
     = csrf_meta_tags
     meta name="viewport" content="width=device-width, initial-scale=1"
     meta content="mobile" name="applicable-device"
