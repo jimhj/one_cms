@@ -14,7 +14,6 @@ class ArticleBody < ActiveRecord::Base
     restore_remote_images
     article.delay.analyze_keywords
     # article.delay.set_thumb
-    # article.delay.set_pictures_count
 
     if article.seo_description.blank?
       article.set_description

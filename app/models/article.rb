@@ -46,22 +46,6 @@ class Article < ActiveRecord::Base
     Keyword.create(name: self.link_word, url: link, sortrank: 1000)
   end
 
-
-  def set_pictures_count
-    imgs = Nokogiri::HTML(self.body_html).css('img').to_a.select do |img|
-      img_path = img[:src].split(Setting.carrierwave.asset_host + '/').last
-      if img_path.nil?
-        false
-      else
-        img_url = Rails.root.join('public', img_path)
-        img = MiniMagick::Image.open(img_url)        
-        img[:width].to_i >= 100 && img[:height].to_i >= 100
-      end
-    end
-
-    update_column :pictures_count, imgs.count
-  end
-
   def set_description
     self.seo_description = strip_tags(article_body.body).first(200)
     self.save
