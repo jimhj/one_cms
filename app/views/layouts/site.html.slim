@@ -57,12 +57,13 @@ html
                   - node.children.each do |child|
                     li
                       a href="#{articles_path(child.slug)}"= child.name
-            li.right-border
-              a 更多   
-              ul.dropdown-menu
-                - Node.rest.each do |node|
-                  li
-                    a href="#{articles_path(node.slug)}"= node.name              
+            - if not Node.rest.blank?
+              li.right-border
+                a 更多   
+                ul.dropdown-menu
+                  - Node.rest.each do |node|
+                    li
+                      a href="#{articles_path(node.slug)}"= node.name              
 
         = form_tag search_path, method: 'GET', target: '_blank', class: 'navbar-form navbar-right', role: 'search' do
           .form-group

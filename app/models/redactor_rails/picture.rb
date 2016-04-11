@@ -16,4 +16,10 @@ class RedactorRails::Picture < RedactorRails::Asset
     end
     "#{File.join(host, image_path).to_s}!#{version}"
   end
+
+  after_create do
+    if assetable.present?
+      assetable.class.increment_counter(:pictures_count, assetable.id)
+    end
+  end
 end

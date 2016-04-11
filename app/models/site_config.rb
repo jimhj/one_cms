@@ -6,7 +6,13 @@ class SiteConfig < ActiveRecord::Base
   store :extras, accessors: [:background_color, :brand_color, :text_color, :theme, :contact_email, :bd_email, :icp, :declare, :copyright, :domain]
   validates_presence_of :site_name, :site_title, :site_slogan, :domain
 
+  after_save do
+    Rails.cache.delete 'site_config'
+  end
+
   def self.actived
-    self.first
+    Rails.cache.fetch 'site_config' do
+      SiteConfig.first
+    end
   end
 end

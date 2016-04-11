@@ -60,7 +60,6 @@ class ArticleBody < ActiveRecord::Base
 
 
   def restore_remote_images
-    pic = 0
     doc = Nokogiri::HTML(self.body)
     doc.css('img').each do |img|
       begin
@@ -70,7 +69,6 @@ class ArticleBody < ActiveRecord::Base
         picture.remote_data_url = img[:src]
         if picture.width.to_i >= 100 && picture.height.to_i >= 100
           picture.assetable = article
-          pic += 1
         end
 
         next if not picture.save
@@ -83,6 +81,5 @@ class ArticleBody < ActiveRecord::Base
     end
 
     update_column :body, doc.to_s
-    article.update_column :pictures_count, pic
   end
 end
