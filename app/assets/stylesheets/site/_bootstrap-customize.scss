@@ -46,7 +46,6 @@
 
 .navbar-nav > li, .navbar-nav {
   float: left !important;
-  // margin: 0;
 }
 
 .navbar-right {
@@ -60,10 +59,10 @@
 
   .main-nav > li {
     padding: 8px 14px 8px 14px;
-    border-left: 1px solid rgba(0, 0, 0, 0.15);
+    border-right: 1px solid rgba(0, 0, 0, 0.15);
     margin-right: -1px;    
 
-    &.right-border { border-right: 1px solid rgba(0, 0, 0, 0.15); }
+    &.left-border { border-left: 1px solid rgba(0, 0, 0, 0.15); }
   }
 
   .main-nav > li > a {

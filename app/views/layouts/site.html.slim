@@ -58,7 +58,7 @@ html
                     li
                       a href="#{articles_path(child.slug)}"= child.name
             - if not Node.rest.blank?
-              li.right-border
+              li
                 a 更多   
                 ul.dropdown-menu
                   - Node.rest.each do |node|
