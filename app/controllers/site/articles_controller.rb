@@ -23,7 +23,7 @@ class Site::ArticlesController < Site::ApplicationController
 
     
     @nodes = @node.self_and_ancestors
-    @more_articles = Article.where(node_id: @nodes.pluck(:id)).where.not(id: @article.id).limit(8)
+    @more_articles = Article.where(node_id: @nodes.pluck(:id)).limit(8)
     @channel_keywords = @article.seo_keywords
     
     set_meta_tags title: @article.title,

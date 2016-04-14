@@ -55,10 +55,6 @@ class Article < ActiveRecord::Base
     read_attribute(:seo_description) || strip_tags(article_body.try(:body) || '').first(200)
   end
 
-  def self.headline
-    hot.first
-  end
-
   def self.topnews
     hot[1..-1]
   end
@@ -130,11 +126,11 @@ class Article < ActiveRecord::Base
 
     recommends = self.where(recommend: true).order('id DESC').offset(offset).limit(load)
 
-    if recommends.count < load
-      needs = self.where.not(id: recommends.pluck(:id)).order('id DESC').offset(offset).limit(load - recommends.count)
-    else
-      needs = []
-    end
+    # if recommends.count < load
+    #   needs = self.where.not(id: recommends.pluck(:id)).order('id DESC').offset(offset).limit(load - recommends.count)
+    # else
+    #   needs = []
+    # end
     recommends = recommends.to_a + needs.to_a
   end
 end
