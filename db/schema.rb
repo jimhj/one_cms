@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160409092720) do
+ActiveRecord::Schema.define(version: 20160414073944) do
 
   create_table "admin_users", force: :cascade do |t|
     t.string   "login",           limit: 30,  null: false
@@ -125,6 +125,8 @@ ActiveRecord::Schema.define(version: 20160409092720) do
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
   end
+
+  add_index "keywords", ["sortrank"], name: "index_keywords_on_sortrank", using: :btree
 
   create_table "links", force: :cascade do |t|
     t.integer  "linkable_id",   limit: 4
