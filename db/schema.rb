@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160414073944) do
+ActiveRecord::Schema.define(version: 20160414074337) do
 
   create_table "admin_users", force: :cascade do |t|
     t.string   "login",           limit: 30,  null: false
@@ -230,5 +230,6 @@ ActiveRecord::Schema.define(version: 20160414073944) do
   end
 
   add_index "tags", ["slug"], name: "index_tags_on_slug", using: :btree
+  add_index "tags", ["taggings_count"], name: "index_tags_on_taggings_count", using: :btree
 
 end

@@ -41,7 +41,7 @@ html
                 | RSS 
     .nav.navbar.navbar-default role="navigation"
       .container
-        - cache(['desktop-navigation', @node.try(:slug)].join('/')) do
+        - cache(['desktop-navigation', @node.try(:slug)]) do
           ul.nav.navbar-nav.main-nav
             - Node.where(is_nav: true).order('sortrank DESC').each_with_index do |node, ind|
               - klass = ''
