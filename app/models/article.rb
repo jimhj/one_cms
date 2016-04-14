@@ -131,6 +131,6 @@ class Article < ActiveRecord::Base
     # else
     #   needs = []
     # end
-    recommends = recommends.to_a + needs.to_a
+    # recommends = recommends.to_a + needs.to_a
   end
 end
