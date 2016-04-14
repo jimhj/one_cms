@@ -13,7 +13,7 @@ class Article < ActiveRecord::Base
   validates_presence_of :node_id, :title
   validates_uniqueness_of :title
 
-  scope :recent, -> { where(recommend: false).order('id DESC').limit(10) }
+  scope :recent, -> { where(recommend: false).order('id DESC').limit(6) }
   scope :focus, -> { where(focus: true).order('updated_at DESC, id DESC').limit(3) }
   scope :hot, -> { where(hot: true).order('updated_at DESC, id DESC').limit(8) }
 
