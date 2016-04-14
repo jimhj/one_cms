@@ -29,15 +29,19 @@ html
           ul.list-unstyled
             li
               a href="#{channels_path}" title="热门专题"
+                = icon('book')
                 | 专题           
             li
               a href="#{tags_path}" title="热门标签"
+                = icon('tags')
                 | 标签                             
             li
               a href="mailto:#{SiteConfig.actived.bd_email}?subject=#{SiteConfig.actived.site_name}_投稿"
+                = icon('send')
                 | 投稿
             li
               a.no-border href="#{feed_path(format: 'xml')}" title="feed"
+                = icon('rss')
                 | RSS 
     .nav.navbar.navbar-default role="navigation"
       .container

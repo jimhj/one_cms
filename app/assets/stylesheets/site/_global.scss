@@ -30,29 +30,31 @@ body {
     margin-top: 10px;
 
     li {
-      // margin-left: 20px;
+      margin-left: 20px;
       float: left;
     }
 
     li > a {
-      // font-size: 12px;
-      // background-color: #ddd;
-      // color: #838383;
-      padding: 0px 20px;
-      text-align: center;
+      font-size: 12px;
+      background-color: #ddd;
+      color: #838383;
+      padding: 4px 10px;
+      border-radius: 16px;
+      // padding: 0px 20px;
+      // text-align: center;
       // border-radius: 16px;
-      color: $brand-success;
+      // color: $brand-success;
       text-decoration: none;
-      border-right: 1px solid #ddd;
+      // border-right: 1px solid #ddd;
 
       &.no-border {
         border-right: none;
       }
 
       &:hover {
-        // background-color: $brand-success;
-        text-decoration: underline;
-        // color: #fff;
+        background-color: $brand-success;
+        // text-decoration: underline;
+        color: #fff;
       }
 
       i.fa {
