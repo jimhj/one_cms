@@ -22,8 +22,6 @@
             .list-section-item.clearfix
               .pull-left
                 a title="#{channel.name}" href="#{channel_path(channel)}"
-                  i.fa.fa-book
-                  | &nbsp;
                   span= channel.name
               .pull-right.text-muted
                 small 文章 (#{channel.articles.count})

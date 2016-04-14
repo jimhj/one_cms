@@ -27,21 +27,17 @@ html
             span= SiteConfig.actived.site_slogan
         .pull-right
           ul.list-unstyled
-            li.pull-left
+            li
               a href="#{channels_path}" title="热门专题"
-                = icon('book')
                 | 专题           
-            li.pull-left
+            li
               a href="#{tags_path}" title="热门标签"
-                = icon('tags')
                 | 标签                             
-            li.pull-left
+            li
               a href="mailto:#{SiteConfig.actived.bd_email}?subject=#{SiteConfig.actived.site_name}_投稿"
-                = icon('send')
                 | 投稿
-            li.pull-left
-              a href="#{feed_path(format: 'xml')}" title="feed"
-                = icon('rss')
+            li
+              a.no-border href="#{feed_path(format: 'xml')}" title="feed"
                 | RSS 
     .nav.navbar.navbar-default role="navigation"
       .container

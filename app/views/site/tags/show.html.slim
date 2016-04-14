@@ -18,9 +18,7 @@
     .list-section
       .list-section-nav
         h4.pull-left
-          a
-            i.fa.fa-tag
-            = @tag.name
+          a href="#{url_for}"= @tag.name
         .pull-right= render 'site/share/bd_share'
       .list-section-inner.article-list-container
         - if @articles.any?
