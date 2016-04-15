@@ -2,6 +2,7 @@
 # = require jquery_ujs
 # = require bootstrap/dropdown
 # = require bootstrap/button
+# = require bootstrap/carousel
 # = require jquery.sticky
 # = require jquery.lazyload
 
