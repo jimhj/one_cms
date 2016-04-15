@@ -6,9 +6,9 @@
           a href="#{root_path}"
             i.fa.fa-caret-right 
             span 首页
-        / - @nodes.each do |node|
-        /   li
-        /     a href="#{articles_path(node.slug)}" title="#{node.name}"= node.name
+        - @nodes.each do |node|
+          li
+            a href="#{articles_path(node.slug)}" title="#{node.name}"= node.name
 
         li.active 正文
       .social-share.pull-right
