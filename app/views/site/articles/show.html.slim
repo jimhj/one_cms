@@ -28,11 +28,11 @@
 
         = article_format @article.body_html
 
-        .clearfix.text-center.next-prev
-          - if @article.prev && @article.prev.node.present?
-            a.btn.btn-default title="#{@article.prev.title}" href="#{article_path(@article.prev)}" &#8592; 上一篇 
-          - if @article.next && @article.next.node.present?
-            a.btn.btn-default title="#{@article.next.title}" href="#{article_path(@article.next)}" 下一篇：#{@article.next.title.truncate(20)} &#8594;
+        / .clearfix.text-center.next-prev
+        /   - if @article.prev && @article.prev.node.present?
+        /     a.btn.btn-default title="#{@article.prev.title}" href="#{article_path(@article.prev)}" &#8592; 上一篇 
+        /   - if @article.next && @article.next.node.present?
+        /     a.btn.btn-default title="#{@article.next.title}" href="#{article_path(@article.next)}" 下一篇：#{@article.next.title.truncate(20)} &#8594;
         
         - SiteAd.leftsidearticlebottom.actived.each do |ad|
           .article-ad-bottom
