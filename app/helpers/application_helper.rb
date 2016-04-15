@@ -24,20 +24,20 @@ module ApplicationHelper
   end
 
   def article_format(html)
-    strs = [
-      '#p#分页标题#e#',
-      '.hzh {display: none; }',
-      '养生吧（www.ys8.com）'
-    ]
+    # strs = [
+    #   '#p#分页标题#e#',
+    #   '.hzh {display: none; }',
+    #   '养生吧（www.ys8.com）'
+    # ]
 
-    # cleanup = html
+    # # cleanup = html
 
-    cleanup = html.gsub(/<p>(<br>){0,}<\/p>/, '')
-                  .gsub(/(<br>){2,}(&nbsp;){0,}/, '<br>')
+    # cleanup = html.gsub(/<p>(<br>){0,}<\/p>/, '')
+    #               .gsub(/(<br>){2,}(&nbsp;){0,}/, '<br>')
 
-    strs.each { |str| cleanup = cleanup.gsub(str, '') }
+    # strs.each { |str| cleanup = cleanup.gsub(str, '') }
            
-    sanitize cleanup
+    sanitize html
   end
 
   def render_seo_meta_tags
