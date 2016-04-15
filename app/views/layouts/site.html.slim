@@ -2,8 +2,8 @@ doctype html
 html
   head
     = render_seo_meta_tags
-    = javascript_include_tag 'site/app'
-    = stylesheet_link_tag "site/themes/#{SiteConfig.actived.theme.presence || 'green'}"
+    = javascript_include_tag 'site/app', 'data-turbolinks-track' => true
+    = stylesheet_link_tag "site/themes/#{SiteConfig.actived.theme}", media: 'all', 'data-turbolinks-track' => true
     = favicon_link_tag SiteConfig.actived.favicon.url
     = csrf_meta_tags
     meta charset="utf-8"    
