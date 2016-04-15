@@ -7,6 +7,6 @@ class Keyword < ActiveRecord::Base
   # }
 
   def self.recent
-    self.order('created_at DESC, updated_at DESC').limit(1).first
+    self.order('id DESC').limit(1).first
   end
 end

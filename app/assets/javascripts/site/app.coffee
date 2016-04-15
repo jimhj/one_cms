@@ -37,6 +37,10 @@ $(document).ready ->
     effect : "fadeIn"
   )
 
+  $('img.lazyload').lazyload(
+    effect : "fadeIn"
+  )
+
   $('.favorite-btn').click ->
     url = window.location.href
     title = $('title').text()

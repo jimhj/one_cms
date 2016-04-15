@@ -7,20 +7,16 @@
       - article.pictures.first(3).each do |picture_url|
         .item-image.pull-left
           a href="#{article_path(article)}" title="#{article.title}"
-            - if lazyload
-              img class="lazy-#{page}" src="#{image_path('site/thumb.png')}" data-original="#{picture_url}" alt="#{article.title}" title="#{article.title}"
-            - else
-              = image_tag picture_url, alt: article.title, title: article.title
+            img class="lazy-#{page}" src="#{image_path('site/thumb.png')}" data-original="#{picture_url}" alt="#{article.title}" title="#{article.title}"
+
 
 - elsif article.pictures.size > 0
   .list-section-item.one-pic.clearfix
     .item-image.pull-left
       a href="#{article_path(article)}" title="#{article.title}"
         - picture_url = article.pictures.first
-        - if lazyload
-          img class="lazy-#{page}" src="#{image_path('site/thumb.png')}" data-original="#{picture_url}" alt="#{article.title}" title="#{article.title}"
-        - else
-          = image_tag picture_url, alt: article.title, title: article.title
+        img class="lazy-#{page}" src="#{image_path('site/thumb.png')}" data-original="#{picture_url}" alt="#{article.title}" title="#{article.title}"
+
     .item-text.pull-left
       h4
         a href="#{article_path(article)}" title="#{article.title}"= article.title
