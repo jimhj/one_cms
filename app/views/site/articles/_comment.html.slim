@@ -1,0 +1,8 @@
+.list-comment.text-muted.clearfix
+  .pull-left
+    span= article.source.presence || SiteConfig.actived.site_name
+    | &nbsp;⋅&nbsp;
+    span= article.created_at.strftime('%F %T')
+  .pull-right
+    i.fa.fa-comment-o
+    span.cy_cmt_count id="sourceId::#{article.id}"

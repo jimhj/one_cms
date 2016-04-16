@@ -9,6 +9,7 @@
           a href="#{article_path(article)}" title="#{article.title}"
             img class="lazy-#{page}" src="#{image_path('site/thumb.png')}" data-original="#{picture_url}" alt="#{article.title}" title="#{article.title}"
 
+    = render 'site/articles/comment', article: article
 
 - elsif article.pictures.size > 0
   .list-section-item.one-pic.clearfix
@@ -20,10 +21,15 @@
     .item-text.pull-left
       h4
         a href="#{article_path(article)}" title="#{article.title}"= article.title
-      p.text-muted= article.seo_description            
+      p.text-muted= article.seo_description
+
+      = render 'site/articles/comment', article: article
+         
 - else
   .list-section-item.nopic.clearfix
     .item-text
       h4
         a href="#{article_path(article)}" title="#{article.title}"= article.title
       p.text-muted= article.seo_description
+
+    = render 'site/articles/comment', article: article

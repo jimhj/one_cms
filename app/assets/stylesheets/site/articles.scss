@@ -52,7 +52,7 @@
   .item-text p {
     line-height: 24px;
     margin-bottom: 0px;
-    max-height: 78px;
+    max-height: 50px;
     overflow: hidden;
   }  
 
@@ -226,5 +226,20 @@
       text-overflow: ellipsis;    
       white-space: nowrap;
     }
+  }
+}
+
+.list-comment {
+  font-size: 12px;
+  margin-top: 30px;
+  color: #999;
+  // text-align: left;
+
+  a, span {
+    // margin-right: 15px;
+  }
+
+  i.fa {
+    margin-right: 5px;
   }
 }

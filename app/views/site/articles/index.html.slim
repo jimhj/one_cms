@@ -9,33 +9,7 @@
 
       .list-section-inner.article-list-container
         - if @articles.any?
-          - @articles.each do |article|
-            - if article.pictures.size >= 3
-              .list-section-item.morepics
-                .item-text
-                  h4
-                    a href="#{article_path(article)}" title="#{article.title}"= article.title
-                .item-image-list.clearfix
-                  - article.pictures.first(3).each do |picture_url|
-                    .item-image.pull-left
-                      a href="#{article_path(article)}" title="#{article.title}"
-                        img class="lazyload" src="#{image_path('site/thumb.png')}" data-original="#{picture_url}" alt="#{article.title}" title="#{article.title}"
-
-            - elsif article.pictures.size > 0
-              .list-section-item.one-pic.clearfix
-                .item-image.pull-left
-                  a href="#{article_path(article)}" title="#{article.title}"
-                    img class="lazyload" src="#{image_path('site/thumb.png')}" data-original="#{article.pictures.first}" alt="#{article.title}" title="#{article.title}"
-                .item-text.pull-left
-                  h4
-                    a href="#{article_path(article)}" title="#{article.title}"= article.title
-                  p.text-muted= article.seo_description            
-            - else
-              .list-section-item.nopic.clearfix
-                .item-text
-                  h4
-                    a href="#{article_path(article)}" title="#{article.title}"= article.title
-                  p.text-muted= article.seo_description
+          = render partial: 'site/application/index_article', collection: @articles, as: :article, locals: { page: 1 }
         - else
           .blank-state 暂时没有文章
 
