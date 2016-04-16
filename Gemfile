@@ -1,8 +1,8 @@
-source 'https://gems.ruby-china.org'
+source 'https://ruby.taobao.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.2'
-gem 'mysql2', '0.3.20'
+gem 'rails', '4.2.5'
+gem 'mysql2', '>= 0.3.13', '< 0.5'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
@@ -16,13 +16,13 @@ gem 'jquery-rails'
 gem 'bootstrap-sass', '~> 3.3.6'
 
 # Font icons
-gem 'font-awesome-sass', '~> 4.4.0'
+gem 'font-awesome-sass', '~> 4.5.0'
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.10'
 
 # Slim for Template
-gem 'slim', '~> 3.0.3'
+gem 'slim', '~> 3.0.6'
 
 # Hanzi to Pinyin
 gem 'chinese_pinyin', '~> 1.0.0'
