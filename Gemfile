@@ -74,7 +74,7 @@ gem 'whenever', '~> 0.9.4'
 
 group :development do
   # Deployment
-  gem 'capistrano', '~> 3.4.0'
+  gem 'capistrano', '~> 3.4.1'
   gem 'capistrano-rvm'
   gem 'capistrano-rails'
   gem 'capistrano-bundler'
