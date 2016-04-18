@@ -13,7 +13,7 @@ class ArticleBody < ActiveRecord::Base
   after_create do
     restore_remote_images
     article.delay.analyze_keywords
-    # article.delay.set_thumb
+    self.delay.replace_keywords
 
     if article.seo_description.blank?
       article.set_description
