@@ -108,7 +108,7 @@ class Article < ActiveRecord::Base
 
   def body_html
     html = article_body.body_html.presence || article_body.body
-    article_body.delay.replace_keywords
+    article_body.delay.replace_keywords rescue nil
     html
   end
 
