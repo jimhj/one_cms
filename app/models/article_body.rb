@@ -25,7 +25,7 @@ class ArticleBody < ActiveRecord::Base
     if not cached_keyword_id.zero?
       keywords = keywords.where('id > ?', cached_keyword_id)
     end
-    keywords = keywords.limit(1000)
+    keywords = keywords.limit(2000)
 
     if keywords.blank?
       return self.body_html || self.body
