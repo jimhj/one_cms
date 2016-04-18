@@ -5,7 +5,9 @@ class Mobile::ApplicationController < ApplicationController
 
   # caches_action :index, :cache_path => Proc.new { |c| c.request.url + '-mobile-index' }, :expires_in => 2.hours
 
-  caches_action :index, cache_path: => Proc.new { |c| c.request.url + '-mobile-index' }, if: Proc.new {
+  caches_action :index, cache_path: Proc.new { |c| 
+    c.request.url + '-mobile-index' 
+  }, if: Proc.new {
     controller_name == 'application'
   }, :expires_in => 2.hours
 
