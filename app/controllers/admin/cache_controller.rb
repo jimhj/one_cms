@@ -13,11 +13,11 @@ class Admin::CacheController < Admin::ApplicationController
     redirect_to admin_cache_path
   end
 
-  def precompile
-    env = Rails.env.development? ? 'development' : 'production'
-    system "RAILS_ENV=#{env} rake tmp:clear; RAILS_ENV=#{env} rake assets:precompile"
-    redirect_to admin_cache_path
-  end
+  # def precompile
+  #   env = Rails.env.development? ? 'development' : 'production'
+  #   system "RAILS_ENV=#{env} rake tmp:clear; RAILS_ENV=#{env} rake assets:precompile"
+  #   redirect_to admin_cache_path
+  # end
 
   # def restart
   #   if Rails.env.production?
