@@ -26,7 +26,11 @@ class Site::ArticlesController < Site::ApplicationController
     @more_articles = Article.where(node_id: @nodes.pluck(:id)).limit(8)
     @channel_keywords = @article.seo_keywords
 
-    seo_title = @article.seo_title.sub(@article.link_word, '')
+    seo_title = @article.seo_title
+    if seo_title.start_with?(@article.title)
+      seo_title = seo_title.sub(@article.title, '')
+    end
+
     seo_title = [@article.title, seo_title]
     seo_title -= ['', nil]
 
