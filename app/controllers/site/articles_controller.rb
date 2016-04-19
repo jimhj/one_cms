@@ -34,7 +34,7 @@ class Site::ArticlesController < Site::ApplicationController
     seo_title = [@article.title, seo_title]
     seo_title -= ['', nil]
 
-    set_meta_tags title: [@article.title, seo_title].join,
+    set_meta_tags title: seo_title.join,
                   description: @article.seo_description,
                   keywords: @article.seo_keywords
 
