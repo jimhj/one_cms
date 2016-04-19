@@ -26,7 +26,7 @@ class Site::ArticlesController < Site::ApplicationController
     @more_articles = Article.where(node_id: @nodes.pluck(:id)).limit(8)
     @channel_keywords = @article.seo_keywords
     
-    set_meta_tags title: @article.title,
+    set_meta_tags title: [@article.title, @article.seo_title].join(','),
                   description: @article.seo_description,
                   keywords: @article.seo_keywords
 
