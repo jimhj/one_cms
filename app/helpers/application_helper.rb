@@ -38,7 +38,7 @@ module ApplicationHelper
     # strs.each { |str| cleanup = cleanup.gsub(str, '') }
            
     # sanitize cleanup
-    sanitize(html, tags: %w(table thead tbody tr th td p img br ol li a strong em b span h1 h2 h3 h4 h5 h6 blockquote ul dd dfn dl dt small big), attributes: %w(href class id target title alt style))
+    sanitize(html, tags: %w(table thead tbody tr th td p img br ol li a strong em b span h1 h2 h3 h4 h5 h6 blockquote ul dd dfn dl dt small big), attributes: %w(href class id target title alt style src data))
     # html.html_safe
   end
 
