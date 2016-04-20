@@ -20,7 +20,7 @@ class Mobile::ArticlesController < Mobile::ApplicationController
     @nodes = Node.all.pluck(:id).sample(20)
     @more_articles = Article.where('pictures_count > 0').order('id DESC').limit(5)
     
-    set_meta_tags title: @article.title,
+    set_meta_tags title: @article.format_seo_title,
                   description: @article.seo_description,
                   keywords: @article.seo_keywords
 

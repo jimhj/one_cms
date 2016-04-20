@@ -130,21 +130,9 @@
     }
 
     a, a.hot-link {
-      color: $brand-success;
+      color: $link-color;
       text-decoration: underline;
     }
-
-    // p {
-    //   margin-bottom: 20px;
-    //   text-align: justify;
-    // }
-
-    // br {
-    //   display: block;
-    //   content: ' ';
-    //   margin-bottom: 20px;
-    // }  
-
 
     p {
       margin-bottom: 20px;
