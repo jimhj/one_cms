@@ -132,6 +132,9 @@
     a, a.hot-link {
       color: $link-color;
       text-decoration: underline;
+      &:hover {
+        color: $brand-success;
+      }
     }
 
     p {
