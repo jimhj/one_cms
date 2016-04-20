@@ -38,7 +38,7 @@ module ApplicationHelper
     # strs.each { |str| cleanup = cleanup.gsub(str, '') }
            
     # sanitize cleanup
-    sanitize html
+    simple_format html
   end
 
   def render_seo_meta_tags
