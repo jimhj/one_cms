@@ -134,4 +134,15 @@ class Article < ActiveRecord::Base
     # end
     # recommends = recommends.to_a + needs.to_a
   end
+
+  def format_seo_title
+    seo_title = self.seo_title.presence || ''
+    if seo_title.start_with?(self.title)
+      seo_title = seo_title.sub(self.title, '')
+    end
+
+    seo_title = [self.title, seo_title]
+    seo_title -= ['', nil]
+    seo_title.join    
+  end
 end
