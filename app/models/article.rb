@@ -5,7 +5,7 @@ class Article < ActiveRecord::Base
   has_one :article_body, dependent: :destroy
   has_many :taggings
   has_many :tags, through: :taggings
-  has_many :picture_assets, -> { where('height >= 100 and width >= 100') }, as: :assetable, class_name: 'RedactorRails::Picture'
+  has_many :picture_assets, -> { where('height >= 100 and width >= 100').order('created_at DESC') }, as: :assetable, class_name: 'RedactorRails::Picture'
 
   mount_uploader :thumb, ThumbUploader
   accepts_nested_attributes_for :article_body, allow_destroy: true
