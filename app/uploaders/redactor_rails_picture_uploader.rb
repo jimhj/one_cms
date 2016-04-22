@@ -23,8 +23,14 @@ class RedactorRailsPictureUploader < CarrierWave::Uploader::Base
       else
         "system/redactor_assets/pictures_3/#{id_partition}/#{model.id}"
       end
+    elsif Setting.mem_space == 'msj'
+      if model.id <= 31598
+       "system/redactor_assets/pictures/#{model.id}"
+      else
+        "system/redactor_assets/pictures_3/#{id_partition}/#{model.id}"
+      end
     else
-       "system/redactor_assets/pictures_3/#{id_partition}/#{model.id}"
+      "system/redactor_assets/pictures_3/#{id_partition}/#{model.id}"
     end
   end
 
