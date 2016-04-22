@@ -46,11 +46,13 @@
 
 ul.nav.navbar-nav li .dropdown-menu {
   @include clearfix;
-
-  width: 300px;
+  width: 380px;
   li {
+    width: 120px;
+    text-align: center;
     float: left;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
+    overflow: hidden;
   }
 }
 
