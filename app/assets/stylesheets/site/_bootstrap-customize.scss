@@ -44,6 +44,16 @@
   margin: 0;
 }
 
+ul.nav.navbar-nav li .dropdown-menu {
+  @include clearfix;
+
+  width: 300px;
+  li {
+    float: left;
+    margin-bottom: 5px;
+  }
+}
+
 .navbar-nav > li, .navbar-nav {
   float: left !important;
 }
