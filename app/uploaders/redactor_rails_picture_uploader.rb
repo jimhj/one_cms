@@ -15,12 +15,16 @@ class RedactorRailsPictureUploader < CarrierWave::Uploader::Base
   def store_dir
     # "system/redactor_assets/pictures/#{model.id}"
 
-    if model.id <= 64008
-      "system/redactor_assets/pictures/#{model.id}"
-    elsif model.id > 64008 && model.id <= 128381
-      "system/redactor_assets/pictures_2/#{model.id}"
+    if Setting.mem_space == 'h4'
+      if model.id <= 64008
+        "system/redactor_assets/pictures/#{model.id}"
+      elsif model.id > 64008 && model.id <= 128381
+        "system/redactor_assets/pictures_2/#{model.id}"
+      else
+        "system/redactor_assets/pictures_3/#{id_partition}/#{model.id}"
+      end
     else
-      "system/redactor_assets/pictures_3/#{id_partition}/#{model.id}"
+       "system/redactor_assets/pictures_3/#{id_partition}/#{model.id}"
     end
   end
 
