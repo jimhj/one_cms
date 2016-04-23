@@ -15,3 +15,9 @@ $pagination-active-border: $brand-success;
 @import "mobile/component";
 @import "mobile/index";
 @import "mobile/wechat-article";
+
+.header-nav > ul {
+  li {
+    width: 20% !important;
+  }
+}
