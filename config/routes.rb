@@ -15,7 +15,12 @@ Rails.application.routes.draw do
   namespace :onecmsmanage, module: :admin, as: :admin do
     get :login, to: 'sessions#new'
     post :login, to: 'sessions#create'
-    resources :articles
+    resources :articles do
+      collection do
+        get :search
+      end
+    end
+
     resources :nodes do
       collection do
         get :list

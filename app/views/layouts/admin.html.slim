@@ -30,16 +30,17 @@ html
           .sidebar-nav.navbar-collapse
             ul.nav.in#side-menu
               li.sidebar-search
-                .input-group.custom-search-form
-                  input.form-control type="text" placeholder="搜索"
-                  span.input-group-btn
-                    button.btn.btn-default
-                      i.fa.fa-search
-              li
-                a href="javascript:;"
-                  i.fa.fa-sitemap.fa-fw
-                  | 栏目管理
-                  span.fa.arrow
+                = form_tag search_admin_articles_path, method: 'GET' do
+                  .input-group.custom-search-form
+                    input.form-control type="text" name="q" placeholder="搜索"
+                    span.input-group-btn
+                      button.btn.btn-default
+                        i.fa.fa-search
+                li
+                  a href="javascript:;"
+                    i.fa.fa-sitemap.fa-fw
+                    | 栏目管理
+                    span.fa.arrow
                 ul.nav.nav-second-level.collapse
                   li
                     a href="#{admin_nodes_path}" 文章栏目列表

@@ -9,6 +9,11 @@ class Admin::ArticlesController < Admin::ApplicationController
     end
   end
 
+  def search
+    @articles = Article.where("title LIKE '%#{params[:q]}%'").paginate(paginate_params).order('created_at DESC')
+    render :index
+  end
+
   def new
     @article = Article.new
     @article.build_article_body
