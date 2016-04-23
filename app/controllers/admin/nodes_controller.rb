@@ -12,20 +12,12 @@ class Admin::NodesController < Admin::ApplicationController
   end
 
   def create
-    if @node = Node.find_by(slug: node_params[:slug])
-      if @node.update_attributes(node_params)
-        redirect_to admin_nodes_path
-      else
-        render action: :new
-      end
+    @node = Node.new(node_params)
+    if @node.save
+      redirect_to admin_nodes_path
     else
-      @node = Node.new(node_params)
-      if @node.save
-        redirect_to admin_nodes_path
-      else
-        render action: :new
-      end      
-    end
+      render action: :new
+    end      
   end
 
   def edit
