@@ -1,4 +1,4 @@
-$font-family-sans-serif: "微软雅黑", "microsoft yahei", verdana, lucida, Arial, sans-serif, "黑体";
+// $font-family-sans-serif: "微软雅黑", "microsoft yahei", verdana, lucida, Arial, sans-serif, "黑体";
 $body-bg: #f8f8f8;
 $brand-success: #ff8400 !default;
 $link-color: #454545;
@@ -21,3 +21,17 @@ $border-radius-base: 0;
 @import "site/tags";
 
 @import "site/themes/orange_article";
+
+.nav > .container {
+  .main-nav > li > a {
+    &:hover {
+      background-color: lighten($brand-success, 10%);
+    }
+  }
+
+  .main-nav > li.active > a {
+    &, &:hover {
+      background-color: lighten($brand-success, 10%);      
+    }
+  }
+}
