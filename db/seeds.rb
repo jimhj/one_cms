@@ -21,3 +21,5 @@ config.icp              = '京ICP备11031391号'
 config.copyright        = 'Copyright 2008-2018 健康私房话 www.h4.com.cn 版权所有 京ICP备11031391号'
 config.declare          = '<p>声明：健康私房话所发布的内容来源于网友分享，仅出于分享健康知识，并不意味着赞同其观点或证实其描述。文章内容仅供参考，具体治疗及选购请咨询医生或相关专业人士。</p><p>若有相关问题，请联系 <a class="contact-us" href="mailto:service@h4.com.cn"><i class="fa fa-envelope"></i> service@h4.com.cn</a></p>'
 config.save!
+
+p config.errors.full_messages

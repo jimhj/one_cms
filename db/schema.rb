@@ -47,11 +47,11 @@ ActiveRecord::Schema.define(version: 20160414074546) do
     t.string   "seo_title",       limit: 255
     t.string   "seo_keywords",    limit: 255
     t.string   "seo_description", limit: 255
-    t.boolean  "focus",           limit: 1,   default: false
-    t.boolean  "hot",             limit: 1,   default: false
-    t.boolean  "recommend",       limit: 1,   default: false
+    t.boolean  "focus",                       default: false
+    t.boolean  "hot",                         default: false
+    t.boolean  "recommend",                   default: false
     t.integer  "status",          limit: 4,   default: 0
-    t.boolean  "linked",          limit: 1,   default: false
+    t.boolean  "linked",                      default: false
     t.string   "link_word",       limit: 255
     t.integer  "pictures_count",  limit: 4,   default: -1
     t.datetime "created_at",                                  null: false
@@ -86,21 +86,6 @@ ActiveRecord::Schema.define(version: 20160414074546) do
   end
 
   add_index "channels", ["slug"], name: "index_channels_on_slug", using: :btree
-
-  create_table "dede_arctype", force: :cascade do |t|
-    t.integer "reid",        limit: 2,   default: 0,  null: false
-    t.integer "topid",       limit: 2,   default: 0,  null: false
-    t.integer "sortrank",    limit: 2,   default: 50, null: false
-    t.string  "typename",    limit: 30,  default: "", null: false
-    t.string  "typedir",     limit: 60,  default: "", null: false
-    t.string  "description", limit: 150, default: "", null: false
-    t.string  "keywords",    limit: 60,  default: "", null: false
-    t.string  "seotitle",    limit: 80,  default: "", null: false
-    t.integer "newid",       limit: 4
-  end
-
-  add_index "dede_arctype", ["reid", "topid", "typename"], name: "reid", using: :btree
-  add_index "dede_arctype", ["sortrank"], name: "sortrank", using: :btree
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   limit: 4,     default: 0, null: false
@@ -157,7 +142,7 @@ ActiveRecord::Schema.define(version: 20160414074546) do
     t.string   "seo_keywords",    limit: 255
     t.string   "seo_description", limit: 255
     t.integer  "sortrank",        limit: 4,   default: 1000
-    t.boolean  "is_nav",          limit: 1,   default: false
+    t.boolean  "is_nav",                      default: false
     t.string   "nav_name",        limit: 255
     t.datetime "created_at",                                  null: false
     t.datetime "updated_at",                                  null: false
@@ -183,13 +168,14 @@ ActiveRecord::Schema.define(version: 20160414074546) do
 
   add_index "redactor_assets", ["assetable_type", "assetable_id"], name: "idx_redactor_assetable", using: :btree
   add_index "redactor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_redactor_assetable_type", using: :btree
+  add_index "redactor_assets", ["data_file_name"], name: "index_redactor_assets_on_data_file_name", using: :btree
 
   create_table "site_ads", force: :cascade do |t|
     t.string   "key",        limit: 255,                  null: false
     t.string   "title",      limit: 255
     t.text     "value",      limit: 65535,                null: false
     t.integer  "sortrank",   limit: 4,     default: 50
-    t.boolean  "active",     limit: 1,     default: true
+    t.boolean  "active",                   default: true
     t.datetime "created_at",                              null: false
     t.datetime "updated_at",                              null: false
   end
@@ -206,7 +192,7 @@ ActiveRecord::Schema.define(version: 20160414074546) do
     t.string  "mobile_logo",      limit: 255
     t.string  "favicon",          limit: 255
     t.text    "extras",           limit: 65535
-    t.boolean "active",           limit: 1,     default: true
+    t.boolean "active",                         default: true
   end
 
   create_table "taggings", force: :cascade do |t|
