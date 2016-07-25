@@ -81,6 +81,8 @@ class Article < ActiveRecord::Base
   def pictures
     pictures = self.picture_assets
 
+    return [] if article_body.nil?
+    
     if pictures.blank?
       filenames = Nokogiri::HTML(article_body.body).css('img').collect do |img|
         src = img[:src]

@@ -13,12 +13,14 @@ Rails.application.config.assets.precompile += %w(
   admin/app.css
   site/themes/green.css
   site/themes/orange.css
+  site/themes/red.css
   site/app.js
   bootstrap-ie7.css
   respond.js
   mobile/app.js
   mobile/themes/green.css
   mobile/themes/orange.css
+  mobile/themes/red.css
   swiper.js
   swiper.css
 )
