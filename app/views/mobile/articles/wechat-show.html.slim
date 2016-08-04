@@ -28,12 +28,15 @@ html
 
         ul.list-unstyled.more-arts
           - @more_articles.each do |article|
-            - pic = article.pictures.first || article.thumb.url
-            li.clearfix
-              .thumb
-                a href="#{article_path(article)}" title="#{article.title}"
-                  = image_tag pic, :size => '50x50', alt: article.title 
-              .link
-                a href="#{article_path(article)}" title="#{article.title}"= article.title
+            - if article.node.nil?
+              - next
+            - else
+              - pic = article.pictures.first || article.thumb.url
+              li.clearfix
+                .thumb
+                  a href="#{article_path(article)}" title="#{article.title}"
+                    = image_tag pic, :size => '50x50', alt: article.title 
+                .link
+                  a href="#{article_path(article)}" title="#{article.title}"= article.title
 
     = render 'site/share/aly'
