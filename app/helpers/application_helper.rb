@@ -1,5 +1,6 @@
 module ApplicationHelper
   def article_path(article)
+    return '' if article.node.blank?
     "/#{article.node.slug}/#{article.id}"
   end
 
