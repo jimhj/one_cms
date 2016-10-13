@@ -2,7 +2,7 @@ doctype html
 html
   head
     = render_seo_meta_tags
-    = stylesheet_link_tag 'mobile/app'
+    = stylesheet_link_tag 'mobile/wechat-article'
     = csrf_meta_tags
     meta name="viewport" content="width=device-width, initial-scale=1"
     meta content="mobile" name="applicable-device"
@@ -18,8 +18,15 @@ html
           em= @article.created_at.strftime('%F')
           em= @article.source
           a href="#{articles_path(@article.node.slug)}"= @article.node.name
+
+        - SiteAd.mobilearticletop.actived.each do |ad|
+          .ad-container= raw ad.value 
+          
         .article-content
           = replace_inner_link_domain(article_format @article.body_html)
+
+        - SiteAd.mobilearticlebottom.actived.each do |ad|
+          .ad-container= raw ad.value
 
         .wechat-toolbar
           em 更多文章
@@ -38,5 +45,8 @@ html
                     = image_tag pic, :size => '50x50', alt: article.title 
                 .link
                   a href="#{article_path(article)}" title="#{article.title}"= article.title
+
+        - SiteAd.mobilearticlebottom.actived.each do |ad|
+          .ad-container.mt-10.mb-10= raw ad.value
 
     = render 'site/share/aly'

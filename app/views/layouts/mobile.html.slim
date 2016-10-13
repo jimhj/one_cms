@@ -20,8 +20,12 @@ html
               a href="#{mobile_articles_path(node.slug)}"= node.short_name
 
     .main-container.container
+      - SiteAd.mobilelisttop.actived.each do |ad|
+        .ad-container= raw ad.value 
       = yield
-
+      - SiteAd.mobilelistbottom.actived.each do |ad|
+        .ad-container= raw ad.value
+        
     footer.text-center
       .copyright= SiteConfig.actived.copyright.html_safe
     = render 'site/share/aly'

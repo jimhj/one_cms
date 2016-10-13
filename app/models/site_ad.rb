@@ -18,7 +18,12 @@ class SiteAd < ActiveRecord::Base
       'rightsidetop'          => '右侧上方',
       'rightsidemiddle'       => '右侧中间',
       'rightsidebottom'       => '右侧下方',
-      'global'                => '全站广告'
+      'global'                => '全站广告',
+      'mobilearticletop'      => '移动站正文内容上方',
+      'mobilearticlebottom'   => '移动站正文内容下方',
+      'mobilebodybottom'      => '移动站更多文章下方',
+      'mobilelisttop'         => '移动站列表上方',
+      'mobilelistbottom'      => '移动站列表下方'
     }    
   end
 

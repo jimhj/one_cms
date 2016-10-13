@@ -21,6 +21,7 @@ Rails.application.config.assets.precompile += %w(
   mobile/themes/green.css
   mobile/themes/orange.css
   mobile/themes/red.css
+  mobile/wechat-article.css
   swiper.js
   swiper.css
 )
