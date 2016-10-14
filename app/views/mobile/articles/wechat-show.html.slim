@@ -20,13 +20,13 @@ html
           a href="#{articles_path(@article.node.slug)}"= @article.node.name
 
         - SiteAd.mobilearticletop.actived.each do |ad|
-          .ad-container= raw ad.value 
-          
+          .ad-container.mb-10.mt-10= raw ad.value 
+
         .article-content
           = replace_inner_link_domain(article_format @article.body_html)
 
         - SiteAd.mobilearticlebottom.actived.each do |ad|
-          .ad-container= raw ad.value
+          .ad-container.mb-10.mt-10= raw ad.value
 
         .wechat-toolbar
           em 更多文章
