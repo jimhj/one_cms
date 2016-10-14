@@ -46,7 +46,7 @@ html
                 .link
                   a href="#{article_path(article)}" title="#{article.title}"= article.title
 
-        - SiteAd.mobilearticlebottom.actived.each do |ad|
+        - SiteAd.mobilebodybottom.actived.each do |ad|
           .ad-container.mt-10.mb-10= raw ad.value
 
     = render 'site/share/aly'
