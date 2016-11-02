@@ -59,6 +59,6 @@ class Admin::ArticlesController < Admin::ApplicationController
   end
 
   def paginate_params
-    { page: params[:page], per_page: 40, total_entries: 1000000 }
+    { page: params[:page], per_page: 40, total_entries: 10000 }
   end  
 end
