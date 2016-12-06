@@ -14,8 +14,16 @@ class Article < ActiveRecord::Base
   validates_uniqueness_of :title
 
   scope :recent, -> { where(recommend: false).order('id DESC').limit(6) }
-  scope :focus, -> { where(focus: true).order('updated_at DESC, id DESC').limit(3) }
-  scope :hot, -> { where(hot: true).order('updated_at DESC, id DESC').limit(8) }
+  scope :focus, -> { where(focus: true).order('id DESC').limit(3) }
+  scope :hot, -> { with_photo.where(hot: true).order('id DESC').limit(8) }
+
+  scope :with_photo, -> {
+    where('pictures_count > 0')
+  }
+  
+  scope :photo_news, -> {
+    where(hot: false).with_photo.order('id DESC').limit(6)
+  }
 
   after_create do
     if self.linked?
@@ -146,5 +154,10 @@ class Article < ActiveRecord::Base
     seo_title = [self.title, seo_title]
     seo_title -= ['', nil]
     seo_title.join    
+  end
+
+  def source
+    s = read_attribute(:source)
+    s.presence || '网友'
   end
 end

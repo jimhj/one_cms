@@ -1,0 +1,44 @@
+- if article.pictures.size >= 4  
+  .article-item.gallery-item.clearfix
+    .item-right
+      .right-bd
+        h3
+          a href="#{article_path(article)}" title="#{article.title}"= article.title
+        .img-list.clearfix
+          - article.pictures.first(4).each do |picture_url|
+            a href="#{article_path(article)}" title="#{article.title}"
+              img src="#{picture_url}" alt="#{article.title}" title="#{article.title}"
+      .item-footer
+        span.tag.tag-blue= article.node.name
+        a #{article.source} ⋅ 
+        a 9 评论 ⋅ 
+        span= article.created_at.strftime('%F')
+- elsif article.pictures.size > 0
+  - picture_url = article.pictures.first
+  .article-item.clearfix
+    a.thumb-left href="#{article_path(article)}" title="#{article.title}"
+      img src="#{picture_url}" alt="#{article.title}" title="#{article.title}"
+    .item-right
+      .right-bd
+        h3
+          a href="#{article_path(article)}" title="#{article.title}"= article.title
+        p= article.seo_description
+
+      .item-footer
+        span.tag.tag-blue= article.node.name
+        a #{article.source} ⋅ 
+        a 9 评论 ⋅ 
+        span= article.created_at.strftime('%F')
+- else
+  .article-item.text-item.clearfix
+    .item-right
+      .right-bd
+        h3
+          a href="#{article_path(article)}" title="#{article.title}"= article.title
+        p= article.seo_description
+
+      .item-footer
+        span.tag.tag-blue= article.node.name
+        a #{article.source} ⋅ 
+        a 9 评论 ⋅ 
+        span= article.created_at.strftime('%F')

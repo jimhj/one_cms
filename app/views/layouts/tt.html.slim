@@ -1,0 +1,36 @@
+doctype html
+html
+  head
+    = render_seo_meta_tags
+    = javascript_include_tag 'tt/app'
+    = stylesheet_link_tag 'tt/app', media: 'all'
+    = favicon_link_tag SiteConfig.actived.favicon.url
+    = csrf_meta_tags
+    meta charset="utf-8"    
+    meta http-equiv="X-UA-Compatible" content="IE=edge"
+    meta name="renderer" content="webkit"
+    meta content="pc,mobile" name="applicable-device"
+    meta http-equiv="Cache-Control" content="no-transform" 
+
+    /[if lt IE 9]
+        = javascript_include_tag 'html5shiv'
+
+  body class="#{controller_name}"
+    .header
+      .header-navbar
+        .navbar-inner.clearfix
+          .main-nav
+            ul.nav-list.clearfix
+              - Node.order('sortrank DESC').limit(10).each do |node|
+                li.f-left
+                  a href="#"= node.name.scan(/\p{Han}/).join
+          .sub-nav
+            ul.nav-list.clearfix
+              li.f-left
+                a href="#" 专题
+              li.f-left
+                a href="#" 标签
+              li.f-left
+                a href="#" RSS
+    = yield
+

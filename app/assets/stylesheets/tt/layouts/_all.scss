@@ -1,0 +1,16 @@
+@import "header";
+@import "footer";
+@import "sidebar";
+@import "article-list";
+@import "article";
+
+.main {
+  width: 1170px;
+  margin: 0 auto;
+  min-height: 1500px;
+  margin-top: 16px;
+}
+
+.main.article-main {
+  width: 1120px;
+}

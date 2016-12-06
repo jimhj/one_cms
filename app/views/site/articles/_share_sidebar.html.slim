@@ -1,0 +1,44 @@
+= form_tag url_for, method: 'GET' do
+  .search-form
+    .input-box.clearfix
+      .f-left
+        input name="keyword" type="search" placeholder="输入关键字"
+      .f-right.search-btn
+        button type="submit"
+          i.icon.icon-search
+
+.hot-news.news-list
+  .list-head 24小时热文
+  ul.news-content
+    - Article.hot.each do |article|
+      - picture_url = article.pictures.first
+      li
+        a.clearfix href="#{article_path(article)}"
+          .news-pic
+            img src="#{picture_url}" width=60 height=60 alt="#{article.title}"
+          .news-inner
+            p.news-title= article.title
+
+.hot-pics.news-list
+  .list-head 精彩图文
+  ul.news-content.clearfix
+    - Article.photo_news.each do |article|
+      - picture_url = article.pictures.first
+
+      li
+        a.clearfix href="#{article_path(article)}"
+          .news-pic
+            img src="#{picture_url}" width=144 height=84 alt="#{article.title}"
+          p= article.title
+
+.friend-links.news-list
+  .list-head 友情链接
+  ul.news-content.clearfix
+    - @links.each do |link|
+      li
+        a href="#{link.url}" target="_blank" title="#{link.title}"= link.name
+
+.about-section
+  p= SiteConfig.actived.copyright.html_safe
+  .declare
+    p= SiteConfig.actived.declare.html_safe

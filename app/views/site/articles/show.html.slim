@@ -1,64 +1,87 @@
-.main-split-container
-  .left-side
-    .breadcrumb-container
-      ol.breadcrumb.pull-left
-        li
-          a href="#{root_path}"
-            i.fa.fa-caret-right 
-            span 首页
-        - @nodes.each do |node|
+.header-breadcrumb
+  .b-inner.clearfix
+    .f-left.logo-box
+      a.logo href="#{root_path}"
+        = image_tag 'site/logo3.png'
+    .f-left.b-links
+      a href="#{root_path}" 首页
+      = " / "
+      - @nodes.each do |node|
+        a href="#{articles_path(node.slug)}" title="#{node.name}"= node.name
+        = " / "
+      span 正文
+    .f-right
+      = form_tag url_for, method: 'GET' do
+        .search-form
+          .input-box.clearfix
+            .f-left
+              input name="keyword" type="search" placeholder="输入关键字"
+            .f-right.search-btn
+              button type="submit"
+                i.icon.icon-search
+
+.main.article-main
+  .f-left.a-main
+    .a-main-box.clearfix
+      .f-left.share-bar
+        .s-inner
+          a.s-comment
+            i.s-ico.comment
+            span 336
+
+          .s-hr
+
+          a.s-box
+            i.s-ico.weibo
+            span.text 微博
+
+          a.s-box
+            i.s-ico.weixin
+            span.text 微信
+
+          a.s-box
+            i.s-ico.qzone
+            span.text Qzone
+      .f-left.article-box
+        .article-inner
+          h1= @article.title
+          .a-info
+            span.tag.tag-gray= @article.node.name
+            span= @article.source
+            span= @article.created_at.strftime('%F %T')
+          .a-content= article_format @article.body_html
+          .a-action
+            span.tags
+            ul.tag-list
+              - @article.tags.each do |tag|
+                li
+                  a href="#{tag_path(tag.slug)}"= tag.name
+
+    .r-main-box.clearfix
+      .f-left.node-sidebar
+        h2 相关推荐
+
+        ul.sidebar-list
+          - Node.where(is_nav: true).order('sortrank DESC').each_with_index do |node, i|
+            li class=('active' if i.zero?)
+              a title="#{node.name}" href="#{articles_path(node.slug)}"= node.short_name
+
+      .f-left.articles-section
+        .cut-line
+        = render partial: 'site/application/index_article', collection: @more_articles, as: :article
+
+  .f-right.article-right
+    .text-list.news-list
+      .list-head= @article.node.name
+      .list-desc= @article.node.seo_description
+      ul.news-content
+        - @node.articles.last(4).each do |article|
           li
-            a href="#{articles_path(node.slug)}" title="#{node.name}"= node.name
+            a href="#{article_path(article)}"= article.title
 
-        li.active 正文
-      .social-share.pull-right
-        = render 'site/share/bd_share'
-    .article-detail-container
-      .article-header
-        h1= @article.title
-        p.text-muted
-          span= @article.created_at.strftime('%F')
-          span 来源：#{@article.source.presence || '网友'}
-          span 投稿：#{@article.writer.presence || '匿名投稿'}
-
-      .article-content
-        - SiteAd.leftsidearticletop.actived.each do |ad|
-          .article-ad-top
-            = raw ad.value
-
-        = article_format @article.body_html
-        
-        - SiteAd.leftsidearticlebottom.actived.each do |ad|
-          .article-ad-bottom
-            = raw ad.value
-      .article-footer
-        .tags.pull-left
-          i.fa.fa-tags
-          - @article.tags.each do |tag|
-            a href="#{tag_path(tag.slug)}"= tag.name
-
-    .mixed-section.more-like-this
-      .mixed-section-inner
-        = render 'site/share/changyan'
-
-    - SiteAd.leftsidemiddle.actived.each do |ad|
-      .more-like-this.mixed-section
-        .mixed-section-inner
-          = raw ad.value
-
-    .more-like-this.mixed-section
-      .mixed-section-nav
-        h4: a 相关文章
-      .mixed-section-inner
-        .mixed-section-text
-          ul.section-list.list-unstyled.clearfix.hor
-            - @more_articles.each do |article|
-              li
-                a href="#{article_path(article)}" title="#{article.title}"= article.title
-
-    - SiteAd.leftsidebottom.actived.each do |ad|
-      .more-like-this.mixed-section.ad-section
-        .mixed-section-inner
-          = raw ad.value
-          
-  = render 'site/share/right_side'
+    .text-list.news-list
+      .list-head 最新文章
+      ul.news-content
+        - @node.articles.last(10).each do |article|
+          li
+            a href="#{article_path(article)}"= article.title

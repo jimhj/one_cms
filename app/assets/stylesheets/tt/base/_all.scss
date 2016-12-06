@@ -1,0 +1,28 @@
+@import "normalize";
+@import "../helpers/all";
+@import "../components/all";
+@import "../layouts/all";
+
+// Type
+body, button, input, keygen, legend, select, textarea {
+  font: 12px/1.14 "PingFang SC","Hiragino Sans GB","Microsoft YaHei","WenQuanYi Micro Hei","Helvetica Neue",Arial,sans-serif;
+  -webkit-font-smoothing: antialiased;
+  color: #333;
+  outline: 0;
+}
+
+a {
+  color: #222222;
+}
+
+a:visited {
+  color: #999;
+}
+
+a, a:hover, del, ins, s, u {
+  text-decoration: none;
+}
+
+a:hover {
+  color: $brand-success;
+}

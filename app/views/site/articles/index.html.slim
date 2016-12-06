@@ -1,18 +1,25 @@
-.main-split-container
-  .left-side
-    .list-section
-      .list-section-nav
-        .pull-left
-        h4.pull-left: a= @node.name
-        .pull-right
-          = render 'site/share/bd_share'
+= javascript_include_tag 'tt/index'
+= stylesheet_link_tag 'tt/views/index'
 
-      .list-section-inner.article-list-container
-        - if @articles.any?
-          = render partial: 'site/application/index_article', collection: @articles, as: :article, locals: { page: 1 }
-        - else
-          .blank-state 暂时没有文章
+.main.clearfix
 
-    = will_paginate @articles, renderer: BootstrapPagination::Rails, inner_window: 1
+  = render 'site/share/node_bar'
 
-  = render 'site/share/right_side'
+  .f-left.index-main
+    .articles-section.m-top10
+      = render partial: 'site/application/index_article', collection: @articles, as: :article
+
+  .f-right.index-right.right-sidebar
+    = render 'site/articles/share_sidebar'
+
+
+javascript:
+  $(function () {
+    $('.carousel-focus').slideBox({
+      duration: 0.3,
+      easing: 'linear',
+      delay: 5,
+      hideClickBar: false,
+      clickBarRadius: 10
+    });
+  });

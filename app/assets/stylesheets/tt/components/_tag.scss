@@ -1,0 +1,16 @@
+.tag {
+  display: inline-block;
+  font-size: 12px;
+  margin-right: 10px;
+  padding: 1px 2px;
+}
+
+.tag.tag-gray {
+  color: #777;
+  border: 1px solid #999;  
+}
+
+.tag.tag-blue {
+  color: #60A3F5;
+  border: 1px solid #60A3F5;  
+}

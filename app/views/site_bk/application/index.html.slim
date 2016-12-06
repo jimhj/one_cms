@@ -1,0 +1,40 @@
+.carousel-focus.clearfix
+  .pull-left.carousel-focus-left
+    .carousel-focus-container.carousel.slide data-ride="carousel"
+      ol.carousel-indicators
+        - @focus.each_with_index do |_article, ind|
+          li class=('active' if ind.zero?) data-target=".carousel-focus-container" data-slide-to="#{ind}"
+      .carousel-inner role="listbox"
+        - @focus.each_with_index do |article, ind|
+          a.item class=('active' if ind.zero?) href="#{article_path(article)}" title="#{article.title}"
+            = image_tag article.thumb.url(:large), size: '680x340', alt: article.title, title: article.title
+            .carousel-caption
+              .carousel-caption-layer
+              .carousel-caption-inner
+                h4= article.title
+
+  .pull-right.carousel-focus-right.mixed-section
+    .mixed-section-nav
+      h4
+        a 头条推荐
+    .mixed-section-inner
+      .mixed-section-text
+        ul.section-list.list-unstyled
+          - @topnews.each do |article|
+            - next if article.node.blank?
+            li
+              a title="#{article.title}" href="#{article_path(article)}"= article.title.truncate(18) 
+
+.main-split-container
+  .left-side
+
+    .list-section
+      .list-section-nav
+        .pull-left
+          h4: a 热点推荐
+      .list-section-inner.article-list-container
+        = render partial: 'site/application/index_article', collection: @articles, as: :article, locals: { lazyload: true, page: params[:page].presence || 1 }
+        .text-center
+          a.btn.btn-default.loadMore data-loading-text="加载中..." data-page=1 加载更多
+
+  = render 'site/share/right_side'                      

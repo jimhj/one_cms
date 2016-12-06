@@ -1,0 +1,31 @@
+.f-left {
+  float: left;
+}
+
+.f-right {
+  float: right;
+}
+
+.f-none {
+  float: none;
+}
+
+.clearfix:after {
+  clear: both;
+  content: ".";
+  display: block;
+  height: 0;
+  visibility: hidden;
+  font-size: 0;
+}
+
+* html .clearfix  { zoom: 1; } /* IE6 */
+*+html .clearfix { display: inline-block; } /* IE7 */
+
+@each $distance in 0, 2, 5, 8, 10, 15, 20, 30, 50, 70, 100 {
+  @each $direction in 'left', 'right', 'top', 'bottom' {
+    .m-#{$direction}#{$distance} {
+      margin-#{$direction}: #{$distance}px;
+    }
+  }
+}

@@ -1,0 +1,51 @@
+.header-breadcrumb {
+  position: relative;
+  width: 100%;
+  height: 58px;
+  background: #fff;
+  box-shadow: 0 1px 4px 0 rgba(0,0,0,.12);
+  border-bottom: 1px solid #e8e8e8 \9; /* IE 678 hack*/
+
+  .b-inner {
+    margin: 0 auto;
+    width: 1120px!important;
+  }
+
+  .logo-box {
+    line-height: 58px;
+    overflow: hidden;
+  }
+
+  a.logo {
+    display: block;
+    *margin-top: 16px;  /*IE7*/
+
+    img { 
+      width: 110px; 
+      height: 27px;
+      vertical-align: middle;
+    }
+  }
+
+  .b-links {
+    font-size: 16px;
+    margin-left: 20px;
+    line-height: 58px;
+
+    a {
+      color: #444;
+      &:hover {
+        color: $brand-success;
+      }
+    }
+
+    span {
+      color: #999;
+    }
+  }
+
+  .search-form {
+    margin-top: 9px;
+    width: 340px;
+  }
+}
