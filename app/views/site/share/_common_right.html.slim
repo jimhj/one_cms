@@ -22,6 +22,14 @@
             img src="#{picture_url}" width=144 height=84 alt="#{article.title}"
           p= article.title
 
+- if @links
+  .friend-links.news-list
+    .list-head 友情链接
+    ul.news-content.clearfix
+      - (@links || []).each do |link|
+        li
+          a href="#{link.url}" target="_blank" title="#{link.title}"= link.name
+
 .about-section
   p= SiteConfig.actived.copyright.html_safe
   .declare

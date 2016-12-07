@@ -6,7 +6,7 @@
     .f-left.b-links
       a href="#{root_path}" 首页
       = " / "
-      span 热门专题
+      span 热门标签
     .f-right
       = render 'site/share/search_form'
 .main.clearfix
@@ -25,17 +25,11 @@
         span.text Qzone
 
   .f-left.index-main
-    .articles-section
-      - @channels.each do |channel|
-        .article-item.text-item.clearfix
-          .item-right
-            .right-bd
-              h3
-                a title="#{channel.name}" href="#{channel_path(channel)}"= channel.name
-                p= channel.seo_description
-            .item-footer
-              span.tag.tag-blue= channel.seo_keywords
-              span= channel.created_at.strftime('%F')
+    .tags-section
+      ul.tag-list
+        - @tags.each do |tag|
+          li
+            a title="#{tag.name}" href="#{tag_path(tag.slug)}"= tag.name
 
   .f-right.index-right.right-sidebar
     = render 'site/share/common_right'

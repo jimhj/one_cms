@@ -1,6 +1,3 @@
-= javascript_include_tag 'tt/index'
-= stylesheet_link_tag 'tt/views/index'
-
 .header-breadcrumb
   .b-inner.clearfix
     .f-left.logo-box
@@ -13,16 +10,8 @@
       = " / "
       span= @channel.name
     .f-right
-      = form_tag url_for, method: 'GET' do
-        .search-form
-          .input-box.clearfix
-            .f-left
-              input name="keyword" type="search" placeholder="输入关键字"
-            .f-right.search-btn
-              button type="submit"
-                i.icon.icon-search
+      = render 'site/share/search_form'
 .main.clearfix
-
   .f-left.share-bar
     .s-inner
       a.s-box
@@ -38,13 +27,8 @@
         span.text Qzone
 
   .f-left.index-main
-    / .nodes
-    /   ul.node-list
-    /     - @nodes.first(6).each_with_index do |node, i|
-    /       li class=('active' if i.zero?)
-    /         a href="#{articles_path(node.slug)}"= node.name
     .articles-section
       = render partial: 'site/application/index_article', collection: @articles, as: :article
 
   .f-right.index-right.right-sidebar
-    = render 'site/channels/right'
+    = render 'site/share/common_right'
