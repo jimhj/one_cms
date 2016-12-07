@@ -6,6 +6,11 @@
   = render 'site/share/node_bar'
 
   .f-left.index-main
+    .nodes
+      ul.node-list
+        - @nodes.first(6).each_with_index do |node, i|
+          li class=('active' if i.zero?)
+            a href="#{articles_path(node.slug)}"= node.name
     .articles-section.m-top10
       = render partial: 'site/application/index_article', collection: @articles, as: :article
 

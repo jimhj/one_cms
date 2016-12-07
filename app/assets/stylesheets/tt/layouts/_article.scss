@@ -91,3 +91,34 @@
   width: 300px;
   min-height: 800px;  
 }
+
+.nodes {
+  height: 38px;
+  width: 100%;
+  z-index: 50;
+  margin-bottom: 16px;  
+}
+
+.nodes ul.node-list {
+  width: 660px;
+  background: #fff;
+  height: 38px;
+  border-bottom: 2px solid #f2f2f2; 
+
+
+  li {
+    line-height: 38px;
+    font-size: 16px;
+    display: inline-block;
+    color: #444;
+    margin-left: 33px;
+    background: #fff;    
+    list-style: none;
+  } 
+
+  li.active {
+    margin-left: 0px;
+    color: $brand-success;
+    border-bottom: 2px solid $brand-success;
+  }
+}

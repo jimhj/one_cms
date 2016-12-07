@@ -1,0 +1,57 @@
+= javascript_include_tag 'tt/index'
+= stylesheet_link_tag 'tt/views/index'
+
+.header-breadcrumb
+  .b-inner.clearfix
+    .f-left.logo-box
+      a.logo href="#{root_path}"
+        = image_tag 'site/logo3.png'
+    .f-left.b-links
+      a href="#{root_path}" 首页
+      = " / "
+      span 热门专题
+    .f-right
+      = form_tag url_for, method: 'GET' do
+        .search-form
+          .input-box.clearfix
+            .f-left
+              input name="keyword" type="search" placeholder="输入关键字"
+            .f-right.search-btn
+              button type="submit"
+                i.icon.icon-search
+.main.clearfix
+
+  .f-left.share-bar
+    .s-inner
+      a.s-box
+        i.s-ico.weibo
+        span.text 微博
+
+      a.s-box
+        i.s-ico.weixin
+        span.text 微信
+
+      a.s-box
+        i.s-ico.qzone
+        span.text Qzone
+
+  .f-left.index-main
+    / .nodes
+    /   ul.node-list
+    /     - @nodes.first(6).each_with_index do |node, i|
+    /       li class=('active' if i.zero?)
+    /         a href="#{articles_path(node.slug)}"= node.name
+    .articles-section
+      - @channels.each do |channel|
+        .article-item.text-item.clearfix
+          .item-right
+            .right-bd
+              h3
+                a title="#{channel.name}" href="#{channel_path(channel)}"= channel.name
+                p= channel.seo_description
+            .item-footer
+              span.tag.tag-blue= channel.seo_keywords
+              span= channel.created_at.strftime('%F')
+
+  .f-right.index-right.right-sidebar
+    = render 'site/channels/right'

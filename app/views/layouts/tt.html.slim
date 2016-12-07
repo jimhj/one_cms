@@ -27,10 +27,10 @@ html
           .sub-nav
             ul.nav-list.clearfix
               li.f-left
-                a href="#" 专题
+                a href="#{channels_path}" title="热门专题" 专题
               li.f-left
                 a href="#" 标签
               li.f-left
-                a href="#" RSS
+                a href="#{feed_path(format: 'xml')}" title="feed" RSS
     = yield
 
