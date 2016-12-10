@@ -1,7 +1,8 @@
-.f-left.node-sidebar.clearfix
-  a.logo href="#{root_path}"
-    = image_tag 'site/logo3.png'
-  ul.sidebar-list
-    - Node.where(is_nav: true).order('sortrank DESC').each_with_index do |node, i|
-      li class=('active' if i.zero?)
-        a title="#{node.name}" href="#{articles_path(node.slug)}"= node.short_name
+.f-left.node-sidebar-box
+  .node-sidebar.clearfix
+    a.logo href="#{root_path}"
+      = image_tag 'site/logo3.png'
+    ul.sidebar-list
+      - Node.where(is_nav: true).order('sortrank DESC').each_with_index do |node, i|
+        li class=('active' if i.zero?)
+          a title="#{node.name}" href="#{articles_path(node.slug)}"= node.short_name

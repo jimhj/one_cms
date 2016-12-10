@@ -11,7 +11,9 @@
       .item-footer
         span.tag.tag-blue= article.node.name
         a #{article.source} ⋅ 
-        a 9 评论 ⋅ 
+        a 
+          span.cy_cmt_count id="sourceId::#{article.id}" 0 
+          span  评论 ⋅ 
         span= article.created_at.strftime('%F')
 - elsif article.pictures.size > 0
   - picture_url = article.pictures.first
@@ -27,7 +29,9 @@
       .item-footer
         span.tag.tag-blue= article.node.name
         a #{article.source} ⋅ 
-        a 9 评论 ⋅ 
+        a 
+          span.cy_cmt_count id="sourceId::#{article.id}" 0 
+          span  评论 ⋅
         span= article.created_at.strftime('%F')
 - else
   .article-item.text-item.clearfix
@@ -40,5 +44,7 @@
       .item-footer
         span.tag.tag-blue= article.node.name
         a #{article.source} ⋅ 
-        a 9 评论 ⋅ 
+        a 
+          span.cy_cmt_count id="sourceId::#{article.id}" 0 
+          span  评论 ⋅ 
         span= article.created_at.strftime('%F')

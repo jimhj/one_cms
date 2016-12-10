@@ -36,6 +36,8 @@
             .item-footer
               span.tag.tag-blue= channel.seo_keywords
               span= channel.created_at.strftime('%F')
+    .pagination
+      = will_paginate @channels, inner_window: 1
 
   .f-right.index-right.right-sidebar
     = render 'site/share/common_right'

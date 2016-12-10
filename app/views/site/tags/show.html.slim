@@ -29,6 +29,7 @@
   .f-left.index-main
     .articles-section
       = render partial: 'site/application/index_article', collection: @articles, as: :article
-
+    .pagination
+      = will_paginate @articles, inner_window: 1
   .f-right.index-right.right-sidebar
     = render 'site/share/common_right'

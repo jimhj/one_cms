@@ -19,20 +19,24 @@
   width: 660px;
 }
 
-ul.tag-list {
+ul.tag-list-fix {
   margin-left: -5px;
 
   li {
     float: left;
-    margin: 5px;
+    overflow: hidden;
+    margin-right: 5px;
+    margin-bottom: 10px;
     list-style: none;
   }
 
   li a {
-    display: block;
-    padding: 10px 20px;
     background: #edf1f5;
     font-size: 16px;
+    width: 100px;
     text-align: center;
+    display: inline-block;
+    height: 36px;
+    line-height: 36px;
   }
 }

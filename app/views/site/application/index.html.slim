@@ -13,10 +13,11 @@
               = image_tag a.thumb.url(:large), size: '660x300', alt: a.title, title: a.title
     .articles-section.m-top10
       = render partial: 'site/application/index_article', collection: @articles, as: :article
+      .loading-box
+        = image_tag 'site/loading.gif'
 
   .f-right.index-right.right-sidebar
     = render 'site/articles/share_sidebar'
-
 
 javascript:
   $(function () {

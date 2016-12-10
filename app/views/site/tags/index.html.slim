@@ -26,10 +26,11 @@
 
   .f-left.index-main
     .tags-section
-      ul.tag-list
+      ul.tag-list-fix
         - @tags.each do |tag|
           li
             a title="#{tag.name}" href="#{tag_path(tag.slug)}"= tag.name
-
+    .pagination
+      = will_paginate @tags, inner_window: 1
   .f-right.index-right.right-sidebar
     = render 'site/share/common_right'
