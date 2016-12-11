@@ -8,7 +8,7 @@
   .hot-news.news-list
     .list-head 24小时热文
     ul.news-content
-      - Article.hot.each do |article|
+      - Article.photo_news.order('id DESC').limit(100).sample(4).each do |article|
         - picture_url = article.pictures.first
         li
           a.clearfix href="#{article_path(article)}"
