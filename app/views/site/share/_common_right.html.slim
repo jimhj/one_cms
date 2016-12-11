@@ -1,36 +1,47 @@
-.hot-news.news-list
-  .list-head 24小时热文
-  ul.news-content
-    - Article.hot.each do |article|
-      - picture_url = article.pictures.first
-      li
-        a.clearfix href="#{article_path(article)}"
-          .news-pic
-            img src="#{picture_url}" width=60 height=60 alt="#{article.title}"
-          .news-inner
-            p.news-title= article.title
+- cache([Article.hot.first, Article.photo_news.first, 'index-r']) do
+  - SiteAd.rightsidetop.actived.each do |ad|
+    .r-side-ad.index-right-ad= raw ad.value
 
-.hot-pics.news-list
-  .list-head 精彩图文
-  ul.news-content.clearfix
-    - Article.photo_news.each do |article|
-      - picture_url = article.pictures.first
+  - SiteAd.rightsidemiddle.actived.each do |ad|
+    .r-side-ad.index-right-ad= raw ad.value
 
-      li
-        a.clearfix href="#{article_path(article)}"
-          .news-pic
-            img src="#{picture_url}" width=144 height=84 alt="#{article.title}"
-          p= article.title
-
-- if @links
-  .friend-links.news-list
-    .list-head 友情链接
-    ul.news-content.clearfix
-      - (@links || []).each do |link|
+  .hot-news.news-list
+    .list-head 24小时热文
+    ul.news-content
+      - Article.hot.each do |article|
+        - picture_url = article.pictures.first
         li
-          a href="#{link.url}" target="_blank" title="#{link.title}"= link.name
+          a.clearfix href="#{article_path(article)}"
+            .news-pic
+              img src="#{picture_url}" width=60 height=60 alt="#{article.title}"
+            .news-inner
+              p.news-title= article.title
 
-.about-section
-  p= SiteConfig.actived.copyright.html_safe
-  .declare
-    p= SiteConfig.actived.declare.html_safe
+  .hot-pics.news-list
+    .list-head 精彩图文
+    ul.news-content.clearfix
+      - Article.photo_news.each do |article|
+        - picture_url = article.pictures.first
+
+        li
+          a.clearfix href="#{article_path(article)}"
+            .news-pic
+              img src="#{picture_url}" width=144 height=84 alt="#{article.title}"
+            p= article.title
+
+  - if @links
+    .friend-links.news-list
+      .list-head 友情链接
+      ul.news-content.clearfix
+        - (@links || []).each do |link|
+          li
+            a href="#{link.url}" target="_blank" title="#{link.title}"= link.name
+
+  .about-section
+    p= SiteConfig.actived.copyright.html_safe
+    .declare
+      p= SiteConfig.actived.declare.html_safe
+
+- SiteAd.rightsidebottom.actived.each do |ad|
+  .r-side-ad.index-right-ad
+    .r-side-ad-inner= raw ad.value 

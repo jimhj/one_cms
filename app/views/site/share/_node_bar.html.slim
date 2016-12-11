@@ -1,7 +1,7 @@
 .f-left.node-sidebar-box
   .node-sidebar.clearfix
     a.logo href="#{root_path}"
-      = image_tag 'site/logo3.png'
+      = image_tag SiteConfig.actived.logo.url
     ul.sidebar-list
       - Node.where(is_nav: true).order('sortrank DESC').each_with_index do |node, i|
         li class=('active' if i.zero?)

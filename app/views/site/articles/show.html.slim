@@ -49,7 +49,15 @@
             span.tag.tag-gray= @article.node.name
             span= @article.source
             span= @article.created_at.strftime('%F %T')
-          .a-content= article_format @article.body_html
+          .a-content
+            - SiteAd.leftsidearticletop.actived.each do |ad|
+              .a-content-ad
+                = raw ad.value
+            = article_format @article.body_html
+
+            - SiteAd.leftsidearticlebottom.actived.each do |ad|
+              .a-content-ad
+                = raw ad.value
           .a-action
             span.tags
             ul.tag-list
@@ -57,7 +65,7 @@
                 li
                   a href="#{tag_path(tag.slug)}"= tag.name
 
-        .comment-box
+        .comment-box#commentBox
           = render 'site/share/changyan'
 
     .r-main-box.clearfix
@@ -71,10 +79,22 @@
                 a title="#{node.name}" href="#{articles_path(node.slug)}"= node.short_name
 
       .f-left.articles-section
+        - SiteAd.leftsidemiddle.actived.each do |ad|
+          .a-content-ad
+            = raw ad.value
         .cut-line
         = render partial: 'site/application/index_article', collection: @more_articles, as: :article
+        - SiteAd.leftsidebottom.actived.each do |ad|
+          .a-content-ad
+            = raw ad.value
 
   .f-right.article-right
+    - SiteAd.rightsidetop.actived.each do |ad|
+      .r-side-ad= raw ad.value
+
+    - SiteAd.rightsidemiddle.actived.each do |ad|
+      .r-side-ad= raw ad.value
+
     .text-list.news-list
       .list-head= @article.node.name
       .list-desc= @article.node.seo_description
@@ -89,3 +109,7 @@
         - @node.articles.last(10).each do |article|
           li
             a href="#{article_path(article)}"= article.title
+
+    - SiteAd.rightsidebottom.actived.each do |ad|
+      .r-side-ad
+        .r-side-ad-inner= raw ad.value
