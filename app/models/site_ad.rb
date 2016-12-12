@@ -23,7 +23,8 @@ class SiteAd < ActiveRecord::Base
       'mobilearticlebottom'   => '移动站正文内容下方',
       'mobilebodybottom'      => '移动站更多文章下方',
       'mobilelisttop'         => '移动站列表上方',
-      'mobilelistbottom'      => '移动站列表下方'
+      'mobilelistbottom'      => '移动站列表下方',
+      'mobileglobal'          => '移动站全站'
     }    
   end
 
