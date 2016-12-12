@@ -1,10 +1,6 @@
 class Site::ApplicationController < ApplicationController
   layout 'tt'
 
-  # caches_action :index, cache_path: 'desktop/index', if: Proc.new {
-  #   controller_name == 'application'
-  # }, :expires_in => 2.hours
-
   self.page_cache_directory = -> { Rails.root.join("public", 'cached_pages') }
   
   caches_page :index
