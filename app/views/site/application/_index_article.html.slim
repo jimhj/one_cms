@@ -24,7 +24,7 @@
       .right-bd
         h3
           a href="#{article_path(article)}" title="#{article.title}"= article.title
-        p= article.seo_description
+        p.a-list-desc= article.seo_description
 
       .item-footer
         a.tag.tag-blue href="#{articles_path(article.node.slug)}"= article.node.name
@@ -39,7 +39,7 @@
       .right-bd
         h3
           a href="#{article_path(article)}" title="#{article.title}"= article.title
-        p= article.seo_description
+        p.a-list-desc= article.seo_description
 
       .item-footer
         a.tag.tag-blue href="#{articles_path(article.node.slug)}"= article.node.name

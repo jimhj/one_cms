@@ -41,6 +41,11 @@
   margin-bottom: 10px;
 }
 
+p.a-list-desc {
+  height: 40px;
+  overflow: hidden;
+}
+
 .item-footer {
   font-size: 14px;
   &, a { color: #777; }
