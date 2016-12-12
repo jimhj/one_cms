@@ -22,19 +22,15 @@ $(window).on 'scroll', (e) ->
 
     $('.loading-box').show()
 
-    setTimeout ->
-      $.ajax
-        url: '/more'
-        data: { page: page }
-        dataType: 'json'
-        success: (rsp) ->
-          if rsp.html && $.trim(rsp.html) != ''
-            $('.loading-box').hide()
-            $('.loading-box').before rsp.html
-            view.onLoading = false
-            view.page = page
-          else
-            $('.loading-box').text('没有更多了')
-            view.canLoad = false
-    , 200
+    $.get "/more?page=#{page}", (rsp) ->
+      if rsp.html && $.trim(rsp.html) != ''
+        $('.loading-box').hide()
+        $('.loading-box').before rsp.html
+        view.onLoading = false
+        view.page = page
+      else
+        $('.loading-box').text('没有更多了')
+        view.canLoad = false
+    , 'json'
+
 
