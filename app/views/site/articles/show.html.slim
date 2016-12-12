@@ -97,7 +97,8 @@
 
     .text-list.news-list
       .list-head= @article.node.name
-      .list-desc= @article.node.seo_description
+      - unless @article.node.seo_description.blank?
+        .list-desc= @article.node.seo_description
       ul.news-content
         - @node.articles.last(4).each do |article|
           li
