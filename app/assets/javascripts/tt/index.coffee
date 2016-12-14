@@ -31,6 +31,8 @@ $(window).on 'scroll', (e) ->
       else
         $('.loading-box').text('没有更多了')
         view.canLoad = false
+
+      view.scrollTop = top
     , 'json'
 
 
