@@ -3,7 +3,7 @@ class Site::TagsController < Site::ApplicationController
   caches_action :show, :cache_path => Proc.new { |c| c.request.url + '-desktop' }, :expires_in => 6.hours
     
   def index
-    @tags = Tag.order('id DESC').paginate(page: params[:page], per_page: 105, total_entries: 1000000)
+    @tags = Tag.order('id DESC').paginate(page: params[:page], per_page: 310, total_entries: 1000000)
 
     set_meta title: '热门标签'
   end
