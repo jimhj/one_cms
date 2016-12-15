@@ -27,6 +27,13 @@
     color: #222;
     word-wrap: break-word;
     margin-bottom: 24px;
+
+    img {
+      // text-align: center;
+      margin: 0 auto;
+      display: block;
+      max-width: 100%;
+    }
   }
 
   .a-action {
