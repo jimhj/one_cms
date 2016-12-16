@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
   # end
 
   def robots
-    render :text => "Sitemap:http://#{SiteConfig.actived.domain}/sitemap.xml\nDisallow:/*?*"
+    render :text => "Sitemap:http://#{SiteConfig.actived.domain}/sitemap.xml\nUser-agent: *\nDisallow:/*?*"
   end
 
   private
