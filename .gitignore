@@ -26,6 +26,7 @@ config/secrets.yml
 config/database.yml
 config/config.yml
 config/*.p12
+config/deploy/
 config/deploy/staging.rb
 config/deploy/production.rb
 config/unicorn.rb
