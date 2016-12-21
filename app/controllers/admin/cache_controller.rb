@@ -3,14 +3,15 @@ class Admin::CacheController < Admin::ApplicationController
     # if params[:cache_name] == 'desktop/index'
     #   # expire_page '/page_cache/desktop/index'
     # else
-    expire_fragment(params[:cache_name])
+    # expire_fragment(params[:cache_name])
     # end
+    system "cd ~/www/h4/current/public/cached_pages; rm -rf index.html"
     redirect_to admin_cache_path
   end
 
   def refresh_all
     system "echo 'flush_all' | nc localhost 11211"
-    system "cd ~/www/h4/current/public; rm -rf *.html"
+    system "cd ~/www/h4/current/public/cached_pages; rm -rf *.html"
     redirect_to admin_cache_path
   end
 
