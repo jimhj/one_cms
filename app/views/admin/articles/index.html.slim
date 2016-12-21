@@ -20,7 +20,7 @@
             td.w35
               a href="#{edit_admin_article_path(article, page: params[:page], node_id: params[:node_id])}"= article.title
             td.w10.text-center= article.source || 'admin'
-            td.w15.text-center= article.node.name
+            td.w15.text-center= article.node.try(:name)
             td.w10.text-center= article.created_at.strftime('%Y-%m-%d')            
             td.w10.text-center
               - if article.thumb.present?
