@@ -56,7 +56,7 @@
             = article_format @article.body_html
 
             - if HotArticle.hot.any?
-              ul.hot-list
+              ul.hot-list.m-top20
                 - HotArticle.hot.each do |a|
                   li
                     a href="#{a.link}"= a.title
