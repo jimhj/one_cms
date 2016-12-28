@@ -1,0 +1,29 @@
+.row.pt-30
+  .col-lg-12.article-list
+    table.table.table-striped.table-hover.table-bordered.table-condensed
+      tbody
+        tr
+          td.text-center ID
+          td.text-center 热点标题
+          td.text-center 链接地址
+          td.text-center 是否生效
+          td.text-center 排序值
+          td.text-center 创建时间
+          td.text-center 操作
+        - @hot_articles.each do |a|
+          tr
+            td.text-center= a.id
+            td
+              a href="#{a.link}" target="_blank"= a.title
+            td
+              a href="#{a.link}" target="_blank"= a.link
+            td.text-center= a.active? ? '是' : '否'
+            td.text-center= a.sortrank
+            td.text-center= a.created_at.strftime('%F')
+            td.text-center
+              a href="#{edit_admin_hot_article_path(a)}"
+                i.fa.fa-pencil-square
+              | &nbsp;
+              a href="#{admin_hot_article_path(a)}" data-method="DELETE" data-confirm="确认删除吗，将无法恢复？"
+                i.fa.fa-trash
+    

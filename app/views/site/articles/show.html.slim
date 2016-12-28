@@ -55,6 +55,12 @@
                 = raw ad.value
             = article_format @article.body_html
 
+            - if HotArticle.hot.any?
+              ul.hot-list
+                - HotArticle.hot.each do |a|
+                  li
+                    a href="#{a.link}"= a.title
+
             - SiteAd.leftsidearticlebottom.actived.each do |ad|
               .a-content-ad.m-top20
                 = raw ad.value

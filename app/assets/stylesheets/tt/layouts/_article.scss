@@ -129,3 +129,17 @@
     border-bottom: 2px solid $brand-success;
   }
 }
+
+ul.hot-list {
+  list-style: none;
+  text-align: center;
+
+  li {
+    list-style: none;
+  }
+
+  li a {
+    color: #406599;
+    border-bottom: 1px dotted #406599;
+  } 
+}
