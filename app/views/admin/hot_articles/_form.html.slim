@@ -3,11 +3,11 @@
     = render "admin/shared/errors", target: @hot_article
     = form_for @hot_article, url: url, class: 'form' do |f|
       .form-group.form-group-bordered
-        label 内链名称 *
-        = f.text_field :title, class: 'form-control', placeholder: '输入内链名称'
+        label 热点标题 *
+        = f.text_field :title, class: 'form-control', placeholder: '输入热点标题'
       .form-group.form-group-bordered
-        label 内链 url *
-        = f.text_field :link, class: 'form-control', placeholder: '内链 url'
+        label 热点链接 *
+        = f.text_field :link, class: 'form-control', placeholder: '链接url'
       .form-group.form-group-bordered
         label 排序值
         = f.number_field :sortrank, class: 'form-control', placeholder: '排序值越大越靠前'

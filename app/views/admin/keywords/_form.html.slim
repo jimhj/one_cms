@@ -3,7 +3,7 @@
     = render "admin/shared/errors", target: @keyword
     = form_for @keyword, url: url, class: 'form' do |f|
       .form-group.form-group-bordered
-        label 热点标题 *
+        label 内链标题 *
         = f.text_field :name, class: 'form-control', placeholder: '输入标题'
       .form-group.form-group-bordered
         label 链接 url *
