@@ -20,7 +20,7 @@
 every 2.hours do
   rake 'g:sitemap'
   command "echo 'flush_all' | nc localhost 11211"
-  command "cd ~/www/h4/current/public; rm -rf *.html"
+  command "cd ~/www/h4/current/public/cached_pages; rm -rf index.html"
 end
 
 # every 2.hours do
