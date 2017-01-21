@@ -1,0 +1,45 @@
+doctype html
+<html mip>
+  head
+    = render_seo_meta_tags
+    = stylesheet_link_tag "tt_mobile/app"
+    = csrf_meta_tags
+    meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1"
+    meta content="mobile" name="applicable-device"
+    meta http-equiv="Cache-Control" content="no-transform"
+    meta name="format-detection" content="telephone=no"
+    = stylesheet_link_tag 'https://mipcache.bdstatic.com/static/v1/mip.css'
+    link rel="canonical" href="http://#{article_url(@article)}"
+
+  body.article-detail-page
+    article.article-detail
+      h1.title= @article.title
+      .article-info 
+        em= @article.created_at.strftime('%F')
+        em= @article.source
+        em= @article.node.name
+      - SiteAd.miparticletop.actived.each do |ad|
+        .ad-container= raw ad.value 
+
+      .article-content
+        = replace_inner_link_domain(article_format @article.body_html)
+
+      - SiteAd.miparticlebottom.actived.each do |ad|
+        .ad-container= raw ad.value
+
+    .article-list-section
+      h2 热文推荐
+      .articles-list.mip-articles-list
+        = render partial: 'mobile/mip/mip_article_list', locals: { articles: @more_articles }
+
+    - SiteAd.mipbodybottom.actived.each do |ad|
+      .ad-container= raw ad.value
+
+    - SiteAd.mipstats.actived.each do |ad|
+      .ad-container= raw ad.value
+
+    = javascript_include_tag 'https://mipcache.bdstatic.com/static/v1/mip.js'
+    = javascript_include_tag 'https://mipcache.bdstatic.com/static/v1/mip-link/mip-link.js'
+    = javascript_include_tag 'https://mipcache.bdstatic.com/static/v1/mip-ad/mip-ad.js'
+    = javascript_include_tag 'https://mipcache.bdstatic.com/static/v1/mip-stats-baidu/mip-stats-baidu.js'
+</html>

@@ -1,0 +1,22 @@
+- articles.each do |article|
+  - if article.pictures.size > 0
+    .article-item.item-with-pic
+      .item-inner.clearfix
+        .item-text
+          h4
+            mip-link href="#{mip_article_url(article)}" title="#{article.title}"= article.title
+          .item-info
+            span= article.source.presence || '网友投稿' 
+            span= article.created_at.strftime('%F %T')
+        mip-link.item-image href="#{mip_article_url(article)}" title="#{article.title}"
+          mip-img layout="container" src="#{article.pictures.first}"
+
+  - else
+    .article-item
+      .item-inner.clearfix
+        .item-text
+          h4
+            mip-link href="#{mip_article_url(article)}" title="#{article.title}"= article.title
+        .item-info
+          span= article.source.presence || '网友投稿' 
+          span= article.created_at.strftime('%F %T')

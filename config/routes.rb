@@ -53,6 +53,7 @@ Rails.application.routes.draw do
       get 'z/:slug',      to: 'channels#show',    as: :channel, trailing_slash: true
       get ':slug/:id',    to: 'articles#show'
       get ':slug',        to: 'articles#index',   as: :articles, trailing_slash: true
+      get 'mip/:slug/:id',to: 'mip#show'
     end
   end 
   

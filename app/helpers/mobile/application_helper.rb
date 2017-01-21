@@ -18,6 +18,13 @@ module Mobile::ApplicationHelper
     domain = SiteConfig.actived.domain
     nake_domain = domain.gsub(/www\./, '')
     html = html.gsub(domain, "m.#{nake_domain}")
-    raw html
+    html.html_safe
   end
+
+  # def replace_inner_link_domain_mip(html)
+  #   domain = SiteConfig.actived.domain
+  #   nake_domain = domain.gsub(/www\./, '')
+  #   html = html.gsub(domain, "m.#{nake_domain}")
+  #   raw html 
+  # end
 end

@@ -24,7 +24,11 @@ class SiteAd < ActiveRecord::Base
       'mobilebodybottom'      => '移动站更多文章下方',
       'mobilelisttop'         => '移动站列表上方',
       'mobilelistbottom'      => '移动站列表下方',
-      'mobileglobal'          => '移动站全站'
+      'mobileglobal'          => '移动站全站',
+      'miparticletop'         => 'MIP正文内容上方',
+      'miparticlebottom'      => 'MIP正文内容下方',
+      'mipbodybottom'         => 'MIP更多文章下方',
+      'mipstats'              => 'MIP统计',
     }    
   end
 
