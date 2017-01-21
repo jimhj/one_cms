@@ -1,0 +1,68 @@
+.top-header {
+  display: block;
+  z-index: 999;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.top-bar {
+  height: 44px;
+  position: relative;
+  background: $brand-success;
+}
+
+.top-bar a.logo {
+  background-image: image-url('mobile/logo.png');
+  background-size: 140px 40px;
+  background-repeat: no-repeat;
+  display: block;
+  margin: 0px auto;
+  height: 40px;
+  width: 140px;
+}
+
+.top-bar a.search-btn {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  background-image: image-url('mobile/search.png');
+  width: 24px;
+  height: 24px;
+  background-size: 24px 24px;
+  background-repeat: no-repeat;
+  display: block;
+}
+
+.top-menu {
+  background: #f4f5f6;
+  height: 37px;
+  box-sizing: border-box;
+}
+
+.top-menu-tabs {
+  overflow: hidden;
+  overflow-x: scroll;
+  -webkit-overflow-scrolling: touch;
+  white-space: nowrap;
+}
+
+.top-menu-tabs a.tab {
+  white-space: nowrap;
+  display: inline-block;
+  padding-left: 10px;
+  padding-right: 10px;
+  color: #505050;
+  text-decoration: none;
+  font-size: 17px;
+  line-height: 26px;
+  height: 26px;
+  margin-left: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  -webkit-tap-highlight-color: rgba(0,0,0,.3);
+
+  &.current { color: $brand-success; }
+}

@@ -1,0 +1,32 @@
+doctype html
+html
+  head
+    = render_seo_meta_tags
+    = stylesheet_link_tag "tt_mobile/app"
+    meta charset="utf-8"
+    meta name="viewport" content="width=device-width, initial-scale=1"
+    meta content="mobile" name="applicable-device"
+    meta http-equiv="Cache-Control" content="no-transform" 
+    meta name="format-detection" content="telephone=no"
+    = csrf_meta_tags
+
+  body
+    .top-header
+      .top-bar
+        a.logo href="#{root_url}" title="#{SiteConfig.actived.site_slogan}"
+        a.search-btn
+      .top-menu
+        .top-menu-tabs
+          a.tab class=('current' if controller_name == 'application' && action_name == 'index') href="#{root_url}" 推荐
+          - Node.where(is_nav: true).order('sortrank DESC').each_with_index  do |node, i|
+            a.tab class=('current' if params[:slug] == node.slug && controller_name != 'application') href="#{mobile_articles_path(node.slug)}"= node.short_name
+    .main
+      - SiteAd.mobilelisttop.actived.each do |ad|
+        .ad-container= raw ad.value 
+      = yield
+      - SiteAd.mobilelistbottom.actived.each do |ad|
+        .ad-container= raw ad.value
+
+    - SiteAd.mobileglobal.actived.each do |ad|
+      .ad-container= raw ad.value
+

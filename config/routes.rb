@@ -1,6 +1,6 @@
 class MobileConstraint
   def self.matches?(request)
-    (request.user_agent.to_s =~ /Mobile|webOS/) or request.subdomain.start_with?('m')
+    (request.user_agent.to_s =~ /Mobile|webOS/) or request.subdomain.start_with?('m') or true
   end
 end
 

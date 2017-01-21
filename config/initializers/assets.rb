@@ -11,12 +11,6 @@ Rails.application.config.assets.version = '1.0'
 Rails.application.config.assets.precompile += %w(
   admin/app.js
   admin/app.css
-  site/themes/green.css
-  site/themes/orange.css
-  site/themes/red.css
-  site/app.js
-  bootstrap-ie7.css
-  respond.js
   html5shiv.js
   font-awesome-ie7
   mobile/app.js
@@ -30,6 +24,7 @@ Rails.application.config.assets.precompile += %w(
   tt/views/index.css
   tt/app.js
   tt/index.js
+  tt_mobile/app.css
   jquery.slideBox.js
   jquery.slideBox.css
 )

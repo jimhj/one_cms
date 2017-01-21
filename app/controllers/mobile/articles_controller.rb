@@ -17,14 +17,16 @@ class Mobile::ArticlesController < Mobile::ApplicationController
     @article = Article.find params[:id]
     @node = Node.find_by!(slug: params[:slug])
 
-    @nodes = Node.all.pluck(:id).sample(20)
-    @more_articles = Article.where('pictures_count > 0').order('id DESC').limit(5)
+    @nodes = @node.self_and_ancestors
+    @more_articles = Article.where(node_id: @nodes.pluck(:id)).limit(8)    
     
     set_meta_tags title: @article.format_seo_title,
                   description: @article.seo_description,
                   keywords: @article.seo_keywords
 
-    render layout: false, template: 'mobile/articles/wechat-show'
+    # render layout: false, template: 'mobile/articles/wechat-show'
+
+    render layout: false
 
     fresh_when(etag: [@article, Keyword.recent], template: false)    
   end

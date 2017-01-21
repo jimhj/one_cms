@@ -1,25 +1,36 @@
-.article-detail
-  .article-header
-    h1= @article.title
-    p.text-muted
-      span= @article.created_at.strftime('%F')
-      span #{@article.source} #{@article.writer}
-  .article-body
-    = article_format @article.body_html
-  .article-footer
-    - if @article.tags.any?
-      i.fa.fa-tags
-      - @article.tags.each do |tag|
-          a href="#{tag_path(tag.slug)}" title="#{tag.name}"= tag.name
+doctype html
+html
+  head
+    = render_seo_meta_tags
+    = stylesheet_link_tag "tt_mobile/app"
+    = csrf_meta_tags
+    meta name="viewport" content="width=device-width, initial-scale=1"
+    meta content="mobile" name="applicable-device"
+    meta http-equiv="Cache-Control" content="no-transform"
+    meta name="format-detection" content="telephone=no"
+  body.article-detail-page
+    article.article-detail
+      h1.title= @article.title
+      .article-info 
+        em= @article.created_at.strftime('%F')
+        em= @article.source
+        a href="#{articles_path(@article.node.slug)}"= @article.node.name
+      - SiteAd.mobilearticletop.actived.each do |ad|
+        .ad-container= raw ad.value 
 
-.article-container.container
-  .container-nav
-    ul.nav.nav-tabs role="tablist"
-      li.active role="presentation"
-        a role="tab" data-toggle="tab" href="#{url_for}" 相关文章
+      .article-content
+        = replace_inner_link_domain(article_format @article.body_html)
 
-  .container-inner
-    ul.list-unstyled
-      - @more_articles.each do |article|
-        li
-          a title="#{article.title}" href="#{article_path(article)}"= article.title
+      - SiteAd.mobilearticlebottom.actived.each do |ad|
+        .ad-container= raw ad.value
+
+    .article-list-section
+      h2 热文推荐
+      .articles-list
+        = render partial: 'mobile/share/article_list', locals: { articles: @more_articles }
+
+    - SiteAd.mobilebodybottom.actived.each do |ad|
+      .ad-container= raw ad.value
+
+    - SiteAd.mobileglobal.actived.each do |ad|
+      .ad-container= raw ad.value

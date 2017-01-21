@@ -1,0 +1,40 @@
+- articles.each do |article|
+  - if article.pictures.size >= 3
+    .article-item.item-pics
+      .item-inner.clearfix
+        .item-text
+          h4
+            a href="#{article_path(article)}" title="#{article.title}"
+              = article.title
+
+        .item-image-list.clearfix
+          - article.pictures.first(3).each do |picture_url|
+            a.item-image  href="#{article_path(article)}" title="#{article.title}"
+              = image_tag picture_url, alt: article.title, title: article.title
+
+        .item-info
+          span= article.source.presence || '网友投稿' 
+          span= article.created_at.strftime('%F %T')
+
+  - elsif article.pictures.size > 0
+    .article-item.item-with-pic
+      .item-inner.clearfix
+        .item-text
+          h4
+            a href="#{article_path(article)}" title="#{article.title}"= article.title
+          .item-info
+            span= article.source.presence || '网友投稿' 
+            span= article.created_at.strftime('%F %T')
+        a.item-image href="#{article_path(article)}" title="#{article.title}"
+          = image_tag article.pictures.first, alt: article.title, title: article.title
+
+  - else
+    .article-item
+      .item-inner.clearfix
+        .item-text
+          h4
+            a href="#{article_path(article)}" title="#{article.title}"= article.title
+
+        .item-info
+          span= article.source.presence || '网友投稿' 
+          span= article.created_at.strftime('%F %T')

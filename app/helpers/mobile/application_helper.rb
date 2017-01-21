@@ -8,8 +8,8 @@ module Mobile::ApplicationHelper
     prev_page = current - (current <= 1 ? 0 : 1)
     next_page = current + (current.zero? ? 2 : 1)
 
-    prev_html = %Q(<a href="#{url_for(parameters.merge(page: prev_page))}" class="btn btn-default">#{prev_text}</a>)
-    next_html = %Q(<a href="#{url_for(parameters.merge(page: next_page))}" class="btn btn-default">#{next_text}</a>)
+    prev_html = %Q(<a href="#{url_for(parameters.merge(page: prev_page))}" class="page-btn">#{prev_text}</a>)
+    next_html = %Q(<a href="#{url_for(parameters.merge(page: next_page))}" class="page-btn">#{next_text}</a>)
 
     (prev_html + next_html).html_safe
   end

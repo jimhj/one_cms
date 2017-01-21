@@ -1,0 +1,25 @@
+.article-detail
+  .article-header
+    h1= @article.title
+    p.text-muted
+      span= @article.created_at.strftime('%F')
+      span #{@article.source} #{@article.writer}
+  .article-body
+    = article_format @article.body_html
+  .article-footer
+    - if @article.tags.any?
+      i.fa.fa-tags
+      - @article.tags.each do |tag|
+          a href="#{tag_path(tag.slug)}" title="#{tag.name}"= tag.name
+
+.article-container.container
+  .container-nav
+    ul.nav.nav-tabs role="tablist"
+      li.active role="presentation"
+        a role="tab" data-toggle="tab" href="#{url_for}" 相关文章
+
+  .container-inner
+    ul.list-unstyled
+      - @more_articles.each do |article|
+        li
+          a title="#{article.title}" href="#{article_path(article)}"= article.title

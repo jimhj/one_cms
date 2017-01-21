@@ -1,5 +1,7 @@
 class Mobile::ApplicationController < ApplicationController
-  layout 'mobile'
+  layout 'tt_mobile'
+  
+  # layout 'mobile'
 
   # self.page_cache_directory = Rails.root.join('public/page_cache/mobile').to_s
 
