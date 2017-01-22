@@ -46,7 +46,7 @@ module Mobile::ApplicationHelper
   def replace_mip_images(html)
     domain = SiteConfig.actived.domain
     nake_domain = domain.gsub(/www\./, '')
-    html = html.gsub(domain, "m.#{nake_domain}")
+    html = html.gsub(domain, "m.#{nake_domain}/mip")
     html = html.gsub(/\<img.*?src="(.*?)".*\>/, '<mip-img src="\1" layout="container" popup></mip-img>')
     html.html_safe
   end

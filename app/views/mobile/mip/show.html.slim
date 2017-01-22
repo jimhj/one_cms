@@ -11,7 +11,7 @@ doctype html
       .article-info 
         em= @article.created_at.strftime('%F')
         em= @article.source
-        em= @article.node.name
+        mip-link href="#{mip_node_url(@article.node.slug)}"= @article.node.name
 
       - SiteAd.miparticletop.actived.each do |ad|
         .ad-container= raw ad.value 

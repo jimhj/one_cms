@@ -104,7 +104,7 @@ body.article-detail-page {
   line-height: 20px;
   font-size: 17px;
 
-  em, a {
+  em, a, mip-link {
     font-style: normal;
     color: #8c8c8c;
     display: inline-block;
@@ -113,7 +113,7 @@ body.article-detail-page {
     margin-bottom: 10px;    
   }
 
-  a {
+  a, mip-link {
     display: inline-block;
     color: #607fa6;
     text-decoration: none;
