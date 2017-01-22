@@ -3,7 +3,7 @@ require 'builder'
 namespace :g do
   desc 'Generate sitemap'
   task :mipmap => :environment do
-    host = Rails.env.development? ? 'http://127.0.0.1:8000': "http://#{SiteConfig.actived.domain}"
+    host = Rails.env.development? ? 'http://127.0.0.1:8000': "http://m.h4.com.cn"
     index_file = Rails.root.join('public', 'mipmap.xml').to_s
     sitemap_file_dir = Rails.root.join('public', 'mipmap').to_s
     # if File.directory?(sitemap_file_dir)

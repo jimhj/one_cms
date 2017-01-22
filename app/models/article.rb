@@ -41,11 +41,18 @@ class Article < ActiveRecord::Base
 
   def notify_baidu_spider
     url = "http://#{SiteConfig.actived.domain}/#{node.slug}/#{id}"
-    mip_url = "http://m.h4.com.cn/mip/#{node.slug}/#{id}"
     site = RestClient::Resource.new('http://data.zz.baidu.com')
     begin
       site["urls?site=#{SiteConfig.actived.domain}&token=#{Setting.baidu_notify_token}"].post url, :content_type => 'text/plain'
-      site["urls?site=#{SiteConfig.actived.domain}&token=#{Setting.baidu_notify_token}&type=mip"].post mip_url, :content_type => 'text/plain'
+    rescue
+      true
+    end
+
+    mip_site = "http://m.h4.com.cn"
+    mip_url = "#{mip_site}/mip/#{node.slug}/#{id}"
+
+    begin
+      site["urls?site=#{mip_site}&token=2yEYwtNjfx5k5sNB&type=mip"].post mip_url, :content_type => 'text/plain'
     rescue
       true
     end
