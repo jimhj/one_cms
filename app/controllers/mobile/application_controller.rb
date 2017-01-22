@@ -16,6 +16,7 @@ class Mobile::ApplicationController < ApplicationController
 
   def index
     @articles = Article.recommend(page: params[:page])
-    @links = Link.where(linkable_id: 0).mobile
+    @miphtml = "http://m.h4.com.cn"
+    # @links = Link.where(linkable_id: 0).mobile
   end
 end
