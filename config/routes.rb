@@ -5,7 +5,7 @@ class MobileConstraint
 end
 
 Rails.application.routes.draw do
-  match 'robots', to: 'application#robots', format: :txt, via: :get
+  # get 'robots', to: 'application#robots', format: :txt
 
   mount RedactorRails::Engine => '/redactor_rails'
   mount RuCaptcha::Engine => '/rucaptcha'
@@ -43,7 +43,8 @@ Rails.application.routes.draw do
     end
   end
 
-  match 'sitemap/:node_id-:page', to: 'sitemap#show', constraints: { format: 'xml' }, via: :get
+  get 'sitemap/:node_id-:page', to: 'sitemap#show', constraints: { format: 'xml' }
+  get 'mipmap', to: 'sitemap#mipmap', constraints: { format: 'xml' }
 
   constraints(MobileConstraint) do
     scope module: 'mobile', as: :mobile do
