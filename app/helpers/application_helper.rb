@@ -53,7 +53,7 @@ module ApplicationHelper
     # html.html_safe
   end
 
-  def mip_article_format
+  def mip_article_format(html)
     sanitize(html, tags: %w(table thead tbody tr th td p img br ol li a strong em b span h1 h2 h3 h4 h5 h6 blockquote ul dd dfn dl dt small big), attributes: %w(href class id target title alt src data))
   end
 
