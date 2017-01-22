@@ -10,7 +10,7 @@ class SitemapController < ApplicationController
   end
 
   def mipmap
-    @host = Rails.env.development? ? 'http://127.0.0.1:4000': "http://m.h4.com.cn}"
+    @host = Rails.env.development? ? 'http://127.0.0.1:4000': "http://m.h4.com.cn"
     @articles = Article.order('id DESC').limit(10000)
   end
 end
