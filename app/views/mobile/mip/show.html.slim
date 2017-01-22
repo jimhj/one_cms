@@ -24,7 +24,7 @@ doctype html
         .ad-container= raw ad.value 
 
       .article-content
-        = replace_mip_images(article_format @article.body_html)
+        = replace_mip_images(mip_article_format @article.body_html)
 
       - SiteAd.miparticlebottom.actived.each do |ad|
         .ad-container= raw ad.value
