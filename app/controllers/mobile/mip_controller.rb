@@ -1,7 +1,9 @@
 class Mobile::MipController < Mobile::ApplicationController
   layout false
 
-  caches_action :show, :cache_path => Proc.new{ |c| 'mip-' + "#{c.params[:slug]}-" + c.params[:id] }, :expires_in => 6.hours
+  caches_action :show, :cache_path => Proc.new{ |c| c.request.url }, :expires_in => 6.hours
+  caches_action :index, :cache_path => Proc.new { |c| c.request.url }, :expires_in => 6.hours
+  caches_action :node, :cache_path => Proc.new { |c| c.request.url }, :expires_in => 6.hours
 
   def show
     @article = Article.find params[:id]
