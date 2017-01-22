@@ -32,7 +32,7 @@ module Mobile::ApplicationHelper
     domain = SiteConfig.actived.domain
     nake_domain = domain.gsub(/www\./, '')
     html = html.gsub(domain, "m.#{nake_domain}")
-    html = html.gsub(/\<img.*?src="(.*?)".*?alt="(.*?)".*?\>/, '<mip-img src="\1" alt="\2" layout="container"></mip-img>')
+    html = html.gsub(/\<img.*?src="(.*?)".*\>/, '<mip-img src="\1" layout="container" popup></mip-img>')
     html.html_safe
   end
 end
