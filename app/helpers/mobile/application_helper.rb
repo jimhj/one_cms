@@ -23,8 +23,8 @@ module Mobile::ApplicationHelper
     prev_page = current - (current <= 1 ? 0 : 1)
     next_page = current + (current.zero? ? 2 : 1)
 
-    prev_html = %Q(<mip-link href="#{url_for(parameters.merge(page: prev_page))}" class="page-btn">#{prev_text}</mip-link>)
-    next_html = %Q(<mip-link href="#{url_for(parameters.merge(page: next_page))}" class="page-btn">#{next_text}</mip-link>)
+    prev_html = %Q(<mip-link href="#{url_for(parameters.merge(page: prev_page, only_path: false))}" class="page-btn">#{prev_text}</mip-link>)
+    next_html = %Q(<mip-link href="#{url_for(parameters.merge(page: next_page, only_path: false))}" class="page-btn">#{next_text}</mip-link>)
 
     (prev_html + next_html).html_safe
   end
