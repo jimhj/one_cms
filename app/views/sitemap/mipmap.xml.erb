@@ -3,7 +3,7 @@
   <%- @articles.each do |article| %>
     <% next if article.node.blank? %>
     <url>
-      <loc><%= File.join(@host, 'mip', article.node.slug, article.id.to_s).to_s %></loc>
+      <loc><%= File.join(@host, article.node.slug, article.id.to_s).to_s %></loc>
       <lastmod><%= article.updated_at.strftime('%F') %></lastmod>
       <changefreq>daily</changefreq>
       <priority>1.0</priority>

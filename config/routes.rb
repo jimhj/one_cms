@@ -44,7 +44,8 @@ Rails.application.routes.draw do
   end
 
   get 'sitemap/:node_id-:page', to: 'sitemap#show', constraints: { format: 'xml' }
-  get 'mipmap',       to: 'sitemap#mipmap', constraints: { format: 'xml' }
+  get 'mipmap/:node_id-:page', to: 'sitemap#mipmap', constraints: { format: 'xml' }
+  # get 'mipmap',       to: 'sitemap#mipmap', constraints: { format: 'xml' }
   get 'mip',          to: 'mobile/mip#index',        as: :mip, trailing_slash: true
   get 'mip/:slug',    to: 'mobile/mip#node',         as: :mip_node, trailing_slash: true
   get 'mip/:slug/:id',to: 'mobile/mip#show'

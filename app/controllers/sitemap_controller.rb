@@ -10,7 +10,9 @@ class SitemapController < ApplicationController
   end
 
   def mipmap
-    @host = Rails.env.development? ? 'http://127.0.0.1:4000': "http://m.h4.com.cn"
-    @articles = Article.order('id DESC').limit(10000)
+    @node = Node.find params[:node_id]
+    node_ids = @node.self_and_descendants.pluck(:id)
+    @host = Rails.env.development? ? 'http://127.0.0.1:4000/mip': "http://m.h4.com.cn/mip"
+    @articles = Article.where(node_id: node_ids).order('id DESC').paginate(per_page: 10000, total_entries: 1000000, page: params[:page]) 
   end
 end

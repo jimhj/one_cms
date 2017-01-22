@@ -73,6 +73,7 @@ namespace :sitemap do
       within release_path do
         with rails_env: :production do
           execute :bundle, "exec rake g:sitemap --trace"
+          execute :bundle, "exec rake g:mipmap --trace"
         end
       end
     end    

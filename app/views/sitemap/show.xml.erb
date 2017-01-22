@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset>
   <%- @articles.each do |article| %>
+    <% next if article.node.blank? %>
     <url>
       <loc><%= File.join(@host, article.node.slug, article.id.to_s).to_s %></loc>
       <lastmod><%= article.updated_at.strftime('%F') %></lastmod>

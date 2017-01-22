@@ -13,6 +13,7 @@ capybara-*.html
 /public/assets
 /public/sitemap
 /public/sitemap.xml
+/public/mipmap.xml
 /public/apiclient_cert.p12
 /coverage/
 /spec/tmp
