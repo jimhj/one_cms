@@ -49,7 +49,7 @@
   white-space: nowrap;
 }
 
-.top-menu-tabs a.tab {
+.top-menu-tabs .tab {
   white-space: nowrap;
   display: inline-block;
   padding-left: 10px;
@@ -65,4 +65,11 @@
   -webkit-tap-highlight-color: rgba(0,0,0,.3);
 
   &.current { color: $brand-success; }
+}
+
+.node-name {
+  text-align: center;
+  font-size: 17px;
+  color: #FFFFFF;
+  line-height: 44px;
 }

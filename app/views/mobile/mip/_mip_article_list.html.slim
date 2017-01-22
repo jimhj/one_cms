@@ -1,5 +1,20 @@
 - articles.each do |article|
-  - if article.pictures.size > 0
+  - if article.pictures.size >= 3
+    .article-item.item-pics
+      .item-inner.clearfix
+        .item-text
+          h4
+            mip-link href="#{mip_article_url(article)}" title="#{article.title}"= article.title
+        .item-image-list.clearfix
+          - article.pictures.first(3).each do |picture_url|
+            mip-link.item-image  href="#{mip_article_url(article)}" title="#{article.title}"
+              mip-img layout="container" src="#{picture_url}"
+
+        .item-info
+          span= article.source.presence || '网友投稿' 
+          span= article.created_at.strftime('%F %T')
+
+  - elsif article.pictures.size > 0
     .article-item.item-with-pic
       .item-inner.clearfix
         .item-text

@@ -1,0 +1,4 @@
+.top-menu-tabs
+  mip-link.tab class=('current' if controller_name == 'mip' && action_name == 'index') href="#{mip_url}" 推荐
+  - Node.where(is_nav: true).order('sortrank DESC').each_with_index do |node, i|
+    mip-link.tab class=('current' if params[:slug] == node.slug) href="#{mip_node_url(node.slug)}"= node.short_name

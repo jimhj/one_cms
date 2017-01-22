@@ -1,0 +1,27 @@
+doctype html
+<html mip>
+  head
+    = render_seo_meta_tags
+    = render 'mobile/mip/shared_header'
+    link rel="canonical" href="#{articles_url(@node.slug)}"
+  body
+    .top-header
+      .top-bar
+        .node-name= "健康私房话 · #{@node.name}"
+      .top-menu
+        = render 'mobile/mip/mip_tab'
+    .main
+      - SiteAd.miplisttop.actived.each do |ad|
+        .ad-container= raw ad.value 
+
+      .articles-list
+        = render partial: 'mobile/mip/mip_article_list', locals: { articles: @articles }
+
+      - SiteAd.miplistbottom.actived.each do |ad|
+        .ad-container= raw ad.value 
+
+      .loadmore.loadmore-pagination
+        = mip_simple_pagination
+
+    = render 'mobile/mip/shared_footer'
+</html>

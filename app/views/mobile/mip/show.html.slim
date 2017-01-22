@@ -2,14 +2,7 @@ doctype html
 <html mip>
   head
     = render_seo_meta_tags
-    = stylesheet_link_tag "tt_mobile/app"
-    = csrf_meta_tags
-    meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1"
-    meta content="mobile" name="applicable-device"
-    meta http-equiv="Cache-Control" content="no-transform"
-    meta name="format-detection" content="telephone=no"
-    meta charset="utf-8"
-    = stylesheet_link_tag 'https://mipcache.bdstatic.com/static/v1/mip.css'
+    = render 'mobile/mip/shared_header'
     link rel="canonical" href="#{article_url(@article)}"
 
   body.article-detail-page
@@ -39,12 +32,6 @@ doctype html
     - SiteAd.mipbodybottom.actived.each do |ad|
       .ad-container= raw ad.value
 
-    - SiteAd.mipstats.actived.each do |ad|
-      .ad-container= raw ad.value
+    = render 'mobile/mip/shared_footer'
 
-    = javascript_include_tag 'https://mipcache.bdstatic.com/static/v1/mip.js'
-    = javascript_include_tag 'https://mipcache.bdstatic.com/static/v1/mip-link/mip-link.js'
-    = javascript_include_tag 'https://mipcache.bdstatic.com/static/v1/mip-ad/mip-ad.js'
-    = javascript_include_tag 'https://mipcache.bdstatic.com/static/v1/mip-stats-baidu/mip-stats-baidu.js'
-    = javascript_include_tag 'https://mipcache.bdstatic.com/static/v1/mip-share/mip-share.js'
 </html>
