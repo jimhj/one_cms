@@ -9,7 +9,10 @@
     .nodes
       ul.node-list
         - @nodes.first(6).each_with_index do |node, i|
-          li class=('active' if i.zero?)
+          - klass = []
+          - klass << 'active ' if node.slug == params[:slug]
+          - klass << 'nml' if i.zero?
+          li class=(klass.join(' '))
             a href="#{articles_path(node.slug)}"= node.name
     .articles-section.m-top10
       = render partial: 'site/application/index_article', collection: @articles, as: :article
