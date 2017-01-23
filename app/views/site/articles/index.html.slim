@@ -8,9 +8,9 @@
   .f-left.index-main
     .nodes
       ul.node-list
-        - @nodes.first(6).each_with_index do |node, i|
+        - @nodes.each_with_index do |node, i|
           - klass = []
-          - klass << 'active ' if node.slug == params[:slug]
+          - klass << 'active' if node.slug == params[:slug]
           - klass << 'nml' if i.zero?
           li class=(klass.join(' '))
             a href="#{articles_path(node.slug)}"= node.name

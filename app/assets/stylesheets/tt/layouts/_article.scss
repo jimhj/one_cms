@@ -100,18 +100,19 @@
 }
 
 .nodes {
-  height: 38px;
-  width: 100%;
+  height: 40px;
+  width: 660px;
   z-index: 50;
   margin-bottom: 16px;  
+  overflow: hidden;
+  // overflow-x: scroll; 
 }
 
 .nodes ul.node-list {
-  width: 660px;
+  width: 100%;
   background: #fff;
   height: 38px;
   border-bottom: 2px solid #f2f2f2; 
-
 
   li {
     line-height: 38px;
