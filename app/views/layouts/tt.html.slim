@@ -20,10 +20,21 @@ html
       .header-navbar
         .navbar-inner.clearfix
           .main-nav
-            ul.nav-list.clearfix
-              - Node.where(is_nav: true).order('sortrank DESC').each_with_index do |node, i|
-                li.f-left
-                  a href="#{articles_path(node.slug)}"= node.short_name
+            - if action_name == 'index'
+              a href="#{root_url}" title="网站首页"
+                span= "健康私房话 · #{SiteConfig.actived.site_slogan}"
+            - else
+              ul.nav-list.clearfix
+                - Node.where(is_nav: true).order('sortrank DESC').each_with_index do |node, i|
+                  li.f-left
+                    a href="#{articles_path(node.slug)}"= node.short_name
+                li.f-left.more-node
+                  a href="javascript:;" 更多 >
+                  ul.h-dropdown.clearfix
+                    - Node.roots.where(is_nav: false).order('sortrank DESC').each_with_index do |node, i|
+                      li.dropdown-item
+                        a href="#{articles_path(node.slug)}"= node.short_name
+                                           
           .sub-nav
             ul.nav-list.clearfix
               li.f-left

@@ -35,22 +35,7 @@ module ApplicationHelper
   end
 
   def article_format(html)
-    # strs = [
-    #   '#p#分页标题#e#',
-    #   '.hzh {display: none; }',
-    #   '养生吧（www.ys8.com）'
-    # ]
-
-    # # cleanup = html
-
-    # cleanup = html.gsub(/<p>(<br>){0,}<\/p>/, '')
-    #               .gsub(/(<br>){2,}(&nbsp;){0,}/, '<br>')
-
-    # strs.each { |str| cleanup = cleanup.gsub(str, '') }
-           
-    # sanitize cleanup
-    sanitize(html, tags: %w(table thead tbody tr th td p img br ol li a strong em b span h1 h2 h3 h4 h5 h6 blockquote ul dd dfn dl dt small big), attributes: %w(href class id target title alt style src data))
-    # html.html_safe
+    sanitize(html, tags: %w(table thead tbody tr th td p img br ol li a strong em b span h1 h2 h3 h4 h5 h6 blockquote ul dd dfn dl dt small big), attributes: %w(href class id target title alt src data))
   end
 
   def mip_article_format(html)
