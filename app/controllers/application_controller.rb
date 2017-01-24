@@ -3,26 +3,6 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  # before_action :prepare_for_mobile
-
-  # private
-
-  # def mobile_device?
-  #   request.user_agent =~ /Mobile|webOS/ or request.subdomain == 'm'
-  # end
-
-  # helper_method :mobile_device?
-
-  # def prepare_for_mobile
-  #   if mobile_device?
-  #     request.format = :mobile 
-  #   end
-  # end
-
-  def robots
-    render :text => "Sitemap:http://#{SiteConfig.actived.domain}/sitemap.xml\nUser-agent: *\nDisallow:/*?*"
-  end
-
   private
 
   def set_meta(tags)

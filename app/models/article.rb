@@ -1,6 +1,7 @@
 class Article < ActiveRecord::Base
   include ActionView::Helpers::SanitizeHelper
   
+  belongs_to :user
   belongs_to :node
   has_one :article_body, dependent: :destroy
   has_many :taggings
@@ -167,6 +168,6 @@ class Article < ActiveRecord::Base
 
   def source
     s = read_attribute(:source)
-    s.presence || '网友'
+    s.presence || '网友投稿'
   end
 end

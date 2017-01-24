@@ -64,12 +64,17 @@ Rails.application.routes.draw do
   scope module: :site do
     root 'application#index'
     get 'more',         to: 'application#more'
-    resources :tags,  only: [:index, :show],    trailing_slash: true    
-    get 'feed',         to: 'articles#feed',    as: :feed
-    get 'search',       to: 'articles#search',  as: :search
-    get 'z',            to: 'channels#index',   as: :channels, trailing_slash: true
-    get 'z/:slug',      to: 'channels#show',    as: :channel, trailing_slash: true
-    get ':slug/:id',    to: 'articles#show',    as: :article
-    get ':slug',        to: 'articles#index',   as: :articles, trailing_slash: true
+    resources :tags,    only: [:index, :show],    trailing_slash: true    
+    get 'feed',         to: 'articles#feed',      as: :feed
+    get 'search',       to: 'articles#search',    as: :search
+    get 'z',            to: 'channels#index',     as: :channels, trailing_slash: true
+    get 'z/:slug',      to: 'channels#show',      as: :channel, trailing_slash: true
+    get ':slug/:id',    to: 'articles#show',      as: :article
+    get ':slug',        to: 'articles#index',     as: :articles, trailing_slash: true
+  end
+
+  scope module: :press do
+    get :login,         to: 'sessions#new'
+    post :login,        to: 'sessions#create'
   end
 end

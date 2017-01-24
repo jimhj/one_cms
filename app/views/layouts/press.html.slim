@@ -1,0 +1,121 @@
+doctype html
+html
+  head
+    title 健康私房话投稿系统
+    = stylesheet_link_tag    "press/app"
+    = javascript_include_tag "press/app"
+    = csrf_meta_tags
+
+  body
+    #wrapper
+      nav.navbar.navbar-default.navbar-static-top style="margin-bottom: 0" role="navigation"
+        .navbar-header
+          a.navbar-brand 
+            span.text-danger: strong One
+            span: strong CMS
+            | &nbsp;
+            span 1.0
+
+        ul.nav.navbar-top-links.navbar-right
+          li.dropdown
+            a.dropdown-toggle data-toggle="dropdown" href="#" aria-expanded=false
+              i.fa.fa-tasks.fa-fw
+              i.fa.fa-caret-down
+          li.dropdown
+            a.dropdown-toggle data-toggle="dropdown" href="#" aria-expanded=false
+              i.fa.fa-user.fa-fw
+              i.fa.fa-caret-down
+
+        .navbar-default.sidebar role="navigation"
+          .sidebar-nav.navbar-collapse
+            ul.nav.in#side-menu
+              li.sidebar-search
+                = form_tag search_admin_articles_path, method: 'GET' do
+                  .input-group.custom-search-form
+                    input.form-control type="text" name="q" placeholder="搜索"
+                    span.input-group-btn
+                      button.btn.btn-default
+                        i.fa.fa-search
+              li
+                a href="javascript:;"
+                  i.fa.fa-sitemap.fa-fw
+                  | 栏目管理
+                  span.fa.arrow
+                ul.nav.nav-second-level.collapse
+                  li
+                    a href="#{admin_nodes_path}" 文章栏目列表
+                  li
+                    a href="#{list_admin_nodes_path}" 所有栏目
+                  li
+                    a href="#{new_admin_node_path}" 添加栏目
+              li
+                a href="javascript:;"
+                  i.fa.fa-file-text-o.fa-fw
+                  | 文章管理
+                  span.fa.arrow 
+                ul.nav.nav-second-level.collapse
+                  li
+                    a href="#{admin_articles_path}" 文章列表
+                  li
+                    a href="#{new_admin_article_path}" 添加文章
+              li
+                a href="javascript:;"
+                  i.fa.fa-link.fa-fw
+                  | 热点文章
+                  span.fa.arrow
+                ul.nav.nav-second-level.collapse
+                  li
+                    a href="#{admin_hot_articles_path}" 热点文章列表
+                  li
+                    a href="#{new_admin_hot_article_path}" 添加热点文章
+              li
+                a href="javascript:;"
+                  i.fa.fa-folder-o.fa-fw
+                  | 专题管理
+                  span.fa.arrow
+                ul.nav.nav-second-level.collapse
+                  li
+                    a href="#{admin_channels_path}" 专题列表
+                  li
+                    a href="#{new_admin_channel_path}" 添加专题
+              li
+                a href="javascript:;"
+                  i.fa.fa-files-o.fa-fw
+                  | 内链管理
+                  span.fa.arrow 
+                ul.nav.nav-second-level.collapse
+                  li
+                    a href="#{admin_keywords_path}" 内链词条列表
+                  li
+                    a href="#{new_admin_keyword_path}" 添加内链
+              li
+                a href="javascript:;"
+                  i.fa.fa-link.fa-fw
+                  | 友情链接
+                  span.fa.arrow
+                ul.nav.nav-second-level.collapse
+                  li
+                    a href="#{admin_links_path}" 友情链接列表
+                  li
+                    a href="#{new_admin_link_path}" 添加友情链接
+              li
+                a href="#{admin_cache_path}"
+                  i.fa.fa-database.fa-fw
+                  | 缓存管理
+                  span.fa.arrow
+              li
+                a href="#{admin_site_ads_path}"
+                  i.fa.fa-tv.fa-fw
+                  | 广告管理
+                ul.nav.nav-second-level.collapse
+                  li
+                    a href="#{admin_site_ads_path}" 广告列表
+                  li
+                    a href="#{new_admin_site_ad_path}" 添加广告
+
+              li
+                a href="#{admin_site_config_path}"
+                  i.fa.fa-cog.fa-fw
+                  | 网站设置
+      #page-wrapper style="min-height: 391px;"
+        = yield

@@ -13,11 +13,6 @@ Rails.application.config.assets.precompile += %w(
   admin/app.css
   html5shiv.js
   font-awesome-ie7
-  mobile/app.js
-  mobile/themes/green.css
-  mobile/themes/orange.css
-  mobile/themes/red.css
-  mobile/wechat-article.css
   swiper.js
   swiper.css
   tt/app.css
@@ -27,6 +22,8 @@ Rails.application.config.assets.precompile += %w(
   tt_mobile/app.css
   jquery.slideBox.js
   jquery.slideBox.css
+  press/app.js
+  press/app.css
 )
 
 Rails.application.config.assets.precompile << /\.(?:svg|eot|woff|ttf)\z/

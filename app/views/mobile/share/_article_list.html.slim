@@ -13,7 +13,7 @@
               = image_tag picture_url, alt: article.title, title: article.title
 
         .item-info
-          span= article.source.presence || '网友投稿' 
+          span= article.source 
           span= article.created_at.strftime('%F %T')
 
   - elsif article.pictures.size > 0
@@ -23,7 +23,7 @@
           h4
             a href="#{article_path(article)}" title="#{article.title}"= article.title
           .item-info
-            span= article.source.presence || '网友投稿' 
+            span= article.source 
             span= article.created_at.strftime('%F %T')
         a.item-image href="#{article_path(article)}" title="#{article.title}"
           = image_tag article.pictures.first, alt: article.title, title: article.title
@@ -36,5 +36,5 @@
             a href="#{article_path(article)}" title="#{article.title}"= article.title
 
         .item-info
-          span= article.source.presence || '网友投稿' 
+          span= article.source 
           span= article.created_at.strftime('%F %T')
