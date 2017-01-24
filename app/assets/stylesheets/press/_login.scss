@@ -1,0 +1,47 @@
+.form-page {
+  background: image-url('press/b.png');
+}
+
+.form-view .header {
+  width: 340px;
+  text-align: center;
+  margin: 80px auto 30px;;
+
+  .header-title {
+    color: #FFF;
+    font-size: 18px;
+    text-align: center;
+    margin-top: 20px;
+  }
+}
+
+.form-view .form-container {
+  width: 340px;
+  margin: 10px auto;
+  border: none;
+}
+
+.form-container .form-field {
+  margin-bottom: 20px;
+
+  input {
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    font-size: 14px;
+  }
+
+  input:first-child {
+    border-radius: 6px 6px 0px 0px;
+  }
+
+  input:last-child {
+    border-radius: 0px 0px 6px 6px;
+    border-top: 1px solid #DEDEDE;
+  }
+}
+
+.form-view .help {
+  margin-top: 30px;
+}

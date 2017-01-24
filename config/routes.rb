@@ -43,12 +43,16 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'sitemap/:node_id-:page', to: 'sitemap#show', constraints: { format: 'xml' }
-  get 'mipmap/:node_id-:page', to: 'sitemap#mipmap', constraints: { format: 'xml' }
-  # get 'mipmap',       to: 'sitemap#mipmap', constraints: { format: 'xml' }
-  get 'mip',          to: 'mobile/mip#index',        as: :mip, trailing_slash: true
-  get 'mip/:slug',    to: 'mobile/mip#node',         as: :mip_node, trailing_slash: true
-  get 'mip/:slug/:id',to: 'mobile/mip#show'
+  namespace :press do
+    get :login,         to: 'sessions#new'
+    post :login,        to: 'sessions#create'
+  end
+
+  get 'sitemap/:node_id-:page', to: 'sitemap#show',            constraints: { format: 'xml' }
+  get 'mipmap/:node_id-:page',  to: 'sitemap#mipmap',          constraints: { format: 'xml' }
+  get 'mip',                    to: 'mobile/mip#index',        as: :mip, trailing_slash: true
+  get 'mip/:slug',              to: 'mobile/mip#node',         as: :mip_node, trailing_slash: true
+  get 'mip/:slug/:id',          to: 'mobile/mip#show'
 
   constraints(MobileConstraint) do
     scope module: 'mobile', as: :mobile do
@@ -60,7 +64,7 @@ Rails.application.routes.draw do
       get ':slug',        to: 'articles#index',   as: :articles, trailing_slash: true
     end
   end 
-  
+
   scope module: :site do
     root 'application#index'
     get 'more',         to: 'application#more'
@@ -71,10 +75,5 @@ Rails.application.routes.draw do
     get 'z/:slug',      to: 'channels#show',      as: :channel, trailing_slash: true
     get ':slug/:id',    to: 'articles#show',      as: :article
     get ':slug',        to: 'articles#index',     as: :articles, trailing_slash: true
-  end
-
-  scope module: :press do
-    get :login,         to: 'sessions#new'
-    post :login,        to: 'sessions#create'
   end
 end

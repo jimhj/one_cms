@@ -1,0 +1,32 @@
+doctype html
+html
+  head
+    title 登录 - 健康私房话投稿系统
+    = stylesheet_link_tag    "press/app"
+    = javascript_include_tag "press/app"
+    = favicon_link_tag SiteConfig.actived.favicon.url
+    = csrf_meta_tags
+
+    meta charset="utf-8"    
+    meta http-equiv="X-UA-Compatible" content="IE=edge"
+    meta name="renderer" content="webkit"
+    meta content="pc,mobile" name="applicable-device"
+    meta http-equiv="Cache-Control" content="no-transform" 
+    meta name="viewport" content="width=device-width, initial-scale=1"
+
+    /[if lt IE 9]
+        = javascript_include_tag 'html5shiv'
+
+  body.page.form-page
+    .view.form-view
+      .header
+        .header-title 健康私房话投稿系统
+
+      .form-container
+        = render 'press/share/flash_messages'
+        = form_tag press_login_path, method: 'POST' do
+          .form-field
+            input.form-control.input-block.login-field.input-lg type="text" placeholder="手机号或者店秀号" name="login"
+            input.form-control.input-block.password-field.input-lg type="password" placeholder="注册密码" name="password"
+          button.btn.btn-primary.btn-lg.btn-block type="submit" 登录
+      .text-muted.text-center.help 请使用 Chrome，Safari 或者 IE 10+ 以上浏览器
