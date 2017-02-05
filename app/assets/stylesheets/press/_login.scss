@@ -5,13 +5,12 @@
 .form-view .header {
   width: 340px;
   text-align: center;
-  margin: 80px auto 30px;;
+  margin: 60px auto 30px;;
 
   .header-title {
     color: #FFF;
     font-size: 18px;
     text-align: center;
-    margin-top: 20px;
   }
 }
 
@@ -30,6 +29,7 @@
     box-shadow: none;
     -webkit-box-shadow: none;
     font-size: 14px;
+    border-bottom: 1px solid #DEDEDE;
   }
 
   input:first-child {
@@ -38,7 +38,7 @@
 
   input:last-child {
     border-radius: 0px 0px 6px 6px;
-    border-top: 1px solid #DEDEDE;
+    border-bottom: none;
   }
 }
 

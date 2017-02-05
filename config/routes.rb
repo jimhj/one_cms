@@ -44,8 +44,10 @@ Rails.application.routes.draw do
   end
 
   namespace :press do
-    get :login,         to: 'sessions#new'
-    post :login,        to: 'sessions#create'
+    get  :login,         to: 'sessions#new'
+    post :login,         to: 'sessions#create'
+    get  :register,      to: 'users#new'
+    post :register,      to: 'users#create'
   end
 
   get 'sitemap/:node_id-:page', to: 'sitemap#show',            constraints: { format: 'xml' }
