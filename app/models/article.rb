@@ -125,10 +125,20 @@ class Article < ActiveRecord::Base
     Article.where("id > ?", id).order("id ASC").first
   end
 
+  def add_watermark_to_html_images(html)
+    doc = Nokogiri::HTML(html)
+    doc.css('img').each do |img|
+      src = img[:src]
+      src = src.gsub(Setting.carrierwave.asset_host, Setting.qiniu.mirror_host)
+      img.set_attribute(:src, "#{src}!content")
+    end
+    doc.to_s
+  end
+
   def body_html
     html = article_body.body_html.presence || article_body.body
     article_body.delay.replace_keywords rescue nil
-    html
+    add_watermark_to_html_images(html)
   end
 
   def keywords
