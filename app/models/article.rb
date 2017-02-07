@@ -128,9 +128,14 @@ class Article < ActiveRecord::Base
   def add_watermark_to_html_images(html)
     doc = Nokogiri::HTML(html)
     doc.css('img').each do |img|
-      src = img[:src]
-      src = src.gsub(Setting.carrierwave.asset_host, Setting.qiniu.mirror_host)
-      img.set_attribute(:src, "#{src}!content")
+      begin
+        src = img[:src]
+        next if src.nil?
+        src = src.gsub(Setting.carrierwave.asset_host, Setting.qiniu.mirror_host)
+        img.set_attribute(:src, "#{src}!content")
+      rescue => e
+        next
+      end
     end
     doc.to_s
   end
