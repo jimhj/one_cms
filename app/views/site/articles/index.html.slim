@@ -8,7 +8,7 @@
   .f-left.index-main
     .nodes
       ul.node-list
-        - @node.children.each_with_index do |node, i|
+        - @node.root.children.each_with_index do |node, i|
           - klass = []
           - klass << 'active' if node.slug == params[:slug]
           - klass << 'nml' if i.zero?
