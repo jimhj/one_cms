@@ -130,7 +130,10 @@ class Article < ActiveRecord::Base
     doc.css('img').each do |img|
       begin
         src = img[:src]
-        next if src.nil?
+        if src.nil?
+          img.remove
+          next
+        end
         src = src.gsub(Setting.carrierwave.asset_host, Setting.qiniu.mirror_host)
         img.set_attribute(:src, "#{src}!content")
       rescue => e
