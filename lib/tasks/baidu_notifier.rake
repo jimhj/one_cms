@@ -11,7 +11,7 @@ namespace :baidu do
       if last_notified_id.blank?
         last_notified_id = Article.order('id ASC').first.id
       end
-      
+
     else
       last_notified_id = Article.order('id ASC').first.id
     end
@@ -38,7 +38,7 @@ namespace :baidu do
 
       req.body = urls
       req.content_type = 'text/plain'
-      rsp = Net::HTTP.start(uri.hostname, uri.port) { |http| http.request(req) }
+      rsp = Net::HTTP.start(uri.hostname, uri.port) { |http| http.request(req) } rescue '提交错误'
       rsp_string = rsp.body
 
       sleep(2)
