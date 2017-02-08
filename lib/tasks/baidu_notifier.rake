@@ -38,14 +38,26 @@ namespace :baidu do
 
       req.body = urls
       req.content_type = 'text/plain'
-      rsp = Net::HTTP.start(uri.hostname, uri.port) { |http| http.request(req) } rescue '提交错误'
+      rsp = Net::HTTP.start(uri.hostname, uri.port) { |http| http.request(req) } rescue nil
       rsp_string = rsp.body
+
+      break if rsp.nil?
+      rsp_h = ActiveSupport::JSON.decode(rsp.body) rescue nil
+
+      break if rsp_h.nil?
+      break if rsp_h['error'].present?
 
       sleep(2)
     end
 
+    rsp = ActiveSupport::JSON.decode(rsp_string) rescue nil
+
     File.open(store_path, "w+") do |file|
-      file.write articles.last.id
+      if rsp.blank? or rsp['error'].present?
+        file.write ''
+      else
+        file.write articles.last.id
+      end
       file.write "\n"
       file.write rsp_string
     end
