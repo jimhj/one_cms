@@ -7,6 +7,11 @@ namespace :baidu do
 
     if File.exist?(store_path)
       last_notified_id, rsp_string = File.read(store_path).split(/\n/)
+
+      if last_notified_id.blank?
+        last_notified_id = Article.order('id ASC').first.id
+      end
+      
     else
       last_notified_id = Article.order('id ASC').first.id
     end
