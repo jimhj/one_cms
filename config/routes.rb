@@ -34,6 +34,7 @@ Rails.application.routes.draw do
     resources :hot_articles
     get 'site_config',  to: 'site_config#edit',     as: :site_config
     post 'site_config', to: 'site_config#update',  as: :site_configs
+
     scope :cache, controller: 'cache', as: :cache do
       get '/', to: 'cache#index'
       post 'refresh', to: 'cache#refresh', as: :refresh

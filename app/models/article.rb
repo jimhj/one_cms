@@ -40,22 +40,16 @@ class Article < ActiveRecord::Base
   end
 
   def notify_baidu_spider
+    return if node.blank?
+
+    uri = URI.parse("http://data.zz.baidu.com/urls?site=#{SiteConfig.actived.domain}&token=YaDGPhGkZ31vBqzt")
+    req = Net::HTTP::Post.new(uri.request_uri)
+
     url = "http://#{SiteConfig.actived.domain}/#{node.slug}/#{id}"
-    site = RestClient::Resource.new('http://data.zz.baidu.com')
-    begin
-      site["urls?site=#{SiteConfig.actived.domain}&token=#{Setting.baidu_notify_token}"].post url, :content_type => 'text/plain'
-    rescue
-      true
-    end
+    req.body = url
+    req.content_type = 'text/plain'
 
-    mip_site = "http://m.h4.com.cn"
-    mip_url = "#{mip_site}/mip/#{node.slug}/#{id}"
-
-    begin
-      site["urls?site=#{mip_site}&token=2yEYwtNjfx5k5sNB&type=mip"].post mip_url, :content_type => 'text/plain'
-    rescue
-      true
-    end
+    Net::HTTP.start(uri.hostname, uri.port) { |http| http.request(req) }
   end
 
   def create_keyword

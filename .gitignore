@@ -14,6 +14,7 @@ capybara-*.html
 /public/sitemap
 /public/sitemap.xml
 /public/mipmap.xml
+/public/baidu_mip_record.txt
 /public/apiclient_cert.p12
 /coverage/
 /spec/tmp
