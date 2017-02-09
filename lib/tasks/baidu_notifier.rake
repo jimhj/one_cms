@@ -1,65 +1,79 @@
 RestClient.log = Rails.logger
 
+def mip_domain
+  "m.h4.com.cn"
+end
+
+def mip_host
+  "http://#{mip_domain}"
+end
+
+def post(urls)
+  uri = URI.parse("http://data.zz.baidu.com/urls?site=#{mip_domain}&token=YaDGPhGkZ31vBqzt&type=mip")
+  req = Net::HTTP::Post.new(uri.request_uri)
+  req.body = urls
+  req.content_type = 'text/plain'
+  rsp = Net::HTTP.start(uri.hostname, uri.port) { |http| http.request(req) }
+  ActiveSupport::JSON.decode(rsp.body) rescue { "error" => 500, "message" => "提交失败" }
+end
+
+def record_store_path
+  Rails.root.join('public', 'baidu_mip_record.txt')
+end
+
+def refresh_remains(last_record_id)
+  article = Article.where('id > ?', last_record_id).order('id ASC').limit(1).first
+
+  if article.node.blank?
+    article.update_column(:node_id, 1)
+    article.reload
+  end
+
+  urls = "#{mip_host}/mip/#{article.node.slug}/#{article.id}"
+  rsp = post(urls)
+
+  [rsp, article.id]
+end
+
 namespace :baidu do
   desc 'notify MIP'
   task :notify_mip => :environment do
-    store_path = Rails.root.join('public', 'baidu_mip_record.txt')
+    last_record_id = File.read(record_store_path).split(/\n/).first
+    last_record_id ||= 769
+    submit_number = 0
+    total = { "remain" => '', "success" => '' }
+    remain = 0
+    error = ""
 
-    if File.exist?(store_path)
-      last_notified_id, rsp_string = File.read(store_path).split(/\n/)
+    total, requested_id = refresh_remains(last_record_id)
 
-      if last_notified_id.blank?
-        last_notified_id = Article.order('id ASC').first.id
-      end
-
+    if total['error'].present?
+      error = total["message"]
     else
-      last_notified_id = Article.order('id ASC').first.id
+      articles = Article.where('id > ?', requested_id).order('id ASC').limit(total['remain'])
+      articles.to_a.in_groups_of(50, false).each do |group|
+        urls = group.collect do |article| 
+          next if article.node.nil?
+          "#{mip_host}/mip/#{article.node.slug}/#{article.id}"
+        end.compact.join("\n")
+
+        r = post(urls) rescue break
+
+        if r['error'].present?
+          errors = r["message"]
+          break
+        end
+
+        last_record_id = group.last.id
+        submit_number += r["success"].to_i
+        remain = r["remain"]
+
+        sleep(2)
+      end
     end
 
-    domain = "www.h4.com.cn"
-    mip_domain = "m.h4.com.cn"
-    mip_host = "http://#{mip_domain}"
-
-    uri = URI.parse('http://data.zz.baidu.com/urls?site=m.h4.com.cn&token=YaDGPhGkZ31vBqzt&type=mip')
-    req = Net::HTTP::Post.new(uri.request_uri)
-
-    articles = Article.where('id > ?', last_notified_id).order('id ASC').limit(700)
-    
-    return if articles.blank?
-
-    rsp_string = ""
-
-    articles.to_a.in_groups_of(100, false).each do |group|
-      urls = group.collect do |article| 
-        next if article.node.nil?
-        "#{mip_host}/mip/#{article.node.slug}/#{article.id}"
-      end
-      urls = urls.compact.join("\n")
-
-      req.body = urls
-      req.content_type = 'text/plain'
-      rsp = Net::HTTP.start(uri.hostname, uri.port) { |http| http.request(req) } rescue nil
-      rsp_string = rsp.body
-
-      break if rsp.nil?
-      rsp_h = ActiveSupport::JSON.decode(rsp.body) rescue nil
-
-      break if rsp_h.nil?
-      break if rsp_h['error'].present?
-
-      sleep(2)
-    end
-
-    rsp = ActiveSupport::JSON.decode(rsp_string) rescue nil
-
-    File.open(store_path, "w+") do |file|
-      if rsp.blank? or rsp['error'].present?
-        file.write ''
-      else
-        file.write articles.last.id
-      end
-      file.write "\n"
-      file.write rsp_string
+    File.open(record_store_path, "w+") do |file|
+      file.write([last_record_id, submit_number, total, remain, error].join("\n"))
     end
   end
 end

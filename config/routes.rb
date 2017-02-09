@@ -42,6 +42,8 @@ Rails.application.routes.draw do
       post :precompile
       post :restart
     end
+
+    get :mip, to: 'site_config#mip', as: :mip
   end
 
   get 'sitemap/:node_id-:page', to: 'sitemap#show', constraints: { format: 'xml' }
