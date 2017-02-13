@@ -7,7 +7,7 @@ doctype html
   body
     .top-header
       .top-bar
-        .node-name= "健康私房话 · #{@node.name}"
+        .node-name= "#{SiteConfig.actived.site_name} · #{@node.name}"
       .top-menu
         = render 'mobile/mip/mip_tab'
     .main

@@ -1,7 +1,7 @@
 RestClient.log = Rails.logger
 
 def mip_domain
-  "m.h4.com.cn"
+  Setting.mobile_domain.gsub('http://', '')
 end
 
 def mip_host
@@ -9,7 +9,7 @@ def mip_host
 end
 
 def post(urls)
-  uri = URI.parse("http://data.zz.baidu.com/urls?site=#{mip_domain}&token=YaDGPhGkZ31vBqzt&type=mip")
+  uri = URI.parse("http://data.zz.baidu.com/urls?site=#{mip_domain}&token=#{Setting.baidu_notify_token}&type=mip")
   req = Net::HTTP::Post.new(uri.request_uri)
   req.body = urls
   req.content_type = 'text/plain'

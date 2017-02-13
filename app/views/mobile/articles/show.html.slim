@@ -8,7 +8,7 @@ html
     meta content="mobile" name="applicable-device"
     meta http-equiv="Cache-Control" content="no-transform"
     meta name="format-detection" content="telephone=no"
-    link rel="miphtml" href="#{url_for(host: 'http://m.h4.com.cn/mip')}"
+    link rel="miphtml" href=url_for(host: "#{Setting.mobile_domain}/mip")
     
   body.article-detail-page
     article.article-detail

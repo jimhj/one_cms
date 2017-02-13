@@ -42,7 +42,7 @@ class Article < ActiveRecord::Base
   def notify_baidu_spider
     return if node.blank?
 
-    uri = URI.parse("http://data.zz.baidu.com/urls?site=#{SiteConfig.actived.domain}&token=YaDGPhGkZ31vBqzt")
+    uri = URI.parse("http://data.zz.baidu.com/urls?site=#{SiteConfig.actived.domain}&token=#{Setting.baidu_notify_token}")
     req = Net::HTTP::Post.new(uri.request_uri)
 
     url = "http://#{SiteConfig.actived.domain}/#{node.slug}/#{id}"

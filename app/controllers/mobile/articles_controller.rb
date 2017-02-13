@@ -7,7 +7,7 @@ class Mobile::ArticlesController < Mobile::ApplicationController
     @nodes = @node.root.self_and_descendants
     @articles = Article.where(node_id: @nodes.pluck(:id)).order('id DESC').paginate(page: params[:page], per_page: 20)
     # @links = @node.links.mobile
-    @miphtml = url_for(host: 'http://m.h4.com.cn/mip', trailing_slash: true)
+    @miphtml = url_for(host: "#{Setting.mobile_domain}/mip", trailing_slash: true)
 
     set_meta title: "#{@node.name}_#{@node.seo_title}",
              description: @node.seo_description,
