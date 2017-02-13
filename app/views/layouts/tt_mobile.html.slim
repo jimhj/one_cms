@@ -14,8 +14,7 @@ html
   body
     .top-header
       .top-bar
-        a.logo href="#{root_url}" title="#{SiteConfig.actived.site_slogan}"
-        a.search-btn
+        .node-name= SiteConfig.actived.site_name
       .top-menu
         .top-menu-tabs
           a.tab class=('current' if controller_name == 'application' && action_name == 'index') href="#{root_url}" 推荐

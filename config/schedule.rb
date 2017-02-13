@@ -17,11 +17,13 @@
 #   runner "AnotherModel.prune_old_records"
 # end
 
+
+
 every 2.hours do
   rake 'g:sitemap'
   rake 'g:mipmap'
   command "echo 'flush_all' | nc localhost 11211"
-  command "cd ~/www/#{Setting.mem_namespace}/current/public/cached_pages; rm -rf index.html"
+  command "cd #{Rails.root.join('cached_pages').to_s}; rm -rf index.html"
 end
 
 every 1.day, at: '12:00 pm' do

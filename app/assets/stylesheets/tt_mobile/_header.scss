@@ -15,13 +15,18 @@
 }
 
 .top-bar a.logo {
-  background-image: image-url('mobile/logo.png');
-  background-size: 140px 40px;
-  background-repeat: no-repeat;
-  display: block;
-  margin: 0px auto;
-  height: 40px;
-  width: 140px;
+  // background-image: image-url('mobile/logo.png');
+  // background-size: 140px 40px;
+  // background-repeat: no-repeat;
+  // display: block;
+  // margin: 0px auto;
+  // height: 40px;
+  // width: 140px;
+  text-align: center;
+  font-size: 17px;
+  color: #FFFFFF;
+  line-height: 44px;
+  
 }
 
 .top-bar a.search-btn {
