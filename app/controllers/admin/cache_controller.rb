@@ -5,13 +5,13 @@ class Admin::CacheController < Admin::ApplicationController
     # else
     # expire_fragment(params[:cache_name])
     # end
-    system "cd ~/www/h4/current/public/cached_pages; rm -rf index.html"
+    system "cd #{Rails.root.join('public/cached_pages').to_s}; rm -rf index.html"
     redirect_to admin_cache_path
   end
 
   def refresh_all
     system "echo 'flush_all' | nc localhost 11211"
-    system "cd ~/www/h4/current/public/cached_pages; rm -rf *.html"
+    system "cd #{Rails.root.join('public/cached_pages').to_s}; rm -rf *.html"
     redirect_to admin_cache_path
   end
 
