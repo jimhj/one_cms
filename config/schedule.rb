@@ -21,7 +21,7 @@ every 2.hours do
   rake 'g:sitemap'
   rake 'g:mipmap'
   command "echo 'flush_all' | nc localhost 11211"
-  command "cd ~/www/h4/current/public/cached_pages; rm -rf index.html"
+  command "cd ~/www/#{Setting.mem_namespace}/current/public/cached_pages; rm -rf index.html"
 end
 
 every 1.day, at: '12:00 pm' do
