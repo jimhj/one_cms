@@ -22,7 +22,7 @@ html
           .main-nav
             - if action_name == 'index'
               a href="#{root_url}" title="网站首页"
-                span= "健康私房话 · #{SiteConfig.actived.site_slogan}"
+                span= "#{SiteConfig.actived.site_name} · #{SiteConfig.actived.site_slogan}"
             - else
               ul.nav-list.clearfix
                 - Node.where(is_nav: true).order('sortrank DESC').each_with_index do |node, i|
