@@ -12,17 +12,20 @@
   }
 
   .logo-box {
-    line-height: 58px;
+    // line-height: 58px;
+    padding-top: 17px;
     overflow: hidden;
   }
 
   a.logo {
     display: block;
+    width: 110px;
+    height: 23px;
     *margin-top: 16px;  /*IE7*/
 
     img { 
       width: 110px; 
-      height: 27px;
+      height: 23px;
       vertical-align: middle;
     }
   }

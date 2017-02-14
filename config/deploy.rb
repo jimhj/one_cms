@@ -3,20 +3,19 @@
 # config valid only for current version of Capistrano
 lock '3.4.1'
 
-set :application, 'msj'
-
 set :deploy_to, "~/www/#{fetch(:application)}/"
 set :repo_url, 'git@github.com:jimhj/one_cms.git'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
-set :delayed_job_workers, 8
+set :delayed_job_workers, 4
 
 # Default deploy_to directory is /var/www/my_app_name
 set :delayed_log_dir, "#{shared_path}/log"
 
 set :unicorn_config_path, "#{current_path}/config/unicorn.rb"
+set :unicorn_restart_sleep_time, 5
 
 # Default value for :scm is :git
 # set :scm, :git
@@ -31,10 +30,26 @@ set :log_level, :debug
 # set :pty, true
 
 # Default value for :linked_files is []
-set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/secrets.yml', 'config/config.yml', 'config/seed_data.yml', 'config/unicorn.rb', 'public/baidu_mip_record.txt')
+set :linked_files, fetch(:linked_files, []).push(
+  'config/database.yml', 
+  'config/secrets.yml', 
+  'config/config.yml', 
+  'config/seed_data.yml', 
+  'config/unicorn.rb', 
+  'public/baidu_mip_record.txt'
+)
 
 # Default value for linked_dirs is []
-set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads', 'public/page_cache')
+set :linked_dirs, fetch(:linked_dirs, []).push(
+  'log', 
+  'tmp/pids', 
+  'tmp/cache', 
+  'tmp/sockets', 
+  'vendor/bundle', 
+  'public/system',
+  'public/uploads', 
+  'public/page_cache'
+)
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
@@ -42,14 +57,16 @@ set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', '
 
 set :rails_env, :production
 
-# set :rvm_type, :user
+set :rvm_type, :user
+set :rvm_ruby_version, '2.3.0'
 
 # Default value for keep_releases is 5
-set :keep_releases, 10
+set :keep_releases, 5
 
-set :pid_path, "#{shared_path}/tmp/pids"
-set :log_path, "#{shared_path}/log"
 set :whenever_identifier, -> { "#{fetch(:application)}" }
+set :pid_path, "#{current_path}/tmp/pids"
+set :log_path, "#{current_path}/log"
+set :unicorn_pid, -> {"#{current_path}/tmp/pids/unicorn.pid"}
 
 namespace :deploy do
   task :restart do
@@ -95,7 +112,7 @@ namespace :clear do
   end
 end
 
-after 'deploy:published', 'deploy:restart'
-after 'deploy:restart', 'sitemap:refresh'
+after 'deploy:publishing', 'deploy:restart'
+# after 'deploy:restart', 'sitemap:refresh'
 
 
