@@ -39,7 +39,7 @@ namespace :baidu do
   desc 'notify MIP'
   task :notify_mip => :environment do
     last_record_id = File.read(record_store_path).split(/\n/).first
-    last_record_id ||= 769
+    last_record_id ||= 1
     submit_number = 0
     total = { "remain" => '', "success" => '' }
     remain = 0
