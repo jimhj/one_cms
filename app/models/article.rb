@@ -128,7 +128,12 @@ class Article < ActiveRecord::Base
           img.remove
           next
         end
-        src = src.gsub(Setting.carrierwave.asset_host, Setting.qiniu.mirror_host)
+
+        if Setting.qiniu.use_legacy
+          src = src.gsub(Setting.carrierwave.legacy_asset_host, Setting.qiniu.mirror_host)
+        else
+          src = src.gsub(Setting.carrierwave.asset_host, Setting.qiniu.mirror_host)
+        end
         img.set_attribute(:src, "#{src}!content")
       rescue => e
         next
