@@ -15,7 +15,7 @@ class RedactorRailsPictureUploader < CarrierWave::Uploader::Base
   def store_dir
     # "system/redactor_assets/pictures/#{model.id}"
 
-    if Setting.mem_namespace == 'h4'
+    if Setting.mem_namespace == 'h4' or Setting.mem_namespace == 'lady'
       if model.id <= 64008
         "system/redactor_assets/pictures/#{model.id}"
       elsif model.id > 64008 && model.id <= 128381
