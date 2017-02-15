@@ -97,6 +97,8 @@ class Article < ActiveRecord::Base
     if pictures.blank?
       filenames = Nokogiri::HTML(article_body.body).css('img').collect do |img|
         src = img[:src]
+        next if src.nil?
+        src = src.gsub(Setting.carrierwave.legacy_asset_host, Setting.qiniu.asset_host)
         next unless src.include?(Setting.carrierwave.asset_host)
 
         img_path = src.split(Setting.carrierwave.asset_host + '/').last
@@ -129,11 +131,8 @@ class Article < ActiveRecord::Base
           next
         end
 
-        if Setting.qiniu.use_legacy
-          src = src.gsub(Setting.carrierwave.legacy_asset_host, Setting.qiniu.mirror_host)
-        else
-          src = src.gsub(Setting.carrierwave.asset_host, Setting.qiniu.mirror_host)
-        end
+        src = src.gsub(Setting.carrierwave.legacy_asset_host, Setting.qiniu.mirror_host)
+        src = src.gsub(Setting.carrierwave.asset_host, Setting.qiniu.mirror_host)
         img.set_attribute(:src, "#{src}!content")
       rescue => e
         next
