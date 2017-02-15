@@ -98,10 +98,22 @@ class Article < ActiveRecord::Base
       filenames = Nokogiri::HTML(article_body.body).css('img').collect do |img|
         src = img[:src]
         next if src.nil?
-        src = src.gsub(Setting.carrierwave.legacy_asset_host, Setting.qiniu.asset_host)
-        next unless src.include?(Setting.carrierwave.asset_host)
 
-        img_path = src.split(Setting.carrierwave.asset_host + '/').last
+        split_host = nil
+
+        if src.include?(Setting.carrierwave.asset_host)
+          split_host = Setting.carrierwave.asset_host
+        end
+
+        if Setting.carrierwave.legacy_asset_host.present?
+          if src.include?(Setting.carrierwave.legacy_asset_host)
+            split_host = Setting.carrierwave.legacy_asset_host
+          end
+        end
+
+        next if split_host.nil?
+
+        img_path = src.split(split_host + '/').last
         img_path.split('/').last(2).join('/')
       end.compact
 
@@ -131,7 +143,10 @@ class Article < ActiveRecord::Base
           next
         end
 
-        src = src.gsub(Setting.carrierwave.legacy_asset_host, Setting.qiniu.mirror_host)
+        if Setting.carrierwave.legacy_asset_host.present?
+          src = src.gsub(Setting.carrierwave.legacy_asset_host, Setting.qiniu.mirror_host)
+        end
+        
         src = src.gsub(Setting.carrierwave.asset_host, Setting.qiniu.mirror_host)
         img.set_attribute(:src, "#{src}!content")
       rescue => e
