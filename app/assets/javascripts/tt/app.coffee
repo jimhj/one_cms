@@ -5,8 +5,8 @@
 $(document).ready ->
   # $('.node-sidebar').sticky({ topSpacing: 16 })
   # $('.ad-fixed').sticky({ topSpacing: 16 })
-  $(".node-sidebar, .share-bar").stick_in_parent(parent: 'body', offset_top: 16)
-  $('.ad-fixed').stick_in_parent(parent: 'html', offset_top: 36)
+  $(".node-sidebar, .ad-fixed, .share-bar").stick_in_parent(parent: 'html', offset_top: 16)
+  # $('.ad-fixed').stick_in_parent(parent: '.main', offset_top: 16)
   # $('.share-bar').stick_in_parent()
 
   $('.more-node').mouseenter ->
