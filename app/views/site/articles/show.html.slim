@@ -120,3 +120,8 @@
     - SiteAd.rightsidebottom.actived.each do |ad|
       .r-side-ad.ad-fixed
         .r-side-ad-inner= raw ad.value
+
+javascript:
+  $(function () {
+    $(".share-bar").stick_in_parent({parent: '.a-main-box', offset_top: 16});
+  });

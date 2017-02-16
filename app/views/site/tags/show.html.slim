@@ -33,3 +33,8 @@
       = will_paginate @articles, inner_window: 1
   .f-right.index-right.right-sidebar
     = render 'site/share/common_right'
+
+javascript:
+  $(function () {
+    $(".share-bar").stick_in_parent({parent: '.main', offset_top: 16});
+  });
