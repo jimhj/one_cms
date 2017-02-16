@@ -14,7 +14,7 @@ html
   body
     .top-header
       .top-bar
-        .node-name= SiteConfig.actived.site_name
+        .node-name= [SiteConfig.actived.site_name, @node.try(:name)].compact.join(' · ')
       .top-menu
         .top-menu-tabs
           a.tab class=('current' if controller_name == 'application' && action_name == 'index') href="#{root_url}" 推荐

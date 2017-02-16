@@ -3,7 +3,7 @@
 # config valid only for current version of Capistrano
 lock '3.4.1'
 
-set :application, 'lady'
+set :application, 'xjd'
 
 set :deploy_to, "~/www/#{fetch(:application)}/"
 set :repo_url, 'git@github.com:jimhj/one_cms.git'
@@ -108,6 +108,18 @@ namespace :clear do
       within release_path do
         with rails_env: :production do
           execute :bundle, "exec rake tmp:clear --trace"
+        end
+      end
+    end    
+  end
+end
+
+namespace :assets do
+  task :precompile do
+    on roles(:web, :db, :app) do
+      within release_path do
+        with rails_env: :production do
+          execute :bundle, "exec rake assets:precompile --trace"
         end
       end
     end    
