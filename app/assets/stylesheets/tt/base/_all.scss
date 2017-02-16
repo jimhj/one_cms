@@ -26,3 +26,5 @@ a, a:hover, del, ins, s, u {
 a:hover {
   color: $brand-success;
 }
+
+div.slideBox div.tips div.nums a.active{ background-color: $brand-success;}
