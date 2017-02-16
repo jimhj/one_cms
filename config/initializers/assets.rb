@@ -12,12 +12,6 @@ Rails.application.config.assets.precompile += %w(
   admin/app.js
   admin/app.css
   html5shiv.js
-  font-awesome-ie7
-  mobile/app.js
-  mobile/themes/green.css
-  mobile/themes/orange.css
-  mobile/themes/red.css
-  mobile/wechat-article.css
   swiper.js
   swiper.css
   tt/app.css
