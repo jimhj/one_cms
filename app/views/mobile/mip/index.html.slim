@@ -11,7 +11,7 @@ doctype html
         .node-name= SiteConfig.actived.site_name
       .top-menu
         = render 'mobile/mip/mip_tab'
-    .main
+    .main.mip-main
       - SiteAd.miplisttop.actived.each do |ad|
         .ad-container= raw ad.value 
 

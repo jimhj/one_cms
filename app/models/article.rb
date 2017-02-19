@@ -143,7 +143,7 @@ class Article < ActiveRecord::Base
           next
         end
 
-        if Setting.carrierwave.legacy_asset_host.present?
+        if Setting.carrierwave["legacy_asset_host"].present?
           src = src.gsub(Setting.carrierwave.legacy_asset_host, Setting.qiniu.mirror_host)
         end
         
