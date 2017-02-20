@@ -5,8 +5,9 @@ html
     = stylesheet_link_tag "tt_mobile/app"
     meta charset="utf-8"
     meta name="viewport" content="width=device-width, initial-scale=1"
-    meta content="mobile" name="applicable-device"
-    meta http-equiv="Cache-Control" content="no-transform" 
+    meta name="applicable-device" content="mobile" 
+    meta name="MobileOptimized" content="width"
+    meta name="HandheldFriendly" content="true"
     meta name="format-detection" content="telephone=no"
     link rel="miphtml" href="#{@miphtml}"
     = csrf_meta_tags
