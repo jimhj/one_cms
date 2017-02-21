@@ -47,7 +47,7 @@ namespace :baidu do
 
     total, requested_id = refresh_remains(last_record_id)
 
-    if total['error'].present?
+    if !total['error'].blank?
       error = total["message"]
     else
       articles = Article.where('id > ?', requested_id).order('id ASC').limit(total['remain'])
