@@ -53,7 +53,13 @@ namespace :baidu do
       articles = Article.where('id > ?', requested_id).order('id ASC').limit(total['remain'])
       articles.to_a.in_groups_of(50, false).each do |group|
         urls = group.collect do |article| 
-          next if article.node.nil?
+          # next if article.node.nil?
+          
+          if article.node.nil?
+            article.update_column(:node_id, 1)
+            article.reload
+          end
+
           "#{mip_host}/mip/#{article.node.slug}/#{article.id}"
         end.compact.join("\n")
 
