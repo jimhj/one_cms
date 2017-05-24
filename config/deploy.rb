@@ -3,7 +3,7 @@
 # config valid only for current version of Capistrano
 lock '3.4.1'
 
-set :application, 'lady'
+set :application, 'xjd'
 
 set :deploy_to, "~/www/#{fetch(:application)}/"
 set :repo_url, 'git@github.com:jimhj/one_cms.git'
@@ -50,7 +50,8 @@ set :linked_dirs, fetch(:linked_dirs, []).push(
   'vendor/bundle', 
   'public/system',
   'public/uploads', 
-  'public/page_cache'
+  'public/cached_pages',
+  'public/mobile_cached_pages'
 )
 
 # Default value for default_env is {}
@@ -120,6 +121,18 @@ namespace :assets do
       within release_path do
         with rails_env: :production do
           execute :bundle, "exec rake assets:precompile --trace"
+        end
+      end
+    end    
+  end
+end
+
+namespace :baidu do
+  task :mip do
+    on roles(:web, :db, :app) do
+      within release_path do
+        with rails_env: :production do
+          execute :bundle, "exec rake baidu:notify_mip --trace"
         end
       end
     end    

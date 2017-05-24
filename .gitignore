@@ -10,6 +10,8 @@ capybara-*.html
 /db/*.sqlite3-journal
 /public/system
 /public/uploads
+/public/cached_pages
+/public/mobile_cached_pages
 /public/assets
 /public/sitemap
 /public/sitemap.xml

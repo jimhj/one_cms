@@ -1,5 +1,9 @@
 class Mobile::ArticlesController < Mobile::ApplicationController
-  caches_action :index, :cache_path => Proc.new { |c| c.request.url + '-mobile' }, :expires_in => 6.hours
+  self.page_cache_directory = -> { Rails.root.join("public", 'mobile_cached_pages') }
+  caches_page :index
+
+  # caches_action :index, :cache_path => Proc.new { |c| c.request.url + '-mobile' }, :expires_in => 6.hours
+
   caches_action :show, :cache_path => Proc.new{ |c| 'articles-' + "#{c.params[:slug]}-" + c.params[:id] + '-mobile' }, :expires_in => 6.hours
 
   def index

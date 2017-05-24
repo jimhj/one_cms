@@ -1,7 +1,11 @@
 class Site::ArticlesController < Site::ApplicationController
   caches_action :feed, expires_in: 2.hours
-  caches_action :index, :cache_path => Proc.new { |c| c.request.url + '-desktop' }, :expires_in => 6.hours
-  caches_action :show, :cache_path => Proc.new{ |c| 'articles' + "-#{c.params[:slug]}-" + c.params[:id] + '-desktop' }, :expires_in => 30.minutes
+  
+  self.page_cache_directory = -> { Rails.root.join("public", 'cached_pages') }
+  caches_page :index
+
+  # caches_action :index, :cache_path => Proc.new { |c| c.request.url + '-desktop' }, :expires_in => 6.hours
+  # caches_action :show, :cache_path => Proc.new{ |c| 'articles' + "-#{c.params[:slug]}-" + c.params[:id] + '-desktop' }, :expires_in => 30.minutes
 
   def index
     @node = Node.find_by!(slug: params[:slug])

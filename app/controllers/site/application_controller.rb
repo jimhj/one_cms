@@ -8,9 +8,7 @@ class Site::ApplicationController < ApplicationController
   def index
     @links = Link.where(linkable_id: 0).pc
     @focus = Article.focus
-    # @hots = Article.hot
     @articles = Article.recommend
-    # @photo_news = Article.photo_news
   end
 
   def more
