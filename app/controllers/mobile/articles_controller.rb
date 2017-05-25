@@ -20,9 +20,20 @@ class Mobile::ArticlesController < Mobile::ApplicationController
   def show
     @article = Article.find params[:id]
     @node = Node.find_by!(slug: params[:slug])
-
     @nodes = @node.self_and_ancestors
-    @more_articles = Article.where(node_id: @nodes.pluck(:id)).limit(8)    
+    
+    tag_ids = @article.taggings.pluck(:tag_id)
+    if tag_ids.any?
+      article_ids = Tagging.where(tag_id: tag_ids).order('id DESC').limit(8).pluck(:article_id)
+      @more_articles = Article.where(id: article_ids).order('id DESC').limit(8).to_a
+
+      if (ct = @more_articles.count) < 8
+        more = Article.where(node_id: @nodes.pluck(:id)).limit(8 - ct).to_a
+        @more_articles = @more_articles + more
+      end
+    else
+      @more_articles = Article.where(node_id: @nodes.pluck(:id)).limit(8)
+    end   
     
     set_meta_tags title: @article.format_seo_title,
                   description: @article.seo_description,
