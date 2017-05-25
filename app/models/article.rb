@@ -105,7 +105,7 @@ class Article < ActiveRecord::Base
           split_host = Setting.carrierwave.asset_host
         end
 
-        if Setting.carrierwave.legacy_asset_host.present?
+        if Setting.carrierwave['legacy_asset_host'].present?
           if src.include?(Setting.carrierwave.legacy_asset_host)
             split_host = Setting.carrierwave.legacy_asset_host
           end
