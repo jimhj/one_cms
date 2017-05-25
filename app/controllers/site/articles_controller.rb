@@ -28,7 +28,7 @@ class Site::ArticlesController < Site::ApplicationController
 
     tag_ids = @article.taggings.pluck(:tag_id)
     if tag_ids.any?
-      article_ids = Tagging.where(id: tag_ids).order('id DESC').limit(8).pluck(:article_id)
+      article_ids = Tagging.where(tag_id: tag_ids).order('id DESC').limit(8).pluck(:article_id)
       @more_articles = Article.where(id: article_ids).order('id DESC')
 
       if (ct = @more_articles.count) < 8
