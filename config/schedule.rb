@@ -21,6 +21,9 @@ every 2.hours do
   rake 'g:sitemap'
   rake 'g:mipmap'
   command "echo 'flush_all' | nc localhost 11211"
+end
+
+every 12.hours do
   runner "SiteConfig.clear_html_cache"
 end
 
