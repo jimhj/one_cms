@@ -27,7 +27,7 @@ every 12.hours do
   runner "SiteConfig.clear_html_cache"
 end
 
-every 2.hours do
+every 30.minutes do
   rake 'baidu:notify_mip'
 end
 
