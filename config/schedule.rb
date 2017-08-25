@@ -17,7 +17,7 @@
 #   runner "AnotherModel.prune_old_records"
 # end
 
-every 2.hours do
+every 12.hours do
   rake 'g:sitemap'
   rake 'g:mipmap'
   command "echo 'flush_all' | nc localhost 11211"
@@ -27,7 +27,7 @@ every 12.hours do
   runner "SiteConfig.clear_html_cache"
 end
 
-every 30.minutes do
+every 12.hours do
   rake 'baidu:notify_mip'
 end
 
