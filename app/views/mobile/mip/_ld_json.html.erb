@@ -4,7 +4,7 @@
     "@id": "<%= request.url %>",
     "title": "<%= @article.title %>",
     "images": <%= raw @article.bjh_pictures %>,
-    "description": "<%= strip_tags(@article.seo_description).strip.chomp.gsub(/\n|\r|\t/, '') %>",
+    "description": "<%= strip_tags(@article.seo_description).strip.chomp.gsub(/\n|\r|\t|\s/, '') %>",
     "pubDate": "<%= @article.created_at.strftime('%FT%H:%M:%S') %>"
   }
 </script>
