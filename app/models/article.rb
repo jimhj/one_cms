@@ -125,6 +125,16 @@ class Article < ActiveRecord::Base
     pictures.collect { |pic| pic.qn_url(:thumb) }
   end
 
+  def bjh_pictures
+    if pictures.blank?
+      ["https://i2.h4.com.cn/thumb.png"]
+    elsif pictures.size >= 3
+      pictures.first(3)
+    else
+      [pictures.first]
+    end
+  end
+
   def next
     Article.where("id < ?", id).order("id DESC").first
   end

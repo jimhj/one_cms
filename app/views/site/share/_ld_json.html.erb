@@ -1,0 +1,10 @@
+<script type="application/ld+json">
+  {
+    "@context": "https://zhanzhang.baidu.com/contexts/cambrian.jsonld",
+    "@id": "<%= request.url %>",
+    "title": "<%= @article.title %>",
+    "images": <%= raw @article.bjh_pictures %>,
+    "description": "<%= @article.seo_description.strip.gsub(/\n/, '') %>",
+    "pubDate": "<%= @article.created_at.strftime('%FT%H:%M:%S') %>"
+  }
+</script>

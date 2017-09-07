@@ -50,3 +50,8 @@ html
 
     - SiteAd.global.each do |ad|
       = raw ad.value
+
+    - if controller_name == 'articles' && action_name == 'show'
+      = render 'site/share/ld_json'
+    = render 'site/share/bjh'
+

@@ -28,6 +28,9 @@ html
       - SiteAd.mobilelistbottom.actived.each do |ad|
         .ad-container= raw ad.value
 
-    - SiteAd.mobileglobal.actived.each do |ad|
-      .ad-container= raw ad.value
-
+    / - SiteAd.mobileglobal.actived.each do |ad|
+    /   .ad-container= raw ad.value
+    
+    - if ['articles', 'mip'].include?(controller_name) && action_name == 'show'
+      = render 'mobile/mip/ld_json'
+    = render 'site/share/bjh'
