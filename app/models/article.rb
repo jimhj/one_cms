@@ -135,7 +135,7 @@ class Article < ActiveRecord::Base
     end
 
     pics.collect do |pic|
-      if pic.start_with?('https:') or pic.start_with?('http:')
+      if pic.start_with?('https:') && pic.start_with?('http:')
         pic
       else
         pic = "https:#{pic}"
