@@ -126,12 +126,22 @@ class Article < ActiveRecord::Base
   end
 
   def bjh_pictures
-    if pictures.blank?
+    pics = if pictures.blank?
       ["https://i2.h4.com.cn/thumb.png"]
     elsif pictures.size >= 3
       pictures.first(3)
     else
       [pictures.first]
+    end
+
+    pics.collect do |pic|
+      if pic.start_with?('https:') or pic.start_with?('http:')
+        pic
+      else
+        pic = "https:#{pic}"
+      end
+
+      pic
     end
   end
 
