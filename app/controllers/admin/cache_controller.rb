@@ -11,7 +11,8 @@ class Admin::CacheController < Admin::ApplicationController
 
   def refresh_all
     system "echo 'flush_all' | nc localhost 11211"
-    system "cd #{Rails.root.join('public/cached_pages').to_s}; rm -rf *.html"
+    # system "cd #{Rails.root.join('public/cached_pages').to_s}; rm -rf *.html"
+    SiteConfig.clear_html_cache
     redirect_to admin_cache_path
   end
 
