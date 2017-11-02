@@ -14,7 +14,7 @@ class Article < ActiveRecord::Base
   validates_uniqueness_of :title
 
   scope :recent, -> { where(recommend: false).order('id DESC').limit(6) }
-  scope :focus, -> { where(focus: true).order('id DESC').limit(3) }
+  scope :focus, -> { where(focus: true).order('id DESC').limit(8) }
   scope :hot, -> { with_photo.where(hot: true).order('id DESC').limit(8) }
 
   scope :with_photo, -> {
