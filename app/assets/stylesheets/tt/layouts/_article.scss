@@ -139,6 +139,7 @@
       right: 0;
       top: 0px;
       margin-left: 0;
+      z-index: 999;
     }
 
     &.dropdown a {
@@ -151,12 +152,15 @@
       border: 1px solid #ddd;
       padding: 5px 0px;
 
+      // & > a { border-bottom: 2px solid $brand-success; }
       ul.node-dropdown { display: block; }
     }
   }
 
   ul.node-dropdown {
     display: none;
+    margin-top: -2px;
+    z-index: 999;
 
     li {
       list-style: none;

@@ -9,7 +9,7 @@
     .nodes
       ul.node-list.clearfix
         - nodes = (@node.children.presence || @node.parent.try(:children) || [@node])
-        - main_nodes = nodes.first(5)
+        - main_nodes = nodes.first(6)
         - main_nodes.each_with_index do |node, i|
           - klass = []
           - klass << 'active' if node.slug == params[:slug]
