@@ -7,13 +7,24 @@
 
   .f-left.index-main
     .nodes
-      ul.node-list
-        - (@node.children.presence || @node.parent.try(:children) || [@node]).each_with_index do |node, i|
+      ul.node-list.clearfix
+        - nodes = (@node.children.presence || @node.parent.try(:children) || [@node])
+        - main_nodes = nodes.first(5)
+        - main_nodes.each_with_index do |node, i|
           - klass = []
           - klass << 'active' if node.slug == params[:slug]
           - klass << 'nml' if i.zero?
           li class=(klass.join(' '))
             a href="#{articles_path(node.slug)}"= node.name
+        - more_nodes = nodes - main_nodes
+        - if more_nodes.any?
+          li.dropdown
+            a href="javascript:;" 更多
+            ul.node-dropdown
+              - more_nodes.each do |node|
+                li
+                  a href="#{articles_path(node.slug)}"= node.name
+
     .articles-section.m-top10
       = render partial: 'site/application/index_article', collection: @articles, as: :article
 
@@ -22,3 +33,10 @@
 
   .f-right.index-right.right-sidebar
     = render 'site/articles/share_sidebar'
+
+javascript:
+  $('.dropdown').mouseenter(function () {
+    $(this).addClass('open');
+  }).mouseleave(function () {
+    $(this).removeClass('open');
+  });

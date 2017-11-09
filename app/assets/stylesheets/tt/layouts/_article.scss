@@ -104,8 +104,6 @@
   width: 660px;
   z-index: 50;
   margin-bottom: 16px;  
-  overflow: hidden;
-  // overflow-x: scroll; 
 }
 
 .nodes ul.node-list {
@@ -113,25 +111,67 @@
   background: #fff;
   height: 38px;
   border-bottom: 2px solid #f2f2f2; 
+  position: relative;
 
-  li {
-    line-height: 38px;
-    font-size: 16px;
-    display: inline-block;
-    color: #444;
+  & > li {
     margin-left: 33px;
     background: #fff;    
     list-style: none;
-    border-bottom: 2px solid #f2f2f2;
+    float: left;
+
+    a { 
+      line-height: 38px;
+      font-size: 16px;
+      display: inline-block;
+      color: #444;
+      border-bottom: 2px solid #f2f2f2; 
+    }
+    
+    &.active a {
+      border-bottom: 2px solid $brand-success;
+      color: $brand-success;     
+    }
+
+    &.nml { margin-left: 0px; }
+
+    &.dropdown {
+      position: absolute;
+      right: 0;
+      top: 0px;
+      margin-left: 0;
+    }
+
+    &.dropdown a {
+      width: 120px;
+      text-align: center;
+    }
+
+    &.dropdown.open {
+      top: -6px;
+      border: 1px solid #ddd;
+      padding: 5px 0px;
+
+      ul.node-dropdown { display: block; }
+    }
   }
 
-  li.nml {
-    margin-left: 0px;
-  }
+  ul.node-dropdown {
+    display: none;
 
-  li.active {
-    a { color: $brand-success; }
-    border-bottom: 2px solid $brand-success;
+    li {
+      list-style: none;
+    }
+
+    li a {
+      width: 120px;
+      padding: 5px 0px;
+
+      &:hover { color: $brand-success; }
+    }
+
+    li:last-child > a {
+      border-bottom: none;
+    }
   }
 }
 
