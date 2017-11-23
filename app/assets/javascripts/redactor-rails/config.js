@@ -10,8 +10,8 @@ window.init_redactor = function(){
         // If you want to use plugins, you have add plugins to your
         // application.js and application.css files and uncomment the line below:
         // "plugins": ['fontsize', 'fontcolor', 'fontfamily', 'fullscreen', 'textdirection', 'clips'],
-        "buttons": ['html', 'formatting', 'bold', 'italic', 'deleted', 'unorderedlist', 'orderedlist', 'outdent', 'indent', 'image', 'file', 'link', 'alignment', 'horizontalrule'],
-        "deniedTags": ['head', 'link', 'body', 'meta', 'script', 'style', 'applet'],
+        // "buttons": ['html', 'formatting', 'bold', 'italic', 'deleted', 'unorderedlist', 'orderedlist', 'outdent', 'indent', 'image', 'file', 'link', 'alignment', 'horizontalrule'],
+        "buttonSource": true.
         "imageUpload":"/redactor_rails/pictures?" + params,
         "imageGetJson":"/redactor_rails/pictures",
         "fileUpload":"/redactor_rails/documents?" + params,
