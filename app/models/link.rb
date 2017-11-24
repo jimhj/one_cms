@@ -3,7 +3,7 @@ class Link < ActiveRecord::Base
   validates_presence_of :name, :url, :title
 
   default_scope {
-    order('sortrank DESC, id DESC')
+    order('sortrank DESC, id ASC')
   }
 
   scope :pc, -> {
