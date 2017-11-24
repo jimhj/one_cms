@@ -43,6 +43,11 @@
   .form-group.form-group-bordered
     label SEO Description
     = f.text_area :seo_description, placeholder: 'SEO Description', class: 'form-control input-sm'
+
+  .form-group.form-group-bordered
+    = f.text_field :cached_keyword_id, class: 'form-control input-sm'
+    | 如果需要强制更新文章内容，请设置为0  
+
   .checkbox
     label
       = f.check_box :focus, class: 'checkbox'
