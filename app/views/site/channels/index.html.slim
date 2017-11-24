@@ -27,7 +27,7 @@
   .f-left.index-main
     .tags-section
       ul.tag-list-fix
-        - @channels.each do |tag|
+        - @channels.each do |channel|
           li
             a title="#{channel.name}" href="#{channel_path(channel)}"= channel.name
     .pagination
