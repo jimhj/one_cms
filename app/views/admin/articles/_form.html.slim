@@ -33,7 +33,7 @@
   = f.fields_for :article_body do |body_field|
     .form-group.form-group-bordered
       label 内容 *
-        = body_field.text_area :body, class: 'redactor-editor'
+      = body_field.text_area :body, class: 'redactor-editor'
 
     .form-group.form-group-bordered
       = body_field.number_field :cached_keyword_id, class: 'form-control input-sm'
